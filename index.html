@@ -26,6 +26,7 @@
             color: var(--text-color);
             text-align: center;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         .container {
@@ -37,7 +38,6 @@
             min-height: 100vh;
             padding-bottom: 60px;
             position: relative;
-            overflow: hidden;
         }
 
         /* Reproductor de Música Flotante con Animación */
@@ -62,18 +62,13 @@
             animation: pulse 2s infinite;
         }
 
-        .music-bar:hover {
-            transform: scale(1.1);
-            background-color: var(--olive-dark);
-        }
-
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(74, 93, 62, 0.4); }
             70% { box-shadow: 0 0 0 12px rgba(74, 93, 62, 0); }
             100% { box-shadow: 0 0 0 0 rgba(74, 93, 62, 0); }
         }
 
-        /* Portada Oscura Estilo Fixdate con Movimiento Suave */
+        /* Portada Oscura Estilo Fixdate */
         .hero {
             position: relative;
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
@@ -85,7 +80,7 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
+            from { opacity: 0; transform: translateY(-15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -120,7 +115,7 @@
             line-height: 1.5;
         }
 
-        /* Círculo de Cuenta Regresiva */
+        /* Círculo de Cuenta Regresiva con Efecto Zoom */
         .countdown-wrapper {
             display: flex;
             justify-content: center;
@@ -142,11 +137,11 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease;
         }
 
         .countdown-circle:hover {
-            transform: scale(1.02);
+            transform: scale(1.03);
         }
 
         .countdown-circle h3 {
@@ -161,10 +156,6 @@
             display: flex;
             gap: 10px;
             align-items: center;
-        }
-
-        .time-box {
-            text-align: center;
         }
 
         .time-box span {
@@ -195,7 +186,7 @@
 
         @keyframes heartbeat {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+            50% { transform: scale(1.25); }
         }
 
         /* Sección de Invitados */
@@ -218,7 +209,7 @@
         }
 
         .guest-icon-circle:hover {
-            transform: rotate(10deg) scale(1.05);
+            transform: rotate(10deg) scale(1.08);
         }
 
         .guest-section h2 {
@@ -253,25 +244,82 @@
             color: var(--olive-dark);
             font-weight: 500;
             box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
 
         .guest-item:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
             border-color: var(--olive-main);
-            box-shadow: 0 4px 12px rgba(74, 93, 62, 0.15);
+            box-shadow: 0 6px 15px rgba(74, 93, 62, 0.15);
         }
 
-        .guest-message {
+        /* Galería de Fotos Interactiva (Efecto Polaroid) */
+        .gallery-section {
+            padding: 45px 20px;
+            background: var(--olive-light);
+            border-top: 1px solid #e5ebe1;
+            border-bottom: 1px solid #e5ebe1;
+        }
+
+        .gallery-section h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.8rem;
+            color: var(--olive-main);
+            margin-bottom: 5px;
+        }
+
+        .gallery-subtitle {
             font-size: 0.85rem;
             color: #666;
+            margin-bottom: 25px;
             font-style: italic;
         }
 
-        /* Secciones de Evento (Ceremonia y Celebración) con Iconos SVG Verde Oliva */
+        .polaroid-container {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding-bottom: 15px;
+            scroll-snap-type: x mandatory;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 12px 12px 25px 12px;
+            border-radius: 4px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            min-width: 240px;
+            scroll-snap-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .polaroid:hover {
+            transform: scale(1.03) rotate(0deg) !important;
+        }
+
+        .polaroid:nth-child(1) { transform: rotate(-2deg); }
+        .polaroid:nth-child(2) { transform: rotate(2deg); }
+        .polaroid:nth-child(3) { transform: rotate(-1deg); }
+
+        .polaroid img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 2px;
+        }
+
+        .polaroid span {
+            display: block;
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.5rem;
+            color: var(--olive-dark);
+            margin-top: 12px;
+        }
+
+        /* Secciones de Evento (Ceremonia y Celebración) */
         .event-section {
-            padding: 40px 20px;
-            border-top: 1px solid #f0f4ec;
+            padding: 45px 20px;
+            border-bottom: 1px solid #f0f4ec;
             position: relative;
         }
 
@@ -290,7 +338,7 @@
         }
 
         .event-icon-circle:hover {
-            transform: scale(1.08);
+            transform: scale(1.08) rotate(5deg);
         }
 
         .olive-icon {
@@ -332,7 +380,7 @@
             line-height: 1.5;
         }
 
-        /* Botones Interactivos */
+        /* Botones Interactivos con Movimiento */
         .btn-fixdate {
             display: inline-block;
             background-color: #ffffff;
@@ -353,8 +401,8 @@
         .btn-fixdate:hover {
             background-color: var(--olive-main);
             color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(74, 93, 62, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(74, 93, 62, 0.3);
         }
 
         .btn-solid {
@@ -441,7 +489,28 @@
                 <div class="guest-item">Cargando invitados...</div>
             </div>
             
-            <p class="guest-message">Tu presencia es lo más importante. ¡No faltes!</p>
+            <p style="font-size: 0.85rem; color: #666; font-style: italic;">Tu presencia es lo más importante. ¡No faltes!</p>
+        </div>
+
+        <!-- Galería de Fotos (Efecto Polaroid con Movimiento) -->
+        <div class="gallery-section">
+            <h2>Retratos de Nuestro Amor</h2>
+            <p class="gallery-subtitle">Un minuto, un segundo, un instante que queda en la eternidad</p>
+            
+            <div class="polaroid-container">
+                <div class="polaroid">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" alt="Foto 1">
+                    <span>Nuestros momentos</span>
+                </div>
+                <div class="polaroid">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=80" alt="Foto 2">
+                    <span>Amor eterno</span>
+                </div>
+                <div class="polaroid">
+                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80" alt="Foto 3">
+                    <span>Camino al altar</span>
+                </div>
+            </div>
         </div>
 
         <!-- Ceremonia -->
