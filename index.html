@@ -12,7 +12,6 @@
             --olive-light: #f4f6f2;
             --bg-color: #fafbf9;
             --text-color: #444444;
-            --card-bg: #ffffff;
         }
 
         * {
@@ -33,41 +32,61 @@
             max-width: 480px;
             width: 100%;
             margin: 0 auto;
-            background: var(--card-bg);
+            background: #ffffff;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             min-height: 100vh;
             padding-bottom: 60px;
             position: relative;
+            overflow: hidden;
         }
 
-        /* Reproductor de Música Flotante */
+        /* Reproductor de Música Flotante con Animación */
         .music-bar {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 25px;
+            right: 25px;
             background: var(--olive-main);
             color: white;
             border: none;
-            border-radius: 50px;
-            padding: 10px 18px;
-            font-size: 0.8rem;
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(74, 93, 62, 0.4);
             z-index: 1000;
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-family: 'Montserrat', sans-serif;
+            justify-content: center;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
         }
 
-        /* Portada Oscura Estilo Fixdate */
+        .music-bar:hover {
+            transform: scale(1.1);
+            background-color: var(--olive-dark);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(74, 93, 62, 0.4); }
+            70% { box-shadow: 0 0 0 12px rgba(74, 93, 62, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(74, 93, 62, 0); }
+        }
+
+        /* Portada Oscura Estilo Fixdate con Movimiento Suave */
         .hero {
             position: relative;
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
             color: white;
-            padding: 60px 20px 80px;
-            border-bottom-left-radius: 50px;
-            border-bottom-right-radius: 50px;
+            padding: 60px 20px 90px;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .hero .date-top {
@@ -75,6 +94,7 @@
             letter-spacing: 3px;
             margin-bottom: 10px;
             display: block;
+            opacity: 0.9;
         }
 
         .hero h1 {
@@ -86,8 +106,8 @@
         }
 
         .quote-icon {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+            font-size: 2rem;
+            margin-bottom: 5px;
             opacity: 0.9;
         }
 
@@ -100,41 +120,46 @@
             line-height: 1.5;
         }
 
-        /* Círculo de Cuenta Regresiva (Estilo de la Imagen) */
+        /* Círculo de Cuenta Regresiva */
         .countdown-wrapper {
             display: flex;
             justify-content: center;
-            margin-top: -60px;
+            margin-top: -65px;
             position: relative;
             z-index: 10;
             padding: 0 20px;
         }
 
         .countdown-circle {
-            width: 300px;
-            height: 300px;
+            width: 280px;
+            height: 280px;
             background: #ffffff;
             border-radius: 50%;
-            border: 3px solid #d8a454; /* Marco dorado/geométrico sutil */
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 4px solid #d4af37;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .countdown-circle:hover {
+            transform: scale(1.02);
         }
 
         .countdown-circle h3 {
-            font-size: 1.5rem;
-            color: #8c857b;
+            font-size: 2rem;
+            color: #b58d4a;
             font-weight: 400;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             font-family: 'Great Vibes', cursive;
         }
 
         .countdown-timers {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             align-items: center;
         }
 
@@ -146,7 +171,7 @@
             display: block;
             font-size: 1.4rem;
             font-weight: 600;
-            color: var(--olive-dark);
+            color: #5c6852;
         }
 
         .time-box small {
@@ -161,32 +186,48 @@
             margin-top: -15px;
         }
 
-        /* Tarjeta de Invitados (Estilo de la Imagen 2) */
+        .heart-icon {
+            margin-top: 12px;
+            color: var(--olive-main);
+            font-size: 1.1rem;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Sección de Invitados */
         .guest-section {
             padding: 40px 20px;
         }
 
-        .guest-icon-badge {
-            width: 55px;
-            height: 55px;
+        .guest-icon-circle {
+            width: 70px;
+            height: 70px;
             background: var(--olive-dark);
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
-            font-weight: 600;
             margin: 0 auto 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 6px 15px rgba(44, 56, 33, 0.25);
+            transition: transform 0.3s;
+        }
+
+        .guest-icon-circle:hover {
+            transform: rotate(10deg) scale(1.05);
         }
 
         .guest-section h2 {
-            font-size: 1.4rem;
-            letter-spacing: 2px;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
             color: var(--olive-dark);
             text-transform: uppercase;
             margin-bottom: 5px;
+            font-weight: 600;
         }
 
         .guest-section .subtitle {
@@ -199,18 +240,26 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
-            max-width: 280px;
+            max-width: 300px;
             margin: 0 auto 20px;
         }
 
         .guest-item {
-            background: #f4f6f2;
-            border: 1px solid #d8e2d0;
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 0.95rem;
+            background: #ffffff;
+            border: 1px solid #e0e6db;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 1rem;
             color: var(--olive-dark);
             font-weight: 500;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            transition: all 0.3s;
+        }
+
+        .guest-item:hover {
+            transform: translateY(-2px);
+            border-color: var(--olive-main);
+            box-shadow: 0 4px 12px rgba(74, 93, 62, 0.15);
         }
 
         .guest-message {
@@ -219,36 +268,48 @@
             font-style: italic;
         }
 
-        /* Círculos de Eventos (Ceremonia y Celebración) */
+        /* Secciones de Evento (Ceremonia y Celebración) con Iconos SVG Verde Oliva */
         .event-section {
             padding: 40px 20px;
             border-top: 1px solid #f0f4ec;
+            position: relative;
         }
 
         .event-icon-circle {
             width: 90px;
             height: 90px;
             background: #ffffff;
-            border: 2px solid #e0e5db;
+            border: 2px solid #e5ebe1;
             border-radius: 50%;
             margin: 0 auto 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            font-size: 1.8rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            transition: transform 0.3s;
+        }
+
+        .event-icon-circle:hover {
+            transform: scale(1.08);
+        }
+
+        /* SVG Iconos en Verde Oliva */
+        .olive-icon {
+            width: 40px;
+            height: 40px;
+            fill: var(--olive-main);
         }
 
         .event-title-banner {
             background: var(--olive-main);
             color: white;
-            padding: 8px 30px;
+            padding: 8px 35px;
             display: inline-block;
             font-family: 'Great Vibes', cursive;
-            font-size: 2rem;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(74, 93, 62, 0.2);
+            font-size: 2.2rem;
+            border-radius: 6px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(74, 93, 62, 0.2);
         }
 
         .event-info-block {
@@ -256,55 +317,60 @@
         }
 
         .event-info-block span {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             color: #888;
             display: block;
-            margin-bottom: 3px;
+            margin-bottom: 4px;
+            font-weight: 600;
         }
 
         .event-info-block p {
             font-size: 0.95rem;
             color: var(--olive-dark);
             font-weight: 500;
+            line-height: 1.5;
         }
 
-        /* Botones Limpios Estilo Fixdate */
+        /* Botones Interactivos */
         .btn-fixdate {
             display: inline-block;
             background-color: #ffffff;
             border: 1.5px solid var(--olive-main);
             color: var(--olive-main);
-            padding: 10px 25px;
+            padding: 10px 28px;
             border-radius: 25px;
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             font-weight: 600;
             text-decoration: none;
-            transition: all 0.3s;
-            margin-top: 5px;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
         }
 
         .btn-fixdate:hover {
             background-color: var(--olive-main);
             color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 93, 62, 0.3);
         }
 
         .btn-solid {
             background-color: var(--olive-main);
             color: white;
-            padding: 12px 30px;
+            padding: 12px 32px;
             border-radius: 30px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
         }
 
         .btn-solid:hover {
             background-color: var(--olive-dark);
         }
 
-        /* Sección Fiesta / Sugerir Canción */
+        /* Sección Fiesta */
         .party-section {
             padding: 40px 20px;
             background: #fcfdfb;
@@ -325,10 +391,16 @@
             padding: 25px 20px;
             margin-top: 20px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            transition: transform 0.3s;
+        }
+
+        .party-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
         }
 
         .party-card h3 {
-            color: #b08d57;
+            color: #b58d4a;
             font-size: 1.1rem;
             margin-bottom: 10px;
             text-transform: uppercase;
@@ -361,8 +433,8 @@
     <audio id="bg-music" loop>
         <source src="https://www.bensound.com/bensound-music/bensound-tenderness.mp3" type="audio/mp3">
     </audio>
-    <button class="music-bar" onclick="toggleMusic()">
-        🎵 <span id="music-text">Música</span>
+    <button class="music-bar" onclick="toggleMusic()" title="Reproducir Música">
+        🎵
     </button>
 
     <div class="container">
@@ -399,17 +471,17 @@
                         <small>seg</small>
                     </div>
                 </div>
+                <div class="heart-icon">❤️</div>
             </div>
         </div>
 
-        <!-- Sección de Invitados Dinámica -->
+        <!-- Sección de Invitados -->
         <div class="guest-section">
-            <div class="guest-icon-badge" id="numeroPasesBadge">4</div>
+            <div class="guest-icon-circle" id="numeroPasesBadge" style="font-size: 1.6rem; font-weight:600; color:white;">4</div>
             <h2>Invitados</h2>
-            <div class="subtitle" id="subtituloAcompanante">(espacios reservados)</div>
+            <div class="subtitle" id="subtituloAcompanante">(1 acompañante)</div>
             
             <div class="guest-list" id="listaNombresInvitados">
-                <!-- Se llena automáticamente con los nombres de la URL -->
                 <div class="guest-item">Cargando invitados...</div>
             </div>
             
@@ -418,7 +490,10 @@
 
         <!-- Ceremonia -->
         <div class="event-section">
-            <div class="event-icon-circle">💍</div>
+            <div class="event-icon-circle">
+                <!-- Icono de Anillos en SVG Color Verde Oliva -->
+                <svg class="olive-icon" viewBox="0 0 24 24"><path d="M12,2C6.5,2 2,6.5 2,12C2,17.5 6.5,22 12,22C17.5,22 22,17.5 22,12C22,6.5 17.5,2 12,2M12,4C15.3,4 18,6.7 18,10C18,13.3 15.3,16 12,16C8.7,16 6,13.3 6,10C6,6.7 8.7,4 12,4M12,6C9.8,6 8,7.8 8,10C8,12.2 9.8,14 12,14C14.2,14 16,12.2 16,10C16,7.8 14.2,6 12,6Z"/></svg>
+            </div>
             <div class="event-title-banner">Ceremonia</div>
             
             <div class="event-info-block">
@@ -436,7 +511,10 @@
 
         <!-- Celebración -->
         <div class="event-section">
-            <div class="event-icon-circle">🎉</div>
+            <div class="event-icon-circle">
+                <!-- Icono de Fiesta / Celebración en SVG Color Verde Oliva -->
+                <svg class="olive-icon" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8Z"/></svg>
+            </div>
             <div class="event-title-banner">Celebración</div>
             
             <div class="event-info-block">
@@ -454,10 +532,9 @@
 
         <!-- Confirmar Asistencia -->
         <div class="event-section" style="background: var(--olive-light);">
-            <div style="font-size: 2.5rem; margin-bottom: 5px;">💌</div>
+            <div style="font-size: 2.2rem; margin-bottom: 5px;">💌</div>
             <h2 style="font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: var(--olive-main); margin-bottom: 5px;">Confirmar Asistencia</h2>
             <p class="event-info-block" style="margin-bottom: 20px;">Es importante que confirmes tu asistencia con tiempo.</p>
-            <!-- Pega aquí el enlace de tu Google Forms -->
             <a href="https://forms.gle/tu-enlace-de-google-forms" target="_blank" class="btn-fixdate btn-solid">Confirmar Asistencia</a>
         </div>
 
@@ -469,7 +546,6 @@
             <div class="party-card">
                 <h3>Música</h3>
                 <p>¿Cuál es la canción que no debe faltar en la PlayList de la fiesta?</p>
-                <!-- Puedes enlazar otra pregunta de tu formulario o un campo específico -->
                 <a href="https://forms.gle/tu-enlace-de-google-forms" target="_blank" class="btn-fixdate">Sugerir Canción</a>
             </div>
         </div>
@@ -507,7 +583,6 @@
         }, 1000);
 
         // 2. Script para capturar nombres y pases dinámicos desde la URL
-        // Ejemplo de uso en el link: ?invitados=Juan+García,Sofía+García,Mateo+García&pases=3
         const urlParams = new URLSearchParams(window.location.search);
         const listaInvitadosParam = urlParams.get('invitados');
         const pasesParam = urlParams.get('pases');
@@ -531,347 +606,19 @@
             document.getElementById('listaNombresInvitados').innerHTML = `<div class="guest-item">Nuestros Queridos Invitados</div>`;
         }
 
-        // 3. Script para el control de música
+        // 3. Script para el control de música flotante con animación
         const music = document.getElementById('bg-music');
-        const musicText = document.getElementById('music-text');
         let isPlaying = false;
 
         function toggleMusic() {
             if (isPlaying) {
                 music.pause();
-                musicText.innerText = "Música";
                 isPlaying = false;
             } else {
                 music.play().then(() => {
-                    musicText.innerText = "Pausar";
                     isPlaying = true;
                 }).catch(e => {
-                    console.log("Reproducción bloqueada por el navegador", e);
-                });
-            }
-        }
-    </script>
-</body>
-</html>            margin-bottom: 10px;
-            opacity: 0.9;
-        }
-
-        .hero h1 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 4.2rem;
-            color: #ffffff;
-            margin: 10px 0;
-            font-weight: normal;
-        }
-
-        .quote {
-            font-style: italic;
-            font-size: 0.9rem;
-            max-width: 360px;
-            margin: 20px auto 0;
-            opacity: 0.95;
-        }
-
-        /* Contador Regresivo */
-        .countdown-container {
-            background: #ffffff;
-            margin: -30px 20px 20px;
-            padding: 20px;
-            border-radius: 16px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-            border: 2px solid var(--olive-main);
-            position: relative;
-            z-index: 10;
-        }
-
-        .countdown-title {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--olive-dark);
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .countdown-timers {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .time-box {
-            background: var(--olive-light);
-            padding: 10px 12px;
-            border-radius: 10px;
-            min-width: 65px;
-            border: 1px solid #d8e2d0;
-        }
-
-        .time-box span {
-            display: block;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--olive-dark);
-        }
-
-        .time-box small {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            color: #666;
-        }
-
-        /* Tarjeta de Invitado Dinámica */
-        .guest-card {
-            background: var(--olive-light);
-            margin: 20px;
-            padding: 25px 20px;
-            border-radius: 16px;
-            border: 1px solid #d8e2d0;
-        }
-
-        .guest-card p {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #666;
-        }
-
-        .guest-name {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.3rem;
-            color: var(--olive-dark);
-            margin: 10px 0;
-        }
-
-        .passes-badge {
-            display: inline-block;
-            background: var(--olive-main);
-            color: white;
-            padding: 5px 16px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        /* Secciones de Evento */
-        .section {
-            padding: 35px 25px;
-            border-bottom: 1px solid #f0f4ec;
-        }
-
-        .section h2 {
-            font-size: 1.1rem;
-            color: var(--olive-dark);
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-        }
-
-        .event-details {
-            font-size: 0.9rem;
-            color: #555;
-            margin-bottom: 20px;
-        }
-
-        .event-details strong {
-            color: var(--olive-dark);
-            display: block;
-            font-size: 1rem;
-            margin-bottom: 5px;
-        }
-
-        /* Botones */
-        .btn {
-            display: inline-block;
-            background-color: var(--olive-main);
-            color: white;
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 500;
-            font-size: 0.85rem;
-            letter-spacing: 1.5px;
-            box-shadow: 0 4px 12px rgba(74, 93, 62, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .btn:hover {
-            background-color: var(--olive-dark);
-            transform: translateY(-2px);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            border: 1.5px solid var(--olive-main);
-            color: var(--olive-main);
-            box-shadow: none;
-        }
-
-        .btn-outline:hover {
-            background-color: var(--olive-light);
-            color: var(--olive-dark);
-        }
-
-        /* Footer */
-        .footer {
-            padding: 40px 20px;
-            color: #888;
-        }
-
-        .footer h3 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.3rem;
-            color: var(--olive-main);
-            margin-bottom: 5px;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Reproductor de Música Opcional -->
-    <audio id="bg-music" loop>
-        <source src="https://www.bensound.com/bensound-music/bensound-tenderness.mp3" type="audio/mp3">
-    </audio>
-    <button class="music-bar" onclick="toggleMusic()">
-        🎵 <span id="music-text">Música</span>
-    </button>
-
-    <div class="container">
-        <!-- Portada Estilo Fixdate -->
-        <div class="hero">
-            <h3>Nuestra Boda</h3>
-            <span style="font-size: 0.85rem; letter-spacing: 2px;">23 . 01 . 2027</span>
-            <h1>Melissa & Jean Emanuel</h1>
-            <p class="quote">"Todos somos mortales, hasta el primer beso y la segunda copa de vino"</p>
-        </div>
-
-        <!-- Contador Regresivo -->
-        <div class="countdown-container">
-            <div class="countdown-title">Falta</div>
-            <div class="countdown-timers">
-                <div class="time-box">
-                    <span id="days">00</span>
-                    <small>días</small>
-                </div>
-                <div class="time-box">
-                    <span id="hours">00</span>
-                    <small>hs</small>
-                </div>
-                <div class="time-box">
-                    <span id="minutes">00</span>
-                    <small>min</small>
-                </div>
-                <div class="time-box">
-                    <span id="seconds">00</span>
-                    <small>seg</small>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bloque Dinámico del Invitado -->
-        <div class="guest-card">
-            <p>Con todo nuestro cariño, esta invitación es para:</p>
-            <div class="guest-name" id="nombreInvitado">Cargando invitación...</div>
-            <div class="passes-badge" id="cantidadPases">Espacios reservados: -</div>
-        </div>
-
-        <!-- Ceremonia -->
-        <div class="section">
-            <h2>Ceremonia</h2>
-            <div class="event-details">
-                <strong>Sábado 23 de Enero - 15:00 hrs</strong>
-                Parroquia Nuestra Señora del Perpetuo Socorro<br>
-                Corralillo
-            </div>
-            <a href="https://www.google.com/maps/place/Parroquia+Nuestra+Se%C3%B1ora+del+Perpetuo+Socorro+de+Corralillo/@10.2191875,-85.3755747,91m/data=!3m1!1e3!4m11!1m3!2m2!1scorralillo+parroquia!6e1!3m6!1s0x8f9fb8a27f09fe6b:0xb4590fe21821e1ed!8m2!3d10.2191062!4d-85.375523!15sChRjb3JyYWxpbGxvIHBhcnJvcXVpYZIBD2NhdGhvbGljX2NodXJjaOABAA!16s%2Fg%2F11x9xvmsl!5m1!1e2?entry=ttu" target="_blank" class="btn btn-outline">¿CÓMO LLEGAR?</a>
-        </div>
-
-        <!-- Celebración -->
-        <div class="section">
-            <h2>Celebración</h2>
-            <div class="event-details">
-                <strong>Sábado 23 de Enero - 18:00 hrs</strong>
-                Rancho La Amistad de Mario Mafio<br>
-                Corralillo
-            </div>
-            <a href="https://www.google.com/maps/place/Rancho+La+Amisdad+de+Mario+Mafio/@10.1785555,-85.4299022,291m/data=!3m1!1e3!4m10!1m3!2m2!1scorralillo+parroquia!6e1!3m5!1s0x8f9fb99cc562a5e5:0x4f699aa2375e2239!8m2!3d10.178772!4d-85.4292963!16s%2Fg%2F11vlmb23h3!5m1!1e2?entry=ttu" target="_blank" class="btn btn-outline">¿CÓMO LLEGAR?</a>
-        </div>
-
-        <!-- Confirmación de Asistencia (Google Forms) -->
-        <div class="section" style="border-bottom: none;">
-            <h2>Confirmar Asistencia</h2>
-            <p class="event-details" style="margin-bottom: 15px;">Es muy importante para nosotros saber si nos acompañarás.</p>
-            <!-- Reemplaza el enlace de abajo por tu formulario real de Google Forms -->
-            <a href="https://forms.gle/tu-enlace-de-google-forms" target="_blank" class="btn">CONFIRMAR ASISTENCIA</a>
-        </div>
-
-        <!-- Footer -->
-        <div class="footer">
-            <h3>Melissa & Jean Emanuel</h3>
-            <p style="font-size: 0.8rem;">Te esperamos con mucha ilusión 🌿</p>
-        </div>
-    </div>
-
-    <script>
-        // 1. Contador Regresivo exacto para el 23 de Enero de 2027 a las 15:00 hrs
-        const weddingDate = new Date("January 23, 2027 15:00:00").getTime();
-
-        const timer = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
-
-            if (distance < 0) {
-                clearInterval(timer);
-                document.querySelector(".countdown-container").innerHTML = "<h3 style='color:var(--olive-main);'>¡Llegó el gran día!</h3>";
-                return;
-            }
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById("days").innerText = String(days).padStart(2, '0');
-            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
-            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
-            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
-        }, 1000);
-
-        // 2. Script para capturar nombre y pases desde la URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const invitado = urlParams.get('invitado');
-        const pases = urlParams.get('pases');
-
-        if (invitado) {
-            document.getElementById('nombreInvitado').innerText = decodeURIComponent(invitado);
-        } else {
-            document.getElementById('nombreInvitado').innerText = "Nuestros Queridos Invitados";
-        }
-
-        if (pases) {
-            document.getElementById('cantidadPases').innerText = `🎟️ Espacios reservados: ${pases} pases`;
-        } else {
-            document.getElementById('cantidadPases').style.display = 'none';
-        }
-
-        // 3. Script para el control de música
-        const music = document.getElementById('bg-music');
-        const musicText = document.getElementById('music-text');
-        let isPlaying = false;
-
-        function toggleMusic() {
-            if (isPlaying) {
-                music.pause();
-                musicText.innerText = "Música";
-                isPlaying = false;
-            } else {
-                music.play().then(() => {
-                    musicText.innerText = "Pausar";
-                    isPlaying = true;
-                }).catch(e => {
-                    console.log("Reproducción bloqueada por el navegador", e);
+                    console.log("Reproducción bloqueada", e);
                 });
             }
         }
