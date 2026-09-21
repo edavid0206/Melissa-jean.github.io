@@ -4,15 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Melissa & Jean Emanuel - Nuestra Boda</title>
-    <!-- Fuentes de Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --olive-dark: #2c3821;
             --olive-main: #4a5d3e;
             --olive-light: #f4f6f2;
-            --text-color: #444444;
             --bg-color: #fafbf9;
+            --text-color: #444444;
         }
 
         * {
@@ -34,9 +33,9 @@
             width: 100%;
             margin: 0 auto;
             background: #ffffff;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             min-height: 100vh;
-            padding-bottom: 65px;
+            padding-bottom: 50px;
             position: relative;
         }
 
@@ -52,7 +51,7 @@
             padding: 10px 18px;
             font-size: 0.8rem;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             z-index: 1000;
             display: flex;
             align-items: center;
@@ -60,10 +59,12 @@
             font-family: 'Montserrat', sans-serif;
         }
 
-        /* Portada / Hero */
+        /* Portada Oscura Estilo Fixdate */
         .hero {
-            padding: 50px 20px 40px;
-            background: var(--olive-light);
+            position: relative;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
+            color: white;
+            padding: 70px 20px 50px;
             border-bottom-left-radius: 40px;
             border-bottom-right-radius: 40px;
         }
@@ -71,75 +72,118 @@
         .hero h3 {
             letter-spacing: 4px;
             font-size: 0.75rem;
-            color: var(--olive-dark);
             text-transform: uppercase;
-            font-weight: 500;
+            font-weight: 300;
             margin-bottom: 10px;
+            opacity: 0.9;
         }
 
         .hero h1 {
             font-family: 'Great Vibes', cursive;
-            font-size: 3.8rem;
-            color: var(--olive-main);
-            margin: 5px 0 15px;
+            font-size: 4.2rem;
+            color: #ffffff;
+            margin: 10px 0;
             font-weight: normal;
-            line-height: 1.1;
         }
 
         .quote {
             font-style: italic;
-            color: #666;
             font-size: 0.9rem;
-            max-width: 380px;
-            margin: 0 auto;
+            max-width: 360px;
+            margin: 20px auto 0;
+            opacity: 0.95;
         }
 
-        /* Tarjeta de Invitado */
-        .guest-card {
+        /* Contador Regresivo */
+        .countdown-container {
             background: #ffffff;
+            margin: -30px 20px 20px;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            border: 2px solid var(--olive-main);
+            position: relative;
+            z-index: 10;
+        }
+
+        .countdown-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--olive-dark);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .countdown-timers {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .time-box {
+            background: var(--olive-light);
+            padding: 10px 12px;
+            border-radius: 10px;
+            min-width: 65px;
             border: 1px solid #d8e2d0;
-            margin: 30px 20px;
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--olive-dark);
+        }
+
+        .time-box small {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #666;
+        }
+
+        /* Tarjeta de Invitado Dinámica */
+        .guest-card {
+            background: var(--olive-light);
+            margin: 20px;
             padding: 25px 20px;
             border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(74, 93, 62, 0.05);
+            border: 1px solid #d8e2d0;
         }
 
         .guest-card p {
             font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: #777;
+            color: #666;
         }
 
         .guest-name {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--olive-dark);
-            margin: 12px 0;
             font-family: 'Great Vibes', cursive;
-            font-size: 2.2rem;
+            font-size: 2.3rem;
+            color: var(--olive-dark);
+            margin: 10px 0;
         }
 
         .passes-badge {
             display: inline-block;
-            background: var(--olive-light);
-            color: var(--olive-main);
-            border: 1px solid var(--olive-main);
-            padding: 6px 16px;
+            background: var(--olive-main);
+            color: white;
+            padding: 5px 16px;
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 600;
             letter-spacing: 0.5px;
         }
 
-        /* Secciones */
+        /* Secciones de Evento */
         .section {
             padding: 35px 25px;
             border-bottom: 1px solid #f0f4ec;
         }
 
         .section h2 {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--olive-dark);
             margin-bottom: 10px;
             text-transform: uppercase;
@@ -217,11 +261,35 @@
     </button>
 
     <div class="container">
-        <!-- Portada -->
+        <!-- Portada Estilo Fixdate -->
         <div class="hero">
             <h3>Nuestra Boda</h3>
-            <h1>Melissa &<br>Jean Emanuel</h1>
+            <span style="font-size: 0.85rem; letter-spacing: 2px;">15 . 05 . 2027</span>
+            <h1>Melissa & Jean Emanuel</h1>
             <p class="quote">"Todos somos mortales, hasta el primer beso y la segunda copa de vino"</p>
+        </div>
+
+        <!-- Contador Regresivo -->
+        <div class="countdown-container">
+            <div class="countdown-title">Falta</div>
+            <div class="countdown-timers">
+                <div class="time-box">
+                    <span id="days">00</span>
+                    <small>días</small>
+                </div>
+                <div class="time-box">
+                    <span id="hours">00</span>
+                    <small>hs</small>
+                </div>
+                <div class="time-box">
+                    <span id="minutes">00</span>
+                    <small>min</small>
+                </div>
+                <div class="time-box">
+                    <span id="seconds">00</span>
+                    <small>seg</small>
+                </div>
+            </div>
         </div>
 
         <!-- Bloque Dinámico del Invitado -->
@@ -239,7 +307,7 @@
                 Parroquia Nuestra Señora del Perpetuo Socorro<br>
                 Corralillo
             </div>
-            <a href="https://www.google.com/maps/place/Parroquia+Nuestra+Se%C3%B1ora+del+Perpetuo+Socorro+de+Corralillo/@10.2191875,-85.3755747,91m/data=!3m1!1e3!4m11!1m3!2m2!1scorralillo+parroquia!6e1!3m6!1s0x8f9fb8a27f09fe6b:0xb4590fe21821e1ed!8m2!3d10.2191062!4d-85.375523!15sChRjb3JyYWxpbGxvIHBhcnJvcXVpYZIBD2NhdGhvbGljX2NodXJjaOABAA!16s%2Fg%2F11x9xvmsl!5m1!1e2?entry=ttu" target="_blank" class="btn btn-outline">VER UBICACIÓN</a>
+            <a href="https://www.google.com/maps/place/Parroquia+Nuestra+Se%C3%B1ora+del+Perpetuo+Socorro+de+Corralillo/@10.2191875,-85.3755747,91m/data=!3m1!1e3!4m11!1m3!2m2!1scorralillo+parroquia!6e1!3m6!1s0x8f9fb8a27f09fe6b:0xb4590fe21821e1ed!8m2!3d10.2191062!4d-85.375523!15sChRjb3JyYWxpbGxvIHBhcnJvcXVpYZIBD2NhdGhvbGljX2NodXJjaOABAA!16s%2Fg%2F11x9xvmsl!5m1!1e2?entry=ttu" target="_blank" class="btn btn-outline">¿CÓMO LLEGAR?</a>
         </div>
 
         <!-- Celebración -->
@@ -250,7 +318,7 @@
                 Rancho La Amistad de Mario Mafio<br>
                 Corralillo
             </div>
-            <a href="https://www.google.com/maps/place/Rancho+La+Amisdad+de+Mario+Mafio/@10.1785555,-85.4299022,291m/data=!3m1!1e3!4m10!1m3!2m2!1scorralillo+parroquia!6e1!3m5!1s0x8f9fb99cc562a5e5:0x4f699aa2375e2239!8m2!3d10.178772!4d-85.4292963!16s%2Fg%2F11vlmb23h3!5m1!1e2?entry=ttu" target="_blank" class="btn btn-outline">VER UBICACIÓN</a>
+            <a href="https://www.google.com/maps/place/Rancho+La+Amisdad+de+Mario+Mafio/@10.1785555,-85.4299022,291m/data=!3m1!1e3!4m10!1m3!2m2!1scorralillo+parroquia!6e1!3m5!1s0x8f9fb99cc562a5e5:0x4f699aa2375e2239!8m2!3d10.178772!4d-85.4292963!16s%2Fg%2F11vlmb23h3!5m1!1e2?entry=ttu" target="_blank" class="btn btn-outline">¿CÓMO LLEGAR?</a>
         </div>
 
         <!-- Confirmación de Asistencia (Google Forms) -->
@@ -269,7 +337,31 @@
     </div>
 
     <script>
-        // Script para capturar nombre y pases desde la URL
+        // 1. Contador Regresivo (Apunta al 15 de Mayo de 2027 a las 17:00 hrs)
+        const weddingDate = new Date("May 15, 2027 17:00:00").getTime();
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.querySelector(".countdown-container").innerHTML = "<h3 style='color:var(--olive-main);'>¡L llegó el gran día!</h3>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = String(days).padStart(2, '0');
+            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+        }, 1000);
+
+        // 2. Script para capturar nombre y pases desde la URL
         const urlParams = new URLSearchParams(window.location.search);
         const invitado = urlParams.get('invitado');
         const pases = urlParams.get('pases');
@@ -286,7 +378,7 @@
             document.getElementById('cantidadPases').style.display = 'none';
         }
 
-        // Script para el control de música
+        // 3. Script para el control de música
         const music = document.getElementById('bg-music');
         const musicText = document.getElementById('music-text');
         let isPlaying = false;
