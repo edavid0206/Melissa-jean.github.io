@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danny & Sofía - Nuestra Boda</title>
+    <!-- Fuentes estilo Google Fonts (Open Sans y Cookie para toque elegante) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --olive-dark: #3b4d28;
+            --olive-main: #556B2F;
+            --olive-light: #e8ede3;
+            --bg-color: #fcfcf9;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #ffffff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+
+        /* Portada */
+        .hero {
+            padding: 40px 20px;
+            background: var(--olive-light);
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+        }
+
+        .hero h3 {
+            letter-spacing: 3px;
+            font-size: 0.9rem;
+            color: var(--olive-dark);
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .hero h1 {
+            font-family: 'Cookie', cursive;
+            font-size: 4rem;
+            color: var(--olive-main);
+            margin: 10px 0;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #666;
+            font-size: 0.95rem;
+            padding: 0 15px;
+            margin-top: 15px;
+            line-height: 1.5;
+        }
+
+        /* Tarjeta de Invitado Dinámica */
+        .guest-card {
+            background: #ffffff;
+            border: 2px solid var(--olive-main);
+            margin: 30px 20px;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(85, 107, 47, 0.1);
+        }
+
+        .guest-card p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .guest-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--olive-dark);
+            margin: 10px 0;
+        }
+
+        .passes-badge {
+            display: inline-block;
+            background: var(--olive-main);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        /* Secciones de Evento */
+        .section {
+            padding: 30px 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .section h2 {
+            font-size: 1.4rem;
+            color: var(--olive-dark);
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .event-details {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Botones Estilo Fixdate */
+        .btn {
+            display: inline-block;
+            background-color: var(--olive-main);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(85, 107, 47, 0.2);
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--olive-dark);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--olive-main);
+            color: var(--olive-main);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--olive-light);
+            color: var(--olive-dark);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 40px 20px;
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .footer h3 {
+            font-family: 'Cookie', cursive;
+            font-size: 2rem;
+            color: var(--olive-main);
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Portada -->
+        <div class="hero">
+            <h3>Nuestra Boda</h3>
+            <h1>Danny & Sofía</h1>
+            <p class="quote">"Todos somos mortales, hasta el primer beso y la segunda copa de vino"</p>
+        </div>
+
+        <!-- Bloque personalizado para el invitado -->
+        <div class="guest-card">
+            <p>Con todo nuestro cariño, esta invitación es especialmente para:</p>
+            <div class="guest-name" id="nombreInvitado">Cargando invitación...</div>
+            <div class="passes-badge" id="cantidadPases">Espacios reservados: -</div>
+        </div>
+
+        <!-- Ceremonia -->
+        <div class="section">
+            <h2>Ceremonia</h2>
+            <div class="event-details">
+                <strong>Sábado 15 de Mayo - 17:00 hrs</strong><br>
+                Parroquia Nuestra Señora de Luján<br>
+                Av. Pergamino 203 - San José
+            </div>
+            <!-- Cambia el link de maps por el enlace real de la iglesia -->
+            <a href="https://maps.google.com/?q=Parroquia+Nuestra+Senora+de+Lujan+San+Jose" target="_blank" class="btn btn-outline">¿CÓMO LLEGAR?</a>
+        </div>
+
+        <!-- Celebración -->
+        <div class="section">
+            <h2>Celebración</h2>
+            <div class="event-details">
+                <strong>Sábado 15 de Mayo - 20:00 hrs</strong><br>
+                Salón de fiestas Avril<br>
+                Av. Los Reartes 12 - San José
+            </div>
+            <!-- Cambia el link de maps por el enlace real del salón -->
+            <a href="https://maps.google.com/?q=Salon+de+fiestas+Avril+San+Jose" target="_blank" class="btn btn-outline">¿CÓMO LLEGAR?</a>
+        </div>
+
+        <!-- Confirmación de Asistencia (RSVP) -->
+        <div class="section" style="border-bottom: none;">
+            <h2>Confirmar Asistencia</h2>
+            <p class="event-details">Es muy importante para nosotros saber si nos acompañarás en este gran día.</p>
+            <!-- Reemplaza el enlace de abajo por el link de tu Google Forms -->
+            <a href="https://forms.gle/tu-enlace-de-google-forms" target="_blank" class="btn">CONFIRMAR ASISTENCIA</a>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <h3>Danny & Sofía</h3>
+            <p>Compartimos este día junto a ti 🌿</p>
+        </div>
+    </div>
+
+    <script>
+        // Sistema dinámico para capturar el nombre y los pases del enlace (URL)
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        const invitado = urlParams.get('invitado');
+        const pases = urlParams.get('pases');
+
+        if (invitado) {
+            document.getElementById('nombreInvitado').innerText = decodeURIComponent(invitado);
+        } else {
+            document.getElementById('nombreInvitado').innerText = "Nuestros Queridos Invitados";
+        }
+
+        if (pases) {
+            document.getElementById('cantidadPases').innerText = `🎟️ Espacios reservados: ${pases} pases`;
+        } else {
+            document.getElementById('cantidadPases').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
