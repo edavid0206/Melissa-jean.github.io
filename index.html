@@ -12,6 +12,7 @@
             --olive-light: #f4f6f2;
             --bg-color: #fafbf9;
             --text-color: #444444;
+            --card-bg: #ffffff;
         }
 
         * {
@@ -29,13 +30,13 @@
         }
 
         .container {
-            max-width: 500px;
+            max-width: 480px;
             width: 100%;
             margin: 0 auto;
-            background: #ffffff;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background: var(--card-bg);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             min-height: 100vh;
-            padding-bottom: 50px;
+            padding-bottom: 60px;
             position: relative;
         }
 
@@ -64,17 +65,494 @@
             position: relative;
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
             color: white;
-            padding: 70px 20px 50px;
-            border-bottom-left-radius: 40px;
-            border-bottom-right-radius: 40px;
+            padding: 60px 20px 80px;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
         }
 
-        .hero h3 {
-            letter-spacing: 4px;
+        .hero .date-top {
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .hero h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            color: #ffffff;
+            margin: 10px 0;
+            font-weight: normal;
+        }
+
+        .quote-icon {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 0.9rem;
+            max-width: 340px;
+            margin: 10px auto 0;
+            opacity: 0.95;
+            line-height: 1.5;
+        }
+
+        /* Círculo de Cuenta Regresiva (Estilo de la Imagen) */
+        .countdown-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-top: -60px;
+            position: relative;
+            z-index: 10;
+            padding: 0 20px;
+        }
+
+        .countdown-circle {
+            width: 300px;
+            height: 300px;
+            background: #ffffff;
+            border-radius: 50%;
+            border: 3px solid #d8a454; /* Marco dorado/geométrico sutil */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .countdown-circle h3 {
+            font-size: 1.5rem;
+            color: #8c857b;
+            font-weight: 400;
+            margin-bottom: 15px;
+            font-family: 'Great Vibes', cursive;
+        }
+
+        .countdown-timers {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .time-box {
+            text-align: center;
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--olive-dark);
+        }
+
+        .time-box small {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #888;
+        }
+
+        .time-separator {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-top: -15px;
+        }
+
+        /* Tarjeta de Invitados (Estilo de la Imagen 2) */
+        .guest-section {
+            padding: 40px 20px;
+        }
+
+        .guest-icon-badge {
+            width: 55px;
+            height: 55px;
+            background: var(--olive-dark);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 0 auto 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .guest-section h2 {
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+            color: var(--olive-dark);
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .guest-section .subtitle {
+            font-size: 0.8rem;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        .guest-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 280px;
+            margin: 0 auto 20px;
+        }
+
+        .guest-item {
+            background: #f4f6f2;
+            border: 1px solid #d8e2d0;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: var(--olive-dark);
+            font-weight: 500;
+        }
+
+        .guest-message {
+            font-size: 0.85rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Círculos de Eventos (Ceremonia y Celebración) */
+        .event-section {
+            padding: 40px 20px;
+            border-top: 1px solid #f0f4ec;
+        }
+
+        .event-icon-circle {
+            width: 90px;
+            height: 90px;
+            background: #ffffff;
+            border: 2px solid #e0e5db;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            font-size: 1.8rem;
+        }
+
+        .event-title-banner {
+            background: var(--olive-main);
+            color: white;
+            padding: 8px 30px;
+            display: inline-block;
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(74, 93, 62, 0.2);
+        }
+
+        .event-info-block {
+            margin-bottom: 20px;
+        }
+
+        .event-info-block span {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .event-info-block p {
+            font-size: 0.95rem;
+            color: var(--olive-dark);
+            font-weight: 500;
+        }
+
+        /* Botones Limpios Estilo Fixdate */
+        .btn-fixdate {
+            display: inline-block;
+            background-color: #ffffff;
+            border: 1.5px solid var(--olive-main);
+            color: var(--olive-main);
+            padding: 10px 25px;
+            border-radius: 25px;
             font-size: 0.75rem;
             text-transform: uppercase;
-            font-weight: 300;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin-top: 5px;
+        }
+
+        .btn-fixdate:hover {
+            background-color: var(--olive-main);
+            color: white;
+        }
+
+        .btn-solid {
+            background-color: var(--olive-main);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+        }
+
+        .btn-solid:hover {
+            background-color: var(--olive-dark);
+        }
+
+        /* Sección Fiesta / Sugerir Canción */
+        .party-section {
+            padding: 40px 20px;
+            background: #fcfdfb;
+            border-top: 1px solid #f0f4ec;
+        }
+
+        .party-section h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.8rem;
+            color: var(--olive-main);
+            margin-bottom: 5px;
+        }
+
+        .party-card {
+            background: #ffffff;
+            border: 1px solid #e5ebe1;
+            border-radius: 16px;
+            padding: 25px 20px;
+            margin-top: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .party-card h3 {
+            color: #b08d57;
+            font-size: 1.1rem;
             margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .party-card p {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 40px 20px;
+            background: var(--olive-light);
+        }
+
+        .footer h3 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: var(--olive-main);
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Reproductor de Música -->
+    <audio id="bg-music" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-tenderness.mp3" type="audio/mp3">
+    </audio>
+    <button class="music-bar" onclick="toggleMusic()">
+        🎵 <span id="music-text">Música</span>
+    </button>
+
+    <div class="container">
+        <!-- Portada Estilo Fixdate -->
+        <div class="hero">
+            <span class="date-top">23 . 01 . 2027</span>
+            <div class="quote-icon">“</div>
+            <h1>Melissa & Jean Emanuel</h1>
+            <p class="quote">"Todos somos mortales, hasta el primer beso y la segunda copa de vino"</p>
+        </div>
+
+        <!-- Círculo de Cuenta Regresiva -->
+        <div class="countdown-wrapper">
+            <div class="countdown-circle">
+                <h3>Falta</h3>
+                <div class="countdown-timers">
+                    <div class="time-box">
+                        <span id="days">00</span>
+                        <small>días</small>
+                    </div>
+                    <div class="time-separator">:</div>
+                    <div class="time-box">
+                        <span id="hours">00</span>
+                        <small>hs</small>
+                    </div>
+                    <div class="time-separator">:</div>
+                    <div class="time-box">
+                        <span id="minutes">00</span>
+                        <small>min</small>
+                    </div>
+                    <div class="time-separator">:</div>
+                    <div class="time-box">
+                        <span id="seconds">00</span>
+                        <small>seg</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de Invitados Dinámica -->
+        <div class="guest-section">
+            <div class="guest-icon-badge" id="numeroPasesBadge">4</div>
+            <h2>Invitados</h2>
+            <div class="subtitle" id="subtituloAcompanante">(espacios reservados)</div>
+            
+            <div class="guest-list" id="listaNombresInvitados">
+                <!-- Se llena automáticamente con los nombres de la URL -->
+                <div class="guest-item">Cargando invitados...</div>
+            </div>
+            
+            <p class="guest-message">Tu presencia es lo más importante. ¡No faltes!</p>
+        </div>
+
+        <!-- Ceremonia -->
+        <div class="event-section">
+            <div class="event-icon-circle">💍</div>
+            <div class="event-title-banner">Ceremonia</div>
+            
+            <div class="event-info-block">
+                <span>Día</span>
+                <p>Sábado 23 de Enero - 15:00 hrs</p>
+                <a href="#" class="btn-fixdate">Agendar</a>
+            </div>
+
+            <div class="event-info-block" style="margin-top: 25px;">
+                <span>Lugar</span>
+                <p>Parroquia Nuestra Señora del Perpetuo Socorro<br>Corralillo</p>
+                <a href="https://www.google.com/maps/place/Parroquia+Nuestra+Se%C3%B1ora+del+Perpetuo+Socorro+de+Corralillo/@10.2191875,-85.3755747,91m/data=!3m1!1e3!4m11!1m3!2m2!1scorralillo+parroquia!6e1!3m6!1s0x8f9fb8a27f09fe6b:0xb4590fe21821e1ed!8m2!3d10.2191062!4d-85.375523!15sChRjb3JyYWxpbGxvIHBhcnJvcXVpYZIBD2NhdGhvbGljX2NodXJjaOABAA!16s%2Fg%2F11x9xvmsl!5m1!1e2?entry=ttu" target="_blank" class="btn-fixdate">¿Cómo llegar?</a>
+            </div>
+        </div>
+
+        <!-- Celebración -->
+        <div class="event-section">
+            <div class="event-icon-circle">🎉</div>
+            <div class="event-title-banner">Celebración</div>
+            
+            <div class="event-info-block">
+                <span>Día</span>
+                <p>Sábado 23 de Enero - 18:00 hrs</p>
+                <a href="#" class="btn-fixdate">Agendar</a>
+            </div>
+
+            <div class="event-info-block" style="margin-top: 25px;">
+                <span>Lugar</span>
+                <p>Rancho La Amistad de Mario Mafio<br>Corralillo</p>
+                <a href="https://www.google.com/maps/place/Rancho+La+Amisdad+de+Mario+Mafio/@10.1785555,-85.4299022,291m/data=!3m1!1e3!4m10!1m3!2m2!1scorralillo+parroquia!6e1!3m5!1s0x8f9fb99cc562a5e5:0x4f699aa2375e2239!8m2!3d10.178772!4d-85.4292963!16s%2Fg%2F11vlmb23h3!5m1!1e2?entry=ttu" target="_blank" class="btn-fixdate">¿Cómo llegar?</a>
+            </div>
+        </div>
+
+        <!-- Confirmar Asistencia -->
+        <div class="event-section" style="background: var(--olive-light);">
+            <div style="font-size: 2.5rem; margin-bottom: 5px;">💌</div>
+            <h2 style="font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: var(--olive-main); margin-bottom: 5px;">Confirmar Asistencia</h2>
+            <p class="event-info-block" style="margin-bottom: 20px;">Es importante que confirmes tu asistencia con tiempo.</p>
+            <!-- Pega aquí el enlace de tu Google Forms -->
+            <a href="https://forms.gle/tu-enlace-de-google-forms" target="_blank" class="btn-fixdate btn-solid">Confirmar Asistencia</a>
+        </div>
+
+        <!-- Sección Fiesta / Sugerir Canción -->
+        <div class="party-section">
+            <h2>Fiesta</h2>
+            <p style="font-size: 0.85rem; color: #666;">Hagamos juntos una fiesta épica. Aquí algunos detalles.</p>
+            
+            <div class="party-card">
+                <h3>Música</h3>
+                <p>¿Cuál es la canción que no debe faltar en la PlayList de la fiesta?</p>
+                <!-- Puedes enlazar otra pregunta de tu formulario o un campo específico -->
+                <a href="https://forms.gle/tu-enlace-de-google-forms" target="_blank" class="btn-fixdate">Sugerir Canción</a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <h3>Melissa & Jean Emanuel</h3>
+            <p style="font-size: 0.8rem; color: #666;">Te esperamos con mucha ilusión 🌿</p>
+        </div>
+    </div>
+
+    <script>
+        // 1. Contador Regresivo exacto para el 23 de Enero de 2027 a las 15:00 hrs
+        const weddingDate = new Date("January 23, 2027 15:00:00").getTime();
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.querySelector(".countdown-circle").innerHTML = "<h3 style='color:var(--olive-main);'>¡Llegó el gran día!</h3>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = String(days).padStart(2, '0');
+            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+        }, 1000);
+
+        // 2. Script para capturar nombres y pases dinámicos desde la URL
+        // Ejemplo de uso en el link: ?invitados=Juan+García,Sofía+García,Mateo+García&pases=3
+        const urlParams = new URLSearchParams(window.location.search);
+        const listaInvitadosParam = urlParams.get('invitados');
+        const pasesParam = urlParams.get('pases');
+
+        if (pasesParam) {
+            document.getElementById('numeroPasesBadge').innerText = pasesParam;
+            document.getElementById('subtituloAcompanante').innerText = `(${pasesParam} espacios asignados)`;
+        } else {
+            document.getElementById('numeroPasesBadge').innerText = "1";
+            document.getElementById('subtituloAcompanante').innerText = "(espacio personal)";
+        }
+
+        if (listaInvitadosParam) {
+            const nombresArray = listaInvitadosParam.split(',');
+            let htmlNombres = '';
+            nombresArray.forEach(nombre => {
+                htmlNombres += `<div class="guest-item">${decodeURIComponent(nombre.trim())}</div>`;
+            });
+            document.getElementById('listaNombresInvitados').innerHTML = htmlNombres;
+        } else {
+            document.getElementById('listaNombresInvitados').innerHTML = `<div class="guest-item">Nuestros Queridos Invitados</div>`;
+        }
+
+        // 3. Script para el control de música
+        const music = document.getElementById('bg-music');
+        const musicText = document.getElementById('music-text');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                musicText.innerText = "Música";
+                isPlaying = false;
+            } else {
+                music.play().then(() => {
+                    musicText.innerText = "Pausar";
+                    isPlaying = true;
+                }).catch(e => {
+                    console.log("Reproducción bloqueada por el navegador", e);
+                });
+            }
+        }
+    </script>
+</body>
+</html>            margin-bottom: 10px;
             opacity: 0.9;
         }
 
