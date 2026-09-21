@@ -3,6 +3,315 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melissa & Jean Emanuel - Nuestra Boda</title>
+    <!-- Fuentes de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --olive-dark: #2c3821;
+            --olive-main: #4a5d3e;
+            --olive-light: #f4f6f2;
+            --text-color: #444444;
+            --bg-color: #fafbf9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto;
+            background: #ffffff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            min-height: 100vh;
+            padding-bottom: 65px;
+            position: relative;
+        }
+
+        /* Reproductor de Música Flotante */
+        .music-bar {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--olive-main);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 18px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Portada / Hero */
+        .hero {
+            padding: 50px 20px 40px;
+            background: var(--olive-light);
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+        }
+
+        .hero h3 {
+            letter-spacing: 4px;
+            font-size: 0.75rem;
+            color: var(--olive-dark);
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.8rem;
+            color: var(--olive-main);
+            margin: 5px 0 15px;
+            font-weight: normal;
+            line-height: 1.1;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #666;
+            font-size: 0.9rem;
+            max-width: 380px;
+            margin: 0 auto;
+        }
+
+        /* Tarjeta de Invitado */
+        .guest-card {
+            background: #ffffff;
+            border: 1px solid #d8e2d0;
+            margin: 30px 20px;
+            padding: 25px 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(74, 93, 62, 0.05);
+        }
+
+        .guest-card p {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #777;
+        }
+
+        .guest-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--olive-dark);
+            margin: 12px 0;
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+        }
+
+        .passes-badge {
+            display: inline-block;
+            background: var(--olive-light);
+            color: var(--olive-main);
+            border: 1px solid var(--olive-main);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Secciones */
+        .section {
+            padding: 35px 25px;
+            border-bottom: 1px solid #f0f4ec;
+        }
+
+        .section h2 {
+            font-size: 1rem;
+            color: var(--olive-dark);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .event-details {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .event-details strong {
+            color: var(--olive-dark);
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        /* Botones */
+        .btn {
+            display: inline-block;
+            background-color: var(--olive-main);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            box-shadow: 0 4px 12px rgba(74, 93, 62, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--olive-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1.5px solid var(--olive-main);
+            color: var(--olive-main);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--olive-light);
+            color: var(--olive-dark);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 40px 20px;
+            color: #888;
+        }
+
+        .footer h3 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.3rem;
+            color: var(--olive-main);
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Reproductor de Música Opcional -->
+    <audio id="bg-music" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-tenderness.mp3" type="audio/mp3">
+    </audio>
+    <button class="music-bar" onclick="toggleMusic()">
+        🎵 <span id="music-text">Música</span>
+    </button>
+
+    <div class="container">
+        <!-- Portada -->
+        <div class="hero">
+            <h3>Nuestra Boda</h3>
+            <h1>Melissa &<br>Jean Emanuel</h1>
+            <p class="quote">"Todos somos mortales, hasta el primer beso y la segunda copa de vino"</p>
+        </div>
+
+        <!-- Bloque Dinámico del Invitado -->
+        <div class="guest-card">
+            <p>Con todo nuestro cariño, esta invitación es para:</p>
+            <div class="guest-name" id="nombreInvitado">Cargando invitación...</div>
+            <div class="passes-badge" id="cantidadPases">Espacios reservados: -</div>
+        </div>
+
+        <!-- Ceremonia -->
+        <div class="section">
+            <h2>Ceremonia</h2>
+            <div class="event-details">
+                <strong>Sábado 15 de Mayo - 17:00 hrs</strong>
+                Parroquia Nuestra Señora del Perpetuo Socorro<br>
+                Corralillo
+            </div>
+            <a href="https://www.google.com/maps/place/Parroquia+Nuestra+Se%C3%B1ora+del+Perpetuo+Socorro+de+Corralillo/@10.2191875,-85.3755747,91m/data=!3m1!1e3!4m11!1m3!2m2!1scorralillo+parroquia!6e1!3m6!1s0x8f9fb8a27f09fe6b:0xb4590fe21821e1ed!8m2!3d10.2191062!4d-85.375523!15sChRjb3JyYWxpbGxvIHBhcnJvcXVpYZIBD2NhdGhvbGljX2NodXJjaOABAA!16s%2Fg%2F11x9xvmsl!5m1!1e2?entry=ttu" target="_blank" class="btn btn-outline">VER UBICACIÓN</a>
+        </div>
+
+        <!-- Celebración -->
+        <div class="section">
+            <h2>Celebración</h2>
+            <div class="event-details">
+                <strong>Sábado 15 de Mayo - 20:00 hrs</strong>
+                Rancho La Amistad de Mario Mafio<br>
+                Corralillo
+            </div>
+            <a href="https://www.google.com/maps/place/Rancho+La+Amisdad+de+Mario+Mafio/@10.1785555,-85.4299022,291m/data=!3m1!1e3!4m10!1m3!2m2!1scorralillo+parroquia!6e1!3m5!1s0x8f9fb99cc562a5e5:0x4f699aa2375e2239!8m2!3d10.178772!4d-85.4292963!16s%2Fg%2F11vlmb23h3!5m1!1e2?entry=ttu" target="_blank" class="btn btn-outline">VER UBICACIÓN</a>
+        </div>
+
+        <!-- Confirmación de Asistencia (Google Forms) -->
+        <div class="section" style="border-bottom: none;">
+            <h2>Confirmar Asistencia</h2>
+            <p class="event-details" style="margin-bottom: 15px;">Es muy importante para nosotros saber si nos acompañarás.</p>
+            <!-- Reemplaza el enlace de abajo por tu formulario real de Google Forms -->
+            <a href="https://forms.gle/tu-enlace-de-google-forms" target="_blank" class="btn">CONFIRMAR ASISTENCIA</a>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <h3>Melissa & Jean Emanuel</h3>
+            <p style="font-size: 0.8rem;">Te esperamos con mucha ilusión 🌿</p>
+        </div>
+    </div>
+
+    <script>
+        // Script para capturar nombre y pases desde la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const invitado = urlParams.get('invitado');
+        const pases = urlParams.get('pases');
+
+        if (invitado) {
+            document.getElementById('nombreInvitado').innerText = decodeURIComponent(invitado);
+        } else {
+            document.getElementById('nombreInvitado').innerText = "Nuestros Queridos Invitados";
+        }
+
+        if (pases) {
+            document.getElementById('cantidadPases').innerText = `🎟️ Espacios reservados: ${pases} pases`;
+        } else {
+            document.getElementById('cantidadPases').style.display = 'none';
+        }
+
+        // Script para el control de música
+        const music = document.getElementById('bg-music');
+        const musicText = document.getElementById('music-text');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                musicText.innerText = "Música";
+                isPlaying = false;
+            } else {
+                music.play().then(() => {
+                    musicText.innerText = "Pausar";
+                    isPlaying = true;
+                }).catch(e => {
+                    console.log("Reproducción bloqueada por el navegador", e);
+                });
+            }
+        }
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danny & Sofía - Nuestra Boda</title>
     <!-- Fuentes de Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
