@@ -130,13 +130,28 @@
             color: var(--olive-dark);
         }
 
+        /* Contenedor Adaptable para Computadora y Celular */
         .container {
-            max-width: 480px;
             width: 100%;
+            max-width: 480px;
             margin: 0 auto;
             background: var(--bg-color);
-            box-shadow: 0 0 40px rgba(0,0,0,0.08);
             position: relative;
+            box-shadow: 0 0 40px rgba(0,0,0,0.08);
+        }
+
+        /* Media Query: Si se abre en computadora (pantallas mayores a 768px) */
+        @media (min-width: 768px) {
+            body {
+                background: linear-gradient(rgba(44, 56, 33, 0.15), rgba(44, 56, 33, 0.25)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+                padding: 40px 0;
+            }
+            .container {
+                border-radius: 24px;
+                overflow: hidden;
+                box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+                border: 2px solid rgba(197, 160, 89, 0.4);
+            }
         }
 
         /* Secciones Fluidas con Animación Fade-In al hacer Scroll */
