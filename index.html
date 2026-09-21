@@ -73,7 +73,7 @@
             position: relative;
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
             color: white;
-            padding: 60px 15px 90px;
+            padding: 50px 15px 90px;
             border-bottom-left-radius: 40px;
             border-bottom-right-radius: 40px;
             animation: fadeIn 1.5s ease-in-out;
@@ -92,13 +92,21 @@
             opacity: 0.9;
         }
 
+        /* Nombres en 3 líneas exactas */
         .hero h1 {
             font-family: 'Great Vibes', cursive;
-            font-size: 3.2rem; /* Tamaño optimizado para que quede en una sola línea */
+            font-size: 3.5rem;
             color: #ffffff;
             margin: 10px 0;
             font-weight: normal;
-            white-space: nowrap; /* Evita el salto de línea */
+            line-height: 1.15;
+        }
+
+        .hero h1 .line-amp {
+            font-size: 2.2rem;
+            opacity: 0.9;
+            margin: 2px 0;
+            display: block;
         }
 
         .quote-icon {
@@ -135,7 +143,6 @@
             justify-content: center;
         }
 
-        /* Marco de hojas decorativas alrededor del círculo */
         .floral-wreath {
             position: absolute;
             width: 100%;
@@ -182,7 +189,7 @@
 
         .time-box span {
             display: block;
-            font-size: 1.5rem; /* Letra más grande */
+            font-size: 1.5rem;
             font-weight: 600;
             color: var(--olive-dark);
         }
@@ -201,8 +208,8 @@
 
         /* Corazón 2D en color verde olivo */
         .heart-2d {
-            width: 22px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
             background-color: var(--olive-main);
             transform: rotate(45deg);
             position: relative;
@@ -213,21 +220,21 @@
         .heart-2d::before,
         .heart-2d::after {
             content: "";
-            width: 22px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
             background-color: var(--olive-main);
             border-radius: 50%;
             position: absolute;
         }
 
         .heart-2d::before {
-            left: -11px;
+            left: -10px;
             top: 0;
         }
 
         .heart-2d::after {
             left: 0;
-            top: -11px;
+            top: -10px;
         }
 
         @keyframes heartbeat {
@@ -483,24 +490,19 @@
     </button>
 
     <div class="container">
-        <!-- Portada Estilo Fixdate -->
-        .hero {
-            position: relative;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
-            color: white;
-            padding: 60px 15px 90px;
-            border-bottom-left-radius: 40px;
-            border-bottom-right-radius: 40px;
-            animation: fadeIn 1.5s ease-in-out;
-        }
+        <!-- Portada Estilo Fixdate con Nombres en 3 Líneas -->
         <div class="hero">
             <span class="date-top">23 . 01 . 2027</span>
             <div class="quote-icon">“</div>
-            <h1>Melissa & Jean Emanuel</h1>
-            <p class="quote">"Todos somos mortales, hasta el primer beso y la segunda copa di vino"</p>
+            <h1>
+                Melissa
+                <span class="line-amp">&</span>
+                Jean Emanuel
+            </h1>
+            <p class="quote">"Todos somos mortales, hasta el primer beso y la segunda copa de vino"</p>
         </div>
 
-        <!-- Círculo de Cuenta Regresiva con Hojas -->
+        <!-- Círculo de Cuenta Regresiva con Hojas y Corazón 2D Verde Oliva -->
         <div class="countdown-wrapper">
             <div class="countdown-circle-container">
                 <div class="floral-wreath"></div>
