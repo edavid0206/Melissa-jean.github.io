@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Melissa & Jean Emanuel - Nuestra Boda</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Importamos fuentes estilizadas con excelente continuidad de trazo -->
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --olive-dark: #2c3821;
-            --olive-main: #4a5d3e;
+            --olive-main: #58694b;
             --olive-light: #f4f6f2;
-            --bg-color: #fafbf9;
-            --text-color: #444444;
+            --bg-color: #f7f5f0;
+            --text-color: #4a4a4a;
         }
 
         * {
@@ -27,6 +28,12 @@
             text-align: center;
             line-height: 1.6;
             overflow-x: hidden;
+        }
+
+        /* Clase global para letras cursivas con perfecta continuidad de trazo */
+        .script-font {
+            font-family: 'Alex Brush', cursive;
+            letter-spacing: 1px;
         }
 
         /* Pantalla de Bienvenida (Overlay Inicial) */
@@ -46,8 +53,8 @@
         }
 
         .welcome-card {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 35px 25px;
+            background: rgba(255, 255, 255, 0.96);
+            padding: 40px 25px;
             border-radius: 20px;
             max-width: 360px;
             width: 100%;
@@ -56,16 +63,18 @@
         }
 
         .welcome-card h2 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 3rem;
+            font-family: 'Alex Brush', cursive;
+            font-size: 3.8rem;
             color: var(--olive-main);
-            margin-bottom: 10px;
+            margin-bottom: 5px;
+            line-height: 1;
         }
 
         .welcome-card p {
-            font-size: 0.9rem;
-            color: #555;
+            font-size: 0.95rem;
+            color: #666;
             margin-bottom: 25px;
+            letter-spacing: 0.5px;
         }
 
         .welcome-btn-group {
@@ -78,7 +87,7 @@
             background: var(--olive-main);
             color: white;
             border: none;
-            padding: 12px 20px;
+            padding: 13px 20px;
             border-radius: 25px;
             font-size: 0.85rem;
             text-transform: uppercase;
@@ -86,7 +95,7 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(74, 93, 62, 0.3);
+            box-shadow: 0 4px 12px rgba(88, 105, 75, 0.3);
         }
 
         .welcome-btn:hover {
@@ -110,8 +119,8 @@
             max-width: 480px;
             width: 100%;
             margin: 0 auto;
-            background: #ffffff;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            background: var(--bg-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
             min-height: 100vh;
             padding-bottom: 60px;
             position: relative;
@@ -183,11 +192,10 @@
         }
 
         .hero h1 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 3.8rem;
+            font-size: 4.2rem;
             color: #ffffff;
             font-weight: normal;
-            line-height: 1.1;
+            line-height: 1.05;
         }
 
         .ampersand-circle {
@@ -199,7 +207,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 12px auto;
+            margin: 10px auto;
             font-family: 'Montserrat', sans-serif;
             font-size: 1.1rem;
             font-weight: 300;
@@ -207,7 +215,7 @@
         }
 
         .quote-box {
-            margin-top: 30px;
+            margin-top: 25px;
             padding: 0 15px;
         }
 
@@ -294,7 +302,7 @@
             height: 270px;
             background: #ffffff;
             border-radius: 50%;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -305,11 +313,10 @@
         }
 
         .countdown-circle h3 {
-            font-size: 2.2rem;
+            font-size: 2.8rem;
             color: var(--olive-main);
-            font-weight: 400;
-            margin-bottom: 5px;
-            font-family: 'Great Vibes', cursive;
+            font-weight: normal;
+            margin-bottom: 2px;
         }
 
         .countdown-timers {
@@ -421,22 +428,22 @@
         .guest-item:hover {
             transform: translateY(-3px);
             border-color: var(--olive-main);
-            box-shadow: 0 6px 15px rgba(74, 93, 62, 0.15);
+            box-shadow: 0 6px 15px rgba(88, 105, 75, 0.15);
         }
 
         /* Galería (Polaroid) */
         .gallery-section {
             padding: 45px 20px;
-            background: var(--olive-light);
-            border-top: 1px solid #e5ebe1;
-            border-bottom: 1px solid #e5ebe1;
+            background: #f0ede6;
+            border-top: 1px solid #e4e0d5;
+            border-bottom: 1px solid #e4e0d5;
         }
 
         .gallery-section h2 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.8rem;
+            font-size: 3.2rem;
             color: var(--olive-main);
             margin-bottom: 5px;
+            font-weight: normal;
         }
 
         .gallery-subtitle {
@@ -481,22 +488,21 @@
 
         .polaroid span {
             display: block;
-            font-family: 'Great Vibes', cursive;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--olive-dark);
-            margin-top: 12px;
+            margin-top: 10px;
         }
 
         /* Secciones de Evento */
         .event-section {
-            padding: 45px 20px;
-            border-bottom: 1px solid #f0f4ec;
+            padding: 50px 20px;
+            border-bottom: 1px solid #eadece;
             position: relative;
         }
 
         .event-icon-circle {
-            width: 90px;
-            height: 90px;
+            width: 95px;
+            height: 95px;
             background: #ffffff;
             border: 2px solid #e5ebe1;
             border-radius: 50%;
@@ -504,8 +510,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
-            transition: transform 0.3s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
         }
 
         .cross-animation {
@@ -527,59 +532,62 @@
         }
 
         .olive-icon {
-            width: 42px;
-            height: 42px;
+            width: 44px;
+            height: 44px;
             fill: var(--olive-main);
         }
 
-        .event-title-banner {
+        /* Banner de título en cinta */
+        .event-title-ribbon {
+            position: relative;
             background: var(--olive-main);
             color: white;
-            padding: 8px 35px;
+            padding: 10px 45px;
             display: inline-block;
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.2rem;
-            border-radius: 6px;
+            font-size: 2.8rem;
             margin-bottom: 25px;
-            box-shadow: 0 4px 12px rgba(74, 93, 62, 0.2);
+            box-shadow: 0 4px 15px rgba(88, 105, 75, 0.25);
+            clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+            line-height: 1;
         }
 
         .event-info-block {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .event-info-block span {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: #888;
+            letter-spacing: 2px;
+            color: #777;
             display: block;
             margin-bottom: 4px;
             font-weight: 600;
         }
 
         .event-info-block p {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: var(--olive-dark);
             font-weight: 500;
             line-height: 1.5;
         }
 
-        /* Sección de Color Reservado (Código de Vestimenta) */
+        /* Sección de Color Reservado */
         .dresscode-box {
-            background: var(--olive-light);
+            background: rgba(255, 255, 255, 0.7);
             border: 1px dashed var(--olive-main);
             border-radius: 15px;
             padding: 20px;
-            margin: 15px auto 0;
+            margin: 25px auto 0;
             max-width: 320px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         }
 
         .dresscode-box h4 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2rem;
+            font-size: 2.6rem;
             color: var(--olive-main);
-            margin-bottom: 8px;
+            margin-bottom: 5px;
+            line-height: 1;
         }
 
         .color-palette {
@@ -597,35 +605,37 @@
             border: 2px solid white;
         }
 
-        /* Botón general */
+        /* Botón */
         .btn-fixdate {
             display: inline-block;
             background-color: #ffffff;
-            border: 1.5px solid var(--olive-main);
-            color: var(--olive-main);
-            padding: 10px 28px;
+            border: 1px solid #dcd6cd;
+            color: var(--olive-dark);
+            padding: 11px 30px;
             border-radius: 25px;
             font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             font-weight: 600;
             text-decoration: none;
             transition: all 0.3s ease;
             margin-top: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
 
         .btn-fixdate:hover {
             background-color: var(--olive-main);
             color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(74, 93, 62, 0.3);
+            border-color: var(--olive-main);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(88, 105, 75, 0.3);
         }
 
         .btn-solid {
             background-color: var(--olive-main);
             color: white;
-            padding: 12px 32px;
+            border: none;
+            padding: 13px 35px;
             border-radius: 30px;
             font-size: 0.8rem;
         }
@@ -637,14 +647,14 @@
         /* Footer */
         .footer {
             padding: 40px 20px;
-            background: var(--olive-light);
+            background: #f0ede6;
         }
 
         .footer h3 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: var(--olive-main);
             margin-bottom: 5px;
+            font-weight: normal;
         }
     </style>
 </head>
@@ -653,9 +663,9 @@
     <!-- Pantalla de Bienvenida Inicial (Con / Sin Música) -->
     <div id="welcome-overlay">
         <div class="welcome-card">
-            <h2>Nuestra Boda</h2>
-            <p>Melissa & Jean Emanuel</p>
-            <div class="welcome-btn-group">
+            <h2 class="script-font">Nuestra Boda</h2>
+            <p class="script-font" style="font-size: 1.5rem; color: var(--olive-main);">Melissa & Jean Emanuel</p>
+            <div class="welcome-btn-group" style="margin-top: 15px;">
                 <button class="welcome-btn" onclick="openInvitation(true)">Abrir con Música 🎵</button>
                 <button class="welcome-btn welcome-btn-secondary" onclick="openInvitation(false)">Abrir sin Música</button>
             </div>
@@ -678,9 +688,9 @@
                 <span class="date-top">23 . 01 . 2027</span>
             </div>
 
-            <h1>Melissa</h1>
+            <h1 class="script-font">Melissa</h1>
             <div class="ampersand-circle">&</div>
-            <h1>Jean Emanuel</h1>
+            <h1 class="script-font">Jean Emanuel</h1>
 
             <div class="quote-box">
                 <div class="quote-marks">“</div>
@@ -696,7 +706,7 @@
             <div class="countdown-circle-container">
                 <div class="floral-wreath"></div>
                 <div class="countdown-circle">
-                    <h3>Falta</h3>
+                    <h3 class="script-font">Falta</h3>
                     <div class="countdown-timers">
                         <div class="time-box">
                             <span id="days">00</span>
@@ -738,21 +748,21 @@
 
         <!-- Galería de Fotos (Polaroid) -->
         <div class="gallery-section reveal">
-            <h2>Retratos de Nuestro Amor</h2>
+            <h2 class="script-font">Retratos de Nuestro Amor</h2>
             <p class="gallery-subtitle">Un minuto, un segundo, un instante que queda en la eternidad</p>
             
             <div class="polaroid-container">
                 <div class="polaroid">
                     <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" alt="Foto 1">
-                    <span>Nuestros momentos</span>
+                    <span class="script-font">Nuestros momentos</span>
                 </div>
                 <div class="polaroid">
                     <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=80" alt="Foto 2">
-                    <span>Amor eterno</span>
+                    <span class="script-font">Amor eterno</span>
                 </div>
                 <div class="polaroid">
                     <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80" alt="Foto 3">
-                    <span>Camino al altar</span>
+                    <span class="script-font">Camino al altar</span>
                 </div>
             </div>
         </div>
@@ -764,7 +774,7 @@
                     <path d="M10,2H14V7H19V11H14V22H10V11H5V7H10V2Z"/>
                 </svg>
             </div>
-            <div class="event-title-banner">Ceremonia</div>
+            <div class="event-title-ribbon script-font">Ceremonia</div>
             
             <div class="event-info-block">
                 <span>Día</span>
@@ -778,14 +788,14 @@
             </div>
         </div>
 
-        <!-- Celebración (Copas de vino haciendo brindis con animación de choque) -->
+        <!-- Celebración -->
         <div class="event-section reveal">
             <div class="event-icon-circle glasses-animation">
                 <svg class="olive-icon" viewBox="0 0 24 24">
                     <path d="M7.5,2C5.5,2 4,3.5 4,5.5C4,7 5.1,8.3 6.5,8.8V19H4V21H11V19H8.5V8.8C9.9,8.3 11,7 11,5.5C11,3.5 9.5,2 7.5,2M7.5,4C8.3,4 9,4.7 9,5.5C9,6.3 8.3,7 7.5,7C6.7,7 6,6.3 6,5.5C6,4.7 6.7,4 7.5,4M18.5,2C16.5,2 15,3.5 15,5.5C15,7 16.1,8.3 17.5,8.8V19H15V21H22V19H19.5V8.8C20.9,8.3 22,7 22,5.5C22,3.5 20.5,2 18.5,2M18.5,4C19.3,4 20,4.7 20,5.5C20,6.3 19.3,7 18.5,7C17.7,7 17,6.3 17,5.5C17,4.7 17.7,4 18.5,4M11.5,10.1C12.1,10.6 12.5,11.3 12.5,12C12.5,12.7 12.1,13.4 11.5,13.9C10.9,13.4 10.5,12.7 10.5,12C10.5,11.3 10.9,10.6 11.5,10.1Z"/>
                 </svg>
             </div>
-            <div class="event-title-banner">Celebración</div>
+            <div class="event-title-ribbon script-font">Celebración</div>
             
             <div class="event-info-block">
                 <span>Día</span>
@@ -798,12 +808,12 @@
                 <a href="https://www.google.com/maps/place/Rancho+La+Amisdad+de+Mario+Mafio/@10.1785555,-85.4299022,291m/data=!3m1!1e3!4m10!1m3!2m2!1scorralillo+parroquia!6e1!3m5!1s0x8f9fb99cc562a5e5:0x4f699aa2375e2239!8m2!3d10.178772!4d-85.4292963!16s%2Fg%2F11vlmb23h3!5m1!1e2?entry=ttu" target="_blank" class="btn-fixdate">¿Cómo llegar?</a>
             </div>
 
-            <!-- Sección de Color Reservado / Código de Vestimenta -->
+            <!-- Sección de Color Reservado -->
             <div class="dresscode-box">
-                <h4>Color Reservado</h4>
+                <h4 class="script-font">Color Reservado</h4>
                 <p style="font-size: 0.85rem; color: #555;">Agradecemos evitar vestir tonos verdes o similares.</p>
                 <div class="color-palette">
-                    <div class="color-circle" style="background-color: #4a5d3e;" title="Verde Oliva"></div>
+                    <div class="color-circle" style="background-color: #58694b;" title="Verde Oliva"></div>
                     <div class="color-circle" style="background-color: #2c3821;" title="Verde Oscuro"></div>
                     <div class="color-circle" style="background-color: #798e6b;" title="Verde Salvia"></div>
                 </div>
@@ -811,16 +821,16 @@
         </div>
 
         <!-- Confirmar Asistencia -->
-        <div class="event-section reveal" style="background: var(--olive-light);">
+        <div class="event-section reveal" style="background: rgba(255,255,255,0.5);">
             <div style="font-size: 2.2rem; margin-bottom: 5px;">💌</div>
-            <h2 style="font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: var(--olive-main); margin-bottom: 5px;">Confirmar Asistencia</h2>
+            <h2 class="script-font" style="font-size: 3.2rem; color: var(--olive-main); margin-bottom: 5px;">Confirmar Asistencia</h2>
             <p class="event-info-block" style="margin-bottom: 20px;">Es importante que confirmes tu asistencia con tiempo.</p>
             <a href="https://forms.gle/tu-enlace-de-google-forms" target="_blank" class="btn-fixdate btn-solid">Confirmar Asistencia</a>
         </div>
 
         <!-- Footer -->
         <div class="footer reveal">
-            <h3>Melissa & Jean Emanuel</h3>
+            <h3 class="script-font">Melissa & Jean Emanuel</h3>
             <p style="font-size: 0.8rem; color: #666;">Te esperamos con mucha ilusión 🌿</p>
         </div>
     </div>
@@ -849,7 +859,7 @@
 
             if (distance < 0) {
                 clearInterval(timer);
-                document.querySelector(".countdown-circle").innerHTML = "<h3 style='color:var(--olive-main);'>¡Llegó el gran día!</h3>";
+                document.querySelector(".countdown-circle").innerHTML = "<h3 class='script-font' style='color:var(--olive-main); font-size:2.2rem;'>¡Llegó el gran día!</h3>";
                 return;
             }
 
@@ -904,7 +914,7 @@
             if (playMusic) {
                 music.play().then(() => {
                     isPlaying = true;
-                    musicBtn.style.background = "rgba(74, 93, 62, 0.7)";
+                    musicBtn.style.background = "rgba(88, 105, 75, 0.7)";
                 }).catch(e => console.log("Error al reproducir:", e));
             } else {
                 isPlaying = false;
@@ -920,7 +930,7 @@
             } else {
                 music.play().then(() => {
                     isPlaying = true;
-                    musicBtn.style.background = "rgba(74, 93, 62, 0.7)";
+                    musicBtn.style.background = "rgba(88, 105, 75, 0.7)";
                 }).catch(e => console.log(e));
             }
         }
