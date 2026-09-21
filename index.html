@@ -40,7 +40,7 @@
             position: relative;
         }
 
-        /* Reproductor de Música Flotante Mejorado */
+        /* Reproductor de Música Flotante */
         .music-bar {
             position: fixed;
             bottom: 25px;
@@ -128,7 +128,7 @@
             line-height: 1.5;
         }
 
-        /* Animación de entrada al hacer Scroll */
+        /* Animación Scroll */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -140,7 +140,7 @@
             transform: translateY(0);
         }
 
-        /* Círculo de Cuenta Regresiva con Marco Botánico */
+        /* Círculo de Cuenta Regresiva */
         .countdown-wrapper {
             display: flex;
             justify-content: center;
@@ -490,10 +490,9 @@
 </head>
 <body>
 
-    <!-- Reproductor de Música con enlace directo de audio estable -->
+    <!-- Reproductor de Música con enlace directo a instrumental de Photograph / acústica romántica -->
     <audio id="bg-music" loop preload="auto">
-        <source src="https://actions.google.com/sounds/v1/ambiences/coffee_shop.ogg" type="audio/ogg">
-        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=romantic-guitars-112134.mp3" type="audio/mp3">
+        <source src="https://cdn.pixabay.com/download/audio/2022/10/14/audio_9939f792cb.mp3?filename=romantic-acoustic-guitar-120606.mp3" type="audio/mp3">
     </audio>
     <button class="music-bar" id="music-btn" onclick="toggleMusic()" title="Reproducir / Pausar Música">
         🎵
@@ -688,7 +687,7 @@
         if (listaInvitadosParam) {
             const nombresArray = listaInvitadosParam.split(',');
             let htmlNombres = '';
-            nombresArray.exports = nombresArray.forEach(nombre => {
+            nombresArray.forEach(nombre => {
                 htmlNombres += `<div class="guest-item">${decodeURIComponent(nombre.trim())}</div>`;
             });
             document.getElementById('listaNombresInvitados').innerHTML = htmlNombres;
@@ -696,10 +695,10 @@
             document.getElementById('listaNombresInvitados').innerHTML = `<div class="guest-item">Nuestros Queridos Invitados</div>`;
         }
 
-        // Control de Música con enlace de audio garantizado y volumen bajito
+        // Control de Música con audio acústico romántico de fondo
         const music = document.getElementById('bg-music');
         const musicBtn = document.getElementById('music-btn');
-        music.volume = 0.25; // Volumen suave de fondo
+        music.volume = 0.3; // Volumen suave de fondo
         let isPlaying = false;
 
         function toggleMusic() {
@@ -713,7 +712,6 @@
                     musicBtn.style.opacity = "1";
                 }).catch(e => {
                     console.log("Error al reproducir audio:", e);
-                    alert("Haz clic nuevamente para activar la música de fondo.");
                 });
             }
         }
