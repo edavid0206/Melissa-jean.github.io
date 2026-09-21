@@ -139,7 +139,7 @@
             padding: 20px;
             position: relative;
             background-color: var(--bg-color);
-            overflow: hidden;
+            overflow-y: auto;
         }
 
         /* Reproductor de Música Flotante Translúcido */
@@ -266,21 +266,21 @@
             60% { transform: translateX(-50%) translateY(-2px); }
         }
 
-        /* Ventana 2: Falta (Cuenta Regresiva) + Invitados */
+        /* Ventana 2: Falta + Invitados Dinámicos */
         .window-content-flex {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
             width: 100%;
             max-width: 340px;
         }
 
         .countdown-circle-container {
             position: relative;
-            width: 230px;
-            height: 230px;
+            width: 210px;
+            height: 210px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -303,8 +303,8 @@
         }
 
         .countdown-circle {
-            width: 205px;
-            height: 205px;
+            width: 185px;
+            height: 185px;
             background: #ffffff;
             border-radius: 50%;
             box-shadow: 0 10px 25px rgba(0,0,0,0.08);
@@ -312,13 +312,13 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 15px;
+            padding: 10px;
             position: relative;
             z-index: 2;
         }
 
         .countdown-circle h3 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--olive-main);
             font-weight: normal;
             margin-bottom: 2px;
@@ -326,51 +326,51 @@
 
         .countdown-timers {
             display: flex;
-            gap: 6px;
+            gap: 5px;
             align-items: center;
         }
 
         .time-box span {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
             color: var(--olive-dark);
         }
 
         .time-box small {
-            font-size: 0.55rem;
+            font-size: 0.5rem;
             text-transform: uppercase;
             color: #888;
             display: block;
         }
 
         .time-separator {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #aaa;
-            margin-top: -10px;
+            margin-top: -8px;
         }
 
         .heart-2d {
-            width: 14px;
-            height: 14px;
+            width: 12px;
+            height: 12px;
             background-color: var(--olive-main);
             transform: rotate(45deg);
             position: relative;
-            margin-top: 6px;
+            margin-top: 4px;
             animation: heartbeat 1.5s infinite;
         }
 
         .heart-2d::before,
         .heart-2d::after {
             content: "";
-            width: 14px;
-            height: 14px;
+            width: 12px;
+            height: 12px;
             background-color: var(--olive-main);
             border-radius: 50%;
             position: absolute;
         }
 
-        .heart-2d::before { left: -7px; top: 0; }
-        .heart-2d::after { left: 0; top: -7px; }
+        .heart-2d::before { left: -6px; top: 0; }
+        .heart-2d::after { left: 0; top: -6px; }
 
         @keyframes heartbeat {
             0%, 100% { transform: rotate(45deg) scale(1); }
@@ -383,17 +383,25 @@
             padding: 10px 15px;
             border-radius: 15px;
             width: 100%;
+            max-height: 170px;
+            overflow-y: auto;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         }
 
         .guest-item {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--olive-dark);
             font-weight: 500;
             margin: 2px 0;
+            padding: 2px 0;
+            border-bottom: 1px solid #f4f6f2;
         }
 
-        /* Ventana 3: Retratos de Nuestro Amor (Movimiento Horizontal Automático) */
+        .guest-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Ventana 3: Retratos de Nuestro Amor (Movimiento Horizontal) */
         .horizontal-slider {
             width: 100%;
             max-width: 320px;
@@ -438,7 +446,7 @@
             76%, 100% { transform: translateX(-66.666%); }
         }
 
-        /* Ventana 4: Ceremonia y Celebración (Con iconos claros y limpios) */
+        /* Ventana 4: Ceremonia y Celebración */
         .events-grid {
             display: flex;
             flex-direction: column;
@@ -460,25 +468,25 @@
         }
 
         .event-icon-box {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             background: var(--olive-light);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
         }
 
         .event-details h4 {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: var(--olive-main);
             margin-bottom: 2px;
         }
 
         .event-details p {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             color: #555;
             line-height: 1.3;
             margin-bottom: 5px;
@@ -619,7 +627,7 @@
             <div class="scroll-indicator">⌄</div>
         </div>
 
-        <!-- VENTANA 2: Falta (Cuenta Regresiva) + Invitados -->
+        <!-- VENTANA 2: Falta (Cuenta Regresiva) + Invitados Dinámicos -->
         <div class="window-section">
             <div class="window-content-flex">
                 <div class="countdown-circle-container">
@@ -640,10 +648,9 @@
                 </div>
 
                 <div class="guest-box">
-                    <div style="width: 30px; height: 30px; background: var(--olive-dark); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 4px; font-weight: 600; font-size: 0.8rem;" id="numeroPasesBadge">4</div>
-                    <h4 style="font-size: 0.9rem; letter-spacing: 2px; color: var(--olive-dark); text-transform: uppercase;">Invitados</h4>
-                    <p style="font-size: 0.65rem; color: #777; margin-bottom: 4px;" id="subtituloAcompanante">(espacios asignados)</p>
-                    <div id="listaNombresInvitados">
+                    <div style="width: 26px; height: 26px; background: var(--olive-dark); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 3px; font-weight: 600; font-size: 0.75rem;" id="numeroPasesBadge">1</div>
+                    <h4 style="font-size: 0.85rem; letter-spacing: 2px; color: var(--olive-dark); text-transform: uppercase;">Pases Asignados</h4>
+                    <div id="listaNombresInvitados" style="margin-top: 5px;">
                         <div class="guest-item">Cargando invitados...</div>
                     </div>
                 </div>
@@ -774,27 +781,22 @@
             }
         }
 
-        // Dinámica de Invitados por URL
+        // Dinámica de Invitados por URL (Lee la lista completa de la familia)
         const urlParams = new URLSearchParams(window.location.search);
         const listaInvitadosParam = urlParams.get('invitados');
-        const pasesParam = urlParams.get('pases');
-
-        if (pasesParam) {
-            document.getElementById('numeroPasesBadge').innerText = pasesParam;
-            document.getElementById('subtituloAcompanante').innerText = `(${pasesParam} espacios asignados)`;
-        } else {
-            document.getElementById('numeroPasesBadge').innerText = "1";
-            document.getElementById('subtituloAcompanante').innerText = "(espacio personal)";
-        }
 
         if (listaInvitadosParam) {
             const nombresArray = listaInvitadosParam.split(',');
+            document.getElementById('numeroPasesBadge').innerText = nombresArray.length;
+            
             let htmlNombres = '';
             nombresArray.forEach(nombre => {
                 htmlNombres += `<div class="guest-item">${decodeURIComponent(nombre.trim())}</div>`;
             });
             document.getElementById('listaNombresInvitados').innerHTML = htmlNombres;
         } else {
+            // Ejemplo por defecto si abren la página general
+            document.getElementById('numeroPasesBadge').innerText = "1";
             document.getElementById('listaNombresInvitados').innerHTML = `<div class="guest-item">Nuestros Queridos Invitados</div>`;
         }
 
