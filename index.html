@@ -20,9 +20,7 @@
             padding: 0;
         }
 
-        html, body {
-            height: 100%;
-            scroll-snap-type: y mandatory;
+        html {
             scroll-behavior: smooth;
         }
 
@@ -126,20 +124,17 @@
             position: relative;
         }
 
-        /* Ventanas Independientes (Snap) */
-        .window-section {
+        /* Secciones Fluidas (Scroll Normal) */
+        .content-section {
             width: 100%;
-            height: 100vh;
-            scroll-snap-align: start;
-            scroll-snap-stop: always;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 25px 20px;
+            padding: 50px 20px;
             position: relative;
             background-color: var(--bg-color);
-            overflow-y: auto;
         }
 
         /* Reproductor de Música Flotante Translúcido */
@@ -168,14 +163,13 @@
             transform: scale(1.05);
         }
 
-        /* Ventana 1: Portada */
+        /* Sección 1: Portada (Pantalla Completa) */
         .hero {
             position: relative;
             background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
             color: white;
             width: 100%;
             height: 100vh;
-            scroll-snap-align: start;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -266,21 +260,21 @@
             60% { transform: translateX(-50%) translateY(-2px); }
         }
 
-        /* Ventana 2: Círculo Bonito del "Falta" + Invitados */
+        /* Sección 2: Círculo Floral Perfecto de Falta + Invitados Dinámicos */
         .window-content-flex {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 15px;
+            gap: 20px;
             width: 100%;
-            max-width: 340px;
+            max-width: 350px;
         }
 
         .countdown-circle-container {
             position: relative;
-            width: 240px;
-            height: 240px;
+            width: 260px;
+            height: 260px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -289,12 +283,12 @@
 
         .floral-wreath {
             position: absolute;
-            width: 100%;
-            height: 100%;
+            width: 250px;
+            height: 250px;
             border: 3px dashed var(--olive-main);
             border-radius: 50%;
             animation: rotateWreath 40s linear infinite;
-            opacity: 0.6;
+            opacity: 0.65;
         }
 
         @keyframes rotateWreath {
@@ -326,12 +320,12 @@
 
         .countdown-timers {
             display: flex;
-            gap: 6px;
+            gap: 5px;
             align-items: center;
         }
 
         .time-box span {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 600;
             color: var(--olive-dark);
         }
@@ -344,9 +338,9 @@
         }
 
         .time-separator {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: #aaa;
-            margin-top: -12px;
+            margin-top: -10px;
         }
 
         .heart-2d {
@@ -355,7 +349,7 @@
             background-color: var(--olive-main);
             transform: rotate(45deg);
             position: relative;
-            margin-top: 8px;
+            margin-top: 6px;
             animation: heartbeat 1.5s infinite;
         }
 
@@ -380,20 +374,28 @@
         .guest-box {
             background: white;
             border: 1px solid #e5ebe1;
-            padding: 12px 15px;
+            padding: 15px;
             border-radius: 15px;
             width: 100%;
+            max-height: 200px;
+            overflow-y: auto;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         }
 
         .guest-item {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--olive-dark);
             font-weight: 500;
-            margin: 3px 0;
+            margin: 4px 0;
+            padding: 3px 0;
+            border-bottom: 1px solid #f4f6f2;
         }
 
-        /* Ventana 3: Tira de Fotos Estilo Fotomatón (Photobooth) */
+        .guest-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Sección 3: Tira de Fotos Estilo Fotomatón (Photobooth) */
         .photobooth-strip {
             background: #ffffff;
             padding: 12px 12px 25px 12px;
@@ -437,7 +439,7 @@
             76%, 100% { transform: translateY(-410px); }
         }
 
-        /* Ventana 4: Ceremonia y Celebración */
+        /* Sección 4: Ceremonia y Celebración */
         .events-grid {
             display: flex;
             flex-direction: column;
@@ -448,7 +450,7 @@
 
         .event-card {
             background: white;
-            padding: 15px;
+            padding: 18px;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.04);
             border: 1px solid #e5ebe1;
@@ -463,7 +465,7 @@
         .event-card p {
             font-size: 0.85rem;
             color: #555;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .btn-link {
@@ -479,7 +481,7 @@
             font-weight: 600;
         }
 
-        /* Ventana 5: Información Importante / Color Reservado */
+        /* Sección 5: Información Importante / Color Reservado */
         .info-card {
             background: white;
             padding: 25px;
@@ -511,7 +513,7 @@
             border: 2px solid white;
         }
 
-        /* Ventana 6: Confirmación Interactiva */
+        /* Sección 6: Confirmación Interactiva */
         .rsvp-box {
             background: white;
             padding: 30px 20px;
@@ -547,11 +549,12 @@
         }
 
         /* Footer Integrado */
-        .footer-window {
+        .footer-section {
             background: #f0ede6;
+            padding: 40px 20px;
         }
 
-        .footer-window h3 {
+        .footer-section h3 {
             font-size: 3.2rem;
             color: var(--olive-main);
             margin-bottom: 5px;
@@ -578,7 +581,7 @@
     </audio>
 
     <div class="container">
-        <!-- VENTANA 1: Portada -->
+        <!-- SECCIÓN 1: Portada (Pantalla Completa Inicial) -->
         <div class="hero">
             <button class="music-btn-translucent" id="music-btn" onclick="toggleMusic()" title="Reproducir / Pausar Música">
                 🎵
@@ -601,8 +604,8 @@
             <div class="scroll-indicator">⌄</div>
         </div>
 
-        <!-- VENTANA 2: Círculo Bonito de Falta + Invitados -->
-        <div class="window-section">
+        <!-- SECCIÓN 2: Cuenta Regresiva + Invitados Dinámicos -->
+        <div class="content-section">
             <div class="window-content-flex">
                 <div class="countdown-circle-container">
                     <div class="floral-wreath"></div>
@@ -622,20 +625,19 @@
                 </div>
 
                 <div class="guest-box">
-                    <div style="width: 35px; height: 35px; background: var(--olive-dark); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 5px; font-weight: 600; font-size: 0.9rem;" id="numeroPasesBadge">4</div>
-                    <h4 style="font-size: 1rem; letter-spacing: 2px; color: var(--olive-dark); text-transform: uppercase;">Invitados</h4>
-                    <p style="font-size: 0.7rem; color: #777; margin-bottom: 6px;" id="subtituloAcompanante">(espacios asignados)</p>
-                    <div id="listaNombresInvitados">
+                    <div style="width: 32px; height: 32px; background: var(--olive-dark); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 4px; font-weight: 600; font-size: 0.85rem;" id="numeroPasesBadge">1</div>
+                    <h4 style="font-size: 0.9rem; letter-spacing: 2px; color: var(--olive-dark); text-transform: uppercase;">Invitados Asignados</h4>
+                    <div id="listaNombresInvitados" style="margin-top: 6px;">
                         <div class="guest-item">Cargando invitados...</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- VENTANA 3: Retratos de Nuestro Amor (Tira fotomatón deslizándose sola) -->
-        <div class="window-section" style="background: #f0ede6;">
+        <!-- SECCIÓN 3: Retratos de Nuestro Amor (Fotomatón) -->
+        <div class="content-section" style="background: #f0ede6;">
             <h3 class="script-font" style="font-size: 2.8rem; color: var(--olive-main); margin-bottom: 2px;">Retratos de Nuestro Amor</h3>
-            <p style="font-size: 0.8rem; color: #666; font-style: italic; margin-bottom: 15px;">Instantes que quedan en la eternidad</p>
+            <p style="font-size: 0.8rem; color: #666; font-style: italic; margin-bottom: 20px;">Instantes que quedan en la eternidad</p>
             
             <div class="photobooth-strip">
                 <div class="photobooth-track">
@@ -655,8 +657,8 @@
             </div>
         </div>
 
-        <!-- VENTANA 4: Ceremonia y Celebración -->
-        <div class="window-section">
+        <!-- SECCIÓN 4: Ceremonia y Celebración -->
+        <div class="content-section">
             <div class="events-grid">
                 <div class="event-card">
                     <h4 class="script-font">Ceremonia</h4>
@@ -671,8 +673,8 @@
             </div>
         </div>
 
-        <!-- VENTANA 5: Información Importante / Color Reservado -->
-        <div class="window-section">
+        <!-- SECCIÓN 5: Información Importante / Color Reservado -->
+        <div class="content-section">
             <div class="info-card">
                 <h3 class="script-font">Color Reservado</h3>
                 <p style="font-size: 0.85rem; color: #555; line-height: 1.4;">Agradecemos con mucho cariño evitar vestir tonos verdes o similares durante la celebración.</p>
@@ -684,8 +686,8 @@
             </div>
         </div>
 
-        <!-- VENTANA 6: Confirmar Asistencia (Lógica < 30 días) -->
-        <div class="window-section" style="background: rgba(255,255,255,0.7);">
+        <!-- SECCIÓN 6: Confirmar Asistencia -->
+        <div class="content-section" style="background: rgba(255,255,255,0.7);">
             <div class="rsvp-box">
                 <div style="font-size: 2rem; margin-bottom: 2px;">💌</div>
                 <h3 class="script-font">Confirmar Asistencia</h3>
@@ -696,8 +698,8 @@
             </div>
         </div>
 
-        <!-- VENTANA 7: Footer -->
-        <div class="window-section footer-window">
+        <!-- SECCIÓN 7: Footer -->
+        <div class="content-section footer-section">
             <h3 class="script-font">Melissa & Jean Emanuel</h3>
             <p style="font-size: 0.85rem; color: #666;">Te esperamos con mucha ilusión 🌿</p>
         </div>
@@ -753,24 +755,18 @@
         // Dinámica de Invitados por URL
         const urlParams = new URLSearchParams(window.location.search);
         const listaInvitadosParam = urlParams.get('invitados');
-        const pasesParam = urlParams.get('pases');
-
-        if (pasesParam) {
-            document.getElementById('numeroPasesBadge').innerText = pasesParam;
-            document.getElementById('subtituloAcompanante').innerText = `(${pasesParam} espacios asignados)`;
-        } else {
-            document.getElementById('numeroPasesBadge').innerText = "1";
-            document.getElementById('subtituloAcompanante').innerText = "(espacio personal)";
-        }
 
         if (listaInvitadosParam) {
             const nombresArray = listaInvitadosParam.split(',');
+            document.getElementById('numeroPasesBadge').innerText = nombresArray.length;
+            
             let htmlNombres = '';
             nombresArray.forEach(nombre => {
                 htmlNombres += `<div class="guest-item">${decodeURIComponent(nombre.trim())}</div>`;
             });
             document.getElementById('listaNombresInvitados').innerHTML = htmlNombres;
         } else {
+            document.getElementById('numeroPasesBadge').innerText = "1";
             document.getElementById('listaNombresInvitados').innerHTML = `<div class="guest-item">Nuestros Queridos Invitados</div>`;
         }
 
