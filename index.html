@@ -40,7 +40,7 @@
             position: relative;
         }
 
-        /* Reproductor de Música Flotante con Animación */
+        /* Reproductor de Música Flotante */
         .music-bar {
             position: fixed;
             bottom: 25px;
@@ -73,7 +73,7 @@
             position: relative;
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
             color: white;
-            padding: 60px 20px 90px;
+            padding: 60px 15px 90px;
             border-bottom-left-radius: 40px;
             border-bottom-right-radius: 40px;
             animation: fadeIn 1.5s ease-in-out;
@@ -94,10 +94,11 @@
 
         .hero h1 {
             font-family: 'Great Vibes', cursive;
-            font-size: 4rem;
+            font-size: 3.2rem; /* Tamaño optimizado para que quede en una sola línea */
             color: #ffffff;
             margin: 10px 0;
             font-weight: normal;
+            white-space: nowrap; /* Evita el salto de línea */
         }
 
         .quote-icon {
@@ -115,54 +116,75 @@
             line-height: 1.5;
         }
 
-        /* Círculo de Cuenta Regresiva con Efecto Zoom */
+        /* Círculo de Cuenta Regresiva con Marco Botánico (Hojas) */
         .countdown-wrapper {
             display: flex;
             justify-content: center;
-            margin-top: -65px;
+            margin-top: -75px;
             position: relative;
             z-index: 10;
             padding: 0 20px;
         }
 
+        .countdown-circle-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Marco de hojas decorativas alrededor del círculo */
+        .floral-wreath {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px dashed var(--olive-main);
+            border-radius: 50%;
+            animation: rotateWreath 40s linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes rotateWreath {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
         .countdown-circle {
-            width: 280px;
-            height: 280px;
+            width: 270px;
+            height: 270px;
             background: #ffffff;
             border-radius: 50%;
-            border: 4px solid #d4af37;
             box-shadow: 0 10px 30px rgba(0,0,0,0.12);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            transition: transform 0.4s ease;
-        }
-
-        .countdown-circle:hover {
-            transform: scale(1.03);
+            position: relative;
+            z-index: 2;
         }
 
         .countdown-circle h3 {
-            font-size: 2rem;
-            color: #b58d4a;
+            font-size: 2.2rem;
+            color: var(--olive-main);
             font-weight: 400;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             font-family: 'Great Vibes', cursive;
         }
 
         .countdown-timers {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             align-items: center;
         }
 
         .time-box span {
             display: block;
-            font-size: 1.4rem;
+            font-size: 1.5rem; /* Letra más grande */
             font-weight: 600;
-            color: #5c6852;
+            color: var(--olive-dark);
         }
 
         .time-box small {
@@ -173,20 +195,44 @@
 
         .time-separator {
             font-size: 1.2rem;
-            color: #ccc;
+            color: #aaa;
             margin-top: -15px;
         }
 
-        .heart-icon {
-            margin-top: 12px;
-            color: var(--olive-main);
-            font-size: 1.1rem;
+        /* Corazón 2D en color verde olivo */
+        .heart-2d {
+            width: 22px;
+            height: 22px;
+            background-color: var(--olive-main);
+            transform: rotate(45deg);
+            position: relative;
+            margin-top: 15px;
             animation: heartbeat 1.5s infinite;
         }
 
+        .heart-2d::before,
+        .heart-2d::after {
+            content: "";
+            width: 22px;
+            height: 22px;
+            background-color: var(--olive-main);
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .heart-2d::before {
+            left: -11px;
+            top: 0;
+        }
+
+        .heart-2d::after {
+            left: 0;
+            top: -11px;
+        }
+
         @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.25); }
+            0%, 100% { transform: rotate(45deg) scale(1); }
+            50% { transform: rotate(45deg) scale(1.15); }
         }
 
         /* Sección de Invitados */
@@ -205,11 +251,6 @@
             justify-content: center;
             margin: 0 auto 15px;
             box-shadow: 0 6px 15px rgba(44, 56, 33, 0.25);
-            transition: transform 0.3s;
-        }
-
-        .guest-icon-circle:hover {
-            transform: rotate(10deg) scale(1.08);
         }
 
         .guest-section h2 {
@@ -253,7 +294,7 @@
             box-shadow: 0 6px 15px rgba(74, 93, 62, 0.15);
         }
 
-        /* Galería de Fotos Interactiva (Efecto Polaroid) */
+        /* Galería de Fotos (Polaroid) */
         .gallery-section {
             padding: 45px 20px;
             background: var(--olive-light);
@@ -316,7 +357,7 @@
             margin-top: 12px;
         }
 
-        /* Secciones de Evento (Ceremonia y Celebración) */
+        /* Secciones de Evento */
         .event-section {
             padding: 45px 20px;
             border-bottom: 1px solid #f0f4ec;
@@ -380,7 +421,7 @@
             line-height: 1.5;
         }
 
-        /* Botones Interactivos con Movimiento */
+        /* Botones Interactivos */
         .btn-fixdate {
             display: inline-block;
             background-color: #ffffff;
@@ -443,39 +484,51 @@
 
     <div class="container">
         <!-- Portada Estilo Fixdate -->
+        .hero {
+            position: relative;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
+            color: white;
+            padding: 60px 15px 90px;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
         <div class="hero">
             <span class="date-top">23 . 01 . 2027</span>
             <div class="quote-icon">“</div>
             <h1>Melissa & Jean Emanuel</h1>
-            <p class="quote">"Todos somos mortales, hasta el primer beso y la segunda copa de vino"</p>
+            <p class="quote">"Todos somos mortales, hasta el primer beso y la segunda copa di vino"</p>
         </div>
 
-        <!-- Círculo de Cuenta Regresiva -->
+        <!-- Círculo de Cuenta Regresiva con Hojas -->
         <div class="countdown-wrapper">
-            <div class="countdown-circle">
-                <h3>Falta</h3>
-                <div class="countdown-timers">
-                    <div class="time-box">
-                        <span id="days">00</span>
-                        <small>días</small>
+            <div class="countdown-circle-container">
+                <div class="floral-wreath"></div>
+                <div class="countdown-circle">
+                    <h3>Falta</h3>
+                    <div class="countdown-timers">
+                        <div class="time-box">
+                            <span id="days">00</span>
+                            <small>días</small>
+                        </div>
+                        <div class="time-separator">:</div>
+                        <div class="time-box">
+                            <span id="hours">00</span>
+                            <small>hs</small>
+                        </div>
+                        <div class="time-separator">:</div>
+                        <div class="time-box">
+                            <span id="minutes">00</span>
+                            <small>min</small>
+                        </div>
+                        <div class="time-separator">:</div>
+                        <div class="time-box">
+                            <span id="seconds">00</span>
+                            <small>seg</small>
+                        </div>
                     </div>
-                    <div class="time-separator">:</div>
-                    <div class="time-box">
-                        <span id="hours">00</span>
-                        <small>hs</small>
-                    </div>
-                    <div class="time-separator">:</div>
-                    <div class="time-box">
-                        <span id="minutes">00</span>
-                        <small>min</small>
-                    </div>
-                    <div class="time-separator">:</div>
-                    <div class="time-box">
-                        <span id="seconds">00</span>
-                        <small>seg</small>
-                    </div>
+                    <div class="heart-2d"></div>
                 </div>
-                <div class="heart-icon">❤️</div>
             </div>
         </div>
 
@@ -492,7 +545,7 @@
             <p style="font-size: 0.85rem; color: #666; font-style: italic;">Tu presencia es lo más importante. ¡No faltes!</p>
         </div>
 
-        <!-- Galería de Fotos (Efecto Polaroid con Movimiento) -->
+        <!-- Galería de Fotos (Polaroid) -->
         <div class="gallery-section">
             <h2>Retratos de Nuestro Amor</h2>
             <p class="gallery-subtitle">Un minuto, un segundo, un instante que queda en la eternidad</p>
