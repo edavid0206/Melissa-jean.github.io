@@ -40,7 +40,7 @@
             position: relative;
         }
 
-        /* Reproductor de Música Flotante */
+        /* Reproductor de Música Flotante con Animación */
         .music-bar {
             position: fixed;
             bottom: 25px;
@@ -62,13 +62,18 @@
             animation: pulse 2s infinite;
         }
 
+        .music-bar:hover {
+            transform: scale(1.1);
+            background-color: var(--olive-dark);
+        }
+
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(74, 93, 62, 0.4); }
             70% { box-shadow: 0 0 0 12px rgba(74, 93, 62, 0); }
             100% { box-shadow: 0 0 0 0 rgba(74, 93, 62, 0); }
         }
 
-        /* Portada Oscura Estilo Fixdate */
+        /* Portada Oscura */
         .hero {
             position: relative;
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
@@ -92,7 +97,6 @@
             opacity: 0.9;
         }
 
-        /* Nombres en 3 líneas exactas */
         .hero h1 {
             font-family: 'Great Vibes', cursive;
             font-size: 3.5rem;
@@ -124,7 +128,19 @@
             line-height: 1.5;
         }
 
-        /* Círculo de Cuenta Regresiva con Marco Botánico (Hojas) */
+        /* Efecto de Animación al Hacer Scroll (Fade Up) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Círculo de Cuenta Regresiva con Marco Botánico */
         .countdown-wrapper {
             display: flex;
             justify-content: center;
@@ -227,15 +243,8 @@
             position: absolute;
         }
 
-        .heart-2d::before {
-            left: -10px;
-            top: 0;
-        }
-
-        .heart-2d::after {
-            left: 0;
-            top: -10px;
-        }
+        .heart-2d::before { left: -10px; top: 0; }
+        .heart-2d::after { left: 0; top: -10px; }
 
         @keyframes heartbeat {
             0%, 100% { transform: rotate(45deg) scale(1); }
@@ -481,9 +490,9 @@
 </head>
 <body>
 
-    <!-- Reproductor de Música -->
+    <!-- Reproductor de Música (Ed Sheeran Photograph - Instrumental / Acústica de fondo suave) -->
     <audio id="bg-music" loop>
-        <source src="https://www.bensound.com/bensound-music/bensound-tenderness.mp3" type="audio/mp3">
+        <source src="https://cdnsongs.com/music/data/English_Songs/2019/Photograph_-_Ed_Sheeran/128/Photograph_-_Ed_Sheeran.mp3" type="audio/mp3">
     </audio>
     <button class="music-bar" onclick="toggleMusic()" title="Reproducir Música">
         🎵
@@ -503,7 +512,7 @@
         </div>
 
         <!-- Círculo de Cuenta Regresiva con Hojas y Corazón 2D Verde Oliva -->
-        <div class="countdown-wrapper">
+        <div class="countdown-wrapper reveal">
             <div class="countdown-circle-container">
                 <div class="floral-wreath"></div>
                 <div class="countdown-circle">
@@ -535,7 +544,7 @@
         </div>
 
         <!-- Sección de Invitados -->
-        <div class="guest-section">
+        <div class="guest-section reveal">
             <div class="guest-icon-circle" id="numeroPasesBadge" style="font-size: 1.6rem; font-weight:600; color:white;">4</div>
             <h2>Invitados</h2>
             <div class="subtitle" id="subtituloAcompanante">(1 acompañante)</div>
@@ -548,7 +557,7 @@
         </div>
 
         <!-- Galería de Fotos (Polaroid) -->
-        <div class="gallery-section">
+        <div class="gallery-section reveal">
             <h2>Retratos de Nuestro Amor</h2>
             <p class="gallery-subtitle">Un minuto, un segundo, un instante que queda en la eternidad</p>
             
@@ -569,7 +578,7 @@
         </div>
 
         <!-- Ceremonia -->
-        <div class="event-section">
+        <div class="event-section reveal">
             <div class="event-icon-circle">
                 <svg class="olive-icon" viewBox="0 0 24 24"><path d="M12,2C6.5,2 2,6.5 2,12C2,17.5 6.5,22 12,22C17.5,22 22,17.5 22,12C22,6.5 17.5,2 12,2M12,4C15.3,4 18,6.7 18,10C18,13.3 15.3,16 12,16C8.7,16 6,13.3 6,10C6,6.7 8.7,4 12,4M12,6C9.8,6 8,7.8 8,10C8,12.2 9.8,14 12,14C14.2,14 16,12.2 16,10C16,7.8 14.2,6 12,6Z"/></svg>
             </div>
@@ -589,7 +598,7 @@
         </div>
 
         <!-- Celebración -->
-        <div class="event-section">
+        <div class="event-section reveal">
             <div class="event-icon-circle">
                 <svg class="olive-icon" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8Z"/></svg>
             </div>
@@ -609,7 +618,7 @@
         </div>
 
         <!-- Confirmar Asistencia -->
-        <div class="event-section" style="background: var(--olive-light);">
+        <div class="event-section reveal" style="background: var(--olive-light);">
             <div style="font-size: 2.2rem; margin-bottom: 5px;">💌</div>
             <h2 style="font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: var(--olive-main); margin-bottom: 5px;">Confirmar Asistencia</h2>
             <p class="event-info-block" style="margin-bottom: 20px;">Es importante que confirmes tu asistencia con tiempo.</p>
@@ -617,15 +626,30 @@
         </div>
 
         <!-- Footer -->
-        <div class="footer">
+        <div class="footer reveal">
             <h3>Melissa & Jean Emanuel</h3>
             <p style="font-size: 0.8rem; color: #666;">Te esperamos con mucha ilusión 🌿</p>
         </div>
     </div>
 
     <script>
-        const weddingDate = new Date("January 23, 2027 15:00:00").getTime();
+        // Efecto Scroll Reveal (Animación al bajar en la página)
+        window.addEventListener('scroll', reveal);
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+            for(var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if(elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        reveal(); // Activar al cargar por si acaso
 
+        // Contador Regresivo
+        const weddingDate = new Date("January 23, 2027 15:00:00").getTime();
         const timer = setInterval(function() {
             const now = new Date().getTime();
             const distance = weddingDate - now;
@@ -647,6 +671,7 @@
             document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
         }, 1000);
 
+        // Dinámica de Nombres e Invitados por URL
         const urlParams = new URLSearchParams(window.location.search);
         const listaInvitadosParam = urlParams.get('invitados');
         const pasesParam = urlParams.get('pases');
@@ -670,7 +695,9 @@
             document.getElementById('listaNombresInvitados').innerHTML = `<div class="guest-item">Nuestros Queridos Invitados</div>`;
         }
 
+        // Reproductor de Música Suave con Ed Sheeran
         const music = document.getElementById('bg-music');
+        music.volume = 0.3; // Volumen bajito y agradable
         let isPlaying = false;
 
         function toggleMusic() {
@@ -681,7 +708,7 @@
                 music.play().then(() => {
                     isPlaying = true;
                 }).catch(e => {
-                    console.log("Reproducción bloqueada", e);
+                    console.log("Reproducción bloqueada por el navegador", e);
                 });
             }
         }
