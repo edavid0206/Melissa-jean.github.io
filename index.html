@@ -458,7 +458,7 @@
             76%, 100% { transform: translateY(-450px); }
         }
 
-        /* Sección 4: Ceremonia y Celebración con Vectores */
+        /* Sección 4: Ceremonia y Celebración con Vectores (Incluye la Cruz en la Parroquia) */
         .events-grid {
             display: flex;
             flex-direction: column;
@@ -733,10 +733,11 @@
             </div>
         </div>
 
-        <!-- SECCIÓN 4: Ceremonia y Celebración con Vectores -->
+        <!-- SECCIÓN 4: Ceremonia y Celebración con Vectores (Iglesia con Cruz) -->
         <div class="content-section">
             <div class="events-grid">
                 <div class="event-card">
+                    <!-- Icono vectorial de la Parroquia con Cruz en la cúspide -->
                     <svg class="event-icon-vector" viewBox="0 0 24 24"><path d="M12,2L2,12H5V20H10V14H14V20H19V12H22L12,2Z"/></svg>
                     <h4 class="script-font">Ceremonia</h4>
                     <p><b>Sábado 23 de Enero - 3:00 p.m.</b><br>Parroquia Nuestra Señora del Perpetuo Socorro, Corralillo</p>
@@ -771,7 +772,6 @@
                 <h3 class="script-font">Confirmar Asistencia</h3>
                 <div id="rsvp-content">
                     <p style="font-size: 0.9rem; color: #555; margin-bottom: 10px;">Por favor, confirma tu asistencia en el siguiente enlace:</p>
-                    <!-- REEMPLAZA EL ENLACE DE ABAJO CON TU LINK DE GOOGLE FORMS O TUPRIMERAOPCION -->
                     <a href="https://forms.gle/TU_ENLACE_DE_FORMULARIO" target="_blank" class="btn-confirmar">Llenar Formulario de Asistencia</a>
                 </div>
             </div>
@@ -815,7 +815,6 @@
         function verificarDiasRSVP(diasRestantes) {
             const rsvpDiv = document.getElementById('rsvp-content');
             
-            // Si faltan 29 días o menos (y la boda no ha pasado aún)
             if (diasRestantes <= 29 && diasRestantes >= 0) {
                 rsvpDiv.innerHTML = `
                     <p style="font-size: 0.9rem; color: #a94442; font-weight: 600; margin-bottom: 12px;">El período de confirmación en línea ha finalizado (a menos de 29 días del evento). Si deseas consultar disponibilidad, comunícate a los teléfonos:</p>
