@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Melissa & Jean Emanuel - Nuestra Boda</title>
-    <!-- Importamos fuentes estilizadas con excelente continuidad de trazo -->
     <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -21,16 +20,21 @@
             padding: 0;
         }
 
+        /* Efecto de ventanas por secciones en el teléfono */
+        html, body {
+            height: 100%;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             text-align: center;
-            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Clase global para letras cursivas con perfecta continuidad de trazo */
         .script-font {
             font-family: 'Alex Brush', cursive;
             letter-spacing: 1px;
@@ -74,7 +78,6 @@
             font-size: 0.95rem;
             color: #666;
             margin-bottom: 25px;
-            letter-spacing: 0.5px;
         }
 
         .welcome-btn-group {
@@ -121,17 +124,30 @@
             margin: 0 auto;
             background: var(--bg-color);
             box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-            min-height: 100vh;
-            padding-bottom: 60px;
             position: relative;
+        }
+
+        /* Cada sección actúa como una ventana independiente (Snap Window) */
+        .window-section {
+            width: 100%;
+            height: 100vh;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 20px;
+            position: relative;
+            background-color: var(--bg-color);
         }
 
         /* Reproductor de Música Flotante Translúcido */
         .music-btn-translucent {
-            position: absolute;
+            position: fixed;
             bottom: 20px;
             right: 20px;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(88, 105, 75, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(5px);
             color: white;
@@ -139,7 +155,7 @@
             width: 45px;
             height: 45px;
             cursor: pointer;
-            z-index: 100;
+            z-index: 1000;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -148,7 +164,7 @@
         }
 
         .music-btn-translucent:hover {
-            background: rgba(255, 255, 255, 0.4);
+            background: var(--olive-dark);
             transform: scale(1.05);
         }
 
@@ -157,15 +173,14 @@
             position: relative;
             background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
             color: white;
+            width: 100%;
             height: 100vh;
+            scroll-snap-align: start;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 40px 20px;
-            border-bottom-left-radius: 40px;
-            border-bottom-right-radius: 40px;
-            overflow: hidden;
         }
 
         .date-line-wrapper {
@@ -252,31 +267,11 @@
             60% { transform: translateX(-50%) translateY(-3px); }
         }
 
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
         /* Cuenta Regresiva */
-        .countdown-wrapper {
-            display: flex;
-            justify-content: center;
-            margin-top: -75px;
-            position: relative;
-            z-index: 10;
-            padding: 0 20px;
-        }
-
         .countdown-circle-container {
             position: relative;
-            width: 300px;
-            height: 300px;
+            width: 280px;
+            height: 280px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -298,8 +293,8 @@
         }
 
         .countdown-circle {
-            width: 270px;
-            height: 270px;
+            width: 250px;
+            height: 250px;
             background: #ffffff;
             border-radius: 50%;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
@@ -313,7 +308,7 @@
         }
 
         .countdown-circle h3 {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             color: var(--olive-main);
             font-weight: normal;
             margin-bottom: 2px;
@@ -327,13 +322,13 @@
 
         .time-box span {
             display: block;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 600;
             color: var(--olive-dark);
         }
 
         .time-box small {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
             color: #888;
         }
@@ -345,27 +340,27 @@
         }
 
         .heart-2d {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             background-color: var(--olive-main);
             transform: rotate(45deg);
             position: relative;
-            margin-top: 15px;
+            margin-top: 12px;
             animation: heartbeat 1.5s infinite;
         }
 
         .heart-2d::before,
         .heart-2d::after {
             content: "";
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             background-color: var(--olive-main);
             border-radius: 50%;
             position: absolute;
         }
 
-        .heart-2d::before { left: -10px; top: 0; }
-        .heart-2d::after { left: 0; top: -10px; }
+        .heart-2d::before { left: -9px; top: 0; }
+        .heart-2d::after { left: 0; top: -9px; }
 
         @keyframes heartbeat {
             0%, 100% { transform: rotate(45deg) scale(1); }
@@ -373,25 +368,21 @@
         }
 
         /* Invitados */
-        .guest-section {
-            padding: 40px 20px;
-        }
-
         .guest-icon-circle {
-            width: 70px;
-            height: 70px;
+            width: 65px;
+            height: 65px;
             background: var(--olive-dark);
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 15px;
+            margin: 0 auto 12px;
             box-shadow: 0 6px 15px rgba(44, 56, 33, 0.25);
         }
 
         .guest-section h2 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             letter-spacing: 3px;
             color: var(--olive-dark);
             text-transform: uppercase;
@@ -402,111 +393,101 @@
         .guest-section .subtitle {
             font-size: 0.8rem;
             color: #777;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .guest-list {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
             max-width: 300px;
-            margin: 0 auto 20px;
+            width: 100%;
+            margin: 0 auto 15px;
         }
 
         .guest-item {
             background: #ffffff;
             border: 1px solid #e0e6db;
-            padding: 12px;
+            padding: 10px;
             border-radius: 10px;
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--olive-dark);
             font-weight: 500;
             box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-            transition: all 0.3s ease;
         }
 
-        .guest-item:hover {
-            transform: translateY(-3px);
-            border-color: var(--olive-main);
-            box-shadow: 0 6px 15px rgba(88, 105, 75, 0.15);
-        }
-
-        /* Galería (Polaroid) */
+        /* Galería Automática de Retratos (Se mueve sola) */
         .gallery-section {
-            padding: 45px 20px;
             background: #f0ede6;
-            border-top: 1px solid #e4e0d5;
-            border-bottom: 1px solid #e4e0d5;
         }
 
         .gallery-section h2 {
-            font-size: 3.2rem;
+            font-size: 3rem;
             color: var(--olive-main);
-            margin-bottom: 5px;
+            margin-bottom: 2px;
             font-weight: normal;
         }
 
         .gallery-subtitle {
             font-size: 0.85rem;
             color: #666;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             font-style: italic;
         }
 
-        .polaroid-container {
-            display: flex;
-            gap: 15px;
-            overflow-x: auto;
-            padding-bottom: 15px;
-            scroll-snap-type: x mandatory;
-        }
-
-        .polaroid {
-            background: white;
-            padding: 12px 12px 25px 12px;
-            border-radius: 4px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-            min-width: 240px;
-            scroll-snap-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .polaroid:hover {
-            transform: scale(1.03) rotate(0deg) !important;
-        }
-
-        .polaroid:nth-child(1) { transform: rotate(-2deg); }
-        .polaroid:nth-child(2) { transform: rotate(2deg); }
-        .polaroid:nth-child(3) { transform: rotate(-1deg); }
-
-        .polaroid img {
+        .auto-slider {
             width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 2px;
+            max-width: 300px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            background: white;
+            padding: 10px 10px 20px 10px;
         }
 
-        .polaroid span {
+        .slides-track {
+            display: flex;
+            width: 300%;
+            animation: slideAnimation 12s infinite ease-in-out;
+        }
+
+        .slide-item {
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        .slide-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .slide-item span {
             display: block;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: var(--olive-dark);
             margin-top: 10px;
         }
 
-        /* Secciones de Evento */
-        .event-section {
-            padding: 50px 20px;
-            border-bottom: 1px solid #eadece;
-            position: relative;
+        @keyframes slideAnimation {
+            0% { transform: translateX(0%); }
+            30% { transform: translateX(0%); }
+            38% { transform: translateX(-100%); }
+            68% { transform: translateX(-100%); }
+            76% { transform: translateX(-200%); }
+            100% { transform: translateX(-200%); }
         }
 
+        /* Secciones de Evento */
         .event-icon-circle {
-            width: 95px;
-            height: 95px;
+            width: 85px;
+            height: 85px;
             background: #ffffff;
             border: 2px solid #e5ebe1;
             border-radius: 50%;
-            margin: 0 auto 20px;
+            margin: 0 auto 15px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -532,86 +513,84 @@
         }
 
         .olive-icon {
-            width: 44px;
-            height: 44px;
+            width: 40px;
+            height: 40px;
             fill: var(--olive-main);
         }
 
-        /* Banner de título en cinta */
         .event-title-ribbon {
             position: relative;
             background: var(--olive-main);
             color: white;
-            padding: 10px 45px;
+            padding: 8px 40px;
             display: inline-block;
-            font-size: 2.8rem;
-            margin-bottom: 25px;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
             box-shadow: 0 4px 15px rgba(88, 105, 75, 0.25);
             clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
             line-height: 1;
         }
 
         .event-info-block {
-            margin-bottom: 18px;
+            margin-bottom: 15px;
         }
 
         .event-info-block span {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             color: #777;
             display: block;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
             font-weight: 600;
         }
 
         .event-info-block p {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--olive-dark);
             font-weight: 500;
-            line-height: 1.5;
+            line-height: 1.4;
         }
 
-        /* Sección de Color Reservado */
+        /* Código de Vestimenta */
         .dresscode-box {
             background: rgba(255, 255, 255, 0.7);
             border: 1px dashed var(--olive-main);
             border-radius: 15px;
-            padding: 20px;
-            margin: 25px auto 0;
-            max-width: 320px;
+            padding: 15px;
+            margin: 15px auto 0;
+            max-width: 300px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         }
 
         .dresscode-box h4 {
-            font-size: 2.6rem;
+            font-size: 2.2rem;
             color: var(--olive-main);
-            margin-bottom: 5px;
+            margin-bottom: 3px;
             line-height: 1;
         }
 
         .color-palette {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            margin-top: 12px;
+            gap: 10px;
+            margin-top: 8px;
         }
 
         .color-circle {
-            width: 30px;
-            height: 30px;
+            width: 26px;
+            height: 26px;
             border-radius: 50%;
             box-shadow: 0 3px 8px rgba(0,0,0,0.15);
             border: 2px solid white;
         }
 
-        /* Botón */
         .btn-fixdate {
             display: inline-block;
             background-color: #ffffff;
             border: 1px solid #dcd6cd;
             color: var(--olive-dark);
-            padding: 11px 30px;
+            padding: 10px 25px;
             border-radius: 25px;
             font-size: 0.75rem;
             text-transform: uppercase;
@@ -619,7 +598,7 @@
             font-weight: 600;
             text-decoration: none;
             transition: all 0.3s ease;
-            margin-top: 8px;
+            margin-top: 5px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
 
@@ -627,15 +606,13 @@
             background-color: var(--olive-main);
             color: white;
             border-color: var(--olive-main);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(88, 105, 75, 0.3);
         }
 
         .btn-solid {
             background-color: var(--olive-main);
             color: white;
             border: none;
-            padding: 13px 35px;
+            padding: 12px 30px;
             border-radius: 30px;
             font-size: 0.8rem;
         }
@@ -645,13 +622,8 @@
         }
 
         /* Footer */
-        .footer {
-            padding: 40px 20px;
-            background: #f0ede6;
-        }
-
         .footer h3 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             color: var(--olive-main);
             margin-bottom: 5px;
             font-weight: normal;
@@ -660,11 +632,11 @@
 </head>
 <body>
 
-    <!-- Pantalla de Bienvenida Inicial (Con / Sin Música) -->
+    <!-- Pantalla de Bienvenida Inicial -->
     <div id="welcome-overlay">
         <div class="welcome-card">
             <h2 class="script-font">Nuestra Boda</h2>
-            <p class="script-font" style="font-size: 1.5rem; color: var(--olive-main);">Melissa & Jean Emanuel</p>
+            <p class="script-font" style="font-size: 1.4rem; color: var(--olive-main);">Melissa & Jean Emanuel</p>
             <div class="welcome-btn-group" style="margin-top: 15px;">
                 <button class="welcome-btn" onclick="openInvitation(true)">Abrir con Música 🎵</button>
                 <button class="welcome-btn welcome-btn-secondary" onclick="openInvitation(false)">Abrir sin Música</button>
@@ -678,7 +650,7 @@
     </audio>
 
     <div class="container">
-        <!-- Portada de Pantalla Completa -->
+        <!-- 1. VENTANA: Portada -->
         <div class="hero">
             <button class="music-btn-translucent" id="music-btn" onclick="toggleMusic()" title="Reproducir / Pausar Música">
                 🎵
@@ -701,8 +673,8 @@
             <div class="scroll-indicator">⌄</div>
         </div>
 
-        <!-- Cuenta Regresiva -->
-        <div class="countdown-wrapper reveal">
+        <!-- 2. VENTANA: Cuenta Regresiva -->
+        <div class="window-section">
             <div class="countdown-circle-container">
                 <div class="floral-wreath"></div>
                 <div class="countdown-circle">
@@ -733,9 +705,9 @@
             </div>
         </div>
 
-        <!-- Invitados -->
-        <div class="guest-section reveal">
-            <div class="guest-icon-circle" id="numeroPasesBadge" style="font-size: 1.6rem; font-weight:600; color:white;">4</div>
+        <!-- 3. VENTANA: Invitados -->
+        <div class="window-section guest-section">
+            <div class="guest-icon-circle" id="numeroPasesBadge" style="font-size: 1.5rem; font-weight:600; color:white;">4</div>
             <h2>Invitados</h2>
             <div class="subtitle" id="subtituloAcompanante">(1 acompañante)</div>
             
@@ -746,29 +718,31 @@
             <p style="font-size: 0.85rem; color: #666; font-style: italic;">Tu presencia es lo más importante. ¡No faltes!</p>
         </div>
 
-        <!-- Galería de Fotos (Polaroid) -->
-        <div class="gallery-section reveal">
+        <!-- 4. VENTANA: Retratos Automáticos (Se mueven solos) -->
+        <div class="window-section gallery-section">
             <h2 class="script-font">Retratos de Nuestro Amor</h2>
             <p class="gallery-subtitle">Un minuto, un segundo, un instante que queda en la eternidad</p>
             
-            <div class="polaroid-container">
-                <div class="polaroid">
-                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" alt="Foto 1">
-                    <span class="script-font">Nuestros momentos</span>
-                </div>
-                <div class="polaroid">
-                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=80" alt="Foto 2">
-                    <span class="script-font">Amor eterno</span>
-                </div>
-                <div class="polaroid">
-                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80" alt="Foto 3">
-                    <span class="script-font">Camino al altar</span>
+            <div class="auto-slider">
+                <div class="slides-track">
+                    <div class="slide-item">
+                        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" alt="Foto 1">
+                        <span class="script-font">Nuestros momentos</span>
+                    </div>
+                    <div class="slide-item">
+                        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=80" alt="Foto 2">
+                        <span class="script-font">Amor eterno</span>
+                    </div>
+                    <div class="slide-item">
+                        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80" alt="Foto 3">
+                        <span class="script-font">Camino al altar</span>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Ceremonia -->
-        <div class="event-section reveal">
+        <!-- 5. VENTANA: Ceremonia -->
+        <div class="window-section">
             <div class="event-icon-circle cross-animation">
                 <svg class="olive-icon" viewBox="0 0 24 24">
                     <path d="M10,2H14V7H19V11H14V22H10V11H5V7H10V2Z"/>
@@ -781,15 +755,15 @@
                 <p>Sábado 23 de Enero - 3:00 p.m.</p>
             </div>
 
-            <div class="event-info-block" style="margin-top: 25px;">
+            <div class="event-info-block" style="margin-top: 15px;">
                 <span>Lugar</span>
                 <p>Parroquia Nuestra Señora del Perpetuo Socorro<br>Corralillo</p>
                 <a href="https://www.google.com/maps/place/Parroquia+Nuestra+Se%C3%B1ora+del+Perpetuo+Socorro+de+Corralillo/@10.2191875,-85.3755747,91m/data=!3m1!1e3!4m11!1m3!2m2!1scorralillo+parroquia!6e1!3m6!1s0x8f9fb8a27f09fe6b:0xb4590fe21821e1ed!8m2!3d10.2191062!4d-85.375523!15sChRjb3JyYWxpbGxvIHBhcnJvcXVpYZIBD2NhdGhvbGljX2NodXJjaOABAA!16s%2Fg%2F11x9xvmsl!5m1!1e2?entry=ttu" target="_blank" class="btn-fixdate">¿Cómo llegar?</a>
             </div>
         </div>
 
-        <!-- Celebración -->
-        <div class="event-section reveal">
+        <!-- 6. VENTANA: Celebración -->
+        <div class="window-section">
             <div class="event-icon-circle glasses-animation">
                 <svg class="olive-icon" viewBox="0 0 24 24">
                     <path d="M7.5,2C5.5,2 4,3.5 4,5.5C4,7 5.1,8.3 6.5,8.8V19H4V21H11V19H8.5V8.8C9.9,8.3 11,7 11,5.5C11,3.5 9.5,2 7.5,2M7.5,4C8.3,4 9,4.7 9,5.5C9,6.3 8.3,7 7.5,7C6.7,7 6,6.3 6,5.5C6,4.7 6.7,4 7.5,4M18.5,2C16.5,2 15,3.5 15,5.5C15,7 16.1,8.3 17.5,8.8V19H15V21H22V19H19.5V8.8C20.9,8.3 22,7 22,5.5C22,3.5 20.5,2 18.5,2M18.5,4C19.3,4 20,4.7 20,5.5C20,6.3 19.3,7 18.5,7C17.7,7 17,6.3 17,5.5C17,4.7 17.7,4 18.5,4M11.5,10.1C12.1,10.6 12.5,11.3 12.5,12C12.5,12.7 12.1,13.4 11.5,13.9C10.9,13.4 10.5,12.7 10.5,12C10.5,11.3 10.9,10.6 11.5,10.1Z"/>
@@ -802,16 +776,16 @@
                 <p>Sábado 23 de Enero - 5:00 p.m.</p>
             </div>
 
-            <div class="event-info-block" style="margin-top: 25px;">
+            <div class="event-info-block" style="margin-top: 15px;">
                 <span>Lugar</span>
                 <p>Rancho La Amistad de Mario Mafio<br>Corralillo</p>
                 <a href="https://www.google.com/maps/place/Rancho+La+Amisdad+de+Mario+Mafio/@10.1785555,-85.4299022,291m/data=!3m1!1e3!4m10!1m3!2m2!1scorralillo+parroquia!6e1!3m5!1s0x8f9fb99cc562a5e5:0x4f699aa2375e2239!8m2!3d10.178772!4d-85.4292963!16s%2Fg%2F11vlmb23h3!5m1!1e2?entry=ttu" target="_blank" class="btn-fixdate">¿Cómo llegar?</a>
             </div>
 
-            <!-- Sección de Color Reservado -->
+            <!-- Color Reservado -->
             <div class="dresscode-box">
                 <h4 class="script-font">Color Reservado</h4>
-                <p style="font-size: 0.85rem; color: #555;">Agradecemos evitar vestir tonos verdes o similares.</p>
+                <p style="font-size: 0.8rem; color: #555;">Agradecemos evitar vestir tonos verdes o similares.</p>
                 <div class="color-palette">
                     <div class="color-circle" style="background-color: #58694b;" title="Verde Oliva"></div>
                     <div class="color-circle" style="background-color: #2c3821;" title="Verde Oscuro"></div>
@@ -820,37 +794,22 @@
             </div>
         </div>
 
-        <!-- Confirmar Asistencia -->
-        <div class="event-section reveal" style="background: rgba(255,255,255,0.5);">
+        <!-- 7. VENTANA: Confirmar Asistencia -->
+        <div class="window-section" style="background: rgba(255,255,255,0.6);">
             <div style="font-size: 2.2rem; margin-bottom: 5px;">💌</div>
-            <h2 class="script-font" style="font-size: 3.2rem; color: var(--olive-main); margin-bottom: 5px;">Confirmar Asistencia</h2>
+            <h2 class="script-font" style="font-size: 3rem; color: var(--olive-main); margin-bottom: 5px;">Confirmar Asistencia</h2>
             <p class="event-info-block" style="margin-bottom: 20px;">Es importante que confirmes tu asistencia con tiempo.</p>
             <a href="https://forms.gle/tu-enlace-de-google-forms" target="_blank" class="btn-fixdate btn-solid">Confirmar Asistencia</a>
         </div>
 
-        <!-- Footer -->
-        <div class="footer reveal">
+        <!-- 8. VENTANA: Footer -->
+        <div class="window-section footer" style="background: #f0ede6;">
             <h3 class="script-font">Melissa & Jean Emanuel</h3>
-            <p style="font-size: 0.8rem; color: #666;">Te esperamos con mucha ilusión 🌿</p>
+            <p style="font-size: 0.85rem; color: #666;">Te esperamos con mucha ilusión 🌿</p>
         </div>
     </div>
 
     <script>
-        // Animación Scroll Reveal
-        window.addEventListener('scroll', reveal);
-        function reveal() {
-            var reveals = document.querySelectorAll('.reveal');
-            for(var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100;
-                if(elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add('active');
-                }
-            }
-        }
-        reveal();
-
         // Cuenta Regresiva
         const weddingDate = new Date("January 23, 2027 15:00:00").getTime();
         const timer = setInterval(function() {
@@ -914,7 +873,7 @@
             if (playMusic) {
                 music.play().then(() => {
                     isPlaying = true;
-                    musicBtn.style.background = "rgba(88, 105, 75, 0.7)";
+                    musicBtn.style.background = "var(--olive-dark)";
                 }).catch(e => console.log("Error al reproducir:", e));
             } else {
                 isPlaying = false;
@@ -930,7 +889,7 @@
             } else {
                 music.play().then(() => {
                     isPlaying = true;
-                    musicBtn.style.background = "rgba(88, 105, 75, 0.7)";
+                    musicBtn.style.background = "var(--olive-dark)";
                 }).catch(e => console.log(e));
             }
         }
