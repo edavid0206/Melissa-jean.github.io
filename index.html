@@ -41,14 +41,14 @@
             font-family: 'Cormorant Garamond', serif;
         }
 
-        /* Pantalla de Bienvenida Inicial con Animación */
+        /* Pantalla de Bienvenida Inicial */
         #welcome-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(rgba(44, 56, 33, 0.8), rgba(44, 56, 33, 0.9)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            background: linear-gradient(rgba(44, 56, 33, 0.85), rgba(44, 56, 33, 0.95)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
             z-index: 9999;
             display: flex;
             align-items: center;
@@ -58,14 +58,14 @@
         }
 
         .welcome-card {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.96);
             backdrop-filter: blur(10px);
-            padding: 40px 30px;
+            padding: 45px 30px;
             border-radius: 20px;
             max-width: 380px;
             width: 100%;
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            border: 1px solid rgba(197, 160, 89, 0.4);
+            border: 1px solid rgba(197, 160, 89, 0.5);
             animation: scaleUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -138,7 +138,7 @@
             position: relative;
         }
 
-        /* Secciones Fluidas con Animación al Scroll */
+        /* Secciones Fluidas */
         .content-section {
             width: 100%;
             padding: 70px 20px;
@@ -147,7 +147,7 @@
             border-bottom: 1px solid #eee;
         }
 
-        /* Reproductor de Música Flotante con Brillo */
+        /* Botón de Música Flotante con Icono Vectorial */
         .music-btn-translucent {
             position: fixed;
             bottom: 25px;
@@ -164,9 +164,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
             box-shadow: 0 4px 20px rgba(0,0,0,0.25);
             transition: all 0.3s ease;
+        }
+
+        .music-btn-translucent svg {
+            width: 22px;
+            height: 22px;
+            fill: white;
         }
 
         .music-btn-translucent:hover {
@@ -174,7 +179,7 @@
             transform: scale(1.1) rotate(10deg);
         }
 
-        /* Sección 1: Portada Estilo Editorial */
+        /* Sección 1: Portada */
         .hero {
             position: relative;
             background: linear-gradient(rgba(20,28,15,0.55), rgba(20,28,15,0.65)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
@@ -274,7 +279,7 @@
             60% { transform: translateX(-50%) translateY(-3px); }
         }
 
-        /* Sección 2: Cuenta Regresiva con Corona Floral Premium e Invitados */
+        /* Sección 2: Cuenta Regresiva + Invitados */
         .window-content-flex {
             display: flex;
             flex-direction: column;
@@ -311,27 +316,16 @@
             to { transform: rotate(360deg); }
         }
 
-        .floral-wreath::before {
-            content: "🌿";
+        .floral-wreath::before, .floral-wreath::after {
+            content: "✦";
             position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 1.2rem;
+            color: var(--gold);
+            font-size: 1rem;
             background: var(--bg-color);
-            padding: 0 5px;
+            padding: 0 4px;
         }
-
-        .floral-wreath::after {
-            content: "🌿";
-            position: absolute;
-            bottom: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 1.2rem;
-            background: var(--bg-color);
-            padding: 0 5px;
-        }
+        .floral-wreath::before { top: -10px; left: 50%; transform: translateX(-50%); }
+        .floral-wreath::after { bottom: -10px; left: 50%; transform: translateX(-50%); }
 
         .countdown-circle {
             width: 220px;
@@ -382,32 +376,17 @@
             margin-top: -12px;
         }
 
-        .heart-2d {
-            width: 14px;
-            height: 14px;
-            background-color: var(--gold);
-            transform: rotate(45deg);
-            position: relative;
+        .heart-vector {
+            width: 18px;
+            height: 18px;
+            fill: var(--gold);
             margin-top: 8px;
             animation: heartbeat 1.5s infinite;
         }
 
-        .heart-2d::before,
-        .heart-2d::after {
-            content: "";
-            width: 14px;
-            height: 14px;
-            background-color: var(--gold);
-            border-radius: 50%;
-            position: absolute;
-        }
-
-        .heart-2d::before { left: -7px; top: 0; }
-        .heart-2d::after { left: 0; top: -7px; }
-
         @keyframes heartbeat {
-            0%, 100% { transform: rotate(45deg) scale(1); }
-            50% { transform: rotate(45deg) scale(1.15); }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
         }
 
         .guest-box {
@@ -419,33 +398,23 @@
             max-height: 220px;
             overflow-y: auto;
             box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-            position: relative;
-        }
-
-        .guest-box::before {
-            content: "✨";
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 0.9rem;
         }
 
         .guest-item {
-            font-size: 0.9rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
             color: var(--olive-dark);
             font-weight: 500;
             margin: 6px 0;
             padding: 4px 0;
             border-bottom: 1px solid #f4f6f2;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
         }
 
         .guest-item:last-child {
             border-bottom: none;
         }
 
-        /* Sección 3: Galería Fotomatón con Estilo Polaroid */
+        /* Sección 3: Fotomatón */
         .photobooth-strip {
             background: #ffffff;
             padding: 15px 15px 30px 15px;
@@ -489,7 +458,7 @@
             76%, 100% { transform: translateY(-450px); }
         }
 
-        /* Sección 4: Ceremonia y Celebración Rediseñadas */
+        /* Sección 4: Ceremonia y Celebración con Vectores */
         .events-grid {
             display: flex;
             flex-direction: column;
@@ -514,6 +483,13 @@
             position: absolute;
             top: 0; left: 0; width: 5px; height: 100%;
             background: var(--olive-main);
+        }
+
+        .event-icon-vector {
+            width: 36px;
+            height: 36px;
+            fill: var(--olive-main);
+            margin-bottom: 8px;
         }
 
         .event-card h4 {
@@ -548,7 +524,7 @@
             transform: translateY(-2px);
         }
 
-        /* Sección 5: Código de Vestimenta / Color Reservado Elegante */
+        /* Sección 5: Color Reservado */
         .info-card {
             background: linear-gradient(135deg, #ffffff 0%, var(--olive-light) 100%);
             padding: 30px 20px;
@@ -586,7 +562,7 @@
             transform: scale(1.15);
         }
 
-        /* Sección 6: Confirmación RSVP Estilizada */
+        /* Sección 6: Confirmación RSVP */
         .rsvp-box {
             background: white;
             padding: 35px 25px;
@@ -605,6 +581,7 @@
         }
 
         .btn-confirmar {
+            display: inline-block;
             background-color: var(--olive-main);
             color: white;
             border: none;
@@ -614,6 +591,7 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 600;
+            text-decoration: none;
             cursor: pointer;
             margin-top: 15px;
             transition: all 0.3s;
@@ -623,9 +601,24 @@
         .btn-confirmar:hover {
             background-color: var(--olive-dark);
             transform: translateY(-2px);
+            color: white;
         }
 
-        /* Footer Editorial */
+        .phone-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 6px;
+        }
+
+        .phone-row svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--olive-dark);
+        }
+
+        /* Footer */
         .footer-section {
             background: #232c1b;
             color: #f5f2eb;
@@ -654,7 +647,7 @@
             <h2 class="script-font">Nuestra Boda</h2>
             <p class="serif-font" style="font-size: 1.2rem; color: var(--olive-main); font-weight: 600;">Melissa & Jean Emanuel</p>
             <div class="welcome-btn-group" style="margin-top: 20px;">
-                <button class="welcome-btn" onclick="openInvitation(true)">Abrir con Música 🎵</button>
+                <button class="welcome-btn" onclick="openInvitation(true)">Abrir con Música</button>
                 <button class="welcome-btn welcome-btn-secondary" onclick="openInvitation(false)">Abrir sin Música</button>
             </div>
         </div>
@@ -669,7 +662,7 @@
         <!-- SECCIÓN 1: Portada -->
         <div class="hero">
             <button class="music-btn-translucent" id="music-btn" onclick="toggleMusic()" title="Reproducir / Pausar Música">
-                🎵
+                <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
             </button>
 
             <div class="date-line-wrapper">
@@ -703,7 +696,7 @@
                             <div class="time-separator">:</div>
                             <div class="time-box"><span id="seconds">00</span><small>seg</small></div>
                         </div>
-                        <div class="heart-2d"></div>
+                        <svg class="heart-vector" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
                     </div>
                 </div>
 
@@ -740,15 +733,17 @@
             </div>
         </div>
 
-        <!-- SECCIÓN 4: Ceremonia y Celebración -->
+        <!-- SECCIÓN 4: Ceremonia y Celebración con Vectores -->
         <div class="content-section">
             <div class="events-grid">
                 <div class="event-card">
+                    <svg class="event-icon-vector" viewBox="0 0 24 24"><path d="M12,2L2,12H5V20H10V14H14V20H19V12H22L12,2Z"/></svg>
                     <h4 class="script-font">Ceremonia</h4>
                     <p><b>Sábado 23 de Enero - 3:00 p.m.</b><br>Parroquia Nuestra Señora del Perpetuo Socorro, Corralillo</p>
                     <a href="https://www.google.com/maps/place/Parroquia+Nuestra+Se%C3%B1ora+del+Perpetuo+Socorro+de+Corralillo/@10.2191875,-85.3755747,91m/data=!3m1!1e3!4m11!1m3!2m2!1scorralillo+parroquia!6e1!3m6!1s0x8f9fb8a27f09fe6b:0xb4590fe21821e1ed!8m2!3d10.2191062!4d-85.375523!15sChRjb3JyYWxpbGxvIHBhcnJvcXVpYZIBD2NhdGhvbGljX2NodXJjaOABAA!16s%2Fg%2F11x9xvmsl!5m1!1e2?entry=ttu" target="_blank" class="btn-link">¿Cómo llegar?</a>
                 </div>
                 <div class="event-card">
+                    <svg class="event-icon-vector" viewBox="0 0 24 24"><path d="M7.5,2C5.5,2 4,3.5 4,5.5C4,7 5.1,8.3 6.5,8.8V19H4V21H11V19H8.5V8.8C9.9,8.3 11,7 11,5.5C11,3.5 9.5,2 7.5,2M7.5,4C8.3,4 9,4.7 9,5.5C9,6.3 8.3,7 7.5,7C6.7,7 6,6.3 6,5.5C6,4.7 6.7,4 7.5,4M18.5,2C16.5,2 15,3.5 15,5.5C15,7 16.1,8.3 17.5,8.8V19H15V21H22V19H19.5V8.8C20.9,8.3 22,7 22,5.5C22,3.5 20.5,2 18.5,2M18.5,4C19.3,4 20,4.7 20,5.5C20,6.3 19.3,7 18.5,7C17.7,7 17,6.3 17,5.5C17,4.7 17.7,4 18.5,4Z"/></svg>
                     <h4 class="script-font">Celebración</h4>
                     <p><b>Sábado 23 de Enero - 5:00 p.m.</b><br>Rancho La Amistad de Mario Mafio, Corralillo</p>
                     <a href="https://www.google.com/maps/place/Rancho+La+Amisdad+de+Mario+Mafio/@10.1785555,-85.4299022,291m/data=!3m1!1e3!4m10!1m3!2m2!1scorralillo+parroquia!6e1!3m5!1s0x8f9fb99cc562a5e5:0x4f699aa2375e2239!8m2!3d10.178772!4d-85.4292963!16s%2Fg%2F11vlmb23h3!5m1!1e2?entry=ttu" target="_blank" class="btn-link">¿Cómo llegar?</a>
@@ -756,7 +751,7 @@
             </div>
         </div>
 
-        <!-- SECCIÓN 5: Información Importante / Color Reservado -->
+        <!-- SECCIÓN 5: Color Reservado -->
         <div class="content-section" style="background: #f4f1ea;">
             <div class="info-card">
                 <h3 class="script-font">Color Reservado</h3>
@@ -772,11 +767,12 @@
         <!-- SECCIÓN 6: Confirmar Asistencia -->
         <div class="content-section">
             <div class="rsvp-box">
-                <div style="font-size: 2.2rem; margin-bottom: 2px;">💌</div>
+                <svg style="width: 40px; height: 40px; fill: var(--olive-main); margin-bottom: 5px;" viewBox="0 0 24 24"><path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/></svg>
                 <h3 class="script-font">Confirmar Asistencia</h3>
                 <div id="rsvp-content">
-                    <p style="font-size: 0.9rem; color: #555; margin-bottom: 15px;">La confirmación se habilitará 30 días antes del evento.</p>
-                    <button class="btn-confirmar" onclick="verificarFechaConfirmacion()">Confirmar Ahora</button>
+                    <p style="font-size: 0.9rem; color: #555; margin-bottom: 10px;">Por favor, confirma tu asistencia en el siguiente enlace:</p>
+                    <!-- REEMPLAZA EL ENLACE DE ABAJO CON TU LINK DE GOOGLE FORMS O TUPRIMERAOPCION -->
+                    <a href="https://forms.gle/TU_ENLACE_DE_FORMULARIO" target="_blank" class="btn-confirmar">Llenar Formulario de Asistencia</a>
                 </div>
             </div>
         </div>
@@ -784,14 +780,13 @@
         <!-- SECCIÓN 7: Footer -->
         <div class="content-section footer-section">
             <h3 class="script-font">Melissa & Jean Emanuel</h3>
-            <p>Te esperamos con mucha ilusión 🌿</p>
+            <p>Te esperamos con mucha ilusión</p>
         </div>
     </div>
 
     <script>
         // Cuenta Regresiva (Fecha de Boda: 23 de Enero de 2027)
         const weddingDate = new Date("January 23, 2027 15:00:00").getTime();
-        let diferenciaDias = 0;
 
         const timer = setInterval(function() {
             const now = new Date().getTime();
@@ -808,29 +803,32 @@
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            diferenciaDias = days;
-
             document.getElementById("days").innerText = String(days).padStart(2, '0');
             document.getElementById("hours").innerText = String(hours).padStart(2, '0');
             document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
             document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+
+            // Verificación automática de los 29 días restantes para el RSVP
+            verificarDiasRSVP(days);
         }, 1000);
 
-        // Lógica de confirmación basada en 30 días antes
-        function verificarFechaConfirmacion() {
+        function verificarDiasRSVP(diasRestantes) {
             const rsvpDiv = document.getElementById('rsvp-content');
             
-            if (diferenciaDias <= 30) {
+            // Si faltan 29 días o menos (y la boda no ha pasado aún)
+            if (diasRestantes <= 29 && diasRestantes >= 0) {
                 rsvpDiv.innerHTML = `
-                    <p style="font-size: 0.9rem; color: var(--olive-dark); font-weight: 600; margin-bottom: 12px;">¡Ya estamos a menos de 30 días! Comunícate a los teléfonos:</p>
+                    <p style="font-size: 0.9rem; color: #a94442; font-weight: 600; margin-bottom: 12px;">El período de confirmación en línea ha finalizado (a menos de 29 días del evento). Si deseas consultar disponibilidad, comunícate a los teléfonos:</p>
                     <div style="background: var(--olive-light); padding: 12px; border-radius: 12px; border: 1px solid var(--gold);">
-                        <p style="font-size: 1.1rem; font-weight: bold; color: var(--olive-dark);">📞 8989-2294</p>
-                        <p style="font-size: 1.1rem; font-weight: bold; color: var(--olive-dark); margin-top: 4px;">📞 8616-0583</p>
+                        <div class="phone-row">
+                            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                            <a href="tel:89892294" style="font-size: 1.1rem; font-weight: bold; color: var(--olive-dark); text-decoration: none;">8989-2294</a>
+                        </div>
+                        <div class="phone-row" style="margin-top: 6px;">
+                            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                            <a href="tel:86160583" style="font-size: 1.1rem; font-weight: bold; color: var(--olive-dark); text-decoration: none;">8616-0583</a>
+                        </div>
                     </div>
-                `;
-            } else {
-                rsvpDiv.innerHTML = `
-                    <p style="font-size: 0.9rem; color: #a94442; font-weight: 500; margin-top: 10px;">Aún falta tiempo para la fecha límite de confirmación (30 días antes de la boda).</p>
                 `;
             }
         }
@@ -869,11 +867,9 @@
             if (playMusic) {
                 music.play().then(() => {
                     isPlaying = true;
-                    musicBtn.style.background = "var(--olive-dark)";
                 }).catch(e => console.log("Error al reproducir:", e));
             } else {
                 isPlaying = false;
-                musicBtn.style.background = "rgba(255, 255, 255, 0.3)";
             }
         }
 
@@ -881,11 +877,9 @@
             if (isPlaying) {
                 music.pause();
                 isPlaying = false;
-                musicBtn.style.background = "rgba(255, 255, 255, 0.3)";
             } else {
                 music.play().then(() => {
                     isPlaying = true;
-                    musicBtn.style.background = "var(--olive-dark)";
                 }).catch(e => console.log(e));
             }
         }
