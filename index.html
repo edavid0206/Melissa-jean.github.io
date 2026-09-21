@@ -293,7 +293,6 @@
             transform: scale(1.08);
         }
 
-        /* SVG Iconos en Verde Oliva */
         .olive-icon {
             width: 40px;
             height: 40px;
@@ -491,14 +490,13 @@
         <!-- Ceremonia -->
         <div class="event-section">
             <div class="event-icon-circle">
-                <!-- Icono de Anillos en SVG Color Verde Oliva -->
                 <svg class="olive-icon" viewBox="0 0 24 24"><path d="M12,2C6.5,2 2,6.5 2,12C2,17.5 6.5,22 12,22C17.5,22 22,17.5 22,12C22,6.5 17.5,2 12,2M12,4C15.3,4 18,6.7 18,10C18,13.3 15.3,16 12,16C8.7,16 6,13.3 6,10C6,6.7 8.7,4 12,4M12,6C9.8,6 8,7.8 8,10C8,12.2 9.8,14 12,14C14.2,14 16,12.2 16,10C16,7.8 14.2,6 12,6Z"/></svg>
             </div>
             <div class="event-title-banner">Ceremonia</div>
             
             <div class="event-info-block">
                 <span>Día</span>
-                <p>Sábado 23 de Enero - 15:00 hrs</p>
+                <p>Sábado 23 de Enero - 3:00 p.m.</p>
                 <a href="#" class="btn-fixdate">Agendar</a>
             </div>
 
@@ -512,14 +510,13 @@
         <!-- Celebración -->
         <div class="event-section">
             <div class="event-icon-circle">
-                <!-- Icono de Fiesta / Celebración en SVG Color Verde Oliva -->
                 <svg class="olive-icon" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8Z"/></svg>
             </div>
             <div class="event-title-banner">Celebración</div>
             
             <div class="event-info-block">
                 <span>Día</span>
-                <p>Sábado 23 de Enero - 18:00 hrs</p>
+                <p>Sábado 23 de Enero - 5:00 p.m.</p>
                 <a href="#" class="btn-fixdate">Agendar</a>
             </div>
 
@@ -558,7 +555,6 @@
     </div>
 
     <script>
-        // 1. Contador Regresivo exacto para el 23 de Enero de 2027 a las 15:00 hrs
         const weddingDate = new Date("January 23, 2027 15:00:00").getTime();
 
         const timer = setInterval(function() {
@@ -582,7 +578,6 @@
             document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
         }, 1000);
 
-        // 2. Script para capturar nombres y pases dinámicos desde la URL
         const urlParams = new URLSearchParams(window.location.search);
         const listaInvitadosParam = urlParams.get('invitados');
         const pasesParam = urlParams.get('pases');
@@ -606,7 +601,6 @@
             document.getElementById('listaNombresInvitados').innerHTML = `<div class="guest-item">Nuestros Queridos Invitados</div>`;
         }
 
-        // 3. Script para el control de música flotante con animación
         const music = document.getElementById('bg-music');
         let isPlaying = false;
 
