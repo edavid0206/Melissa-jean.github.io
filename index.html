@@ -169,13 +169,14 @@
             transform: translateY(0);
         }
 
-        /* Ilustración Floral Real (Separador Botánico SVG) */
-        .floral-branch {
-            width: 120px;
-            height: 35px;
-            fill: var(--gold);
+        /* Ramos y Hojas Botánicas Estilo Acuarela Verde Olivo */
+        .botanical-branch {
+            width: 140px;
+            height: 40px;
+            fill: var(--olive-main);
             margin: 0 auto 18px auto;
             display: block;
+            opacity: 0.9;
         }
 
         /* Botón de Música Flotante */
@@ -310,7 +311,7 @@
             60% { transform: translateX(-50%) translateY(-3px); }
         }
 
-        /* Sección 2: Cuenta Regresiva con Corona de Flores Real (SVG Ilustrado) */
+        /* Sección 2: Cuenta Regresiva con Guirnalda Botánica Verde Olivo */
         .window-content-flex {
             display: flex;
             flex-direction: column;
@@ -332,12 +333,11 @@
             margin: 0 auto;
         }
 
-        /* Guirnalda Floral SVG Real con pétalos y hojas detalladas */
-        .floral-wreath-svg {
+        .botanical-wreath-svg {
             position: absolute;
             width: 280px;
             height: 280px;
-            animation: rotateWreath 60s linear infinite;
+            animation: rotateWreath 70s linear infinite;
         }
 
         @keyframes rotateWreath {
@@ -700,35 +700,23 @@
 
         <!-- SECCIÓN 2: Cuenta Regresiva + Invitados -->
         <div class="content-section">
-            <!-- Rama floral decorativa real -->
-            <svg class="floral-branch" viewBox="0 0 100 30"><path d="M50 0 C40 15 20 10 0 30 C30 25 40 15 50 25 C60 15 70 25 100 30 C80 10 60 15 50 0 Z"/></svg>
+            <!-- Rama botánica en acuarela verde olivo -->
+            <svg class="botanical-branch" viewBox="0 0 120 35">
+                <path d="M10,20 Q30,5 60,18 Q90,5 110,20 Q90,30 60,20 Q30,30 10,20 Z" fill="#58694b"/>
+                <path d="M40,12 Q45,2 50,15 Z" fill="#798e6b"/><path d="M70,12 Q75,2 80,15 Z" fill="#798e6b"/>
+                <path d="M25,16 Q28,8 35,18 Z" fill="#798e6b"/><path d="M85,16 Q88,8 95,18 Z" fill="#798e6b"/>
+            </svg>
             <div class="window-content-flex">
                 <div class="countdown-circle-container">
-                    <!-- Guirnalda Floral SVG Circular Real (Flores y Hojas detalladas) -->
-                    <svg class="floral-wreath-svg" viewBox="0 0 200 200">
-                        <circle cx="100" cy="100" r="90" fill="none" stroke="var(--gold)" stroke-width="1" stroke-dasharray="4 4"/>
-                        <!-- Flores superiores -->
-                        <path d="M100,5 C95,15 105,15 100,5 Z" fill="var(--olive-main)"/>
-                        <circle cx="100" cy="10" r="6" fill="#58694b"/>
-                        <circle cx="90" cy="15" r="4" fill="#c5a059"/>
-                        <circle cx="110" cy="15" r="4" fill="#c5a059"/>
-                        <!-- Flores inferiores -->
-                        <circle cx="100" cy="190" r="6" fill="#58694b"/>
-                        <circle cx="90" cy="185" r="4" fill="#c5a059"/>
-                        <circle cx="110" cy="185" r="4" fill="#c5a059"/>
-                        <!-- Flores izquierdas -->
-                        <circle cx="10" cy="100" r="6" fill="#58694b"/>
-                        <circle cx="15" cy="90" r="4" fill="#c5a059"/>
-                        <circle cx="15" cy="110" r="4" fill="#c5a059"/>
-                        <!-- Flores derechas -->
-                        <circle cx="190" cy="100" r="6" fill="#58694b"/>
-                        <circle cx="185" cy="90" r="4" fill="#c5a059"/>
-                        <circle cx="185" cy="110" r="4" fill="#c5a059"/>
-                        <!-- Hojas decorativas distribuidas -->
-                        <path d="M40,30 Q50,40 30,50 Z" fill="#58694b"/>
-                        <path d="M160,30 Q150,40 170,50 Z" fill="#58694b"/>
-                        <path d="M40,170 Q50,160 30,150 Z" fill="#58694b"/>
-                        <path d="M160,170 Q150,160 170,150 Z" fill="#58694b"/>
+                    <!-- Guirnalda botánica circular verde olivo -->
+                    <svg class="botanical-wreath-svg" viewBox="0 0 200 200">
+                        <circle cx="100" cy="100" r="90" fill="none" stroke="#c5a059" stroke-width="1.2" stroke-dasharray="5 5"/>
+                        <path d="M100,2 Q105,15 100,20 Q95,15 100,2 Z" fill="#58694b"/>
+                        <path d="M100,198 Q105,185 100,180 Q95,185 100,198 Z" fill="#58694b"/>
+                        <path d="M2,100 Q15,105 20,100 Q15,95 2,100 Z" fill="#58694b"/>
+                        <path d="M198,100 Q185,105 180,100 Q185,95 198,100 Z" fill="#58694b"/>
+                        <path d="M30,30 Q45,40 35,50 Z" fill="#798e6b"/><path d="M170,30 Q155,40 165,50 Z" fill="#798e6b"/>
+                        <path d="M30,170 Q45,160 35,150 Z" fill="#798e6b"/><path d="M170,170 Q155,160 165,150 Z" fill="#798e6b"/>
                     </svg>
                     <div class="countdown-circle">
                         <h3 class="script-font">Falta</h3>
@@ -757,7 +745,11 @@
 
         <!-- SECCIÓN 3: Retratos de Nuestro Amor -->
         <div class="content-section" style="background: #f4f1ea;">
-            <svg class="floral-branch" viewBox="0 0 100 30"><path d="M50 0 C40 15 20 10 0 30 C30 25 40 15 50 25 C60 15 70 25 100 30 C80 10 60 15 50 0 Z"/></svg>
+            <svg class="botanical-branch" viewBox="0 0 120 35">
+                <path d="M10,20 Q30,5 60,18 Q90,5 110,20 Q90,30 60,20 Q30,30 10,20 Z" fill="#58694b"/>
+                <path d="M40,12 Q45,2 50,15 Z" fill="#798e6b"/><path d="M70,12 Q75,2 80,15 Z" fill="#798e6b"/>
+                <path d="M25,16 Q28,8 35,18 Z" fill="#798e6b"/><path d="M85,16 Q88,8 95,18 Z" fill="#798e6b"/>
+            </svg>
             <h3 class="script-font" style="font-size: 3.2rem; color: var(--olive-main); margin-bottom: 2px;">Retratos de Nuestro Amor</h3>
             <p class="serif-font" style="font-size: 1.1rem; color: #666; font-style: italic; margin-bottom: 25px;">Instantes que quedan en la eternidad</p>
             
@@ -781,7 +773,11 @@
 
         <!-- SECCIÓN 4: Ceremonia y Celebración -->
         <div class="content-section">
-            <svg class="floral-branch" viewBox="0 0 100 30"><path d="M50 0 C40 15 20 10 0 30 C30 25 40 15 50 25 C60 15 70 25 100 30 C80 10 60 15 50 0 Z"/></svg>
+            <svg class="botanical-branch" viewBox="0 0 120 35">
+                <path d="M10,20 Q30,5 60,18 Q90,5 110,20 Q90,30 60,20 Q30,30 10,20 Z" fill="#58694b"/>
+                <path d="M40,12 Q45,2 50,15 Z" fill="#798e6b"/><path d="M70,12 Q75,2 80,15 Z" fill="#798e6b"/>
+                <path d="M25,16 Q28,8 35,18 Z" fill="#798e6b"/><path d="M85,16 Q88,8 95,18 Z" fill="#798e6b"/>
+            </svg>
             <div class="events-grid">
                 <div class="event-card">
                     <!-- Icono vectorial de la Parroquia con Cruz en la cúspide -->
@@ -801,7 +797,11 @@
 
         <!-- SECCIÓN 5: Color Reservado -->
         <div class="content-section" style="background: #f4f1ea;">
-            <svg class="floral-branch" viewBox="0 0 100 30"><path d="M50 0 C40 15 20 10 0 30 C30 25 40 15 50 25 C60 15 70 25 100 30 C80 10 60 15 50 0 Z"/></svg>
+            <svg class="botanical-branch" viewBox="0 0 120 35">
+                <path d="M10,20 Q30,5 60,18 Q90,5 110,20 Q90,30 60,20 Q30,30 10,20 Z" fill="#58694b"/>
+                <path d="M40,12 Q45,2 50,15 Z" fill="#798e6b"/><path d="M70,12 Q75,2 80,15 Z" fill="#798e6b"/>
+                <path d="M25,16 Q28,8 35,18 Z" fill="#798e6b"/><path d="M85,16 Q88,8 95,18 Z" fill="#798e6b"/>
+            </svg>
             <div class="info-card">
                 <h3 class="script-font">Color Reservado</h3>
                 <p class="serif-font" style="font-size: 1.1rem; color: #555; line-height: 1.5;">Agradecemos con mucho cariño evitar vestir tonos verdes o similares durante la celebración.</p>
@@ -815,7 +815,11 @@
 
         <!-- SECCIÓN 6: Confirmar Asistencia -->
         <div class="content-section">
-            <svg class="floral-branch" viewBox="0 0 100 30"><path d="M50 0 C40 15 20 10 0 30 C30 25 40 15 50 25 C60 15 70 25 100 30 C80 10 60 15 50 0 Z"/></svg>
+            <svg class="botanical-branch" viewBox="0 0 120 35">
+                <path d="M10,20 Q30,5 60,18 Q90,5 110,20 Q90,30 60,20 Q30,30 10,20 Z" fill="#58694b"/>
+                <path d="M40,12 Q45,2 50,15 Z" fill="#798e6b"/><path d="M70,12 Q75,2 80,15 Z" fill="#798e6b"/>
+                <path d="M25,16 Q28,8 35,18 Z" fill="#798e6b"/><path d="M85,16 Q88,8 95,18 Z" fill="#798e6b"/>
+            </svg>
             <div class="rsvp-box">
                 <svg style="width: 40px; height: 40px; fill: var(--olive-main); margin-bottom: 5px;" viewBox="0 0 24 24"><path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/></svg>
                 <h3 class="script-font">Confirmar Asistencia</h3>
