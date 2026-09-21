@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Melissa & Jean Emanuel - Nuestra Boda</title>
+    <!-- Librerías de Tipografías de Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -41,7 +42,7 @@
             font-family: 'Cormorant Garamond', serif;
         }
 
-        /* Pantalla de Bienvenida Inicial */
+        /* Pantalla de Bienvenida Inicial con Efecto de Entrada */
         #welcome-overlay {
             position: fixed;
             top: 0;
@@ -138,16 +139,24 @@
             position: relative;
         }
 
-        /* Secciones Fluidas */
+        /* Secciones Fluidas con Animación Fade-In al hacer Scroll */
         .content-section {
             width: 100%;
-            padding: 70px 20px;
+            padding: 75px 20px;
             position: relative;
             background-color: var(--bg-color);
             border-bottom: 1px solid #eee;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
 
-        /* Botón de Música Flotante con Icono Vectorial */
+        .content-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Botón de Música Flotante con Icono Vectorial y Animación */
         .music-btn-translucent {
             position: fixed;
             bottom: 25px;
@@ -179,7 +188,7 @@
             transform: scale(1.1) rotate(10deg);
         }
 
-        /* Sección 1: Portada */
+        /* Sección 1: Portada (Hero) */
         .hero {
             position: relative;
             background: linear-gradient(rgba(20,28,15,0.55), rgba(20,28,15,0.65)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
@@ -279,7 +288,7 @@
             60% { transform: translateX(-50%) translateY(-3px); }
         }
 
-        /* Sección 2: Cuenta Regresiva + Invitados */
+        /* Sección 2: Cuenta Regresiva + Invitados con Corona Floral Giratoria */
         .window-content-flex {
             display: flex;
             flex-direction: column;
@@ -414,7 +423,7 @@
             border-bottom: none;
         }
 
-        /* Sección 3: Fotomatón */
+        /* Sección 3: Galería Fotomatón Deslizante */
         .photobooth-strip {
             background: #ffffff;
             padding: 15px 15px 30px 15px;
@@ -458,7 +467,7 @@
             76%, 100% { transform: translateY(-450px); }
         }
 
-        /* Sección 4: Ceremonia y Celebración con Vectores (Incluye la Cruz en la Parroquia) */
+        /* Sección 4: Ceremonia y Celebración (Incluye Parroquia con Cruz) */
         .events-grid {
             display: flex;
             flex-direction: column;
@@ -562,7 +571,7 @@
             transform: scale(1.15);
         }
 
-        /* Sección 6: Confirmación RSVP */
+        /* Sección 6: Confirmación RSVP con Lógica de Fechas */
         .rsvp-box {
             background: white;
             padding: 35px 25px;
@@ -785,7 +794,24 @@
     </div>
 
     <script>
-        // Cuenta Regresiva (Fecha de Boda: 23 de Enero de 2027)
+        /* Animación Fade-In al hacer Scroll (Intersection Observer) */
+        document.addEventListener("DOMContentLoaded", function() {
+            const sections = document.querySelectorAll('.content-section');
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+
+        /* Cuenta Regresiva (Fecha de Boda: 23 de Enero de 2027) */
         const weddingDate = new Date("January 23, 2027 15:00:00").getTime();
 
         const timer = setInterval(function() {
@@ -832,7 +858,7 @@
             }
         }
 
-        // Dinámica de Invitados por URL
+        /* Dinámica de Invitados por URL (?invitados=Nombre1,Nombre2) */
         const urlParams = new URLSearchParams(window.location.search);
         const listaInvitadosParam = urlParams.get('invitados');
 
@@ -850,7 +876,7 @@
             document.getElementById('listaNombresInvitados').innerHTML = `<div class="guest-item">Nuestros Queridos Invitados</div>`;
         }
 
-        // Control de Música y Pantalla de Bienvenida
+        /* Control de Música y Pantalla de Bienvenida */
         const music = document.getElementById('bg-music');
         const musicBtn = document.getElementById('music-btn');
         music.volume = 0.3;
@@ -866,7 +892,7 @@
             if (playMusic) {
                 music.play().then(() => {
                     isPlaying = true;
-                }).catch(e => console.log("Error al reproducir:", e));
+                }).catch(e => console.log("Error al reproducir música:", e));
             } else {
                 isPlaying = false;
             }
