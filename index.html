@@ -29,6 +29,83 @@
             overflow-x: hidden;
         }
 
+        /* Pantalla de Bienvenida (Overlay Inicial) */
+        #welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: opacity 0.8s ease;
+        }
+
+        .welcome-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 35px 25px;
+            border-radius: 20px;
+            max-width: 360px;
+            width: 100%;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .welcome-card h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: var(--olive-main);
+            margin-bottom: 10px;
+        }
+
+        .welcome-card p {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .welcome-btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .welcome-btn {
+            background: var(--olive-main);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(74, 93, 62, 0.3);
+        }
+
+        .welcome-btn:hover {
+            background: var(--olive-dark);
+            transform: translateY(-2px);
+        }
+
+        .welcome-btn-secondary {
+            background: transparent;
+            color: var(--olive-main);
+            border: 1.5px solid var(--olive-main);
+            box-shadow: none;
+        }
+
+        .welcome-btn-secondary:hover {
+            background: var(--olive-light);
+            color: var(--olive-dark);
+        }
+
         .container {
             max-width: 480px;
             width: 100%;
@@ -40,7 +117,7 @@
             position: relative;
         }
 
-        /* Reproductor de Música Translúcido Estilo Referencia */
+        /* Reproductor de Música Flotante Translúcido */
         .music-btn-translucent {
             position: absolute;
             bottom: 20px;
@@ -66,32 +143,20 @@
             transform: scale(1.05);
         }
 
-        /* Portada Exacta Estilo Referencia */
+        /* Portada de Pantalla Completa (100vh) sin hojas arriba */
         .hero {
             position: relative;
             background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
             color: white;
-            padding: 70px 20px 80px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
             border-bottom-left-radius: 40px;
             border-bottom-right-radius: 40px;
             overflow: hidden;
-            animation: fadeIn 1.5s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Ramas de Olivo Colgantes en la esquina superior izquierda */
-        .olive-branch-corner {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 150px;
-            pointer-events: none;
-            z-index: 5;
-            opacity: 0.9;
         }
 
         /* Fecha con líneas laterales */
@@ -100,7 +165,7 @@
             align-items: center;
             justify-content: center;
             gap: 15px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .date-line-wrapper::before,
@@ -145,7 +210,7 @@
 
         /* Frase central con comillas */
         .quote-box {
-            margin-top: 35px;
+            margin-top: 30px;
             padding: 0 15px;
         }
 
@@ -167,16 +232,19 @@
         }
 
         .scroll-indicator {
-            margin-top: 30px;
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
             font-size: 1.2rem;
             color: rgba(255, 255, 255, 0.7);
             animation: bounce 2s infinite;
         }
 
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-6px); }
-            60% { transform: translateY(-3px); }
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-6px); }
+            60% { transform: translateX(-50%) translateY(-3px); }
         }
 
         /* Animación Scroll */
@@ -555,29 +623,30 @@
 </head>
 <body>
 
+    <!-- Pantalla de Bienvenida Inicial (Con / Sin Música) -->
+    <div id="welcome-overlay">
+        <div class="welcome-card">
+            <h2>Nuestra Boda</h2>
+            <p>Melissa & Jean Emanuel</p>
+            <div class="welcome-btn-group">
+                <button class="welcome-btn" onclick="openInvitation(true)">Abrir con Música 🎵</button>
+                <button class="welcome-btn welcome-btn-secondary" onclick="openInvitation(false)">Abrir sin Música</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Reproductor de Música -->
     <audio id="bg-music" loop preload="auto">
         <source src="https://cdn.pixabay.com/download/audio/2022/10/14/audio_9939f792cb.mp3?filename=romantic-acoustic-guitar-120606.mp3" type="audio/mp3">
     </audio>
 
     <div class="container">
-        <!-- Portada Estilo Referencia Exacto -->
+        <!-- Portada de Pantalla Completa (100vh) -->
         <div class="hero">
-            <!-- Botón de música translúcido abajo a la derecha de la portada -->
+            <!-- Botón de música translúcido abajo a la derecha -->
             <button class="music-btn-translucent" id="music-btn" onclick="toggleMusic()" title="Reproducir / Pausar Música">
                 🎵
             </button>
-
-            <!-- Ramas de olivo colgando arriba a la izquierda -->
-            <svg class="olive-branch-corner" viewBox="0 0 200 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 0C20 40 10 80 30 120C50 160 80 180 60 220" stroke="#4a5d3e" stroke-width="3" stroke-linecap="round"/>
-                <path d="M30 60C10 50 0 70 20 80C30 85 40 75 30 60Z" fill="#a3b899"/>
-                <path d="M40 100C60 90 70 110 50 120C40 125 30 115 40 100Z" fill="#d4e0cb"/>
-                <path d="M25 150C5 140 -5 160 15 170C25 175 35 165 25 150Z" fill="#798e6b"/>
-                <path d="M45 190C65 180 75 200 55 210C45 215 35 205 45 190Z" fill="#a3b899"/>
-                <path d="M70 80C90 75 95 95 75 100C65 103 60 90 70 80Z" fill="#d4e0cb"/>
-                <path d="M55 130C75 125 80 145 60 150C50 153 45 140 55 130Z" fill="#798e6b"/>
-            </svg>
 
             <div class="date-line-wrapper">
                 <span class="date-top">23 . 01 . 2027</span>
@@ -784,29 +853,29 @@
             document.getElementById('listaNombresInvitados').innerHTML = `<div class="guest-item">Nuestros Queridos Invitados</div>`;
         }
 
-        // Control de Música (Inicia solo o al primer toque en la pantalla por políticas del navegador)
+        // Control de Música y Pantalla de Bienvenida
         const music = document.getElementById('bg-music');
         const musicBtn = document.getElementById('music-btn');
         music.volume = 0.3;
         let isPlaying = false;
 
-        window.addEventListener('DOMContentLoaded', () => {
-            music.play().then(() => {
-                isPlaying = true;
-                musicBtn.style.background = "rgba(74, 93, 62, 0.7)";
-            }).catch(e => {
-                isPlaying = false;
-            });
-        });
+        function openInvitation(playMusic) {
+            const overlay = document.getElementById('welcome-overlay');
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 800);
 
-        document.body.addEventListener('click', function initAudio() {
-            if (!isPlaying) {
+            if (playMusic) {
                 music.play().then(() => {
                     isPlaying = true;
                     musicBtn.style.background = "rgba(74, 93, 62, 0.7)";
-                }).catch(err => console.log(err));
+                }).catch(e => console.log("Error al reproducir:", e));
+            } else {
+                isPlaying = false;
+                musicBtn.style.background = "rgba(255, 255, 255, 0.2)";
             }
-        }, { once: true });
+        }
 
         function toggleMusic() {
             if (isPlaying) {
