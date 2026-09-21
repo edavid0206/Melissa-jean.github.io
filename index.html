@@ -143,7 +143,7 @@
             transform: scale(1.05);
         }
 
-        /* Portada de Pantalla Completa (100vh) sin hojas arriba */
+        /* Portada de Pantalla Completa */
         .hero {
             position: relative;
             background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
@@ -159,7 +159,6 @@
             overflow: hidden;
         }
 
-        /* Fecha con líneas laterales */
         .date-line-wrapper {
             display: flex;
             align-items: center;
@@ -183,7 +182,6 @@
             font-weight: 300;
         }
 
-        /* Nombres en Bloque Estilizado */
         .hero h1 {
             font-family: 'Great Vibes', cursive;
             font-size: 3.8rem;
@@ -208,7 +206,6 @@
             color: #ffffff;
         }
 
-        /* Frase central con comillas */
         .quote-box {
             margin-top: 30px;
             padding: 0 15px;
@@ -247,7 +244,6 @@
             60% { transform: translateX(-50%) translateY(-3px); }
         }
 
-        /* Animación Scroll */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -259,7 +255,7 @@
             transform: translateY(0);
         }
 
-        /* Círculo de Cuenta Regresiva */
+        /* Cuenta Regresiva */
         .countdown-wrapper {
             display: flex;
             justify-content: center;
@@ -341,7 +337,6 @@
             margin-top: -15px;
         }
 
-        /* Corazón 2D en color verde olivo */
         .heart-2d {
             width: 20px;
             height: 20px;
@@ -370,7 +365,7 @@
             50% { transform: rotate(45deg) scale(1.15); }
         }
 
-        /* Sección de Invitados */
+        /* Invitados */
         .guest-section {
             padding: 40px 20px;
         }
@@ -429,7 +424,7 @@
             box-shadow: 0 6px 15px rgba(74, 93, 62, 0.15);
         }
 
-        /* Galería de Fotos (Polaroid) */
+        /* Galería (Polaroid) */
         .gallery-section {
             padding: 45px 20px;
             background: var(--olive-light);
@@ -523,12 +518,12 @@
         }
 
         .glasses-animation {
-            animation: clashGlasses 2s ease-in-out infinite;
+            animation: toastGlasses 2.5s ease-in-out infinite;
         }
 
-        @keyframes clashGlasses {
+        @keyframes toastGlasses {
             0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.08) rotate(3deg); }
+            50% { transform: scale(1.08) rotate(-4deg); }
         }
 
         .olive-icon {
@@ -570,7 +565,39 @@
             line-height: 1.5;
         }
 
-        /* Botones Interactivos */
+        /* Sección de Color Reservado (Código de Vestimenta) */
+        .dresscode-box {
+            background: var(--olive-light);
+            border: 1px dashed var(--olive-main);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px auto 0;
+            max-width: 320px;
+        }
+
+        .dresscode-box h4 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            color: var(--olive-main);
+            margin-bottom: 8px;
+        }
+
+        .color-palette {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .color-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+            border: 2px solid white;
+        }
+
+        /* Botón general */
         .btn-fixdate {
             display: inline-block;
             background-color: #ffffff;
@@ -641,9 +668,8 @@
     </audio>
 
     <div class="container">
-        <!-- Portada de Pantalla Completa (100vh) -->
+        <!-- Portada de Pantalla Completa -->
         <div class="hero">
-            <!-- Botón de música translúcido abajo a la derecha -->
             <button class="music-btn-translucent" id="music-btn" onclick="toggleMusic()" title="Reproducir / Pausar Música">
                 🎵
             </button>
@@ -743,7 +769,6 @@
             <div class="event-info-block">
                 <span>Día</span>
                 <p>Sábado 23 de Enero - 3:00 p.m.</p>
-                <a href="#" class="btn-fixdate">Agendar</a>
             </div>
 
             <div class="event-info-block" style="margin-top: 25px;">
@@ -753,11 +778,11 @@
             </div>
         </div>
 
-        <!-- Celebración -->
+        <!-- Celebración (Copas de vino haciendo brindis con animación de choque) -->
         <div class="event-section reveal">
             <div class="event-icon-circle glasses-animation">
                 <svg class="olive-icon" viewBox="0 0 24 24">
-                    <path d="M7.5,2C5.5,2 4,3.5 4,5.5C4,7 5.1,8.3 6.5,8.8V19H4V21H11V19H8.5V8.8C9.9,8.3 11,7 11,5.5C11,3.5 9.5,2 7.5,2M7.5,4C8.3,4 9,4.7 9,5.5C9,6.3 8.3,7 7.5,7C6.7,7 6,6.3 6,5.5C6,4.7 6.7,4 7.5,4M18.5,2C16.5,2 15,3.5 15,5.5C15,7 16.1,8.3 17.5,8.8V19H15V21H22V19H19.5V8.8C20.9,8.3 22,7 22,5.5C22,3.5 20.5,2 18.5,2M18.5,4C19.3,4 20,4.7 20,5.5C20,6.3 19.3,7 18.5,7C17.7,7 17,6.3 17,5.5C17,4.7 17.7,4 18.5,4Z"/>
+                    <path d="M7.5,2C5.5,2 4,3.5 4,5.5C4,7 5.1,8.3 6.5,8.8V19H4V21H11V19H8.5V8.8C9.9,8.3 11,7 11,5.5C11,3.5 9.5,2 7.5,2M7.5,4C8.3,4 9,4.7 9,5.5C9,6.3 8.3,7 7.5,7C6.7,7 6,6.3 6,5.5C6,4.7 6.7,4 7.5,4M18.5,2C16.5,2 15,3.5 15,5.5C15,7 16.1,8.3 17.5,8.8V19H15V21H22V19H19.5V8.8C20.9,8.3 22,7 22,5.5C22,3.5 20.5,2 18.5,2M18.5,4C19.3,4 20,4.7 20,5.5C20,6.3 19.3,7 18.5,7C17.7,7 17,6.3 17,5.5C17,4.7 17.7,4 18.5,4M11.5,10.1C12.1,10.6 12.5,11.3 12.5,12C12.5,12.7 12.1,13.4 11.5,13.9C10.9,13.4 10.5,12.7 10.5,12C10.5,11.3 10.9,10.6 11.5,10.1Z"/>
                 </svg>
             </div>
             <div class="event-title-banner">Celebración</div>
@@ -765,13 +790,23 @@
             <div class="event-info-block">
                 <span>Día</span>
                 <p>Sábado 23 de Enero - 5:00 p.m.</p>
-                <a href="#" class="btn-fixdate">Agendar</a>
             </div>
 
             <div class="event-info-block" style="margin-top: 25px;">
                 <span>Lugar</span>
                 <p>Rancho La Amistad de Mario Mafio<br>Corralillo</p>
                 <a href="https://www.google.com/maps/place/Rancho+La+Amisdad+de+Mario+Mafio/@10.1785555,-85.4299022,291m/data=!3m1!1e3!4m10!1m3!2m2!1scorralillo+parroquia!6e1!3m5!1s0x8f9fb99cc562a5e5:0x4f699aa2375e2239!8m2!3d10.178772!4d-85.4292963!16s%2Fg%2F11vlmb23h3!5m1!1e2?entry=ttu" target="_blank" class="btn-fixdate">¿Cómo llegar?</a>
+            </div>
+
+            <!-- Sección de Color Reservado / Código de Vestimenta -->
+            <div class="dresscode-box">
+                <h4>Color Reservado</h4>
+                <p style="font-size: 0.85rem; color: #555;">Agradecemos evitar vestir tonos verdes o similares.</p>
+                <div class="color-palette">
+                    <div class="color-circle" style="background-color: #4a5d3e;" title="Verde Oliva"></div>
+                    <div class="color-circle" style="background-color: #2c3821;" title="Verde Oscuro"></div>
+                    <div class="color-circle" style="background-color: #798e6b;" title="Verde Salvia"></div>
+                </div>
             </div>
         </div>
 
