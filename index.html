@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Melissa & Jean Emanuel - Nuestra Boda</title>
-    <!-- Librerías de Tipografías de Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -130,7 +129,7 @@
             color: var(--olive-dark);
         }
 
-        /* Contenedor Adaptable para Computadora y Celular */
+        /* Contenedor Principal Adaptable (Responsive perfecto para PC y Móvil) */
         .container {
             width: 100%;
             max-width: 480px;
@@ -153,7 +152,7 @@
             }
         }
 
-        /* Secciones Fluidas con Animación Fade-In */
+        /* Secciones Fluidas con Animación de Entrada */
         .content-section {
             width: 100%;
             padding: 75px 20px;
@@ -170,14 +169,13 @@
             transform: translateY(0);
         }
 
-        /* Adorno floral superior en secciones */
-        .floral-divider {
-            width: 60px;
-            height: 25px;
+        /* Ilustración Floral Real (Separador Botánico SVG) */
+        .floral-branch {
+            width: 120px;
+            height: 35px;
             fill: var(--gold);
-            margin: 0 auto 15px auto;
+            margin: 0 auto 18px auto;
             display: block;
-            opacity: 0.85;
         }
 
         /* Botón de Música Flotante */
@@ -212,7 +210,7 @@
             transform: scale(1.1) rotate(10deg);
         }
 
-        /* Sección 1: Portada (Hero) */
+        /* Sección 1: Portada */
         .hero {
             position: relative;
             background: linear-gradient(rgba(20,28,15,0.55), rgba(20,28,15,0.65)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
@@ -312,7 +310,7 @@
             60% { transform: translateX(-50%) translateY(-3px); }
         }
 
-        /* Sección 2: Cuenta Regresiva con Corona Floral Real Giratoria */
+        /* Sección 2: Cuenta Regresiva con Corona de Flores Real (SVG Ilustrado) */
         .window-content-flex {
             display: flex;
             flex-direction: column;
@@ -334,14 +332,12 @@
             margin: 0 auto;
         }
 
-        /* SVG Corona Floral Giratoria Real */
+        /* Guirnalda Floral SVG Real con pétalos y hojas detalladas */
         .floral-wreath-svg {
             position: absolute;
             width: 280px;
             height: 280px;
-            animation: rotateWreath 45s linear infinite;
-            fill: var(--olive-main);
-            opacity: 0.85;
+            animation: rotateWreath 60s linear infinite;
         }
 
         @keyframes rotateWreath {
@@ -584,7 +580,7 @@
             transform: scale(1.15);
         }
 
-        /* Sección 6: Confirmación RSVP con Lógica de Fechas */
+        /* Sección 6: Confirmación RSVP con Lógica de 29 Días */
         .rsvp-box {
             background: white;
             padding: 35px 25px;
@@ -704,21 +700,35 @@
 
         <!-- SECCIÓN 2: Cuenta Regresiva + Invitados -->
         <div class="content-section">
-            <!-- Adorno floral vectorial real -->
-            <svg class="floral-divider" viewBox="0 0 100 40"><path d="M50 0 C30 20 10 10 0 40 C30 30 40 20 50 40 C60 20 70 30 100 40 C90 10 70 20 50 0 Z"/></svg>
+            <!-- Rama floral decorativa real -->
+            <svg class="floral-branch" viewBox="0 0 100 30"><path d="M50 0 C40 15 20 10 0 30 C30 25 40 15 50 25 C60 15 70 25 100 30 C80 10 60 15 50 0 Z"/></svg>
             <div class="window-content-flex">
                 <div class="countdown-circle-container">
-                    <!-- SVG de corona floral real que gira suavemente -->
+                    <!-- Guirnalda Floral SVG Circular Real (Flores y Hojas detalladas) -->
                     <svg class="floral-wreath-svg" viewBox="0 0 200 200">
-                        <circle cx="100" cy="100" r="92" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="6 6"/>
-                        <path d="M100,5 Q105,15 110,5 Q115,15 120,5 Q110,25 100,5 Z" fill="var(--olive-main)"/>
-                        <path d="M100,195 Q105,185 110,195 Q115,185 120,195 Q110,175 100,195 Z" fill="var(--olive-main)"/>
-                        <path d="M5,100 Q15,105 5,110 Q15,115 5,120 Q25,110 5,100 Z" fill="var(--olive-main)"/>
-                        <path d="M195,100 Q185,105 195,110 Q185,115 195,120 Q175,110 195,100 Z" fill="var(--olive-main)"/>
-                        <circle cx="100" cy="12" r="3" fill="var(--gold)"/>
-                        <circle cx="100" cy="188" r="3" fill="var(--gold)"/>
-                        <circle cx="12" cy="100" r="3" fill="var(--gold)"/>
-                        <circle cx="188" cy="100" r="3" fill="var(--gold)"/>
+                        <circle cx="100" cy="100" r="90" fill="none" stroke="var(--gold)" stroke-width="1" stroke-dasharray="4 4"/>
+                        <!-- Flores superiores -->
+                        <path d="M100,5 C95,15 105,15 100,5 Z" fill="var(--olive-main)"/>
+                        <circle cx="100" cy="10" r="6" fill="#58694b"/>
+                        <circle cx="90" cy="15" r="4" fill="#c5a059"/>
+                        <circle cx="110" cy="15" r="4" fill="#c5a059"/>
+                        <!-- Flores inferiores -->
+                        <circle cx="100" cy="190" r="6" fill="#58694b"/>
+                        <circle cx="90" cy="185" r="4" fill="#c5a059"/>
+                        <circle cx="110" cy="185" r="4" fill="#c5a059"/>
+                        <!-- Flores izquierdas -->
+                        <circle cx="10" cy="100" r="6" fill="#58694b"/>
+                        <circle cx="15" cy="90" r="4" fill="#c5a059"/>
+                        <circle cx="15" cy="110" r="4" fill="#c5a059"/>
+                        <!-- Flores derechas -->
+                        <circle cx="190" cy="100" r="6" fill="#58694b"/>
+                        <circle cx="185" cy="90" r="4" fill="#c5a059"/>
+                        <circle cx="185" cy="110" r="4" fill="#c5a059"/>
+                        <!-- Hojas decorativas distribuidas -->
+                        <path d="M40,30 Q50,40 30,50 Z" fill="#58694b"/>
+                        <path d="M160,30 Q150,40 170,50 Z" fill="#58694b"/>
+                        <path d="M40,170 Q50,160 30,150 Z" fill="#58694b"/>
+                        <path d="M160,170 Q150,160 170,150 Z" fill="#58694b"/>
                     </svg>
                     <div class="countdown-circle">
                         <h3 class="script-font">Falta</h3>
@@ -747,7 +757,7 @@
 
         <!-- SECCIÓN 3: Retratos de Nuestro Amor -->
         <div class="content-section" style="background: #f4f1ea;">
-            <svg class="floral-divider" viewBox="0 0 100 40"><path d="M50 0 C30 20 10 10 0 40 C30 30 40 20 50 40 C60 20 70 30 100 40 C90 10 70 20 50 0 Z"/></svg>
+            <svg class="floral-branch" viewBox="0 0 100 30"><path d="M50 0 C40 15 20 10 0 30 C30 25 40 15 50 25 C60 15 70 25 100 30 C80 10 60 15 50 0 Z"/></svg>
             <h3 class="script-font" style="font-size: 3.2rem; color: var(--olive-main); margin-bottom: 2px;">Retratos de Nuestro Amor</h3>
             <p class="serif-font" style="font-size: 1.1rem; color: #666; font-style: italic; margin-bottom: 25px;">Instantes que quedan en la eternidad</p>
             
@@ -771,7 +781,7 @@
 
         <!-- SECCIÓN 4: Ceremonia y Celebración -->
         <div class="content-section">
-            <svg class="floral-divider" viewBox="0 0 100 40"><path d="M50 0 C30 20 10 10 0 40 C30 30 40 20 50 40 C60 20 70 30 100 40 C90 10 70 20 50 0 Z"/></svg>
+            <svg class="floral-branch" viewBox="0 0 100 30"><path d="M50 0 C40 15 20 10 0 30 C30 25 40 15 50 25 C60 15 70 25 100 30 C80 10 60 15 50 0 Z"/></svg>
             <div class="events-grid">
                 <div class="event-card">
                     <!-- Icono vectorial de la Parroquia con Cruz en la cúspide -->
@@ -791,7 +801,7 @@
 
         <!-- SECCIÓN 5: Color Reservado -->
         <div class="content-section" style="background: #f4f1ea;">
-            <svg class="floral-divider" viewBox="0 0 100 40"><path d="M50 0 C30 20 10 10 0 40 C30 30 40 20 50 40 C60 20 70 30 100 40 C90 10 70 20 50 0 Z"/></svg>
+            <svg class="floral-branch" viewBox="0 0 100 30"><path d="M50 0 C40 15 20 10 0 30 C30 25 40 15 50 25 C60 15 70 25 100 30 C80 10 60 15 50 0 Z"/></svg>
             <div class="info-card">
                 <h3 class="script-font">Color Reservado</h3>
                 <p class="serif-font" style="font-size: 1.1rem; color: #555; line-height: 1.5;">Agradecemos con mucho cariño evitar vestir tonos verdes o similares durante la celebración.</p>
@@ -805,7 +815,7 @@
 
         <!-- SECCIÓN 6: Confirmar Asistencia -->
         <div class="content-section">
-            <svg class="floral-divider" viewBox="0 0 100 40"><path d="M50 0 C30 20 10 10 0 40 C30 30 40 20 50 40 C60 20 70 30 100 40 C90 10 70 20 50 0 Z"/></svg>
+            <svg class="floral-branch" viewBox="0 0 100 30"><path d="M50 0 C40 15 20 10 0 30 C30 25 40 15 50 25 C60 15 70 25 100 30 C80 10 60 15 50 0 Z"/></svg>
             <div class="rsvp-box">
                 <svg style="width: 40px; height: 40px; fill: var(--olive-main); margin-bottom: 5px;" viewBox="0 0 24 24"><path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/></svg>
                 <h3 class="script-font">Confirmar Asistencia</h3>
