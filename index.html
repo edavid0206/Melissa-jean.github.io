@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Melissa & Jean Emanuel - Nuestra Boda</title>
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --olive-dark: #2c3821;
             --olive-main: #58694b;
             --olive-light: #f4f6f2;
-            --bg-color: #f7f5f0;
+            --gold: #c5a059;
+            --bg-color: #faf8f5;
             --text-color: #4a4a4a;
         }
 
@@ -34,17 +35,20 @@
 
         .script-font {
             font-family: 'Alex Brush', cursive;
-            letter-spacing: 1px;
         }
 
-        /* Pantalla de Bienvenida Inicial */
+        .serif-font {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Pantalla de Bienvenida Inicial con Animación */
         #welcome-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            background: linear-gradient(rgba(44, 56, 33, 0.8), rgba(44, 56, 33, 0.9)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
             z-index: 9999;
             display: flex;
             align-items: center;
@@ -54,27 +58,36 @@
         }
 
         .welcome-card {
-            background: rgba(255, 255, 255, 0.96);
-            padding: 35px 25px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 40px 30px;
             border-radius: 20px;
-            max-width: 360px;
+            max-width: 380px;
             width: 100%;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border: 1px solid rgba(197, 160, 89, 0.4);
+            animation: scaleUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes scaleUp {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
 
         .welcome-card h2 {
             font-family: 'Alex Brush', cursive;
-            font-size: 3.8rem;
+            font-size: 4rem;
             color: var(--olive-main);
             margin-bottom: 5px;
             line-height: 1;
         }
 
         .welcome-card p {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: #666;
             margin-bottom: 25px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         .welcome-btn-group {
@@ -87,20 +100,21 @@
             background: var(--olive-main);
             color: white;
             border: none;
-            padding: 12px 20px;
-            border-radius: 25px;
-            font-size: 0.85rem;
+            padding: 13px 20px;
+            border-radius: 30px;
+            font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(88, 105, 75, 0.3);
+            box-shadow: 0 4px 15px rgba(88, 105, 75, 0.4);
         }
 
         .welcome-btn:hover {
             background: var(--olive-dark);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(88, 105, 75, 0.6);
         }
 
         .welcome-btn-secondary {
@@ -120,53 +134,50 @@
             width: 100%;
             margin: 0 auto;
             background: var(--bg-color);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            box-shadow: 0 0 40px rgba(0,0,0,0.08);
             position: relative;
         }
 
-        /* Secciones Fluidas (Scroll Normal) */
+        /* Secciones Fluidas con Animación al Scroll */
         .content-section {
             width: 100%;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 50px 20px;
+            padding: 70px 20px;
             position: relative;
             background-color: var(--bg-color);
+            border-bottom: 1px solid #eee;
         }
 
-        /* Reproductor de Música Flotante Translúcido */
+        /* Reproductor de Música Flotante con Brillo */
         .music-btn-translucent {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(88, 105, 75, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(5px);
+            bottom: 25px;
+            right: 25px;
+            background: rgba(88, 105, 75, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
             color: white;
             border-radius: 50%;
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             cursor: pointer;
             z-index: 1000;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
             transition: all 0.3s ease;
         }
 
         .music-btn-translucent:hover {
             background: var(--olive-dark);
-            transform: scale(1.05);
+            transform: scale(1.1) rotate(10deg);
         }
 
-        /* Sección 1: Portada (Pantalla Completa) */
+        /* Sección 1: Portada Estilo Editorial */
         .hero {
             position: relative;
-            background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
+            background: linear-gradient(rgba(20,28,15,0.55), rgba(20,28,15,0.65)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
             color: white;
             width: 100%;
             height: 100vh;
@@ -177,71 +188,74 @@
             padding: 40px 20px;
         }
 
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 15px; left: 15px; right: 15px; bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            pointer-events: none;
+        }
+
         .date-line-wrapper {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 15px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .date-line-wrapper::before,
         .date-line-wrapper::after {
             content: "";
             height: 1px;
-            width: 50px;
-            background-color: rgba(255, 255, 255, 0.6);
+            width: 40px;
+            background-color: var(--gold);
         }
 
         .hero .date-top {
-            font-size: 0.9rem;
-            letter-spacing: 3px;
-            opacity: 0.95;
-            font-weight: 300;
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            color: #f0e6d2;
+            font-weight: 400;
         }
 
         .hero h1 {
-            font-size: 4rem;
+            font-size: 4.5rem;
             color: #ffffff;
             font-weight: normal;
-            line-height: 1;
+            line-height: 0.95;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
         .ampersand-circle {
-            width: 35px;
-            height: 35px;
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid var(--gold);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 8px auto;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            color: #ffffff;
+            margin: 12px auto;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: #f0e6d2;
         }
 
         .quote-box {
-            margin-top: 20px;
-            padding: 0 15px;
-        }
-
-        .quote-marks {
-            font-size: 1.6rem;
-            letter-spacing: 5px;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: -5px;
-            font-family: serif;
+            margin-top: 25px;
+            padding: 0 20px;
         }
 
         .quote {
-            font-size: 0.85rem;
-            max-width: 300px;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.15rem;
+            max-width: 320px;
             margin: 0 auto;
-            opacity: 0.95;
-            line-height: 1.4;
-            font-weight: 300;
+            color: #f5f2eb;
+            line-height: 1.5;
         }
 
         .scroll-indicator {
@@ -249,32 +263,33 @@
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
             animation: bounce 2s infinite;
         }
 
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-5px); }
-            60% { transform: translateX(-50%) translateY(-2px); }
+            40% { transform: translateX(-50%) translateY(-6px); }
+            60% { transform: translateX(-50%) translateY(-3px); }
         }
 
-        /* Sección 2: Círculo Floral Perfecto de Falta + Invitados Dinámicos */
+        /* Sección 2: Cuenta Regresiva con Corona Floral Premium e Invitados */
         .window-content-flex {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 20px;
+            gap: 25px;
             width: 100%;
-            max-width: 350px;
+            max-width: 380px;
+            margin: 0 auto;
         }
 
         .countdown-circle-container {
             position: relative;
-            width: 260px;
-            height: 260px;
+            width: 270px;
+            height: 270px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -283,12 +298,12 @@
 
         .floral-wreath {
             position: absolute;
-            width: 250px;
-            height: 250px;
-            border: 3px dashed var(--olive-main);
+            width: 265px;
+            height: 265px;
+            border: 2px dashed var(--gold);
             border-radius: 50%;
-            animation: rotateWreath 40s linear infinite;
-            opacity: 0.65;
+            animation: rotateWreath 50s linear infinite;
+            box-shadow: 0 0 20px rgba(88, 105, 75, 0.15);
         }
 
         @keyframes rotateWreath {
@@ -296,12 +311,34 @@
             to { transform: rotate(360deg); }
         }
 
+        .floral-wreath::before {
+            content: "🌿";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2rem;
+            background: var(--bg-color);
+            padding: 0 5px;
+        }
+
+        .floral-wreath::after {
+            content: "🌿";
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2rem;
+            background: var(--bg-color);
+            padding: 0 5px;
+        }
+
         .countdown-circle {
-            width: 215px;
-            height: 215px;
+            width: 220px;
+            height: 220px;
             background: #ffffff;
             border-radius: 50%;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            box-shadow: 0 15px 35px rgba(44, 56, 33, 0.1);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -309,10 +346,11 @@
             padding: 15px;
             position: relative;
             z-index: 2;
+            border: 1px solid #f0e6d2;
         }
 
         .countdown-circle h3 {
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             color: var(--olive-main);
             font-weight: normal;
             margin-bottom: 2px;
@@ -320,12 +358,12 @@
 
         .countdown-timers {
             display: flex;
-            gap: 5px;
+            gap: 6px;
             align-items: center;
         }
 
         .time-box span {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             font-weight: 600;
             color: var(--olive-dark);
         }
@@ -335,21 +373,22 @@
             text-transform: uppercase;
             color: #888;
             display: block;
+            letter-spacing: 1px;
         }
 
         .time-separator {
-            font-size: 0.95rem;
-            color: #aaa;
-            margin-top: -10px;
+            font-size: 1rem;
+            color: var(--gold);
+            margin-top: -12px;
         }
 
         .heart-2d {
             width: 14px;
             height: 14px;
-            background-color: var(--olive-main);
+            background-color: var(--gold);
             transform: rotate(45deg);
             position: relative;
-            margin-top: 6px;
+            margin-top: 8px;
             animation: heartbeat 1.5s infinite;
         }
 
@@ -358,7 +397,7 @@
             content: "";
             width: 14px;
             height: 14px;
-            background-color: var(--olive-main);
+            background-color: var(--gold);
             border-radius: 50%;
             position: absolute;
         }
@@ -374,35 +413,46 @@
         .guest-box {
             background: white;
             border: 1px solid #e5ebe1;
-            padding: 15px;
-            border-radius: 15px;
+            padding: 20px;
+            border-radius: 16px;
             width: 100%;
-            max-height: 200px;
+            max-height: 220px;
             overflow-y: auto;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            position: relative;
+        }
+
+        .guest-box::before {
+            content: "✨";
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 0.9rem;
         }
 
         .guest-item {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--olive-dark);
             font-weight: 500;
-            margin: 4px 0;
-            padding: 3px 0;
+            margin: 6px 0;
+            padding: 4px 0;
             border-bottom: 1px solid #f4f6f2;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
         }
 
         .guest-item:last-child {
             border-bottom: none;
         }
 
-        /* Sección 3: Tira de Fotos Estilo Fotomatón (Photobooth) */
+        /* Sección 3: Galería Fotomatón con Estilo Polaroid */
         .photobooth-strip {
             background: #ffffff;
-            padding: 12px 12px 25px 12px;
-            width: 220px;
-            border-radius: 4px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-            border: 1px solid #e0ded5;
+            padding: 15px 15px 30px 15px;
+            width: 240px;
+            border-radius: 6px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+            border: 1px solid #e5e0d3;
             position: relative;
             overflow: hidden;
             margin: 0 auto;
@@ -411,7 +461,7 @@
         .photobooth-track {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
             animation: photoboothSlide 12s infinite ease-in-out;
         }
 
@@ -421,143 +471,178 @@
 
         .photobooth-frame img {
             width: 100%;
-            height: 180px;
+            height: 200px;
             object-fit: cover;
-            border-radius: 2px;
+            border-radius: 3px;
         }
 
         .photobooth-frame span {
             display: block;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             color: var(--olive-dark);
-            margin-top: 6px;
+            margin-top: 8px;
         }
 
         @keyframes photoboothSlide {
             0%, 28% { transform: translateY(0); }
-            38%, 66% { transform: translateY(-205px); }
-            76%, 100% { transform: translateY(-410px); }
+            38%, 66% { transform: translateY(-225px); }
+            76%, 100% { transform: translateY(-450px); }
         }
 
-        /* Sección 4: Ceremonia y Celebración */
+        /* Sección 4: Ceremonia y Celebración Rediseñadas */
         .events-grid {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
             width: 100%;
-            max-width: 360px;
+            max-width: 380px;
+            margin: 0 auto;
         }
 
         .event-card {
             background: white;
-            padding: 18px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            padding: 25px 20px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             border: 1px solid #e5ebe1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-card::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 5px; height: 100%;
+            background: var(--olive-main);
         }
 
         .event-card h4 {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             color: var(--olive-main);
-            margin-bottom: 3px;
+            margin-bottom: 5px;
         }
 
         .event-card p {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: #555;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            line-height: 1.5;
         }
 
         .btn-link {
             display: inline-block;
             background: var(--olive-main);
             color: white;
-            padding: 6px 18px;
-            border-radius: 20px;
-            font-size: 0.7rem;
+            padding: 8px 22px;
+            border-radius: 25px;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             text-decoration: none;
             font-weight: 600;
+            transition: all 0.3s ease;
         }
 
-        /* Sección 5: Información Importante / Color Reservado */
+        .btn-link:hover {
+            background: var(--olive-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Sección 5: Código de Vestimenta / Color Reservado Elegante */
         .info-card {
-            background: white;
-            padding: 25px;
+            background: linear-gradient(135deg, #ffffff 0%, var(--olive-light) 100%);
+            padding: 30px 20px;
             border-radius: 20px;
-            max-width: 340px;
+            max-width: 380px;
             width: 100%;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-            border: 1px dashed var(--olive-main);
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            border: 1.5px solid var(--gold);
         }
 
         .info-card h3 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: var(--olive-main);
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .color-palette {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            margin-top: 15px;
+            gap: 15px;
+            margin-top: 18px;
         }
 
         .color-circle {
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
             border: 2px solid white;
+            transition: transform 0.3s;
         }
 
-        /* Sección 6: Confirmación Interactiva */
+        .color-circle:hover {
+            transform: scale(1.15);
+        }
+
+        /* Sección 6: Confirmación RSVP Estilizada */
         .rsvp-box {
             background: white;
-            padding: 30px 20px;
+            padding: 35px 25px;
             border-radius: 20px;
-            max-width: 340px;
+            max-width: 380px;
             width: 100%;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+            margin: 0 auto;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+            border: 1px solid #e5ebe1;
         }
 
         .rsvp-box h3 {
-            font-size: 2.8rem;
+            font-size: 3rem;
             color: var(--olive-main);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .btn-confirmar {
             background-color: var(--olive-main);
             color: white;
             border: none;
-            padding: 12px 28px;
-            border-radius: 25px;
+            padding: 12px 30px;
+            border-radius: 30px;
             font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             font-weight: 600;
             cursor: pointer;
             margin-top: 15px;
-            transition: background 0.3s;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(88, 105, 75, 0.3);
         }
 
         .btn-confirmar:hover {
             background-color: var(--olive-dark);
+            transform: translateY(-2px);
         }
 
-        /* Footer Integrado */
+        /* Footer Editorial */
         .footer-section {
-            background: #f0ede6;
-            padding: 40px 20px;
+            background: #232c1b;
+            color: #f5f2eb;
+            padding: 50px 20px;
         }
 
         .footer-section h3 {
-            font-size: 3.2rem;
-            color: var(--olive-main);
-            margin-bottom: 5px;
+            font-size: 3.5rem;
+            color: #f0e6d2;
+            margin-bottom: 8px;
+        }
+
+        .footer-section p {
+            font-size: 0.9rem;
+            color: #b3c2a8;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
     </style>
 </head>
@@ -567,8 +652,8 @@
     <div id="welcome-overlay">
         <div class="welcome-card">
             <h2 class="script-font">Nuestra Boda</h2>
-            <p class="script-font" style="font-size: 1.4rem; color: var(--olive-main);">Melissa & Jean Emanuel</p>
-            <div class="welcome-btn-group" style="margin-top: 15px;">
+            <p class="serif-font" style="font-size: 1.2rem; color: var(--olive-main); font-weight: 600;">Melissa & Jean Emanuel</p>
+            <div class="welcome-btn-group" style="margin-top: 20px;">
                 <button class="welcome-btn" onclick="openInvitation(true)">Abrir con Música 🎵</button>
                 <button class="welcome-btn welcome-btn-secondary" onclick="openInvitation(false)">Abrir sin Música</button>
             </div>
@@ -581,7 +666,7 @@
     </audio>
 
     <div class="container">
-        <!-- SECCIÓN 1: Portada (Pantalla Completa Inicial) -->
+        <!-- SECCIÓN 1: Portada -->
         <div class="hero">
             <button class="music-btn-translucent" id="music-btn" onclick="toggleMusic()" title="Reproducir / Pausar Música">
                 🎵
@@ -596,15 +681,13 @@
             <h1 class="script-font">Jean Emanuel</h1>
 
             <div class="quote-box">
-                <div class="quote-marks">“</div>
-                <p class="quote">Todos somos mortales, hasta el primer beso y la segunda copa de vino</p>
-                <div class="quote-marks" style="margin-top: -5px;">„</div>
+                <p class="quote">“Todos somos mortales, hasta el primer beso y la segunda copa de vino”</p>
             </div>
 
             <div class="scroll-indicator">⌄</div>
         </div>
 
-        <!-- SECCIÓN 2: Cuenta Regresiva + Invitados Dinámicos -->
+        <!-- SECCIÓN 2: Cuenta Regresiva + Invitados -->
         <div class="content-section">
             <div class="window-content-flex">
                 <div class="countdown-circle-container">
@@ -625,33 +708,33 @@
                 </div>
 
                 <div class="guest-box">
-                    <div style="width: 32px; height: 32px; background: var(--olive-dark); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 4px; font-weight: 600; font-size: 0.85rem;" id="numeroPasesBadge">1</div>
-                    <h4 style="font-size: 0.9rem; letter-spacing: 2px; color: var(--olive-dark); text-transform: uppercase;">Invitados Asignados</h4>
-                    <div id="listaNombresInvitados" style="margin-top: 6px;">
+                    <div style="width: 36px; height: 36px; background: var(--olive-dark); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 6px; font-weight: 600; font-size: 0.9rem; border: 1px solid var(--gold);" id="numeroPasesBadge">1</div>
+                    <h4 style="font-size: 0.85rem; letter-spacing: 3px; color: var(--olive-dark); text-transform: uppercase; font-weight: 600;">Invitados Asignados</h4>
+                    <div id="listaNombresInvitados" style="margin-top: 10px;">
                         <div class="guest-item">Cargando invitados...</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- SECCIÓN 3: Retratos de Nuestro Amor (Fotomatón) -->
-        <div class="content-section" style="background: #f0ede6;">
-            <h3 class="script-font" style="font-size: 2.8rem; color: var(--olive-main); margin-bottom: 2px;">Retratos de Nuestro Amor</h3>
-            <p style="font-size: 0.8rem; color: #666; font-style: italic; margin-bottom: 20px;">Instantes que quedan en la eternidad</p>
+        <!-- SECCIÓN 3: Retratos de Nuestro Amor -->
+        <div class="content-section" style="background: #f4f1ea;">
+            <h3 class="script-font" style="font-size: 3.2rem; color: var(--olive-main); margin-bottom: 2px;">Retratos de Nuestro Amor</h3>
+            <p class="serif-font" style="font-size: 1.1rem; color: #666; font-style: italic; margin-bottom: 25px;">Instantes que quedan en la eternidad</p>
             
             <div class="photobooth-strip">
                 <div class="photobooth-track">
                     <div class="photobooth-frame">
                         <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=400&q=80" alt="Foto 1">
-                        <span class="script-font">Nuestros momentos</span>
+                        <span class="script-font" style="font-size: 1.6rem;">Nuestros momentos</span>
                     </div>
                     <div class="photobooth-frame">
                         <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=400&q=80" alt="Foto 2">
-                        <span class="script-font">Amor eterno</span>
+                        <span class="script-font" style="font-size: 1.6rem;">Amor eterno</span>
                     </div>
                     <div class="photobooth-frame">
                         <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=400&q=80" alt="Foto 3">
-                        <span class="script-font">Camino al altar</span>
+                        <span class="script-font" style="font-size: 1.6rem;">Camino al altar</span>
                     </div>
                 </div>
             </div>
@@ -674,10 +757,10 @@
         </div>
 
         <!-- SECCIÓN 5: Información Importante / Color Reservado -->
-        <div class="content-section">
+        <div class="content-section" style="background: #f4f1ea;">
             <div class="info-card">
                 <h3 class="script-font">Color Reservado</h3>
-                <p style="font-size: 0.85rem; color: #555; line-height: 1.4;">Agradecemos con mucho cariño evitar vestir tonos verdes o similares durante la celebración.</p>
+                <p class="serif-font" style="font-size: 1.1rem; color: #555; line-height: 1.5;">Agradecemos con mucho cariño evitar vestir tonos verdes o similares durante la celebración.</p>
                 <div class="color-palette">
                     <div class="color-circle" style="background-color: #58694b;" title="Verde Oliva"></div>
                     <div class="color-circle" style="background-color: #2c3821;" title="Verde Oscuro"></div>
@@ -687,12 +770,12 @@
         </div>
 
         <!-- SECCIÓN 6: Confirmar Asistencia -->
-        <div class="content-section" style="background: rgba(255,255,255,0.7);">
+        <div class="content-section">
             <div class="rsvp-box">
-                <div style="font-size: 2rem; margin-bottom: 2px;">💌</div>
+                <div style="font-size: 2.2rem; margin-bottom: 2px;">💌</div>
                 <h3 class="script-font">Confirmar Asistencia</h3>
                 <div id="rsvp-content">
-                    <p style="font-size: 0.85rem; color: #555; margin-bottom: 12px;">La confirmación se habilitará 30 días antes del evento.</p>
+                    <p style="font-size: 0.9rem; color: #555; margin-bottom: 15px;">La confirmación se habilitará 30 días antes del evento.</p>
                     <button class="btn-confirmar" onclick="verificarFechaConfirmacion()">Confirmar Ahora</button>
                 </div>
             </div>
@@ -701,7 +784,7 @@
         <!-- SECCIÓN 7: Footer -->
         <div class="content-section footer-section">
             <h3 class="script-font">Melissa & Jean Emanuel</h3>
-            <p style="font-size: 0.85rem; color: #666;">Te esperamos con mucha ilusión 🌿</p>
+            <p>Te esperamos con mucha ilusión 🌿</p>
         </div>
     </div>
 
@@ -739,15 +822,15 @@
             
             if (diferenciaDias <= 30) {
                 rsvpDiv.innerHTML = `
-                    <p style="font-size: 0.85rem; color: var(--olive-dark); font-weight: 600; margin-bottom: 10px;">¡Ya estamos a menos de 30 días! Comunícate a los teléfonos:</p>
-                    <div style="background: var(--olive-light); padding: 10px; border-radius: 10px; border: 1px solid var(--olive-main);">
-                        <p style="font-size: 1rem; font-weight: bold; color: var(--olive-dark);">📞 8989-2294</p>
-                        <p style="font-size: 1rem; font-weight: bold; color: var(--olive-dark);">📞 8616-0583</p>
+                    <p style="font-size: 0.9rem; color: var(--olive-dark); font-weight: 600; margin-bottom: 12px;">¡Ya estamos a menos de 30 días! Comunícate a los teléfonos:</p>
+                    <div style="background: var(--olive-light); padding: 12px; border-radius: 12px; border: 1px solid var(--gold);">
+                        <p style="font-size: 1.1rem; font-weight: bold; color: var(--olive-dark);">📞 8989-2294</p>
+                        <p style="font-size: 1.1rem; font-weight: bold; color: var(--olive-dark); margin-top: 4px;">📞 8616-0583</p>
                     </div>
                 `;
             } else {
                 rsvpDiv.innerHTML = `
-                    <p style="font-size: 0.85rem; color: #d9534f; font-weight: 500; margin-top: 10px;">Aún falta tiempo para la fecha límite de confirmación (30 días antes de la boda).</p>
+                    <p style="font-size: 0.9rem; color: #a94442; font-weight: 500; margin-top: 10px;">Aún falta tiempo para la fecha límite de confirmación (30 días antes de la boda).</p>
                 `;
             }
         }
@@ -790,7 +873,7 @@
                 }).catch(e => console.log("Error al reproducir:", e));
             } else {
                 isPlaying = false;
-                musicBtn.style.background = "rgba(255, 255, 255, 0.2)";
+                musicBtn.style.background = "rgba(255, 255, 255, 0.3)";
             }
         }
 
@@ -798,7 +881,7 @@
             if (isPlaying) {
                 music.pause();
                 isPlaying = false;
-                musicBtn.style.background = "rgba(255, 255, 255, 0.2)";
+                musicBtn.style.background = "rgba(255, 255, 255, 0.3)";
             } else {
                 music.play().then(() => {
                     isPlaying = true;
