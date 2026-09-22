@@ -777,7 +777,6 @@
 
             if (!card || !screen) return;
 
-            // Desactivar en pantallas táctiles pequeñas para evitar tirones
             if (window.innerWidth < 768) return;
 
             screen.addEventListener('mousemove', (e) => {
@@ -817,7 +816,7 @@
             resizeCanvas();
 
             const leaves = [];
-            const leafCount = window.innerWidth < 768 ? 15 : 25; // Menos hojas en móviles para optimizar rendimiento
+            const leafCount = window.innerWidth < 768 ? 15 : 25;
             const forestColors = [
                 { main: '#2c3821', vein: '#1c2416' },
                 { main: '#3a4a2e', vein: '#26311e' },
@@ -1018,10 +1017,15 @@
             const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-            document.getElementById('dias').innerText = String(days).padStart(2, '0');
-            document.getElementById('horas').innerText = String(horas).padStart(2, '0');
-            document.getElementById('minutos').innerText = String(minutos).padStart(2, '0');
-            document.getElementById('segundos').innerText = String(segundos).padStart(2, '0');
+            const elemDias = document.getElementById('dias');
+            const elemHoras = document.getElementById('horas');
+            const elemMinutos = document.getElementById('minutos');
+            const elemSegundos = document.getElementById('segundos');
+
+            if (elemDias) elemDias.innerText = String(days).padStart(2, '0');
+            if (elemHoras) elemHoras.innerText = String(hours).padStart(2, '0');
+            if (elemMinutos) elemMinutos.innerText = String(minutes).padStart(2, '0');
+            if (elemSegundos) elemSegundos.innerText = String(seconds).padStart(2, '0');
         }, 1000);
 
         /* --- SISTEMA DE INVITADOS Y RSVP INTERACTIVO CON HOJITAS --- */
