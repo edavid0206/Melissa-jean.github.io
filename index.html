@@ -49,7 +49,7 @@
             z-index: 999;
         }
 
-        /* --- PANTALLA DE BIENVENIDA (BOSQUE MÁGICO) --- */
+        /* --- PANTALLA DE BIENVENIDA --- */
         #welcome-screen {
             position: fixed;
             top: 0;
@@ -99,6 +99,50 @@
             color: #1b2416;
         }
 
+        /* --- ANIMACIÓN DE GUÍA PARA BAJAR (SCROLL DOWN) --- */
+        .scroll-down-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: bounceScroll 2s infinite;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .scroll-down-indicator span {
+            margin-bottom: 5px;
+            font-family: 'Cinzel', serif;
+        }
+
+        .scroll-down-indicator .arrow-icon {
+            width: 20px;
+            height: 20px;
+            border-right: 2px solid var(--accent-gold);
+            border-bottom: 2px solid var(--accent-gold);
+            transform: rotate(45deg);
+            margin-top: -5px;
+        }
+
+        @keyframes bounceScroll {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-8px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-4px);
+            }
+        }
+
         /* --- CONTENEDOR GENERAL --- */
         .invitation-container {
             max-width: 480px;
@@ -138,6 +182,7 @@
             align-items: center;
             padding: 30px;
             text-align: center;
+            position: relative;
         }
 
         /* --- CONTADOR --- */
@@ -365,6 +410,12 @@
             <p class="font-serif fst-italic text-light px-3" style="max-width: 320px; font-size: 0.95rem;" data-aos="fade-up" data-aos-delay="500">
                 “Todos somos mortales, hasta el primer beso y la segunda copa de vino”
             </p>
+
+            <!-- Animación Guía para Bajar -->
+            <div class="scroll-down-indicator">
+                <span>Desliza</span>
+                <div class="arrow-icon"></div>
+            </div>
         </section>
 
         <!-- 2. Cuenta Regresiva & Pases -->
@@ -518,7 +569,7 @@
             resizeCanvas();
 
             const leaves = [];
-            const leafCount = 25; // Cantidad ideal para inmersión sin saturar
+            const leafCount = 25;
             const forestColors = [
                 { main: '#2c3821', vein: '#1c2416' },
                 { main: '#3a4a2e', vein: '#26311e' },
@@ -536,8 +587,8 @@
                     this.x = Math.random() * canvas.width;
                     this.y = Math.random() * -canvas.height;
                     this.vx = Math.random() * 1.2 - 0.6;
-                    this.vy = Math.random() * 1.0 + 0.6; // Caída suave y elegante
-                    this.scale = Math.random() * 0.6 + 0.7; // Tamaños variados (profundidad)
+                    this.vy = Math.random() * 1.0 + 0.6;
+                    this.scale = Math.random() * 0.6 + 0.7;
                     this.angle = Math.random() * Math.PI * 2;
                     this.spin = Math.random() * 0.02 - 0.01;
                     this.swing = Math.random() * 0.015 + 0.005;
@@ -566,7 +617,6 @@
                     const length = 28;
                     const width = 11;
 
-                    // Cuerpo de la hoja (Diseño botánico con puntas afiladas)
                     ctx.beginPath();
                     ctx.moveTo(0, -length);
                     ctx.bezierCurveTo(width * 1.5, -length / 2, width, length / 2, 0, length);
@@ -574,7 +624,6 @@
                     ctx.fillStyle = this.colorPair.main;
                     ctx.fill();
 
-                    // Vena central de la hoja para darle realismo fotográfico
                     ctx.beginPath();
                     ctx.moveTo(0, -length + 4);
                     ctx.lineTo(0, length - 4);
