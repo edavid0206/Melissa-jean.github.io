@@ -173,7 +173,7 @@
 
         /* --- PORTADA HERO --- */
         .hero-section {
-            background: linear-gradient(rgba(44,56,33,0.7), rgba(27,36,22,0.85)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80') center/cover;
+            background: linear-gradient(rgba(44,56,33,0.7), rgba(27,36,22,0.85)), url('fotos/03ac8282-50cd-4a3b-8f4d-ed7c93bbce30.jpg') center/cover;
             color: white;
             height: 100vh;
             display: flex;
@@ -233,7 +233,7 @@
             text-align: center;
         }
 
-        /* --- GALERÍA DE FOTOS REALES --- */
+        /* --- GALERÍA DE FOTOS LOCALES --- */
         .photo-item {
             position: relative;
             border-radius: 12px;
@@ -404,9 +404,9 @@
         <img id="lightbox-img" src="" alt="Galería Boda">
     </div>
 
-    <!-- Audio Player con Fonseca -->
+    <!-- Audio Player apuntando a tu carpeta local de canción -->
     <audio id="wedding-audio" loop preload="auto">
-        <source src="https://audio.com/efedavid2/audio/fonseca-que-suerte-tenerte-audio" type="audio/mp3">
+        <source src="cancion/fonseca.mp3" type="audio/mp3">
     </audio>
 
     <button class="music-toggle" id="musicBtn" onclick="toggleAudio()" style="display: none;" title="Música">♫</button>
@@ -471,45 +471,45 @@
             </div>
         </section>
 
-        <!-- 3. Galería de Fotos Reales -->
+        <!-- 3. Galería de Fotos Reales (Carpeta "fotos") -->
         <section style="background: #eceee9;" data-aos="fade-up">
             <p class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Nuestros Recuerdos</p>
             <h2 class="font-serif h4 mb-4" style="color: var(--primary-olive);">Instantes</h2>
 
             <div class="row g-2 px-2">
-                <!-- Foto 1 (Atardecer en la playa) -->
+                <!-- Foto Principal Ancha -->
                 <div class="col-12" data-aos="zoom-in">
                     <div class="photo-item wide" onclick="openLightbox(this)">
-                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Atardecer">
+                        <img src="fotos/03ac8282-50cd-4a3b-8f4d-ed7c93bbce30.jpg" alt="Atardecer Playa">
                         <div class="photo-overlay"><span class="font-serif">Nuestro Amor</span></div>
                     </div>
                 </div>
-                <!-- Foto 2 (Beso al atardecer) -->
+                <!-- Foto 2 -->
                 <div class="col-6" data-aos="fade-right">
                     <div class="photo-item" onclick="openLightbox(this)">
-                        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=400&q=80" alt="Momentos">
-                        <div class="photo-overlay"><span class="font-serif">Instantes</span></div>
-                    </div>
-                </div>
-                <!-- Foto 3 (Cena juntos) -->
-                <div class="col-6" data-aos="fade-left">
-                    <div class="photo-item" onclick="openLightbox(this)">
-                        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=400&q=80" alt="Miradas">
-                        <div class="photo-overlay"><span class="font-serif">Miradas</span></div>
-                    </div>
-                </div>
-                <!-- Foto 4 (Paisaje de montaña) -->
-                <div class="col-6" data-aos="fade-right">
-                    <div class="photo-item" onclick="openLightbox(this)">
-                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=400&q=80" alt="Aventura">
+                        <img src="fotos/072c15f8-7c05-4ee1-a2b1-065eb71c63b9.JPG" alt="Montaña">
                         <div class="photo-overlay"><span class="font-serif">Aventuras</span></div>
                     </div>
                 </div>
-                <!-- Foto 5 (Iglesia) -->
+                <!-- Foto 3 -->
                 <div class="col-6" data-aos="fade-left">
                     <div class="photo-item" onclick="openLightbox(this)">
-                        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=400&q=80" alt="Camino">
+                        <img src="fotos/633b0e0f-5240-478f-9424-323af407a731.JPG" alt="Cena">
+                        <div class="photo-overlay"><span class="font-serif">Instantes</span></div>
+                    </div>
+                </div>
+                <!-- Foto 4 -->
+                <div class="col-6" data-aos="fade-right">
+                    <div class="photo-item" onclick="openLightbox(this)">
+                        <img src="fotos/25178100-15d5-40c0-8015-15200628d3f9.jpg" alt="Iglesia">
                         <div class="photo-overlay"><span class="font-serif">Camino Juntos</span></div>
+                    </div>
+                </div>
+                <!-- Foto 5 -->
+                <div class="col-6" data-aos="fade-left">
+                    <div class="photo-item" onclick="openLightbox(this)">
+                        <img src="fotos/IMG_0964.jpg" alt="Detalle Anillo">
+                        <div class="photo-overlay"><span class="font-serif">Promesa</span></div>
                     </div>
                 </div>
             </div>
@@ -764,7 +764,7 @@
             const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
             document.getElementById('dias').innerText = String(days).padStart(2, '0');
-            document.getElementById('horas').innerText = String(hours).padStart(2, '0');
+            document.getElementById('horas').innerText = String(horas).padStart(2, '0');
             document.getElementById('minutos').innerText = String(minutes).padStart(2, '0');
             document.getElementById('segundos').innerText = String(seconds).padStart(2, '0');
 
