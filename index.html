@@ -78,35 +78,61 @@
         .welcome-box {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(16px);
-            border: 1.5px solid rgba(197, 160, 89, 0.4);
+            border: 1.5px solid rgba(197, 160, 89, 0.45);
             border-radius: 24px;
             padding: 45px 25px;
             max-width: 420px;
             width: 100%;
             box-shadow: 0 30px 60px rgba(0,0,0,0.8);
             cursor: pointer;
-            transition: transform 0.4s ease;
+            transition: transform 0.4s ease, border-color 0.4s ease;
             text-align: center;
         }
 
         .welcome-box:hover {
             transform: scale(1.02);
+            border-color: #f3e0aa;
         }
 
+        /* Sello Dorado Metálico */
         .gold-seal {
-            width: 80px;
-            height: 80px;
-            background: radial-gradient(circle, #e6ca8a 0%, var(--accent-gold) 70%, #8e6c2b 100%);
+            width: 82px;
+            height: 82px;
+            background: linear-gradient(135deg, #f3e0aa 0%, #c5a059 50%, #8e6c2b 100%);
             border-radius: 50%;
             margin: 0 auto 20px auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 6px 20px rgba(197,160,89,0.3);
             font-family: 'Cinzel', serif;
             font-weight: 600;
             font-size: 1.6rem;
             color: #1b2416;
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+
+        /* Texto con efecto dorado elegante */
+        .text-gold-gradient {
+            background: linear-gradient(135deg, #f3e0aa 0%, #c5a059 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 500;
+        }
+
+        /* Botón con borde y detalles dorados */
+        .btn-gold-outline {
+            color: #f3e0aa;
+            border: 1.5px solid #c5a059;
+            background: rgba(197, 160, 89, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .btn-gold-outline:hover {
+            background: linear-gradient(135deg, #f3e0aa 0%, #c5a059 100%);
+            color: #1b2416;
+            border-color: #f3e0aa;
+            box-shadow: 0 0 15px rgba(197,160,89,0.4);
         }
 
         /* --- ANIMACIÓN DE GUÍA PARA BAJAR --- */
@@ -422,18 +448,18 @@
     <!-- Canvas para física avanzada de hojas de bosque hiperrealistas -->
     <canvas id="forest-canvas"></canvas>
 
-    <!-- Pantalla de Bienvenida -->
+    <!-- Pantalla de Bienvenida con Estilo Dorado Elegante -->
     <div id="welcome-screen">
         <div class="welcome-box" onclick="unlockInvitation()" data-aos="zoom-in" data-aos-duration="1200">
             <div class="gold-seal">M&J</div>
-            <p class="font-serif text-warning small mb-2" style="letter-spacing: 3px;">NUESTRA BODA</p>
+            <p class="font-serif text-gold-gradient small mb-2" style="letter-spacing: 3px;">NUESTRA BODA</p>
             
             <div class="font-script text-white display-6 lh-1 mb-1">Melissa</div>
-            <div class="font-serif text-warning fs-5 my-1">&</div>
+            <div class="font-serif text-gold-gradient fs-5 my-1">&</div>
             <div class="font-script text-white display-6 lh-1 mt-1 mb-3">Jean Emanuel</div>
 
             <p class="text-white-50 small mb-4" style="letter-spacing: 2px;">23 . 01 . 2027</p>
-            <span class="btn btn-outline-warning rounded-pill px-4 py-2 text-uppercase small" style="letter-spacing: 2px;">Abrir Invitación</span>
+            <span class="btn btn-gold-outline rounded-pill px-4 py-2 text-uppercase small" style="letter-spacing: 2px;">Abrir Invitación</span>
         </div>
     </div>
 
@@ -807,7 +833,7 @@
                 AOS.refresh();
             }, 600);
 
-            // Volumen reducido al 30% para que no suene fuerte
+            // Volumen reducido al 30% suave
             audio.volume = 0.3;
             audio.play().then(() => {
                 isPlaying = true;
@@ -849,7 +875,6 @@
             const gallery = document.getElementById('galleryContainer');
             if (!gallery) return;
 
-            // Duplicamos los elementos hijos para simular el cilindro infinito real
             const items = Array.from(gallery.children);
             items.forEach(item => {
                 const clone = item.cloneNode(true);
