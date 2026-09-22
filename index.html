@@ -23,7 +23,9 @@
         :root {
             --primary-olive: #2c3821;
             --light-olive: #4e5e41;
-            --accent-gold: #c5a059;
+            --accent-gold: #d4af37;
+            --gold-light: #f9e7b9;
+            --gold-dark: #aa7c11;
             --bg-canvas: #f4f6f2;
             --card-bg: #ffffff;
             --text-main: #2b2b2b;
@@ -46,6 +48,18 @@
 
         .font-serif {
             font-family: 'Cinzel', serif;
+        }
+
+        /* --- CLASES DE DORADO METÁLICO GENERALES --- */
+        .text-gold-gradient {
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--accent-gold) 50%, var(--gold-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+
+        .border-gold {
+            border-color: var(--accent-gold) !important;
         }
 
         /* --- CANVAS DE FÍSICA PARA HOJAS REALES --- */
@@ -72,7 +86,7 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
-            perspective: 1000px; /* Vital para el efecto 3D */
+            perspective: 1000px;
             opacity: 1;
             visibility: visible;
             transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s ease;
@@ -88,12 +102,12 @@
         .welcome-box {
             background: rgba(255, 255, 255, 0.04);
             backdrop-filter: blur(16px);
-            border: 1.5px solid rgba(197, 160, 89, 0.45);
+            border: 1.5px solid rgba(212, 175, 55, 0.5);
             border-radius: 24px;
             padding: 45px 25px;
             max-width: 420px;
             width: 100%;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 0 20px rgba(197,160,89,0.15);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 0 20px rgba(212,175,55,0.15);
             cursor: pointer;
             transform-style: preserve-3d;
             transition: transform 0.1s ease-out, border-color 0.4s ease;
@@ -102,7 +116,6 @@
             overflow: hidden;
         }
 
-        /* Destello holográfico 3D en la tarjeta */
         .welcome-box::after {
             content: '';
             position: absolute;
@@ -110,7 +123,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.12) 0%, transparent 60%);
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(249,231,185,0.15) 0%, transparent 60%);
             pointer-events: none;
             transition: opacity 0.3s;
             opacity: 0;
@@ -120,52 +133,43 @@
             opacity: 1;
         }
 
-        /* Sello Dorado Metálico con profundidad 3D */
+        /* Sello Dorado Metálico */
         .gold-seal {
             width: 82px;
             height: 82px;
-            background: linear-gradient(135deg, #f3e0aa 0%, #c5a059 50%, #8e6c2b 100%);
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--accent-gold) 50%, var(--gold-dark) 100%);
             border-radius: 50%;
             margin: 0 auto 20px auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 10px 25px rgba(197,160,89,0.4);
+            box-shadow: 0 10px 25px rgba(212,175,55,0.4);
             font-family: 'Cinzel', serif;
             font-weight: 600;
             font-size: 1.6rem;
             color: #1b2416;
-            border: 1px solid rgba(255,255,255,0.5);
-            transform: translateZ(30px); /* Eleva el sello en el espacio 3D */
+            border: 1px solid rgba(255,255,255,0.6);
+            transform: translateZ(30px);
         }
 
-        /* Elementos flotantes dentro de la tarjeta 3D */
         .welcome-content-3d {
             transform: translateZ(20px);
         }
 
-        /* Texto con efecto dorado elegante */
-        .text-gold-gradient {
-            background: linear-gradient(135deg, #f3e0aa 0%, #c5a059 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 500;
-        }
-
-        /* Botón con borde y detalles dorados */
+        /* Botón Dorado Metálico */
         .btn-gold-outline {
-            color: #f3e0aa;
-            border: 1.5px solid #c5a059;
-            background: rgba(197, 160, 89, 0.08);
+            color: var(--gold-light);
+            border: 1.5px solid var(--accent-gold);
+            background: rgba(212, 175, 55, 0.1);
             transition: all 0.3s ease;
             transform: translateZ(25px);
         }
 
         .btn-gold-outline:hover {
-            background: linear-gradient(135deg, #f3e0aa 0%, #c5a059 100%);
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--accent-gold) 100%);
             color: #1b2416;
-            border-color: #f3e0aa;
-            box-shadow: 0 0 20px rgba(197,160,89,0.5);
+            border-color: var(--gold-light);
+            box-shadow: 0 0 20px rgba(212,175,55,0.6);
         }
 
         /* --- ANIMACIÓN DE GUÍA PARA BAJAR --- */
@@ -268,7 +272,7 @@
             font-size: 0.75rem;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: var(--accent-gold);
+            color: var(--gold-light);
             margin-bottom: 20px;
             background: rgba(0,0,0,0.2);
             backdrop-filter: blur(5px);
@@ -280,7 +284,7 @@
             padding: 15px 5px;
             border-radius: 12px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.04);
-            border: 1px solid rgba(197, 160, 89, 0.3);
+            border: 1px solid rgba(212, 175, 55, 0.4);
             text-align: center;
         }
 
@@ -309,7 +313,7 @@
             text-align: center;
         }
 
-        /* --- GALERÍA HORIZONTAL TIPO CILINDRO INFINITO --- */
+        /* --- GALERÍA HORIZONTAL TIPO CILINDRO INFINITO (Optimizado sin parpadeo) --- */
         .horizontal-gallery-container {
             display: flex;
             overflow-x: auto;
@@ -318,6 +322,7 @@
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
+            will-change: scroll-position;
         }
 
         .horizontal-photo-item {
@@ -329,6 +334,7 @@
             height: 350px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             cursor: pointer;
+            transform: translateZ(0); /* Aceleración por hardware para evitar parpadeos */
         }
 
         .horizontal-photo-item img {
@@ -525,7 +531,7 @@
         <section class="hero-section">
             <div class="hero-badge font-serif" data-aos="fade-down">Nuestra Boda</div>
             <h1 class="font-script display-2 mb-1" data-aos="zoom-in" data-aos-delay="200">Melissa</h1>
-            <span class="font-serif text-warning fs-4 my-2" data-aos="fade" data-aos-delay="300">&</span>
+            <span class="font-serif text-gold-gradient fs-4 my-2" data-aos="fade" data-aos-delay="300">&</span>
             <h1 class="font-script display-2 mt-1 mb-4" data-aos="zoom-in" data-aos-delay="400">Jean Emanuel</h1>
             <p class="font-serif fst-italic text-light px-3" style="max-width: 330px; font-size: 0.95rem; line-height: 1.6;" data-aos="fade-up" data-aos-delay="500">
                 “El sí más importante. Y tú, en primera fila”
@@ -570,7 +576,7 @@
             </div>
 
             <div class="guest-card-box mx-auto mt-4" style="max-width: 380px;" data-aos="zoom-in-up">
-                <span id="badgePases" class="badge rounded-circle p-2 fs-6 mb-2 font-serif" style="background: var(--primary-olive);">1</span>
+                <span id="badgePases" class="badge rounded-circle p-2 fs-6 mb-2 font-serif" style="background: var(--primary-olive); color: var(--gold-light);">1</span>
                 <h3 class="font-serif text-secondary text-uppercase small" style="letter-spacing: 2px;">Invitados</h3>
                 <div id="nombresInvitadosContainer" class="font-serif fs-5 fw-bold mt-1" style="color: var(--primary-olive);">
                     Estimado Invitado
@@ -687,7 +693,7 @@
                     <!-- Aquí se cargan dinámicamente las casillas con hojitas -->
                 </div>
 
-                <button type="button" onclick="enviarRSVP()" id="btnRsvp" class="btn btn-warning w-100 rounded-pill py-2 text-dark fw-bold text-uppercase small font-serif" style="letter-spacing: 1px;">
+                <button type="button" onclick="enviarRSVP()" id="btnRsvp" class="btn btn-warning w-100 rounded-pill py-2 text-dark fw-bold text-uppercase small font-serif" style="background: linear-gradient(135deg, var(--gold-light) 0%, var(--accent-gold) 100%); border: none; letter-spacing: 1px;">
                     Confirmar Asistencia
                 </button>
                 <div id="rsvpMensaje" class="mt-2 text-center small fw-bold"></div>
@@ -715,7 +721,7 @@
 
         <!-- Footer -->
         <footer>
-            <h3 class="font-script display-6 text-warning mb-1">Melissa & Jean Emanuel</h3>
+            <h3 class="font-script display-6 text-gold-gradient mb-1">Melissa & Jean Emanuel</h3>
             <p class="small text-white-50 mb-0 font-serif" style="letter-spacing: 3px;">23 . 01 . 2027</p>
         </footer>
 
@@ -748,19 +754,17 @@
 
             screen.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left; // Posición X dentro de la tarjeta
-                const y = e.clientY - rect.top;  // Posición Y dentro de la tarjeta
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
 
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
 
-                // Calcular ángulo de rotación 3D (máximo 12 grados)
                 const rotateX = -((y - centerY) / centerY) * 12;
                 const rotateY = ((x - centerX) / centerX) * 12;
 
                 card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
 
-                // Actualizar brillo holográfico
                 const percentX = (x / rect.width) * 100;
                 const percentY = (y / rect.height) * 100;
                 card.style.setProperty('--mouse-x', `${percentX}%`);
@@ -833,7 +837,6 @@
                     const length = 32;
                     const width = 13;
 
-                    // 1. Cuerpo principal de la hoja (Silueta estilizada)
                     ctx.beginPath();
                     ctx.moveTo(0, -length);
                     ctx.bezierCurveTo(width * 1.8, -length * 0.4, width * 1.1, length * 0.6, 0, length);
@@ -841,7 +844,6 @@
                     ctx.fillStyle = this.colorPair.main;
                     ctx.fill();
 
-                    // 2. Vena central principal
                     ctx.beginPath();
                     ctx.moveTo(0, -length + 4);
                     ctx.lineTo(0, length - 4);
@@ -849,7 +851,6 @@
                     ctx.lineWidth = 1.4;
                     ctx.stroke();
 
-                    // 3. Venas laterales simétricas (Esqueleto de la hoja)
                     ctx.strokeStyle = this.colorPair.vein;
                     ctx.lineWidth = 0.8;
                     const veinPairs = 5;
@@ -858,13 +859,11 @@
                         const currentY = -length + 4 + (length * 2 - 8) * t;
                         const currentWidthSpan = width * Math.sin(t * Math.PI) * 0.85;
 
-                        // Vena derecha
                         ctx.beginPath();
                         ctx.moveTo(0, currentY);
                         ctx.lineTo(currentWidthSpan, currentY - 5);
                         ctx.stroke();
 
-                        // Vena izquierda
                         ctx.beginPath();
                         ctx.moveTo(0, currentY);
                         ctx.lineTo(-currentWidthSpan, currentY - 5);
@@ -910,7 +909,6 @@
                 AOS.refresh();
             }, 1000);
 
-            // Volumen suave al 30%
             audio.volume = 0.3;
             audio.play().then(() => {
                 isPlaying = true;
@@ -947,11 +945,12 @@
             document.getElementById('lightbox').style.display = 'none';
         }
 
-        /* --- EFECTO CILINDRO / BUCLE INFINITO PARA LA GALERÍA --- */
+        /* --- EFECTO CILINDRO INFINITO CORREGIDO (SIN PARPADEOS) --- */
         function initCylinderInfiniteScroll() {
             const gallery = document.getElementById('galleryContainer');
             if (!gallery) return;
 
+            // Duplicamos los elementos hijos para crear el bucle
             const items = Array.from(gallery.children);
             items.forEach(item => {
                 const clone = item.cloneNode(true);
@@ -959,14 +958,21 @@
                 gallery.appendChild(clone);
             });
 
+            let isScrolling;
             gallery.addEventListener('scroll', () => {
-                const maxScroll = gallery.scrollWidth / 2;
-                if (gallery.scrollLeft >= maxScroll) {
-                    gallery.scrollLeft = 0;
-                } else if (gallery.scrollLeft <= 0) {
-                    gallery.scrollLeft = maxScroll - 1;
-                }
-            });
+                window.clearTimeout(isScrolling);
+
+                isScrolling = setTimeout(() => {
+                    const singleSetWidth = gallery.scrollWidth / 2;
+                    
+                    // Si el usuario llega al final del bloque duplicado, reubica sin parpadeo visual
+                    if (gallery.scrollLeft >= singleSetWidth) {
+                        gallery.scrollLeft = gallery.scrollLeft - singleSetWidth;
+                    } else if (gallery.scrollLeft <= 0) {
+                        gallery.scrollLeft = gallery.scrollLeft + singleSetWidth;
+                    }
+                }, 50);
+            }, { passive: true });
         }
 
         /* Cuenta Regresiva al 23 de Enero de 2027 */
@@ -987,9 +993,9 @@
             const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
             document.getElementById('dias').innerText = String(days).padStart(2, '0');
-            document.getElementById('horas').innerText = String(hours).padStart(2, '0');
-            document.getElementById('minutos').innerText = String(minutes).padStart(2, '0');
-            document.getElementById('segundos').innerText = String(seconds).padStart(2, '0');
+            document.getElementById('horas').innerText = String(horas).padStart(2, '0');
+            document.getElementById('minutos').innerText = String(minutos).padStart(2, '0');
+            document.getElementById('segundos').innerText = String(segundos).padStart(2, '0');
         }, 1000);
 
         /* --- SISTEMA DE INVITADOS Y RSVP INTERACTIVO CON HOJITAS --- */
