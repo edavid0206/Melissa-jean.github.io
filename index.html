@@ -243,7 +243,7 @@
             text-align: center;
         }
 
-        /* --- GALERÍA HORIZONTAL CON BUCLE INFINITO --- */
+        /* --- GALERÍA HORIZONTAL TIPO CILINDRO INFINITO --- */
         .horizontal-gallery-container {
             display: flex;
             overflow-x: auto;
@@ -510,7 +510,7 @@
             </div>
         </section>
 
-        <!-- 3. Galería Horizontal con Bucle Infinito -->
+        <!-- 3. Galería Horizontal Tipo Cilindro Infinito -->
         <section style="background: #eceee9; padding: 60px 0;" data-aos="fade-up">
             <div class="px-4 text-center">
                 <p class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Nuestros Recuerdos</p>
@@ -667,7 +667,7 @@
             });
             initHyperRealisticForestCanvas();
             cargarChecklistInvitados();
-            initInfiniteGalleryScroll();
+            initCylinderInfiniteScroll();
         });
 
         /* Motor de Física 2D Avanzado para Hojas Hiperrealistas con Venas Laterales */
@@ -807,7 +807,8 @@
                 AOS.refresh();
             }, 600);
 
-            audio.volume = 0.7;
+            // Volumen reducido al 30% para que no suene fuerte
+            audio.volume = 0.3;
             audio.play().then(() => {
                 isPlaying = true;
                 btnMusic.style.opacity = '1';
@@ -843,15 +844,25 @@
             document.getElementById('lightbox').style.display = 'none';
         }
 
-        /* --- BUCLE INFINITO PARA LA GALERÍA HORIZONTAL --- */
-        function initInfiniteGalleryScroll() {
+        /* --- EFECTO CILINDRO / BUCLE INFINITO PARA LA GALERÍA --- */
+        function initCylinderInfiniteScroll() {
             const gallery = document.getElementById('galleryContainer');
             if (!gallery) return;
 
+            // Duplicamos los elementos hijos para simular el cilindro infinito real
+            const items = Array.from(gallery.children);
+            items.forEach(item => {
+                const clone = item.cloneNode(true);
+                clone.addEventListener('click', () => openLightbox(clone));
+                gallery.appendChild(clone);
+            });
+
             gallery.addEventListener('scroll', () => {
-                // Si el usuario llega al final del desplazamiento horizontal, regresa instantáneamente al inicio
-                if (gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth - 5) {
-                    gallery.scrollTo({ left: 0, behavior: 'smooth' });
+                const maxScroll = gallery.scrollWidth / 2;
+                if (gallery.scrollLeft >= maxScroll) {
+                    gallery.scrollLeft = 0;
+                } else if (gallery.scrollLeft <= 0) {
+                    gallery.scrollLeft = maxScroll - 1;
                 }
             });
         }
