@@ -849,8 +849,8 @@
             if (!gallery) return;
 
             gallery.addEventListener('scroll', () => {
-                // Si llega cerca del final, salta suavemente al inicio
-                if (gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth - 10) {
+                // Si el usuario llega al final del desplazamiento horizontal, regresa instantáneamente al inicio
+                if (gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth - 5) {
                     gallery.scrollTo({ left: 0, behavior: 'smooth' });
                 }
             });
