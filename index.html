@@ -59,14 +59,14 @@
             z-index: 999;
         }
 
-        /* --- PANTALLA DE BIENVENIDA (Suavizada y elegante) --- */
+        /* --- PANTALLA DE BIENVENIDA (Fondo oscuro neutral elegante) --- */
         #welcome-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at center, #232d1d 0%, #0d120a 100%);
+            background: linear-gradient(135deg, #111510 0%, #070906 100%);
             z-index: 10000;
             display: flex;
             align-items: center;
@@ -76,9 +76,9 @@
         }
 
         .welcome-box {
-            background: rgba(20, 26, 17, 0.65);
+            background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(16px);
-            border: 1.5px solid rgba(197, 160, 89, 0.35);
+            border: 1.5px solid rgba(197, 160, 89, 0.4);
             border-radius: 24px;
             padding: 45px 25px;
             max-width: 420px;
@@ -165,7 +165,7 @@
 
         @media (min-width: 768px) {
             body {
-                background: #1b2416;
+                background: #111510;
                 padding: 40px 0;
             }
             .invitation-container {
@@ -243,7 +243,7 @@
             text-align: center;
         }
 
-        /* --- GALERÍA HORIZONTAL DESLIZABLE --- */
+        /* --- GALERÍA HORIZONTAL CON BUCLE INFINITO --- */
         .horizontal-gallery-container {
             display: flex;
             overflow-x: auto;
@@ -510,14 +510,14 @@
             </div>
         </section>
 
-        <!-- 3. Galería Horizontal Deslizable -->
+        <!-- 3. Galería Horizontal con Bucle Infinito -->
         <section style="background: #eceee9; padding: 60px 0;" data-aos="fade-up">
             <div class="px-4 text-center">
                 <p class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Nuestros Recuerdos</p>
                 <h2 class="font-serif h4 mb-4" style="color: var(--primary-olive);">Instantes</h2>
             </div>
 
-            <div class="horizontal-gallery-container">
+            <div class="horizontal-gallery-container" id="galleryContainer">
                 <!-- Foto 1 -->
                 <div class="horizontal-photo-item" onclick="openLightbox(this)">
                     <img src="fotos/foto1.JPG" alt="Atardecer Playa">
@@ -667,6 +667,7 @@
             });
             initHyperRealisticForestCanvas();
             cargarChecklistInvitados();
+            initInfiniteGalleryScroll();
         });
 
         /* Motor de Física 2D Avanzado para Hojas Hiperrealistas con Venas Laterales */
@@ -840,6 +841,19 @@
 
         function closeLightbox() {
             document.getElementById('lightbox').style.display = 'none';
+        }
+
+        /* --- BUCLE INFINITO PARA LA GALERÍA HORIZONTAL --- */
+        function initInfiniteGalleryScroll() {
+            const gallery = document.getElementById('galleryContainer');
+            if (!gallery) return;
+
+            gallery.addEventListener('scroll', () => {
+                // Si llega cerca del final, salta suavemente al inicio
+                if (gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth - 10) {
+                    gallery.scrollTo({ left: 0, behavior: 'smooth' });
+                }
+            });
         }
 
         /* Cuenta Regresiva al 23 de Enero de 2027 */
