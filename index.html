@@ -42,7 +42,7 @@
             font-family: 'Cormorant Garamond', serif;
         }
 
-        /* --- SOBRE VERDE OLIVO DE LUJO CON RELIEVE Y LACRE --- */
+        /* --- SOBRE CERRADO DE LUJO CON EFECTO 3D --- */
         #welcome-overlay {
             position: fixed;
             top: 0;
@@ -71,71 +71,76 @@
 
         .envelope-wrapper {
             position: relative;
-            width: 360px;
-            height: 250px;
-            background: #4e5e41;
+            width: 380px;
+            height: 260px;
+            background: #455339;
             border-radius: 6px;
             box-shadow: 0 30px 60px rgba(0,0,0,0.6), inset 0 0 40px rgba(0,0,0,0.2);
-            border: 1px solid rgba(197, 160, 89, 0.3);
+            border: 1px solid rgba(197, 160, 89, 0.4);
             cursor: pointer;
-            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transform-style: preserve-3d;
         }
 
         .envelope-wrapper:hover {
             transform: scale(1.02);
+            transition: transform 0.3s ease;
         }
 
+        /* Solapa superior cerrada (apuntando hacia el centro del sobre) */
         .envelope-flap {
             position: absolute;
             top: 0;
             left: 0;
             width: 0;
             height: 0;
-            border-left: 180px solid transparent;
-            border-right: 180px solid transparent;
-            border-top: 130px solid #455339;
+            border-left: 190px solid transparent;
+            border-right: 190px solid transparent;
+            border-top: 135px solid #4e5e41; /* Color ligeramente más claro para contraste de solapa */
             transform-origin: top;
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 4;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+            transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 5;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
         }
 
+        /* Bolsillos laterales e inferiores del sobre */
         .envelope-pocket {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #526344 0%, #455339 100%);
+            background: linear-gradient(135deg, #455339 0%, #38432d 100%);
             border-radius: 0 0 6px 6px;
-            clip-path: polygon(0 30%, 50% 65%, 100% 30%, 100% 100%, 0 100%);
-            z-index: 3;
-            border-top: 1px solid rgba(197, 160, 89, 0.4);
+            clip-path: polygon(0 40%, 50% 70%, 100% 40%, 100% 100%, 0 100%);
+            z-index: 4;
+            border-top: 1px solid rgba(197, 160, 89, 0.3);
         }
 
+        /* Marco elegante en relieve dorado (Gold Foil Frame) */
         .gold-emboss-frame {
             position: absolute;
             inset: 12px;
             border: 1px dashed rgba(197, 160, 89, 0.5);
             border-radius: 4px;
             pointer-events: none;
-            z-index: 2;
+            z-index: 3;
         }
 
+        /* Sello de lacre dorado interactivo situado en la punta de la solapa */
         .wax-seal {
             position: absolute;
-            top: 105px;
+            top: 110px;
             left: 50%;
             transform: translateX(-50%);
-            width: 65px;
-            height: 65px;
+            width: 60px;
+            height: 60px;
             background: radial-gradient(circle, var(--gold-light) 0%, var(--gold) 70%, #9e7933 100%);
             border-radius: 50%;
             box-shadow: 0 6px 15px rgba(0,0,0,0.4), inset 0 2px 4px rgba(255,255,255,0.6), inset 0 -2px 4px rgba(0,0,0,0.3);
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 5;
+            z-index: 6;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -148,22 +153,22 @@
             font-family: 'Cormorant Garamond', serif;
             font-style: italic;
             font-weight: bold;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             color: #2c3821;
             text-shadow: 0 1px 1px rgba(255,255,255,0.4);
         }
 
         .envelope-instruction {
             position: absolute;
-            bottom: 25px;
+            bottom: 20px;
             width: 100%;
             text-align: center;
-            z-index: 6;
+            z-index: 7;
             color: #f4f6f2;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             letter-spacing: 3px;
             text-transform: uppercase;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
             animation: pulseText 2s infinite ease-in-out;
             pointer-events: none;
         }
@@ -173,6 +178,7 @@
             50% { opacity: 1; }
         }
 
+        /* Estado Abierto: La solapa gira hacia arriba y el sello se desvanece */
         .envelope-wrapper.open .envelope-flap {
             transform: rotateX(180deg);
             z-index: 1;
@@ -188,11 +194,12 @@
             opacity: 0;
         }
 
+        /* Tarjeta interior que se desliza hacia arriba al abrir */
         .envelope-card-preview {
             position: absolute;
-            bottom: 10px;
-            left: 15px;
-            right: 15px;
+            bottom: 15px;
+            left: 20px;
+            right: 20px;
             height: 200px;
             background: #ffffff;
             border-radius: 4px;
@@ -203,12 +210,12 @@
             justify-content: center;
             padding: 15px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+            transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
             border: 1px solid rgba(197, 160, 89, 0.4);
         }
 
         .envelope-wrapper.open .envelope-card-preview {
-            transform: translateY(-160px);
+            transform: translateY(-170px);
         }
 
         /* --- CONTENEDOR PRINCIPAL --- */
@@ -731,14 +738,14 @@
 </head>
 <body>
 
-    <!-- Pantalla de Bienvenida: Sobre Verde Olivo con Relieve y Lacre -->
+    <!-- Pantalla de Bienvenida: Sobre Verde Olivo Cerrado con Lacre -->
     <div id="welcome-overlay">
         <div class="envelope-wrapper" id="envelope" onclick="openInvitation()">
             <div class="envelope-card-preview">
-                <span class="script-font" style="font-size: 2.2rem; color: var(--olive-main); line-height: 1;">Melissa</span>
-                <span style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; color: var(--gold);">&</span>
-                <span class="script-font" style="font-size: 2.2rem; color: var(--olive-main); line-height: 1;">Jean Emanuel</span>
-                <span style="font-size: 0.65rem; letter-spacing: 2px; color: #888; text-transform: uppercase; margin-top: 8px;">23 . 01 . 2027</span>
+                <span class="script-font" style="font-size: 2rem; color: var(--olive-main); line-height: 1;">Melissa</span>
+                <span style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.9rem; color: var(--gold);">&</span>
+                <span class="script-font" style="font-size: 2rem; color: var(--olive-main); line-height: 1;">Jean Emanuel</span>
+                <span style="font-size: 0.6rem; letter-spacing: 2px; color: #888; text-transform: uppercase; margin-top: 6px;">23 . 01 . 2027</span>
             </div>
             <div class="envelope-flap"></div>
             <div class="gold-emboss-frame"></div>
@@ -1005,18 +1012,21 @@
             const envelope = document.getElementById('envelope');
             const overlay = document.getElementById('welcome-overlay');
 
+            // Activa la apertura real del sobre cerrado
             envelope.classList.add('open');
 
+            // Inicia la música de fondo
             music.play().then(() => {
                 isPlaying = true;
             }).catch(e => console.log("Error al reproducir música:", e));
 
+            // Transición para quitar la pantalla del sobre y mostrar la invitación completa
             setTimeout(() => {
                 overlay.style.opacity = '0';
                 setTimeout(() => {
                     overlay.style.display = 'none';
                 }, 1000);
-            }, 900);
+            }, 1000);
         }
 
         function toggleMusic() {
