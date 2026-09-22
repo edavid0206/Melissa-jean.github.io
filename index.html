@@ -8,7 +8,7 @@
     <!-- --- ETIQUETAS DE VISTA PREVIA (OPEN GRAPH PARA WHATSAPP / REDES) --- -->
     <meta property="og:title" content="Boda Melissa & Jean Emanuel">
     <meta property="og:description" content="El sí más importante. Y tú, en primera fila. 23 . 01 . 2027">
-    <meta property="og:image" content="https://edavid0206.github.io/Melissa-jean.github.io/fotos/foto1.jpg">
+    <meta property="og:image" content="https://edavid0206.github.io/Melissa-jean.github.io/fotos/baec27ec-a089-418b-b8de-71dfd366730a.JPG">
     <meta property="og:url" content="https://edavid0206.github.io/Melissa-jean.github.io/">
     <meta property="og:type" content="website">
 
@@ -179,9 +179,9 @@
             text-align: center;
         }
 
-        /* --- PORTADA HERO --- */
+        /* --- PORTADA HERO (Restaurada con la foto de la ventana/espejo) --- */
         .hero-section {
-            background: linear-gradient(rgba(44,56,33,0.7), rgba(27,36,22,0.85)), url('fotos/foto1.jpg') center/cover;
+            background: linear-gradient(rgba(44,56,33,0.7), rgba(27,36,22,0.85)), url('fotos/baec27ec-a089-418b-b8de-71dfd366730a.JPG') center/cover;
             color: white;
             height: 100vh;
             display: flex;
@@ -412,9 +412,9 @@
         <img id="lightbox-img" src="" alt="Galería Boda">
     </div>
 
-    <!-- Audio Player -->
+    <!-- Audio Player apuntando correctamente a la carpeta local -->
     <audio id="wedding-audio" loop preload="auto">
-        <source src="cancion/fonseca.mp3" type="audio/mp3">
+        <source src="cancion/cancion.mp3" type="audio/mp3">
     </audio>
 
     <button class="music-toggle" id="musicBtn" onclick="toggleAudio()" style="display: none;" title="Música">♫</button>
@@ -487,44 +487,56 @@
             <div class="row g-2 px-2">
                 <div class="col-12" data-aos="zoom-in">
                     <div class="photo-item wide" onclick="openLightbox(this)">
-                        <img src="fotos/foto1.jpg" alt="Atardecer Playa">
+                        <img src="fotos/03ac8282-50cd-4a3b-8f4d-ed7c93bbce30.jpg" alt="Atardecer Playa">
                         <div class="photo-overlay"><span class="font-serif">Nuestro Amor</span></div>
                     </div>
                 </div>
                 <div class="col-6" data-aos="fade-right">
                     <div class="photo-item" onclick="openLightbox(this)">
-                        <img src="fotos/foto2.JPG" alt="Montaña">
+                        <img src="fotos/072c15f8-7c05-4ee1-a2b1-065eb71c63b9.JPG" alt="Montaña">
                         <div class="photo-overlay"><span class="font-serif">Aventuras</span></div>
                     </div>
                 </div>
                 <div class="col-6" data-aos="fade-left">
                     <div class="photo-item" onclick="openLightbox(this)">
-                        <img src="fotos/foto3.JPG" alt="Beso Atardecer">
+                        <img src="fotos/633b0e0f-5240-478f-9424-323af407a731.JPG" alt="Beso Atardecer">
                         <div class="photo-overlay"><span class="font-serif">Instantes</span></div>
                     </div>
                 </div>
                 <div class="col-6" data-aos="fade-right">
                     <div class="photo-item" onclick="openLightbox(this)">
-                        <img src="fotos/foto4.JPG" alt="Cena">
+                        <img src="fotos/25178100-15d5-40c0-8015-15200628d3f9.jpg" alt="Cena">
                         <div class="photo-overlay"><span class="font-serif">Miradas</span></div>
                     </div>
                 </div>
                 <div class="col-6" data-aos="fade-left">
                     <div class="photo-item" onclick="openLightbox(this)">
-                        <img src="fotos/foto5.jpg" alt="Iglesia">
-                        <div class="photo-overlay"><span class="font-serif">Camino Juntos</span></div>
+                        <img src="fotos/baec27ec-a089-418b-b8de-71dfd366730a.JPG" alt="Ventana/Espejo">
+                        <div class="photo-overlay"><span class="font-serif">Reserva la fecha</span></div>
                     </div>
                 </div>
                 <div class="col-6" data-aos="fade-right">
                     <div class="photo-item" onclick="openLightbox(this)">
-                        <img src="fotos/foto7.jpg" alt="Yosemite">
-                        <div class="photo-overlay"><span class="font-serif">Recuerdos</span></div>
+                        <img src="fotos/669c969a-fb4c-4976-81ae-cf1f8db3f387.JPG" alt="Cena restaurante">
+                        <div class="photo-overlay"><span class="font-serif">Cena Juntos</span></div>
                     </div>
                 </div>
                 <div class="col-6" data-aos="fade-left">
                     <div class="photo-item" onclick="openLightbox(this)">
-                        <img src="fotos/foto8.jpg" alt="Promesa">
+                        <img src="fotos/c7a2247a-be4c-432c-9ed1-3002a3bf9710.jpg" alt="Yosemite">
+                        <div class="photo-overlay"><span class="font-serif">Recuerdos</span></div>
+                    </div>
+                </div>
+                <div class="col-6" data-aos="fade-right">
+                    <div class="photo-item" onclick="openLightbox(this)">
+                        <img src="fotos/IMG_0964.jpg" alt="Anillo">
                         <div class="photo-overlay"><span class="font-serif">Promesa</span></div>
+                    </div>
+                </div>
+                <div class="col-6" data-aos="fade-left">
+                    <div class="photo-item" onclick="openLightbox(this)">
+                        <img src="fotos/IMG_3657.jpg" alt="Montaña selfie">
+                        <div class="photo-overlay"><span class="font-serif">Nuestra Historia</span></div>
                     </div>
                 </div>
             </div>
@@ -806,13 +818,11 @@
             let htmlList = '';
             let checklistHtml = '';
             
-            // Cargar nombres guardados previamente en este dispositivo si existen
             let savedRsvp = JSON.parse(localStorage.getItem('boda_rsvp_' + (urlGuests || 'default'))) || {};
 
             guestArray.forEach((name, index) => {
                 htmlList += `<div class="my-1">${name}</div>`;
                 
-                // Por defecto marcados si no hay registro previo
                 let isChecked = savedRsvp[name] !== undefined ? savedRsvp[name] : true;
 
                 checklistHtml += `
@@ -838,7 +848,6 @@
                 asistenciaData[cb.value] = cb.checked;
             });
 
-            // Guardar localmente para recordar la selección si vuelve a entrar a editar
             localStorage.setItem('boda_rsvp_' + (urlGuests || 'default'), JSON.stringify(asistenciaData));
 
             const btn = document.getElementById('btnRsvp');
@@ -847,16 +856,13 @@
             btn.disabled = true;
             btn.innerText = "Guardando...";
 
-            // URL DE TU GOOGLE APPS SCRIPT (Reemplaza la URL de abajo cuando crees tu Apps Script)
             const scriptURL = 'AQUÍ_PEGARÁS_TU_URL_DE_GOOGLE_SCRIPT';
 
             const formData = new FormData();
             formData.append('grupo', grupoNombre);
             formData.append('detalles', JSON.stringify(asistenciaData));
 
-            // Simulación o envío real a Google Sheets
             if (scriptURL === 'AQUÍ_PEGARÁS_TU_URL_DE_GOOGLE_SCRIPT') {
-                // Modo prueba local si aún no configuras el Apps Script
                 setTimeout(() => {
                     mensaje.className = "mt-2 text-center small fw-bold text-success";
                     mensaje.innerText = "¡Asistencia actualizada con éxito! Puedes volver a editarla cuando gustes.";
