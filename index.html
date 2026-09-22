@@ -60,7 +60,6 @@
             transition: opacity 1s ease, visibility 1s ease;
         }
 
-        /* Textura de papel fino estilo lino/acuarela */
         #welcome-overlay::before {
             content: "";
             position: absolute;
@@ -86,7 +85,6 @@
             transform: scale(1.02);
         }
 
-        /* Solapa superior del sobre */
         .envelope-flap {
             position: absolute;
             top: 0;
@@ -102,7 +100,6 @@
             filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
         }
 
-        /* Bolsillo frontal del sobre */
         .envelope-pocket {
             position: absolute;
             bottom: 0;
@@ -116,7 +113,6 @@
             border-top: 1px solid rgba(197, 160, 89, 0.4);
         }
 
-        /* Marco en relieve dorado (Gold Foil Frame) impreso en el sobre */
         .gold-emboss-frame {
             position: absolute;
             inset: 12px;
@@ -126,7 +122,6 @@
             z-index: 2;
         }
 
-        /* Sello de lacre dorado interactivo */
         .wax-seal {
             position: absolute;
             top: 105px;
@@ -158,7 +153,6 @@
             text-shadow: 0 1px 1px rgba(255,255,255,0.4);
         }
 
-        /* Texto guía en el sobre */
         .envelope-instruction {
             position: absolute;
             bottom: 25px;
@@ -179,7 +173,6 @@
             50% { opacity: 1; }
         }
 
-        /* Estado Abierto del Sobre */
         .envelope-wrapper.open .envelope-flap {
             transform: rotateX(180deg);
             z-index: 1;
@@ -195,7 +188,6 @@
             opacity: 0;
         }
 
-        /* Tarjeta interior deslizable que emerge del sobre */
         .envelope-card-preview {
             position: absolute;
             bottom: 10px;
@@ -219,7 +211,7 @@
             transform: translateY(-160px);
         }
 
-        /* Contenedor Principal Adaptable */
+        /* --- CONTENEDOR PRINCIPAL --- */
         .container {
             width: 100%;
             max-width: 480px;
@@ -242,7 +234,6 @@
             }
         }
 
-        /* Secciones Fluidas con Animación de Entrada */
         .content-section {
             width: 100%;
             padding: 75px 20px;
@@ -268,7 +259,6 @@
             opacity: 0.9;
         }
 
-        /* Botón de Música Flotante */
         .music-btn-translucent {
             position: fixed;
             bottom: 25px;
@@ -300,7 +290,6 @@
             transform: scale(1.1) rotate(10deg);
         }
 
-        /* Sección 1: Portada */
         .hero {
             position: relative;
             background: linear-gradient(rgba(20,28,15,0.55), rgba(20,28,15,0.65)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
@@ -400,7 +389,6 @@
             60% { transform: translateX(-50%) translateY(-3px); }
         }
 
-        /* Sección 2: Cuenta Regresiva */
         .window-content-flex {
             display: flex;
             flex-direction: column;
@@ -521,7 +509,6 @@
             border-bottom: none;
         }
 
-        /* Sección 3: Galería Fotomatón Deslizante */
         .photobooth-strip {
             background: #ffffff;
             padding: 15px 15px 30px 15px;
@@ -565,7 +552,6 @@
             76%, 100% { transform: translateY(-450px); }
         }
 
-        /* Sección 4: Ceremonia y Celebración */
         .events-grid {
             display: flex;
             flex-direction: column;
@@ -631,7 +617,6 @@
             transform: translateY(-2px);
         }
 
-        /* Sección 5: Color Reservado */
         .info-card {
             background: linear-gradient(135deg, #ffffff 0%, var(--olive-light) 100%);
             padding: 30px 20px;
@@ -669,7 +654,6 @@
             transform: scale(1.15);
         }
 
-        /* Sección 6: Confirmación RSVP */
         .rsvp-box {
             background: white;
             padding: 35px 25px;
@@ -725,7 +709,6 @@
             fill: var(--olive-dark);
         }
 
-        /* Footer */
         .footer-section {
             background: #232c1b;
             color: #f5f2eb;
@@ -1022,15 +1005,12 @@
             const envelope = document.getElementById('envelope');
             const overlay = document.getElementById('welcome-overlay');
 
-            // Activar animación de apertura del sobre
             envelope.classList.add('open');
 
-            // Reproducir música romántica
             music.play().then(() => {
                 isPlaying = true;
             }).catch(e => console.log("Error al reproducir música:", e));
 
-            // Desvanecer la pantalla de bienvenida después de que se abra el sobre
             setTimeout(() => {
                 overlay.style.opacity = '0';
                 setTimeout(() => {
