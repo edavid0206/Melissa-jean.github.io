@@ -69,25 +69,27 @@
             margin: 15px auto;
         }
 
-        .shimmer-olive-box {
-            background: linear-gradient(270deg, #2c3821, #4e5e41, #35472b, #658c6b, #2c3821);
-            background-size: 400% 400%;
-            animation: oliveShimmerAnimation 8s ease infinite;
+        /* Estilo de la hoja orgánica para la frase */
+        .leaf-quote-box {
+            background: rgba(44, 56, 33, 0.75);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(212, 175, 55, 0.4);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border-radius: 16px;
-            padding: 20px 25px;
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px; /* Forma orgánica tipo hoja */
+            padding: 25px 35px;
             margin: 0 auto;
-            max-width: 420px;
+            max-width: 440px;
             width: 90%;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+            position: relative;
         }
 
-        @keyframes oliveShimmerAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .leaf-quote-box::before {
+            content: "🌿";
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            opacity: 0.8;
         }
 
         #forest-canvas {
@@ -566,7 +568,7 @@
             <span class="font-serif text-gold-gradient fs-3 my-2" data-aos="fade" data-aos-delay="300">&</span>
             <h1 class="font-script display-3 mt-1 mb-4" data-aos="zoom-in" data-aos-delay="400" style="font-size: clamp(3.5rem, 7vw, 5rem);">Jean Emanuel</h1>
             
-            <div class="shimmer-olive-box" data-aos="fade-up" data-aos-delay="500">
+            <div class="leaf-quote-box" data-aos="fade-up" data-aos-delay="500">
                 <p id="txtHeroQuote" class="font-serif fst-italic text-white mb-0" style="font-size: 1rem; line-height: 1.6; text-shadow: 0 1px 3px rgba(0,0,0,0.3);">
                     “El sí más importante. Y tú, en primera fila.”
                 </p>
@@ -1021,13 +1023,13 @@
             const btn = document.getElementById('btnRsvp');
             const mensaje = document.getElementById('rsvpMensaje');
 
-            // RESTRICCIÓN DE LOS 29 DÍAS (puedes cambiar este número a 130 para tus pruebas actuales)
-            if (diasFaltantes <= 29) {
+            // RESTRICCIÓN DE PRUEBA: 130 DÍAS
+            if (diasFaltantes <= 130) {
                 btn.disabled = true;
                 mensaje.className = "mt-3 text-center small fw-bold text-danger";
                 mensaje.innerHTML = `
                     ¡El plazo regular de confirmación ha finalizado!<br>
-                    Estás a 29 días o menos del evento. Si deseas confirmar o consultar disponibilidad, por favor comunícate directamente:<br><br>
+                    Estás a 130 días o menos del evento. Si deseas confirmar o consultar disponibilidad, por favor comunícate directamente:<br><br>
                     📞 <strong>Melissa:</strong> <a href="https://wa.me/50689892294" target="_blank" style="color: #2c3821;">8989-2294</a><br>
                     📞 <strong>Jean Emanuel:</strong> <a href="https://wa.me/50686160583" target="_blank" style="color: #2c3821;">8616-0583</a>
                 `;
