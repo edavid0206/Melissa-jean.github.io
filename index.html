@@ -97,7 +97,7 @@
             z-index: 999;
         }
 
-        /* --- PANTALLA DE BIENVENIDA (3D RESPONSIVE) --- */
+        /* --- PANTALLA DE BIENVENIDA CON FLORES EN LAS ESQUINAS --- */
         #welcome-screen {
             position: fixed;
             top: 0;
@@ -110,7 +110,6 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
-            perspective: 1000px;
             opacity: 1;
             visibility: visible;
             transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s ease;
@@ -124,21 +123,48 @@
         }
 
         .welcome-box {
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(25, 33, 22, 0.85);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1.5px solid rgba(212, 175, 55, 0.5);
             border-radius: 24px;
-            padding: 40px 25px;
+            padding: 45px 30px;
             max-width: 420px;
             width: 100%;
             box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 0 20px rgba(212,175,55,0.15);
             cursor: pointer;
-            transform-style: preserve-3d;
-            transition: transform 0.1s ease-out, border-color 0.4s ease;
             text-align: center;
             position: relative;
             overflow: hidden;
+            transition: border-color 0.4s ease, transform 0.3s ease;
+        }
+
+        .welcome-box:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-4px);
+        }
+
+        /* Adornos florales en esquinas de la tarjeta de bienvenida */
+        .welcome-box::before,
+        .welcome-box::after {
+            content: "🌿";
+            position: absolute;
+            font-size: 1.8rem;
+            opacity: 0.85;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+            pointer-events: none;
+        }
+
+        .welcome-box::before {
+            top: 15px;
+            left: 18px;
+            transform: rotate(-35deg);
+        }
+
+        .welcome-box::after {
+            bottom: 15px;
+            right: 18px;
+            transform: rotate(145deg);
         }
 
         /* Sello Dorado Metálico */
@@ -157,11 +183,6 @@
             font-size: 1.5rem;
             color: #1b2416;
             border: 1px solid rgba(255,255,255,0.6);
-            transform: translateZ(30px);
-        }
-
-        .welcome-content-3d {
-            transform: translateZ(20px);
         }
 
         .btn-gold-outline {
@@ -169,7 +190,6 @@
             border: 1.5px solid var(--accent-gold);
             background: rgba(212, 175, 55, 0.1);
             transition: all 0.3s ease;
-            transform: translateZ(25px);
         }
 
         .btn-gold-outline:hover {
@@ -546,11 +566,11 @@
     <!-- Canvas para física avanzada de hojas de bosque hiperrealistas -->
     <canvas id="forest-canvas"></canvas>
 
-    <!-- Pantalla de Bienvenida con Efecto 3D Interactivo -->
+    <!-- Pantalla de Bienvenida con Marco Floral en las Esquinas -->
     <div id="welcome-screen">
-        <div class="welcome-box" id="welcomeBox" onclick="unlockInvitation()">
+        <div class="welcome-box" onclick="unlockInvitation()">
             <div class="gold-seal">M&J</div>
-            <div class="welcome-content-3d">
+            <div>
                 <p class="font-serif text-gold-gradient small mb-2" style="letter-spacing: 3px;">NUESTRA BODA</p>
                 
                 <div class="font-script text-white display-5 lh-1 mb-1" style="font-size: 3rem;">Melissa</div>
@@ -798,41 +818,7 @@
             initHyperRealisticForestCanvas();
             cargarChecklistInvitados();
             initCylinderInfiniteScroll();
-            init3DCardEffect();
         });
-
-        /* Efecto 3D Interactivo para la Tarjeta de Bienvenida */
-        function init3DCardEffect() {
-            const card = document.getElementById('welcomeBox');
-            const screen = document.getElementById('welcome-screen');
-
-            if (!card || !screen) return;
-
-            if (window.innerWidth < 768) return;
-
-            screen.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-
-                const rotateX = -((y - centerY) / centerY) * 12;
-                const rotateY = ((x - centerX) / centerX) * 12;
-
-                card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-
-                const percentX = (x / rect.width) * 100;
-                const percentY = (y / rect.height) * 100;
-                card.style.setProperty('--mouse-x', `${percentX}%`);
-                card.style.setProperty('--mouse-y', `${percentY}%`);
-            });
-
-            screen.addEventListener('mouseleave', () => {
-                card.style.transform = 'rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-            });
-        }
 
         /* Motor de Física 2D Avanzado para Hojas Hiperrealistas con Venas Laterales */
         function initHyperRealisticForestCanvas() {
