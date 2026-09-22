@@ -897,11 +897,13 @@
 
             const leaves = [];
             const leafCount = window.innerWidth < 768 ? 14 : 22;
+            
+            // Paleta mejorada con tonos naturales, suaves y orgánicos (oliva, salvia, musgo translúcido)
             const leafPalettes = [
-                { main: '#566e44', vein: '#222d18' },
-                { main: '#6b8254', vein: '#2d3b20' },
-                { main: '#7f9868', vein: '#384729' },
-                { main: '#94af7c', vein: '#435433' }
+                { main: 'rgba(92, 115, 75, 0.85)', vein: 'rgba(38, 51, 29, 0.9)' },  // Verde Oliva Suave
+                { main: 'rgba(110, 133, 90, 0.82)', vein: 'rgba(46, 61, 35, 0.9)' },  // Verde Salvia Cálido
+                { main: 'rgba(128, 148, 107, 0.8)', vein: 'rgba(54, 69, 41, 0.9)' },  // Verde Claro Orgánico
+                { main: 'rgba(80, 102, 65, 0.85)', vein: 'rgba(30, 41, 22, 0.9)' }   // Verde Musgo Natural
             ];
 
             class Leaf3D {
@@ -916,23 +918,22 @@
                     this.vy = Math.random() * 0.8 + 0.5;
                     this.scale = Math.random() * 0.35 + 0.6;
                     
-                    // Ángulos para rotación 3D en los ejes X e Y
-                    this.angleZ = Math.random() * Math.PI * 2; // Rotación plana
+                    this.angleZ = Math.random() * Math.PI * 2;
                     this.spinZ = Math.random() * 0.02 - 0.01;
                     
-                    this.angle3D = Math.random() * Math.PI * 2; // Ángulo para el giro 3D (efecto profundidad)
-                    this.spin3D = Math.random() * 0.03 + 0.015;  // Velocidad de giro tridimensional
+                    this.angle3D = Math.random() * Math.PI * 2;
+                    this.spin3D = Math.random() * 0.03 + 0.015;
                     
                     this.swingSpeed = Math.random() * 0.012 + 0.004;
                     this.palette = leafPalettes[Math.floor(Math.random() * leafPalettes.length)];
-                    this.opacity = Math.random() * 0.25 + 0.7;
+                    this.opacity = Math.random() * 0.2 + 0.65; // Transparencia natural equilibrada
                 }
 
                 update() {
                     this.y += this.vy;
                     this.x += Math.sin(this.y * this.swingSpeed) * 0.8 + this.vx;
                     this.angleZ += this.spinZ;
-                    this.angle3D += this.spin3D; // Avanza el giro 3D
+                    this.angle3D += this.spin3D;
 
                     if (this.y > canvas.height + 60) {
                         this.reset();
@@ -944,7 +945,6 @@
                     ctx.translate(this.x, this.y);
                     ctx.rotate(this.angleZ);
                     
-                    // EFECTO 3D: Usamos Math.cos en la escala horizontal para simular que la hoja gira sobre su eje y se ve de perfil
                     const depthFactor = Math.cos(this.angle3D);
                     ctx.scale(this.scale * depthFactor, this.scale);
                     
@@ -953,7 +953,7 @@
                     const len = 30;
                     const wid = 10;
 
-                    // Dibujo anatómico detallado de la hoja natural
+                    // Dibujo anatómico de la hoja
                     ctx.beginPath();
                     ctx.moveTo(0, -len);
                     ctx.bezierCurveTo(wid * 1.6, -len * 0.4, wid * 0.9, len * 0.7, 0, len);
@@ -969,7 +969,7 @@
                     ctx.lineWidth = 1.1;
                     ctx.stroke();
 
-                    // Venas secundarias (nervaduras reales)
+                    // Venas secundarias (nervaduras finas)
                     ctx.strokeStyle = this.palette.vein;
                     ctx.lineWidth = 0.6;
                     const pairs = 5;
