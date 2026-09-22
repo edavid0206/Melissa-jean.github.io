@@ -130,7 +130,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(rgba(44, 56, 33, 0.95), rgba(27, 36, 22, 0.97)), url('fotos/baec27ec-a089-418b-b8de-71dfd366730a.JPG') center/cover no-repeat;
+            /* Fondo verde más claro, suave y elegante combinado con la foto de fondo */
+            background: linear-gradient(rgba(78, 94, 65, 0.88), rgba(44, 56, 33, 0.92)), url('fotos/baec27ec-a089-418b-b8de-71dfd366730a.JPG') center/cover no-repeat;
             z-index: 10000;
             display: flex;
             align-items: center;
@@ -1058,7 +1059,6 @@
                 gallery.addEventListener(eventType, () => {
                     isUserInteracting = true;
                     clearTimeout(interactionTimeout);
-                    // Reanuda el movimiento automático 3 segundos después de soltar o dejar de tocar
                     interactionTimeout = setTimeout(() => {
                         isUserInteracting = false;
                     }, 3000);
