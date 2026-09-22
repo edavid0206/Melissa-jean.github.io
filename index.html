@@ -42,135 +42,146 @@
             font-family: 'Cormorant Garamond', serif;
         }
 
-        /* --- SOBRE CERRADO DE LUJO CON EFECTO 3D --- */
+        /* --- PANTALLA DE BIENVENIDA Y SOBRE TORNASOL --- */
         #welcome-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, #3d4c31 0%, #1a2313 100%);
+            background: radial-gradient(circle, #2c3821 0%, #151c10 100%);
             z-index: 9999;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            perspective: 1200px;
+            perspective: 1500px;
             overflow: hidden;
             transition: opacity 1s ease, visibility 1s ease;
         }
 
-        #welcome-overlay::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 0);
-            background-size: 24px 24px;
-            pointer-events: none;
-        }
-
-        .envelope-wrapper {
+        .envelope-container {
             position: relative;
-            width: 380px;
-            height: 260px;
-            background: #455339;
-            border-radius: 6px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.6), inset 0 0 40px rgba(0,0,0,0.2);
-            border: 1px solid rgba(197, 160, 89, 0.4);
+            width: 90%;
+            max-width: 440px;
+            height: 310px;
             cursor: pointer;
             transform-style: preserve-3d;
         }
 
-        .envelope-wrapper:hover {
-            transform: scale(1.02);
-            transition: transform 0.3s ease;
+        /* Cuerpo principal del sobre con efecto tornasol / tonos verde olivo */
+        .envelope-body {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, #5f7350 0%, #46563a 50%, #2f3a26 100%);
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6), inset 0 2px 5px rgba(255,255,255,0.2);
+            border: 1px solid rgba(197, 160, 89, 0.4);
+            z-index: 3;
         }
 
-        /* Solapa superior cerrada (apuntando hacia el centro del sobre) */
+        /* Solapas laterales e inferiores impresas en relieve para simular sobre real */
+        .envelope-pocket-left {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 220px solid #4a5c3d;
+            border-top: 140px solid transparent;
+            border-bottom: 80px solid #3c4b31;
+            border-radius: 0 0 0 10px;
+            z-index: 4;
+            opacity: 0.85;
+        }
+
+        .envelope-pocket-right {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-right: 220px solid #4a5c3d;
+            border-top: 140px solid transparent;
+            border-bottom: 80px solid #3c4b31;
+            border-radius: 0 0 10px 0;
+            z-index: 4;
+            opacity: 0.85;
+        }
+
+        /* Solapa superior cerrada con gradiente tornasol */
         .envelope-flap {
             position: absolute;
             top: 0;
             left: 0;
             width: 0;
             height: 0;
-            border-left: 190px solid transparent;
-            border-right: 190px solid transparent;
-            border-top: 135px solid #4e5e41; /* Color ligeramente más claro para contraste de solapa */
+            border-left: 220px solid transparent;
+            border-right: 220px solid transparent;
+            border-top: 150px solid #6b825c;
             transform-origin: top;
-            transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 5;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 6;
+            filter: drop-shadow(0 6px 8px rgba(0,0,0,0.3));
         }
 
-        /* Bolsillos laterales e inferiores del sobre */
-        .envelope-pocket {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #455339 0%, #38432d 100%);
-            border-radius: 0 0 6px 6px;
-            clip-path: polygon(0 40%, 50% 70%, 100% 40%, 100% 100%, 0 100%);
-            z-index: 4;
-            border-top: 1px solid rgba(197, 160, 89, 0.3);
-        }
-
-        /* Marco elegante en relieve dorado (Gold Foil Frame) */
+        /* Marco dorado elegante en relieve */
         .gold-emboss-frame {
             position: absolute;
-            inset: 12px;
-            border: 1px dashed rgba(197, 160, 89, 0.5);
-            border-radius: 4px;
+            inset: 15px;
+            border: 1.5px dashed rgba(197, 160, 89, 0.6);
+            border-radius: 6px;
             pointer-events: none;
-            z-index: 3;
+            z-index: 5;
         }
 
-        /* Sello de lacre dorado interactivo situado en la punta de la solapa */
+        /* Sello de lacre dorado interactivo */
         .wax-seal {
             position: absolute;
-            top: 110px;
+            top: 120px;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
-            height: 60px;
-            background: radial-gradient(circle, var(--gold-light) 0%, var(--gold) 70%, #9e7933 100%);
+            width: 70px;
+            height: 70px;
+            background: radial-gradient(circle, var(--gold-light) 0%, var(--gold) 70%, #8e6c2b 100%);
             border-radius: 50%;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.4), inset 0 2px 4px rgba(255,255,255,0.6), inset 0 -2px 4px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.7), inset 0 -2px 4px rgba(0,0,0,0.4);
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 6;
+            z-index: 7;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .wax-seal:hover {
-            transform: translateX(-50%) scale(1.1);
-            box-shadow: 0 8px 20px rgba(197,160,89,0.6);
+        .envelope-container:hover .wax-seal {
+            transform: translateX(-50%) scale(1.08);
+            box-shadow: 0 8px 25px rgba(197,160,89,0.7);
         }
 
         .wax-seal span {
             font-family: 'Cormorant Garamond', serif;
             font-style: italic;
             font-weight: bold;
-            font-size: 1.5rem;
+            font-size: 1.7rem;
             color: #2c3821;
             text-shadow: 0 1px 1px rgba(255,255,255,0.4);
         }
 
         .envelope-instruction {
             position: absolute;
-            bottom: 20px;
+            bottom: -35px;
             width: 100%;
             text-align: center;
-            z-index: 7;
+            z-index: 8;
             color: #f4f6f2;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             letter-spacing: 3px;
             text-transform: uppercase;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
             animation: pulseText 2s infinite ease-in-out;
-            pointer-events: none;
         }
 
         @keyframes pulseText {
@@ -178,47 +189,62 @@
             50% { opacity: 1; }
         }
 
-        /* Estado Abierto: La solapa gira hacia arriba y el sello se desvanece */
-        .envelope-wrapper.open .envelope-flap {
-            transform: rotateX(180deg);
-            z-index: 1;
-        }
-
-        .envelope-wrapper.open .wax-seal {
-            opacity: 0;
-            transform: translateX(-50%) scale(0.5);
-            transition: all 0.4s ease;
-        }
-
-        .envelope-wrapper.open .envelope-instruction {
-            opacity: 0;
-        }
-
-        /* Tarjeta interior que se desliza hacia arriba al abrir */
-        .envelope-card-preview {
+        /* --- TARJETA QUE SALE Y GIRA (FLIP & EXPAND) --- */
+        .envelope-card {
             position: absolute;
-            bottom: 15px;
+            bottom: 10px;
             left: 20px;
             right: 20px;
-            height: 200px;
+            height: 230px;
             background: #ffffff;
-            border-radius: 4px;
+            border-radius: 8px;
             z-index: 2;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
-            border: 1px solid rgba(197, 160, 89, 0.4);
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(197, 160, 89, 0.5);
+            transform-style: preserve-3d;
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), width 0.8s ease, height 0.8s ease, top 0.8s ease, left 0.8s ease, border-radius 0.8s ease;
         }
 
-        .envelope-wrapper.open .envelope-card-preview {
-            transform: translateY(-170px);
+        /* Animación cuando el usuario hace clic en el sobre */
+        .envelope-container.open .envelope-flap {
+            transform: rotateX(180deg);
+            z-index: 1;
         }
 
-        /* --- CONTENEDOR PRINCIPAL --- */
+        .envelope-container.open .wax-seal,
+        .envelope-container.open .envelope-instruction {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Fase 1: La tarjeta se asoma y da la vuelta (flip) */
+        .envelope-container.open .envelope-card {
+            transform: translateY(-160px) rotateY(360deg) scale(1);
+        }
+
+        /* Fase 2: Expansión de la tarjeta a pantalla completa revelando la invitación */
+        .envelope-container.expanded .envelope-card {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            bottom: auto;
+            right: auto;
+            transform: none;
+            border-radius: 0;
+            z-index: 99999;
+            box-shadow: none;
+            overflow-y: auto;
+            transition: all 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        /* --- CONTENEDOR PRINCIPAL DE LA INVITACIÓN --- */
         .container {
             width: 100%;
             max-width: 480px;
@@ -226,6 +252,7 @@
             background: var(--bg-color);
             position: relative;
             box-shadow: 0 0 40px rgba(0,0,0,0.08);
+            display: none; /* Se muestra al abrirse el sobre */
         }
 
         @media (min-width: 768px) {
@@ -266,6 +293,7 @@
             opacity: 0.9;
         }
 
+        /* Botón de Música Flotante */
         .music-btn-translucent {
             position: fixed;
             bottom: 25px;
@@ -297,6 +325,7 @@
             transform: scale(1.1) rotate(10deg);
         }
 
+        /* Sección 1: Portada */
         .hero {
             position: relative;
             background: linear-gradient(rgba(20,28,15,0.55), rgba(20,28,15,0.65)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
@@ -738,22 +767,26 @@
 </head>
 <body>
 
-    <!-- Pantalla de Bienvenida: Sobre Verde Olivo Cerrado con Lacre -->
+    <!-- Pantalla de Bienvenida: Sobre Grande Tornasol y Lacre Dorado -->
     <div id="welcome-overlay">
-        <div class="envelope-wrapper" id="envelope" onclick="openInvitation()">
-            <div class="envelope-card-preview">
-                <span class="script-font" style="font-size: 2rem; color: var(--olive-main); line-height: 1;">Melissa</span>
-                <span style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.9rem; color: var(--gold);">&</span>
-                <span class="script-font" style="font-size: 2rem; color: var(--olive-main); line-height: 1;">Jean Emanuel</span>
-                <span style="font-size: 0.6rem; letter-spacing: 2px; color: #888; text-transform: uppercase; margin-top: 6px;">23 . 01 . 2027</span>
+        <div class="envelope-container" id="envelopeContainer" onclick="openAndExpandEnvelope()">
+            <!-- Tarjeta que se asoma y luego gira / se expande -->
+            <div class="envelope-card">
+                <span class="script-font" style="font-size: 2.3rem; color: var(--olive-main); line-height: 1;">Melissa</span>
+                <span style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; color: var(--gold);">&</span>
+                <span class="script-font" style="font-size: 2.3rem; color: var(--olive-main); line-height: 1;">Jean Emanuel</span>
+                <span style="font-size: 0.7rem; letter-spacing: 3px; color: #777; text-transform: uppercase; margin-top: 10px;">23 / 01 / 2027</span>
             </div>
+            
+            <div class="envelope-pocket-left"></div>
+            <div class="envelope-pocket-right"></div>
+            <div class="envelope-body"></div>
             <div class="envelope-flap"></div>
             <div class="gold-emboss-frame"></div>
-            <div class="envelope-pocket"></div>
             <div class="wax-seal">
                 <span>M&J</span>
             </div>
-            <div class="envelope-instruction">Toca para abrir</div>
+            <div class="envelope-instruction">Toca el sobre para abrir</div>
         </div>
     </div>
 
@@ -762,7 +795,7 @@
         <source src="https://cdn.pixabay.com/download/audio/2022/10/14/audio_9939f792cb.mp3?filename=romantic-acoustic-guitar-120606.mp3" type="audio/mp3">
     </audio>
 
-    <div class="container">
+    <div class="container" id="mainContainer">
         <!-- SECCIÓN 1: Portada -->
         <div class="hero">
             <button class="music-btn-translucent" id="music-btn" onclick="toggleMusic()" title="Reproducir / Pausar Música">
@@ -1002,31 +1035,38 @@
             document.getElementById('listaNombresInvitados').innerHTML = `<div class="guest-item">Nuestros Queridos Invitados</div>`;
         }
 
-        /* Control de Música y Apertura del Sobre */
+        /* Control de Música y Animación del Sobre */
         const music = document.getElementById('bg-music');
         const musicBtn = document.getElementById('music-btn');
         music.volume = 0.3;
         let isPlaying = false;
 
-        function openInvitation() {
-            const envelope = document.getElementById('envelope');
+        function openAndExpandEnvelope() {
+            const container = document.getElementById('envelopeContainer');
             const overlay = document.getElementById('welcome-overlay');
+            const mainContainer = document.getElementById('mainContainer');
 
-            // Activa la apertura real del sobre cerrado
-            envelope.classList.add('open');
+            // 1. Abre la solapa y saca la tarjeta con giro 3D
+            container.classList.add('open');
 
-            // Inicia la música de fondo
+            // 2. Inicia la música romántica
             music.play().then(() => {
                 isPlaying = true;
             }).catch(e => console.log("Error al reproducir música:", e));
 
-            // Transición para quitar la pantalla del sobre y mostrar la invitación completa
+            // 3. Expande la tarjeta a pantalla completa después del giro
             setTimeout(() => {
+                container.classList.add('expanded');
+            }, 900);
+
+            // 4. Muestra la invitación completa y oculta el fondo del sobre
+            setTimeout(() => {
+                mainContainer.style.display = 'block';
                 overlay.style.opacity = '0';
                 setTimeout(() => {
                     overlay.style.display = 'none';
                 }, 1000);
-            }, 1000);
+            }, 1800);
         }
 
         function toggleMusic() {
