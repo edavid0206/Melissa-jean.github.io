@@ -864,7 +864,6 @@
 
             const leaves = [];
             const leafCount = window.innerWidth < 768 ? 12 : 20;
-            // Colores optimizados y con mejor contraste suave sobre el fondo oscuro de bienvenida
             const forestColors = [
                 { main: '#566e44', vein: '#2b3820' },
                 { main: '#6d8756', vein: '#364728' },
@@ -884,7 +883,7 @@
                     this.spin = Math.random() * 0.015 - 0.007;
                     this.swing = Math.random() * 0.012 + 0.004;
                     this.colorPair = forestColors[Math.floor(Math.random() * forestColors.length)];
-                    this.opacity = Math.random() * 0.3 + 0.5; // Suave y translúcido
+                    this.opacity = Math.random() * 0.3 + 0.5;
                 }
                 update() {
                     this.y += this.vy;
@@ -910,13 +909,33 @@
                     ctx.fillStyle = this.colorPair.main;
                     ctx.fill();
 
-                    // Vena central
+                    // Vena central de la hoja
                     ctx.beginPath();
                     ctx.moveTo(0, -length + 4);
                     ctx.lineTo(0, length - 4);
                     ctx.strokeStyle = this.colorPair.vein;
                     ctx.lineWidth = 1.2;
                     ctx.stroke();
+
+                    // Estrías y venas laterales detalladas
+                    ctx.strokeStyle = this.colorPair.vein;
+                    ctx.lineWidth = 0.7;
+                    const veinPairs = 4;
+                    for (let i = 1; i <= veinPairs; i++) {
+                        const t = i / (veinPairs + 1);
+                        const currentY = -length + 4 + (length * 2 - 8) * t;
+                        const currentWidthSpan = width * Math.sin(t * Math.PI) * 0.8;
+
+                        ctx.beginPath();
+                        ctx.moveTo(0, currentY);
+                        ctx.lineTo(currentWidthSpan, currentY - 4);
+                        ctx.stroke();
+
+                        ctx.beginPath();
+                        ctx.moveTo(0, currentY);
+                        ctx.lineTo(-currentWidthSpan, currentY - 4);
+                        ctx.stroke();
+                    }
 
                     ctx.restore();
                 }
@@ -997,7 +1016,7 @@
                 if (gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth - 2) {
                     gallery.scrollLeft = 0;
                 } else {
-                    gallery.scrollLeft += 1.2; // Velocidad de desplazamiento lento
+                    gallery.scrollLeft += 1.2;
                 }
             }, 30);
 
