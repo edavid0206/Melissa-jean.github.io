@@ -651,30 +651,34 @@
             animate();
         }
 
-        /* Desbloquear la invitación al hacer clic en el sello */
-        const audio = document.getElementById('wedding-audio');
-        audio.volume = 0.3;
-        let isPlaying = false;
-
+        /* Desbloquear la invitación al hacer clic en el sello y posicionar arriba */
         function unlockInvitation() {
             const screen = document.getElementById('welcome-screen');
             const app = document.getElementById('mainApp');
             const btnMusic = document.getElementById('musicBtn');
+            const audio = document.getElementById('wedding-audio');
 
             screen.style.opacity = '0';
             setTimeout(() => {
                 screen.style.display = 'none';
                 app.style.display = 'block';
                 btnMusic.style.display = 'flex';
+                
+                // Asegura que inicie exactamente en la parte de arriba
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
                 AOS.refresh();
             }, 600);
 
+            audio.volume = 0.3;
             audio.play().then(() => {
                 isPlaying = true;
             }).catch(e => console.log(e));
         }
 
+        let isPlaying = false;
         function toggleAudio() {
+            const audio = document.getElementById('wedding-audio');
             if (isPlaying) {
                 audio.pause();
                 isPlaying = false;
