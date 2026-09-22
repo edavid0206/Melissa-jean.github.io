@@ -1120,7 +1120,10 @@
         function enviarRSVP() {
             const checkboxes = document.querySelectorAll('.custom-leaf-checkbox');
             let asistenciaData = {};
-            let grupoNombre = urlGuestsParam || (isEnglish ? 'General Guest' : 'Invitado General');
+            
+            // Limpiamos y estandarizamos el nombre del grupo para que coincida exactamente en el script
+            let rawGrupo = urlGuestsParam || (isEnglish ? 'General Guest' : 'Invitado General');
+            let grupoNombre = decodeURIComponent(rawGrupo).trim();
 
             checkboxes.forEach(cb => {
                 asistenciaData[cb.value] = cb.checked;
