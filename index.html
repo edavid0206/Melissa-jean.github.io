@@ -40,7 +40,7 @@
 
         .font-script {
             font-family: 'Great Vibes', cursive;
-            padding: 0 15px; /* Evita que las letras con curvas pronunciadas se corten */
+            padding: 0 15px;
             display: inline-block;
         }
 
@@ -354,7 +354,7 @@
 
         /* --- CHECKLIST PERSONALIZADO CON HOJITAS (🌿) --- */
         .custom-leaf-checkbox {
-            display: none; /* Oculta el checkbox estándar */
+            display: none;
         }
 
         .custom-leaf-label {
@@ -368,7 +368,6 @@
             transition: color 0.2s;
         }
 
-        /* Simulación de la cajita en forma de hojita o selector natural */
         .custom-leaf-label::before {
             content: "🌿";
             display: inline-block;
@@ -379,7 +378,6 @@
             transition: all 0.2s ease;
         }
 
-        /* Cuando está marcado, resalta la hojita con color verde intenso */
         .custom-leaf-checkbox:checked + .custom-leaf-label::before {
             opacity: 1;
             transform: scale(1.2);
@@ -452,7 +450,7 @@
         <img id="lightbox-img" src="" alt="Galería Boda">
     </div>
 
-    <!-- Audio Player apuntando a la carpeta de canciones -->
+    <!-- Audio Player -->
     <audio id="wedding-audio" loop preload="auto">
         <source src="cancion/cancion.mp3" type="audio/mp3">
     </audio>
@@ -519,52 +517,66 @@
             </div>
         </section>
 
-        <!-- 3. Galería de Fotos (Rutas corregidas con extensiones exactas) -->
+        <!-- 3. Galería de Fotos Completa (Todas las imágenes incluidas) -->
         <section style="background: #eceee9;" data-aos="fade-up">
             <p class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Nuestros Recuerdos</p>
             <h2 class="font-serif h4 mb-4" style="color: var(--primary-olive);">Instantes</h2>
 
             <div class="row g-2 px-2">
+                <!-- Foto 1 (Ancha Principal) -->
                 <div class="col-12" data-aos="zoom-in">
                     <div class="photo-item wide" onclick="openLightbox(this)">
                         <img src="fotos/foto1.jpg" alt="Atardecer Playa">
                         <div class="photo-overlay"><span class="font-serif">Nuestro Amor</span></div>
                     </div>
                 </div>
+                <!-- Foto 2 -->
                 <div class="col-6" data-aos="fade-right">
                     <div class="photo-item" onclick="openLightbox(this)">
                         <img src="fotos/foto2.JPG" alt="Montaña">
                         <div class="photo-overlay"><span class="font-serif">Aventuras</span></div>
                     </div>
                 </div>
+                <!-- Foto 3 -->
                 <div class="col-6" data-aos="fade-left">
                     <div class="photo-item" onclick="openLightbox(this)">
                         <img src="fotos/foto3.JPG" alt="Beso Atardecer">
                         <div class="photo-overlay"><span class="font-serif">Instantes</span></div>
                     </div>
                 </div>
+                <!-- Foto 4 -->
                 <div class="col-6" data-aos="fade-right">
                     <div class="photo-item" onclick="openLightbox(this)">
                         <img src="fotos/foto4.JPG" alt="Cena">
                         <div class="photo-overlay"><span class="font-serif">Miradas</span></div>
                     </div>
                 </div>
+                <!-- Foto 5 -->
                 <div class="col-6" data-aos="fade-left">
                     <div class="photo-item" onclick="openLightbox(this)">
                         <img src="fotos/foto5.jpg" alt="Iglesia">
                         <div class="photo-overlay"><span class="font-serif">Camino Juntos</span></div>
                     </div>
                 </div>
+                <!-- Foto 7 -->
                 <div class="col-6" data-aos="fade-right">
                     <div class="photo-item" onclick="openLightbox(this)">
                         <img src="fotos/foto7.jpg" alt="Yosemite">
                         <div class="photo-overlay"><span class="font-serif">Recuerdos</span></div>
                     </div>
                 </div>
+                <!-- Foto 8 -->
                 <div class="col-6" data-aos="fade-left">
                     <div class="photo-item" onclick="openLightbox(this)">
                         <img src="fotos/foto8.jpg" alt="Promesa">
                         <div class="photo-overlay"><span class="font-serif">Promesa</span></div>
+                    </div>
+                </div>
+                <!-- Foto 9 -->
+                <div class="col-6" data-aos="fade-right">
+                    <div class="photo-item" onclick="openLightbox(this)">
+                        <img src="fotos/foto9.jpg" alt="Selfie Montaña">
+                        <div class="photo-overlay"><span class="font-serif">Nuestra Historia</span></div>
                     </div>
                 </div>
             </div>
@@ -824,7 +836,7 @@
             const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
             document.getElementById('dias').innerText = String(days).padStart(2, '0');
-            document.getElementById('horas').innerText = String(horas).padStart(2, '0');
+            document.getElementById('horas').innerText = String(hours).padStart(2, '0');
             document.getElementById('minutos').innerText = String(minutes).padStart(2, '0');
             document.getElementById('segundos').innerText = String(seconds).padStart(2, '0');
         }, 1000);
