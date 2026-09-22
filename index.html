@@ -13,13 +13,13 @@
     
     <style>
         :root {
-            --primary-olive: #3b4d38;
-            --light-olive: #60755c;
-            --accent-gold: #dfb15b;
-            --bg-canvas: #f7f6f2;
+            --primary-olive: #2c3821;
+            --light-olive: #4e5e41;
+            --accent-gold: #c5a059;
+            --bg-canvas: #f4f6f2;
             --card-bg: #ffffff;
             --text-main: #2b2b2b;
-            --text-muted: #666666;
+            --text-muted: #555555;
         }
 
         body {
@@ -38,8 +38,8 @@
             font-family: 'Cinzel', serif;
         }
 
-        /* --- EFECTO DE HOJITAS CAYENDO (LUA/PARTÍCULAS) --- */
-        #leaves-container {
+        /* --- EFECTO DE HOJAS DE BOSQUE REALES CAYENDO --- */
+        #forest-leaves-container {
             position: fixed;
             top: 0;
             left: 0;
@@ -50,37 +50,40 @@
             overflow: hidden;
         }
 
-        .falling-leaf {
+        .forest-leaf {
             position: absolute;
-            top: -10%;
-            background: rgba(96, 117, 92, 0.35);
-            border-radius: 150% 0 150% 0;
-            animation: fall linear infinite;
+            top: -10vh;
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.75;
+            animation: forestFall linear infinite;
         }
 
-        @keyframes fall {
+        @keyframes forestFall {
             0% {
                 transform: translateY(0) rotate(0deg) translateX(0);
-                opacity: 1;
+                opacity: 0.85;
             }
-            50% {
-                transform: translateY(50vh) rotate(180deg) translateX(50px);
-                opacity: 0.8;
+            33% {
+                transform: translateY(35vh) rotate(120deg) translateX(40px);
+            }
+            66% {
+                transform: translateY(70vh) rotate(240deg) translateX(-40px);
             }
             100% {
-                transform: translateY(105vh) rotate(360deg) translateX(-30px);
+                transform: translateY(105vh) rotate(360deg) translateX(20px);
                 opacity: 0;
             }
         }
 
-        /* --- PANTALLA DE BIENVEINDA (SELLO DE CRISTAL) --- */
+        /* --- PANTALLA DE BIENVENIDA (BOSQUE MÁGICO) --- */
         #welcome-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #242e22 0%, #111710 100%);
+            background: linear-gradient(135deg, #1b2416 0%, #0d120a 100%);
             z-index: 10000;
             display: flex;
             align-items: center;
@@ -90,14 +93,14 @@
         }
 
         .welcome-box {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(223, 177, 91, 0.3);
-            border-radius: 20px;
-            padding: 40px 25px;
-            max-width: 380px;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(14px);
+            border: 1.5px solid rgba(197, 160, 89, 0.4);
+            border-radius: 24px;
+            padding: 45px 30px;
+            max-width: 390px;
             width: 100%;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.7);
             cursor: pointer;
             transition: transform 0.4s ease;
             text-align: center;
@@ -108,19 +111,19 @@
         }
 
         .gold-seal {
-            width: 75px;
-            height: 75px;
-            background: radial-gradient(circle, #f3d48c 0%, var(--accent-gold) 70%, #9c7324 100%);
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #e6ca8a 0%, var(--accent-gold) 70%, #8e6c2b 100%);
             border-radius: 50%;
             margin: 0 auto 20px auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
             font-family: 'Cinzel', serif;
             font-weight: 600;
-            font-size: 1.5rem;
-            color: #242e22;
+            font-size: 1.6rem;
+            color: #1b2416;
         }
 
         /* --- CONTENEDOR GENERAL --- */
@@ -128,32 +131,32 @@
             max-width: 480px;
             margin: 0 auto;
             background: var(--bg-canvas);
-            box-shadow: 0 0 50px rgba(0,0,0,0.08);
+            box-shadow: 0 0 60px rgba(0,0,0,0.1);
             position: relative;
             display: none;
         }
 
         @media (min-width: 768px) {
             body {
-                background: #242e22;
+                background: #1b2416;
                 padding: 40px 0;
             }
             .invitation-container {
-                border-radius: 16px;
+                border-radius: 20px;
                 overflow: hidden;
             }
         }
 
         section {
-            padding: 70px 25px;
-            border-bottom: 1px solid rgba(0,0,0,0.04);
+            padding: 75px 25px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
             position: relative;
             text-align: center;
         }
 
         /* --- PORTADA HERO --- */
         .hero-section {
-            background: linear-gradient(rgba(36,46,34,0.65), rgba(36,46,34,0.75)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80') center/cover;
+            background: linear-gradient(rgba(27,36,22,0.6), rgba(27,36,22,0.75)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80') center/cover;
             color: white;
             height: 100vh;
             display: flex;
@@ -170,7 +173,7 @@
             padding: 15px 5px;
             border-radius: 12px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.04);
-            border: 1px solid rgba(223, 177, 91, 0.2);
+            border: 1px solid rgba(197, 160, 89, 0.3);
             text-align: center;
         }
 
@@ -228,7 +231,7 @@
         .photo-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 60%);
+            background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 60%);
             opacity: 0;
             transition: opacity 0.3s ease;
             display: flex;
@@ -252,7 +255,7 @@
         #lightbox {
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.9);
+            background: rgba(0,0,0,0.92);
             z-index: 20000;
             display: none;
             align-items: center;
@@ -285,7 +288,7 @@
             padding: 30px 20px;
             margin-bottom: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.03);
-            border: 1px solid rgba(96,117,92,0.1);
+            border: 1px solid rgba(78,94,65,0.15);
             text-align: center;
         }
 
@@ -325,38 +328,38 @@
             background: var(--primary-olive);
             color: white;
             border: none;
-            width: 45px;
-            height: 45px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             cursor: pointer;
             z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
         footer {
-            background: #1c241a;
+            background: #131a10;
             color: #d1d9cd;
-            padding: 40px 20px;
+            padding: 45px 20px;
             text-align: center;
         }
     </style>
 </head>
 <body>
 
-    <!-- Contenedor para el efecto de hojitas cayendo -->
-    <div id="leaves-container"></div>
+    <!-- Contenedor para el efecto de hojitas de bosque reales cayendo -->
+    <div id="forest-leaves-container"></div>
 
     <!-- Pantalla de Bienvenida -->
     <div id="welcome-screen">
-        <div class="welcome-box" onclick="unlockInvitation()">
+        <div class="welcome-box" onclick="unlockInvitation()" data-aos="zoom-in" data-aos-duration="1200">
             <div class="gold-seal">M&J</div>
             <p class="font-serif text-warning small mb-2" style="letter-spacing: 3px;">ESTÁS INVITADO</p>
             <h2 class="font-script text-white display-5 mb-2">Melissa & Jean Emanuel</h2>
             <p class="text-white-50 small mb-4" style="letter-spacing: 2px;">23 . 01 . 2027</p>
-            <span class="btn btn-outline-warning rounded-pill px-4 py-2 text-uppercase small" style="letter-spacing: 2px;">Abrir Invitación</span>
+            <span class="btn btn-outline-warning rounded-pill px-4 py-2 text-uppercase small" style="letter-spacing: 2px;">Entrar al Bosque</span>
         </div>
     </div>
 
@@ -390,9 +393,9 @@
         <!-- 2. Cuenta Regresiva & Pases -->
         <section data-aos="fade-up">
             <p class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Faltan</p>
-            <h2 class="font-serif h4 text-success mb-4">Cuenta Regresiva</h2>
+            <h2 class="font-serif h4 text-success mb-4" style="color: var(--primary-olive) !important;">Cuenta Regresiva</h2>
             
-            <div class="row g-2 justify-content: center max-w mx-auto" style="max-width: 360px;">
+            <div class="row g-2 justify-content-center max-w mx-auto" style="max-width: 360px;">
                 <div class="col-3">
                     <div class="countdown-card">
                         <span id="dias">00</span>
@@ -420,18 +423,18 @@
             </div>
 
             <div class="guest-card-box mx-auto mt-4" style="max-width: 380px;" data-aos="zoom-in-up">
-                <span id="badgePases" class="badge bg-success rounded-circle p-2 fs-6 mb-2">1</span>
+                <span id="badgePases" class="badge rounded-circle p-2 fs-6 mb-2" style="background: var(--primary-olive);">1</span>
                 <h3 class="font-serif text-secondary text-uppercase small" style="letter-spacing: 2px;">Pases Asignados</h3>
-                <div id="nombresInvitadosContainer" class="font-serif text-success fs-5 fw-bold mt-1">
+                <div id="nombresInvitadosContainer" class="font-serif fs-5 fw-bold mt-1" style="color: var(--primary-olive);">
                     Estimado Invitado
                 </div>
             </div>
         </section>
 
         <!-- 3. Galería de Fotos -->
-        <section style="background: #f2f0eb;" data-aos="fade-up">
+        <section style="background: #eceee9;" data-aos="fade-up">
             <p class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Nuestros Recuerdos</p>
-            <h2 class="font-serif h4 text-success mb-2">Galería de Amor</h2>
+            <h2 class="font-serif h4 mb-2" style="color: var(--primary-olive);">Galería de Amor</h2>
             <p class="text-muted small mb-4">Instantes que nos traen hasta aquí</p>
 
             <div class="row g-2 px-2">
@@ -459,11 +462,11 @@
         <!-- 4. Ubicaciones y Mapas -->
         <section data-aos="fade-up">
             <p class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Cuándo y Dónde</p>
-            <h2 class="font-serif h4 text-success mb-4">Ubicaciones</h2>
+            <h2 class="font-serif h4 mb-4" style="color: var(--primary-olive);">Ubicaciones</h2>
 
             <!-- Ceremonia -->
             <div class="event-box" data-aos="fade-up">
-                <h3 class="font-serif h5 text-success mb-2">Ceremonia Religiosa</h3>
+                <h3 class="font-serif h5 mb-2" style="color: var(--primary-olive);">Ceremonia Religiosa</h3>
                 <p class="text-muted small mb-1">Sábado 23 de Enero, 2027 — 3:00 p.m.[cite: 2]</p>
                 <p class="fw-medium small mb-3">Parroquia Nuestra Señora del Perpetuo Socorro, Corralillo[cite: 2]</p>
                 <a href="https://www.google.com/maps/place/Parroquia+Nuestra+Se%C3%B1ora+del+Perpetuo+Socorro+de+Corralillo/@10.2191875,-85.3755747,91m/data=!3m1!1e3!4m11!1m3!2m2!1scorralillo+parroquia!6e1!3m6!1s0x8f9fb8a27f09fe6b:0xb4590fe21821e1ed!8m2!3d10.2191062!4d-85.375523!15sChRjb3JyYWxpbGxvIHBhcnJvcXVpYZIBD2NhdGhvbGljX2NodXJjaOABAA!16s%2Fg%2F11x9xvmsl!5m1!1e2?entry=ttu" target="_blank" class="btn-map">Ver Ubicación en Mapa</a>
@@ -471,7 +474,7 @@
 
             <!-- Celebración -->
             <div class="event-box" data-aos="fade-up">
-                <h3 class="font-serif h5 text-success mb-2">Recepción & Fiesta</h3>
+                <h3 class="font-serif h5 mb-2" style="color: var(--primary-olive);">Recepción & Fiesta</h3>
                 <p class="text-muted small mb-1">Sábado 23 de Enero, 2027 — 5:00 p.m.[cite: 2]</p>
                 <p class="fw-medium small mb-3">Rancho La Amistad de Mario Mafio, Corralillo[cite: 2]</p>
                 <a href="https://www.google.com/maps/place/Rancho+La+Amisdad+de+Mario+Mafio/@10.1785555,-85.4299022,291m/data=!3m1!1e3!4m10!1m3!2m2!1scorralillo+parroquia!6e1!3m5!1s0x8f9fb99cc562a5e5:0x4f699aa2375e2239!8m2!3d10.178772!4d-85.4292963!16s%2Fg%2F11vlmb23h3!5m1!1e2?entry=ttu" target="_blank" class="btn-map">Ver Ubicación en Mapa</a>
@@ -479,22 +482,22 @@
         </section>
 
         <!-- 5. Código de Vestimenta -->
-        <section style="background: #f2f0eb;" data-aos="fade-up">
+        <section style="background: #eceee9;" data-aos="fade-up">
             <p class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Código de Vestimenta</p>
-            <h2 class="font-serif h4 text-success mb-3">Color Reservado</h2>
+            <h2 class="font-serif h4 mb-3" style="color: var(--primary-olive);">Color Reservado</h2>
             <p class="text-muted small mx-auto mb-3" style="max-width: 320px;">Agradecemos con mucho cariño evitar vestir tonos verdes o similares durante la celebración.</p>
             
             <div class="d-flex justify-content-center gap-3">
-                <div class="dot-color" style="background: #3b4d38;" title="Verde Oliva"></div>
-                <div class="dot-color" style="background: #242e22;" title="Verde Oscuro"></div>
-                <div class="dot-color" style="background: #60755c;" title="Verde Salvia"></div>
+                <div class="dot-color" style="background: #2c3821;" title="Verde Oliva Oscuro"></div>
+                <div class="dot-color" style="background: #4e5e41;" title="Verde Bosque"></div>
+                <div class="dot-color" style="background: #7a8b6e;" title="Verde Salvia"></div>
             </div>
         </section>
 
         <!-- 6. Confirmación de Asistencia (RSVP) -->
         <section data-aos="fade-up">
             <p class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Asistencia</p>
-            <h2 class="font-serif h4 text-success mb-3">RSVP</h2>
+            <h2 class="font-serif h4 mb-3" style="color: var(--primary-olive);">RSVP</h2>
             
             <div id="rsvpBlock">
                 <p class="text-muted small mb-4">Por favor, confírmanos tu presencia antes de la fecha límite.</p>
@@ -516,32 +519,47 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
-        /* Inicializar animaciones AOS al hacer scroll */
+        /* Inicializar animaciones AOS */
         document.addEventListener('DOMContentLoaded', function() {
             AOS.init({
                 duration: 1000,
                 once: true
             });
-            createFallingLeaves();
+            createForestLeaves();
         });
 
-        /* Generador dinámico de hojitas de olivo cayendo */
-        function createFallingLeaves() {
-            const container = document.getElementById('leaves-container');
-            const leafCount = 15;
+        /* Generador dinámico de hojas de bosque reales con SVG */
+        function createForestLeaves() {
+            const container = document.getElementById('forest-leaves-container');
+            const leafCount = 18;
+
+            // Formas de hojitas reales en SVG codificadas en Base64 para inyectarlas con naturalidad
+            const leafSvgPaths = [
+                "M10 0 C 15 15, 5 25, 0 35 C 5 25, 15 15, 10 0 Z", // Hoja curva delgada
+                "M12 2 C 18 12, 12 28, 6 40 C 2 28, 6 12, 12 2 Z"  // Hoja ancha de roble/bosque
+            ];
+
+            const colors = ['#36452f', '#4e5e41', '#637a53', '#7a8b6e', '#8fa381'];
 
             for (let i = 0; i < leafCount; i++) {
                 const leaf = document.createElement('div');
-                leaf.classList.add('falling-leaf');
+                leaf.classList.add('forest-leaf');
+
+                // Crear SVG dinámico para cada hoja
+                const path = leafSvgPaths[Math.floor(Math.random() * leafSvgPaths.length)];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const svgString = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 45' width='100%' height='100%'><path d='${path}' fill='${color}' opacity='0.85'/></svg>`;
                 
-                // Posición, tamaño y velocidad aleatoria
-                const size = Math.random() * 8 + 8; // entre 8px y 16px
+                leaf.style.backgroundImage = `url("data:image/svg+xml;utf8,${encodeURIComponent(svgString)}")`;
+
+                // Tamaños y posiciones aleatorias para realismo de bosque
+                const size = Math.random() * 16 + 12; // entre 12px y 28px
                 leaf.style.width = `${size}px`;
-                leaf.style.height = `${size * 1.8}px`;
+                leaf.style.height = `${size * 2}px`;
                 leaf.style.left = `${Math.random() * 100}vw`;
-                
-                const duration = Math.random() * 8 + 6; // entre 6s y 14s
-                const delay = Math.random() * 5;
+
+                const duration = Math.random() * 9 + 7; // entre 7s y 16s
+                const delay = Math.random() * 6;
                 leaf.style.animationDuration = `${duration}s`;
                 leaf.style.animationDelay = `${delay}s`;
 
@@ -564,7 +582,7 @@
                 screen.style.display = 'none';
                 app.style.display = 'block';
                 btnMusic.style.display = 'flex';
-                AOS.refresh(); // Refresca animaciones de la página activa
+                AOS.refresh();
             }, 600);
 
             audio.play().then(() => {
