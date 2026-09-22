@@ -404,9 +404,9 @@
         <img id="lightbox-img" src="" alt="Galería Boda">
     </div>
 
-    <!-- Audio Player con enlace directo optimizado de Google Drive -->
+    <!-- Audio Player con tu enlace de Audio.com -->
     <audio id="wedding-audio" loop preload="auto">
-        <source src="https://docs.google.com/uc?export=download&id=1ac1NYd8fLMF6tu31aJXooN8u8zDxkTNM" type="audio/mp3">
+        <source src="https://audio.com/efedavid2/audio/fonseca-que-suerte-tenerte-audio" type="audio/mp3">
     </audio>
 
     <button class="music-toggle" id="musicBtn" onclick="toggleAudio()" style="display: none;" title="Música">♫</button>
@@ -693,12 +693,12 @@
                 AOS.refresh();
             }, 600);
 
-            audio.volume = 0.5;
+            audio.volume = 0.6;
             audio.play().then(() => {
                 isPlaying = true;
                 btnMusic.style.opacity = '1';
             }).catch(e => {
-                console.log("Reproducción bloqueada o pausada por el navegador:", e);
+                console.log("Reproducción pausada por políticas del navegador:", e);
             });
         }
 
@@ -747,7 +747,7 @@
             const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
             document.getElementById('dias').innerText = String(days).padStart(2, '0');
-            document.getElementById('horas').innerText = String(horas).padStart(2, '0');
+            document.getElementById('horas').innerText = String(hours).padStart(2, '0');
             document.getElementById('minutos').innerText = String(minutes).padStart(2, '0');
             document.getElementById('segundos').innerText = String(seconds).padStart(2, '0');
 
