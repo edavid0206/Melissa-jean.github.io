@@ -64,6 +64,22 @@
             font-weight: 600;
         }
 
+        /* --- EFECTO TORNASOL VERDE MOVIBLE --- */
+        .text-green-shimmer {
+            background: linear-gradient(270deg, #a3c1ad, #658c6b, #d4ebd0, #4e7a53, #a3c1ad);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: greenShimmerAnimation 6s ease infinite;
+            font-weight: 500;
+        }
+
+        @keyframes greenShimmerAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         /* --- CANVAS DE FÍSICA PARA HOJAS REALES --- */
         #forest-canvas {
             position: fixed;
@@ -509,7 +525,7 @@
         footer {
             background: #131a10;
             color: #d1d9cd;
-            padding: 40px 20px;
+            padding: 45px 20px;
             text-align: center;
         }
     </style>
@@ -558,7 +574,9 @@
             <h1 class="font-script display-3 mb-1" data-aos="zoom-in" data-aos-delay="200" style="font-size: 3.5rem;">Melissa</h1>
             <span class="font-serif text-gold-gradient fs-4 my-2" data-aos="fade" data-aos-delay="300">&</span>
             <h1 class="font-script display-3 mt-1 mb-4" data-aos="zoom-in" data-aos-delay="400" style="font-size: 3.5rem;">Jean Emanuel</h1>
-            <p class="font-serif fst-italic text-light px-3" style="max-width: 320px; font-size: 0.9rem; line-height: 1.6;" data-aos="fade-up" data-aos-delay="500">
+            
+            <!-- Frase con Efecto Tornasol Verde Dinámico -->
+            <p class="font-serif fst-italic text-green-shimmer px-3" style="max-width: 320px; font-size: 0.95rem; line-height: 1.6;" data-aos="fade-up" data-aos-delay="500">
                 “El sí más importante. Y tú, en primera fila”
             </p>
 
@@ -744,9 +762,9 @@
             </div>
         </section>
 
-        <!-- Footer -->
-        <footer>
-            <h3 class="font-script display-6 text-gold-gradient mb-1" style="font-size: 2rem;">Melissa & Jean Emanuel</h3>
+        <!-- Footer corregido con padding lateral para evitar corte de la 'l' -->
+        <footer style="padding: 45px 15px; text-align: center; overflow: hidden;">
+            <h3 class="font-script text-gold-gradient mb-1" style="font-size: clamp(1.8rem, 5vw, 2.5rem); line-height: 1.4; padding: 0 10px; display: inline-block;">Melissa & Jean Emanuel</h3>
             <p class="small text-white-50 mb-0 font-serif" style="letter-spacing: 3px;">23 . 01 . 2027</p>
         </footer>
 
