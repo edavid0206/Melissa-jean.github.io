@@ -560,7 +560,6 @@
                 Agradecemos con mucho cariño evitar vestir tonos verdes o similares durante la celebración.
             </p>
 
-            <!-- Detalle para área verde / aire libre -->
             <div class="bg-white p-3 rounded-3 shadow-sm mx-auto mb-4 border border-success-subtle" style="max-width: 350px;">
                 <p class="font-serif small fw-bold text-success mb-1">🌿 Ambiente al aire libre</p>
                 <p class="text-muted" style="font-size: 0.8rem; margin-bottom: 0;">
@@ -575,14 +574,22 @@
             </div>
         </section>
 
-        <!-- 6. Confirmación de Asistencia (RSVP) -->
+        <!-- 6. Confirmación de Asistencia (RSVP Interactivo) -->
         <section data-aos="fade-up">
             <p class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Asistencia</p>
             <h2 class="font-serif h4 mb-3" style="color: var(--primary-olive);">RSVP</h2>
             
-            <div id="rsvpBlock">
-                <p class="text-muted small mb-4">Por favor, confírmanos tu presencia antes de la fecha límite.</p>
-                <a href="https://forms.gle/TU_ENLACE_DE_FORMULARIO" target="_blank" class="btn btn-warning rounded-pill px-4 py-2 text-dark fw-bold text-uppercase small font-serif" style="letter-spacing: 1px;">Confirmar Asistencia</a>
+            <div id="rsvpBlock" class="bg-white p-4 rounded-4 shadow-sm mx-auto" style="max-width: 380px; text-align: left;">
+                <p class="text-muted small text-center mb-3">Selecciona quiénes asistirán de tu pase y haz clic en confirmar:</p>
+                
+                <div id="checklistContainer" class="mb-3">
+                    <!-- Aquí se cargan dinámicamente las casillas -->
+                </div>
+
+                <button type="button" onclick="enviarRSVP()" id="btnRsvp" class="btn btn-warning w-100 rounded-pill py-2 text-dark fw-bold text-uppercase small font-serif" style="letter-spacing: 1px;">
+                    Confirmar Asistencia
+                </button>
+                <div id="rsvpMensaje" class="mt-2 text-center small fw-bold"></div>
             </div>
         </section>
 
@@ -607,6 +614,7 @@
                 once: true
             });
             initHyperRealisticForestCanvas();
+            cargarChecklistInvitados();
         });
 
         /* Motor de Física 2D Avanzado para Hojas Hiperrealistas con Vena Central */
@@ -718,10 +726,7 @@
                 screen.style.display = 'none';
                 app.style.display = 'block';
                 btnMusic.style.display = 'flex';
-                
-                // Posiciona arriba exactamente
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-                
                 AOS.refresh();
             }, 600);
 
@@ -782,40 +787,97 @@
             document.getElementById('horas').innerText = String(horas).padStart(2, '0');
             document.getElementById('minutos').innerText = String(minutes).padStart(2, '0');
             document.getElementById('segundos').innerText = String(seconds).padStart(2, '0');
-
-            checkRsvpDeadline(days);
         }, 1000);
 
-        /* Regla de los 29 días para el RSVP */
-        function checkRsvpDeadline(daysLeft) {
-            const rsvpContainer = document.getElementById('rsvpBlock');
-            if (daysLeft <= 29 && daysLeft >= 0) {
-                rsvpContainer.innerHTML = `
-                    <p class="text-danger small fw-bold mb-3">El período de confirmación en línea ha finalizado (a menos de 29 días del evento). Si deseas consultar disponibilidad, comunícate a los teléfonos:</p>
-                    <div class="bg-white p-3 rounded-3 shadow-sm d-inline-block border border-warning">
-                        <a href="tel:89892294" class="d-block fw-bold text-success text-decoration-none fs-6 mb-1">📞 8989-2294</a>
-                        <a href="tel:86160583" class="d-block fw-bold text-success text-decoration-none fs-6">📞 8616-0583</a>
-                    </div>
-                `;
-            }
-        }
-
-        /* Sistema de Invitados Dinámicos por URL (?invitados=Nombre1,Nombre2) */
+        /* --- SISTEMA DE INVITADOS Y RSVP INTERACTIVO --- */
+        let guestArray = [];
         const params = new URLSearchParams(window.location.search);
         const urlGuests = params.get('invitados');
 
         if (urlGuests) {
-            const guestArray = urlGuests.split(',');
+            guestArray = urlGuests.split(',').map(name => decodeURIComponent(name.trim()));
+        } else {
+            guestArray = ['Familia & Acompañantes'];
+        }
+
+        function cargarChecklistInvitados() {
             document.getElementById('badgePases').innerText = guestArray.length;
             
             let htmlList = '';
-            guestArray.forEach(name => {
-                htmlList += `<div class="my-1">${decodeURIComponent(name.trim())}</div>`;
+            let checklistHtml = '';
+            
+            // Cargar nombres guardados previamente en este dispositivo si existen
+            let savedRsvp = JSON.parse(localStorage.getItem('boda_rsvp_' + (urlGuests || 'default'))) || {};
+
+            guestArray.forEach((name, index) => {
+                htmlList += `<div class="my-1">${name}</div>`;
+                
+                // Por defecto marcados si no hay registro previo
+                let isChecked = savedRsvp[name] !== undefined ? savedRsvp[name] : true;
+
+                checklistHtml += `
+                    <div class="form-check my-2">
+                        <input class="form-check-input guest-checkbox" type="checkbox" value="${name}" id="guest_${index}" ${isChecked ? 'checked' : ''}>
+                        <label class="form-check-label fw-medium small" for="guest_${index}" style="color: var(--primary-olive);">
+                            ${name}
+                        </label>
+                    </div>
+                `;
             });
+
             document.getElementById('nombresInvitadosContainer').innerHTML = htmlList;
-        } else {
-            document.getElementById('badgePases').innerText = '1';
-            document.getElementById('nombresInvitadosContainer').innerHTML = 'Familia & Acompañantes';
+            document.getElementById('checklistContainer').innerHTML = checklistHtml;
+        }
+
+        function enviarRSVP() {
+            const checkboxes = document.querySelectorAll('.guest-checkbox');
+            let asistenciaData = {};
+            let grupoNombre = urlGuests || 'Invitado General';
+
+            checkboxes.forEach(cb => {
+                asistenciaData[cb.value] = cb.checked;
+            });
+
+            // Guardar localmente para recordar la selección si vuelve a entrar a editar
+            localStorage.setItem('boda_rsvp_' + (urlGuests || 'default'), JSON.stringify(asistenciaData));
+
+            const btn = document.getElementById('btnRsvp');
+            const mensaje = document.getElementById('rsvpMensaje');
+            
+            btn.disabled = true;
+            btn.innerText = "Guardando...";
+
+            // URL DE TU GOOGLE APPS SCRIPT (Reemplaza la URL de abajo cuando crees tu Apps Script)
+            const scriptURL = 'AQUÍ_PEGARÁS_TU_URL_DE_GOOGLE_SCRIPT';
+
+            const formData = new FormData();
+            formData.append('grupo', grupoNombre);
+            formData.append('detalles', JSON.stringify(asistenciaData));
+
+            // Simulación o envío real a Google Sheets
+            if (scriptURL === 'AQUÍ_PEGARÁS_TU_URL_DE_GOOGLE_SCRIPT') {
+                // Modo prueba local si aún no configuras el Apps Script
+                setTimeout(() => {
+                    mensaje.className = "mt-2 text-center small fw-bold text-success";
+                    mensaje.innerText = "¡Asistencia actualizada con éxito! Puedes volver a editarla cuando gustes.";
+                    btn.disabled = false;
+                    btn.innerText = "Actualizar Asistencia";
+                }, 800);
+            } else {
+                fetch(scriptURL, { method: 'POST', body: formData })
+                .then(response => {
+                    mensaje.className = "mt-2 text-center small fw-bold text-success";
+                    mensaje.innerText = "¡Asistencia actualizada con éxito!";
+                    btn.disabled = false;
+                    btn.innerText = "Actualizar Asistencia";
+                })
+                .catch(error => {
+                    mensaje.className = "mt-2 text-center small fw-bold text-danger";
+                    mensaje.innerText = "Hubo un error al guardar. Inténtalo de nuevo.";
+                    btn.disabled = false;
+                    btn.innerText = "Confirmar Asistencia";
+                });
+            }
         }
     </script>
 </body>
