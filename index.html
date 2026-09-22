@@ -32,17 +32,23 @@
             --text-muted: #555555;
         }
 
+        /* --- CONFIGURACIÓN RESPONSIVE GLOBAL --- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--bg-canvas);
             color: var(--text-main);
             overflow-x: hidden;
+            margin: 0;
+            padding: 0;
             position: relative;
         }
 
         .font-script {
             font-family: 'Great Vibes', cursive;
-            padding: 0 15px;
             display: inline-block;
         }
 
@@ -58,10 +64,6 @@
             font-weight: 600;
         }
 
-        .border-gold {
-            border-color: var(--accent-gold) !important;
-        }
-
         /* --- CANVAS DE FÍSICA PARA HOJAS REALES --- */
         #forest-canvas {
             position: fixed;
@@ -73,7 +75,7 @@
             z-index: 999;
         }
 
-        /* --- PANTALLA DE BIENVENIDA (Contenedor 3D) --- */
+        /* --- PANTALLA DE BIENVENIDA (3D RESPONSIVE) --- */
         #welcome-screen {
             position: fixed;
             top: 0;
@@ -85,7 +87,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 15px;
             perspective: 1000px;
             opacity: 1;
             visibility: visible;
@@ -102,10 +104,11 @@
         .welcome-box {
             background: rgba(255, 255, 255, 0.04);
             backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border: 1.5px solid rgba(212, 175, 55, 0.5);
             border-radius: 24px;
-            padding: 45px 25px;
-            max-width: 420px;
+            padding: 35px 20px;
+            max-width: 400px;
             width: 100%;
             box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 0 20px rgba(212,175,55,0.15);
             cursor: pointer;
@@ -116,37 +119,20 @@
             overflow: hidden;
         }
 
-        .welcome-box::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(249,231,185,0.15) 0%, transparent 60%);
-            pointer-events: none;
-            transition: opacity 0.3s;
-            opacity: 0;
-        }
-
-        .welcome-box:hover::after {
-            opacity: 1;
-        }
-
         /* Sello Dorado Metálico */
         .gold-seal {
-            width: 82px;
-            height: 82px;
+            width: 75px;
+            height: 75px;
             background: linear-gradient(135deg, var(--gold-light) 0%, var(--accent-gold) 50%, var(--gold-dark) 100%);
             border-radius: 50%;
-            margin: 0 auto 20px auto;
+            margin: 0 auto 15px auto;
             display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: 0 10px 25px rgba(212,175,55,0.4);
             font-family: 'Cinzel', serif;
             font-weight: 600;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             color: #1b2416;
             border: 1px solid rgba(255,255,255,0.6);
             transform: translateZ(30px);
@@ -156,7 +142,6 @@
             transform: translateZ(20px);
         }
 
-        /* Botón Dorado Metálico */
         .btn-gold-outline {
             color: var(--gold-light);
             border: 1.5px solid var(--accent-gold);
@@ -175,14 +160,14 @@
         /* --- ANIMACIÓN DE GUÍA PARA BAJAR --- */
         .scroll-down-indicator {
             position: absolute;
-            bottom: 30px;
+            bottom: 25px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             flex-direction: column;
             align-items: center;
             color: rgba(255, 255, 255, 0.8);
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             animation: bounceScroll 2s infinite;
@@ -196,12 +181,12 @@
         }
 
         .scroll-down-indicator .arrow-icon {
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
             border-right: 2px solid var(--accent-gold);
             border-bottom: 2px solid var(--accent-gold);
             transform: rotate(45deg);
-            margin-top: -5px;
+            margin-top: -3px;
         }
 
         @keyframes bounceScroll {
@@ -216,12 +201,13 @@
             }
         }
 
-        /* --- CONTENEDOR GENERAL --- */
+        /* --- CONTENEDOR GENERAL RESPONSIVE --- */
         .invitation-container {
+            width: 100%;
             max-width: 480px;
             margin: 0 auto;
             background: var(--bg-canvas);
-            box-shadow: 0 0 60px rgba(0,0,0,0.1);
+            box-shadow: 0 0 50px rgba(0,0,0,0.1);
             position: relative;
             display: none;
             opacity: 0;
@@ -233,22 +219,30 @@
             opacity: 1;
         }
 
+        /* Adaptación para Tablets y Computadoras */
         @media (min-width: 768px) {
             body {
                 background: #111510;
-                padding: 40px 0;
+                padding: 30px 15px;
             }
             .invitation-container {
                 border-radius: 20px;
                 overflow: hidden;
+                box-shadow: 0 20px 50px rgba(0,0,0,0.5);
             }
         }
 
         section {
-            padding: 75px 25px;
+            padding: 65px 20px;
             border-bottom: 1px solid rgba(0,0,0,0.05);
             position: relative;
             text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            section {
+                padding: 80px 40px;
+            }
         }
 
         /* --- PORTADA HERO --- */
@@ -260,29 +254,34 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 30px;
+            padding: 20px;
             text-align: center;
             position: relative;
         }
 
         .hero-badge {
             border: 1px solid var(--accent-gold);
-            padding: 8px 20px;
+            padding: 6px 18px;
             border-radius: 30px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             letter-spacing: 3px;
             text-transform: uppercase;
             color: var(--gold-light);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             background: rgba(0,0,0,0.2);
             backdrop-filter: blur(5px);
         }
 
-        /* --- CONTADOR --- */
+        /* --- CONTADOR RESPONSIVE --- */
+        .countdown-wrapper {
+            max-width: 380px;
+            margin: 0 auto;
+        }
+
         .countdown-card {
             background: var(--card-bg);
-            padding: 15px 5px;
-            border-radius: 12px;
+            padding: 12px 2px;
+            border-radius: 10px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.04);
             border: 1px solid rgba(212, 175, 55, 0.4);
             text-align: center;
@@ -290,51 +289,72 @@
 
         .countdown-card span {
             display: block;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: 600;
             color: var(--primary-olive);
             font-family: 'Cinzel', serif;
         }
 
         .countdown-card small {
-            font-size: 0.55rem;
+            font-size: 0.5rem;
             text-transform: uppercase;
             color: var(--text-muted);
             letter-spacing: 1px;
         }
 
+        @media (min-width: 400px) {
+            .countdown-card span {
+                font-size: 1.3rem;
+            }
+            .countdown-card small {
+                font-size: 0.55rem;
+            }
+        }
+
         .guest-card-box {
             background: var(--card-bg);
             border-radius: 16px;
-            padding: 25px;
-            margin-top: 25px;
+            padding: 20px;
+            margin: 25px auto 0 auto;
+            max-width: 100%;
             box-shadow: 0 10px 25px rgba(0,0,0,0.04);
             border-left: 4px solid var(--accent-gold);
             text-align: center;
         }
 
-        /* --- GALERÍA HORIZONTAL TIPO CILINDRO INFINITO (Optimizado sin parpadeo) --- */
+        /* --- GALERÍA HORIZONTAL TIPO CILINDRO INFINITO RESPONSIVE --- */
         .horizontal-gallery-container {
             display: flex;
             overflow-x: auto;
             gap: 15px;
-            padding: 10px 25px 25px 25px;
+            padding: 10px 20px 25px 20px;
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
             will-change: scroll-position;
         }
 
+        .horizontal-gallery-container::-webkit-scrollbar {
+            display: none;
+        }
+
         .horizontal-photo-item {
-            flex: 0 0 280px;
+            flex: 0 0 260px;
             scroll-snap-align: center;
             position: relative;
             border-radius: 14px;
             overflow: hidden;
-            height: 350px;
+            height: 330px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             cursor: pointer;
-            transform: translateZ(0); /* Aceleración por hardware para evitar parpadeos */
+            transform: translateZ(0);
+        }
+
+        @media (min-width: 480px) {
+            .horizontal-photo-item {
+                flex: 0 0 280px;
+                height: 350px;
+            }
         }
 
         .horizontal-photo-item img {
@@ -357,7 +377,7 @@
             padding: 15px;
         }
 
-        /* Lightbox visor */
+        /* Lightbox Visor Responsive */
         #lightbox {
             position: fixed;
             inset: 0;
@@ -366,7 +386,7 @@
             display: none;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 15px;
         }
 
         #lightbox img {
@@ -374,24 +394,26 @@
             max-height: 85vh;
             border-radius: 8px;
             box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            object-fit: contain;
         }
 
         #lightbox-close {
             position: absolute;
-            top: 25px;
-            right: 25px;
+            top: 20px;
+            right: 20px;
             color: white;
-            font-size: 2rem;
+            font-size: 2.2rem;
             background: none;
             border: none;
             cursor: pointer;
+            z-index: 20001;
         }
 
         /* --- TARJETAS DE EVENTOS --- */
         .event-box {
             background: var(--card-bg);
             border-radius: 16px;
-            padding: 30px 20px;
+            padding: 25px 15px;
             margin-bottom: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.03);
             border: 1px solid rgba(78,94,65,0.15);
@@ -402,13 +424,13 @@
             display: inline-block;
             background-color: var(--primary-olive);
             color: white;
-            padding: 10px 24px;
+            padding: 10px 22px;
             border-radius: 30px;
             text-decoration: none;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            margin-top: 15px;
+            margin-top: 12px;
             transition: background 0.3s;
         }
 
@@ -426,11 +448,12 @@
             display: flex;
             align-items: center;
             cursor: pointer;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--primary-olive);
             font-weight: 500;
             padding: 6px 0;
             transition: color 0.2s;
+            text-align: left;
         }
 
         .custom-leaf-label::before {
@@ -441,6 +464,7 @@
             opacity: 0.3;
             transform: scale(0.9);
             transition: all 0.2s ease;
+            flex-shrink: 0;
         }
 
         .custom-leaf-checkbox:checked + .custom-leaf-label::before {
@@ -455,8 +479,8 @@
 
         /* --- PALETA DE COLORES --- */
         .dot-color {
-            width: 32px;
-            height: 32px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             border: 2px solid white;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -470,8 +494,8 @@
             background: var(--primary-olive);
             color: white;
             border: none;
-            width: 48px;
-            height: 48px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             cursor: pointer;
             z-index: 1000;
@@ -479,12 +503,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 1.1rem;
         }
 
         footer {
             background: #131a10;
             color: #d1d9cd;
-            padding: 45px 20px;
+            padding: 40px 20px;
             text-align: center;
         }
     </style>
@@ -501,9 +526,9 @@
             <div class="welcome-content-3d">
                 <p class="font-serif text-gold-gradient small mb-2" style="letter-spacing: 3px;">NUESTRA BODA</p>
                 
-                <div class="font-script text-white display-6 lh-1 mb-1">Melissa</div>
+                <div class="font-script text-white display-6 lh-1 mb-1" style="font-size: 2.5rem;">Melissa</div>
                 <div class="font-serif text-gold-gradient fs-5 my-1">&</div>
-                <div class="font-script text-white display-6 lh-1 mt-1 mb-3">Jean Emanuel</div>
+                <div class="font-script text-white display-6 lh-1 mt-1 mb-3" style="font-size: 2.5rem;">Jean Emanuel</div>
 
                 <p class="text-white-50 small mb-4" style="letter-spacing: 2px;">23 . 01 . 2027</p>
                 <span class="btn btn-gold-outline rounded-pill px-4 py-2 text-uppercase small" style="letter-spacing: 2px;">Abrir Invitación</span>
@@ -524,16 +549,16 @@
 
     <button class="music-toggle" id="musicBtn" onclick="toggleAudio()" style="display: none;" title="Música">♫</button>
 
-    <!-- Contenedor General -->
+    <!-- Contenedor General Responsive -->
     <div class="container invitation-container px-0" id="mainApp">
 
         <!-- 1. Portada Hero -->
         <section class="hero-section">
             <div class="hero-badge font-serif" data-aos="fade-down">Nuestra Boda</div>
-            <h1 class="font-script display-2 mb-1" data-aos="zoom-in" data-aos-delay="200">Melissa</h1>
+            <h1 class="font-script display-3 mb-1" data-aos="zoom-in" data-aos-delay="200" style="font-size: 3.5rem;">Melissa</h1>
             <span class="font-serif text-gold-gradient fs-4 my-2" data-aos="fade" data-aos-delay="300">&</span>
-            <h1 class="font-script display-2 mt-1 mb-4" data-aos="zoom-in" data-aos-delay="400">Jean Emanuel</h1>
-            <p class="font-serif fst-italic text-light px-3" style="max-width: 330px; font-size: 0.95rem; line-height: 1.6;" data-aos="fade-up" data-aos-delay="500">
+            <h1 class="font-script display-3 mt-1 mb-4" data-aos="zoom-in" data-aos-delay="400" style="font-size: 3.5rem;">Jean Emanuel</h1>
+            <p class="font-serif fst-italic text-light px-3" style="max-width: 320px; font-size: 0.9rem; line-height: 1.6;" data-aos="fade-up" data-aos-delay="500">
                 “El sí más importante. Y tú, en primera fila”
             </p>
 
@@ -548,7 +573,7 @@
         <section data-aos="fade-up">
             <p class="font-serif text-muted small text-uppercase mb-3" style="letter-spacing: 3px;">Faltan</p>
             
-            <div class="row g-2 justify-content-center mx-auto" style="max-width: 360px;">
+            <div class="row g-2 justify-content-center mx-auto countdown-wrapper">
                 <div class="col-3">
                     <div class="countdown-card">
                         <span id="dias">00</span>
@@ -575,18 +600,18 @@
                 </div>
             </div>
 
-            <div class="guest-card-box mx-auto mt-4" style="max-width: 380px;" data-aos="zoom-in-up">
+            <div class="guest-card-box mx-auto" data-aos="zoom-in-up">
                 <span id="badgePases" class="badge rounded-circle p-2 fs-6 mb-2 font-serif" style="background: var(--primary-olive); color: var(--gold-light);">1</span>
                 <h3 class="font-serif text-secondary text-uppercase small" style="letter-spacing: 2px;">Invitados</h3>
-                <div id="nombresInvitadosContainer" class="font-serif fs-5 fw-bold mt-1" style="color: var(--primary-olive);">
+                <div id="nombresInvitadosContainer" class="font-serif fs-5 fw-bold mt-1" style="color: var(--primary-olive); word-break: break-word;">
                     Estimado Invitado
                 </div>
             </div>
         </section>
 
         <!-- 3. Galería Horizontal Tipo Cilindro Infinito -->
-        <section style="background: #eceee9; padding: 60px 0;" data-aos="fade-up">
-            <div class="px-4 text-center">
+        <section style="background: #eceee9; padding: 50px 0;" data-aos="fade-up">
+            <div class="px-3 text-center">
                 <p class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Nuestros Recuerdos</p>
                 <h2 class="font-serif h4 mb-4" style="color: var(--primary-olive);">Instantes</h2>
             </div>
@@ -594,47 +619,47 @@
             <div class="horizontal-gallery-container" id="galleryContainer">
                 <!-- Foto 1 -->
                 <div class="horizontal-photo-item" onclick="openLightbox(this)">
-                    <img src="fotos/foto1.JPG" alt="Atardecer Playa">
+                    <img src="fotos/foto1.JPG" alt="Atardecer Playa" loading="lazy">
                     <div class="photo-overlay"><span class="font-serif text-white small" style="letter-spacing: 1.5px;">Nuestro Amor</span></div>
                 </div>
                 <!-- Foto 2 -->
                 <div class="horizontal-photo-item" onclick="openLightbox(this)">
-                    <img src="fotos/foto2.JPG" alt="Montaña">
+                    <img src="fotos/foto2.JPG" alt="Montaña" loading="lazy">
                     <div class="photo-overlay"><span class="font-serif text-white small" style="letter-spacing: 1.5px;">Aventuras</span></div>
                 </div>
                 <!-- Foto 3 -->
                 <div class="horizontal-photo-item" onclick="openLightbox(this)">
-                    <img src="fotos/foto3.JPG" alt="Beso Atardecer">
+                    <img src="fotos/foto3.JPG" alt="Beso Atardecer" loading="lazy">
                     <div class="photo-overlay"><span class="font-serif text-white small" style="letter-spacing: 1.5px;">Instantes</span></div>
                 </div>
                 <!-- Foto 4 -->
                 <div class="horizontal-photo-item" onclick="openLightbox(this)">
-                    <img src="fotos/foto4.JPG" alt="Cena">
+                    <img src="fotos/foto4.JPG" alt="Cena" loading="lazy">
                     <div class="photo-overlay"><span class="font-serif text-white small" style="letter-spacing: 1.5px;">Miradas</span></div>
                 </div>
                 <!-- Foto 5 -->
                 <div class="horizontal-photo-item" onclick="openLightbox(this)">
-                    <img src="fotos/foto5.JPG" alt="Iglesia">
+                    <img src="fotos/foto5.JPG" alt="Iglesia" loading="lazy">
                     <div class="photo-overlay"><span class="font-serif text-white small" style="letter-spacing: 1.5px;">Camino Juntos</span></div>
                 </div>
                 <!-- Foto 7 -->
                 <div class="horizontal-photo-item" onclick="openLightbox(this)">
-                    <img src="fotos/foto7.JPG" alt="Yosemite">
+                    <img src="fotos/foto7.JPG" alt="Yosemite" loading="lazy">
                     <div class="photo-overlay"><span class="font-serif text-white small" style="letter-spacing: 1.5px;">Recuerdos</span></div>
                 </div>
                 <!-- Foto 8 -->
                 <div class="horizontal-photo-item" onclick="openLightbox(this)">
-                    <img src="fotos/foto8.JPG" alt="Promesa">
+                    <img src="fotos/foto8.JPG" alt="Promesa" loading="lazy">
                     <div class="photo-overlay"><span class="font-serif text-white small" style="letter-spacing: 1.5px;">Promesa</span></div>
                 </div>
                 <!-- Foto 9 -->
                 <div class="horizontal-photo-item" onclick="openLightbox(this)">
-                    <img src="fotos/foto9.JPG" alt="Selfie Montaña">
+                    <img src="fotos/foto9.JPG" alt="Selfie Montaña" loading="lazy">
                     <div class="photo-overlay"><span class="font-serif text-white small" style="letter-spacing: 1.5px;">Nuestra Historia</span></div>
                 </div>
             </div>
             
-            <p class="text-muted small mt-2" style="font-size: 0.75rem; letter-spacing: 1px;">← Desliza para ver más →</p>
+            <p class="text-muted small mt-2 mb-0" style="font-size: 0.75rem; letter-spacing: 1px;">← Desliza para ver más →</p>
         </section>
 
         <!-- 4. Ubicaciones -->
@@ -663,11 +688,11 @@
             <p class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Código de Vestimenta</p>
             <h2 class="font-serif h4 mb-3" style="color: var(--primary-olive);">Color Reservado & Estilo</h2>
             
-            <p class="text-muted small mx-auto mb-3" style="max-width: 330px; line-height: 1.6;">
+            <p class="text-muted small mx-auto mb-3" style="max-width: 320px; line-height: 1.6;">
                 Agradecemos con mucho cariño evitar vestir tonos verdes o similares durante la celebración.
             </p>
 
-            <div class="bg-white p-3 rounded-3 shadow-sm mx-auto mb-4 border border-success-subtle" style="max-width: 350px;">
+            <div class="bg-white p-3 rounded-3 shadow-sm mx-auto mb-4 border border-success-subtle" style="max-width: 340px;">
                 <p class="font-serif small fw-bold text-success mb-1">🌿 Ambiente al aire libre</p>
                 <p class="text-muted" style="font-size: 0.8rem; margin-bottom: 0;">
                     La celebración se realizará en un área con zonas verdes, por lo que sugerimos calzado cómodo.
@@ -686,7 +711,7 @@
             <p class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Asistencia</p>
             <h2 class="font-serif h4 mb-3" style="color: var(--primary-olive);">RSVP</h2>
             
-            <div id="rsvpBlock" class="bg-white p-4 rounded-4 shadow-sm mx-auto" style="max-width: 380px; text-align: left;">
+            <div id="rsvpBlock" class="bg-white p-3 p-md-4 rounded-4 shadow-sm mx-auto" style="max-width: 380px; text-align: left;">
                 <p class="text-muted small text-center mb-3">Selecciona quiénes asistirán de tu pase y haz clic en confirmar:</p>
                 
                 <div id="checklistContainer" class="mb-3">
@@ -721,7 +746,7 @@
 
         <!-- Footer -->
         <footer>
-            <h3 class="font-script display-6 text-gold-gradient mb-1">Melissa & Jean Emanuel</h3>
+            <h3 class="font-script display-6 text-gold-gradient mb-1" style="font-size: 2rem;">Melissa & Jean Emanuel</h3>
             <p class="small text-white-50 mb-0 font-serif" style="letter-spacing: 3px;">23 . 01 . 2027</p>
         </footer>
 
@@ -751,6 +776,9 @@
             const screen = document.getElementById('welcome-screen');
 
             if (!card || !screen) return;
+
+            // Desactivar en pantallas táctiles pequeñas para evitar tirones
+            if (window.innerWidth < 768) return;
 
             screen.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
@@ -789,7 +817,7 @@
             resizeCanvas();
 
             const leaves = [];
-            const leafCount = 25;
+            const leafCount = window.innerWidth < 768 ? 15 : 25; // Menos hojas en móviles para optimizar rendimiento
             const forestColors = [
                 { main: '#2c3821', vein: '#1c2416' },
                 { main: '#3a4a2e', vein: '#26311e' },
@@ -950,7 +978,6 @@
             const gallery = document.getElementById('galleryContainer');
             if (!gallery) return;
 
-            // Duplicamos los elementos hijos para crear el bucle
             const items = Array.from(gallery.children);
             items.forEach(item => {
                 const clone = item.cloneNode(true);
@@ -965,7 +992,6 @@
                 isScrolling = setTimeout(() => {
                     const singleSetWidth = gallery.scrollWidth / 2;
                     
-                    // Si el usuario llega al final del bloque duplicado, reubica sin parpadeo visual
                     if (gallery.scrollLeft >= singleSetWidth) {
                         gallery.scrollLeft = gallery.scrollLeft - singleSetWidth;
                     } else if (gallery.scrollLeft <= 0) {
