@@ -492,15 +492,17 @@
             transform: translateY(-2px);
         }
 
-        /* --- NUEVO ESTILO TARJETAS RSVP INTERACTIVAS --- */
+        /* --- TARJETAS RSVP TOTALMENTE RESPONSIVE Y ADAPTABLES --- */
         .rsvp-card-option {
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
+            gap: 10px;
             background: #faf8f5;
             border: 1.5px solid #e0dbce;
             border-radius: 12px;
-            padding: 12px 18px;
+            padding: 12px 16px;
             margin-bottom: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -517,21 +519,25 @@
         }
 
         .rsvp-guest-name {
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             font-weight: 500;
             color: #555555;
+            word-break: break-word;
+            flex: 1 1 180px;
+            text-align: left;
             transition: color 0.3s ease;
         }
 
         .rsvp-status-badge {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-family: 'Cinzel', serif;
             text-transform: uppercase;
             letter-spacing: 1px;
-            padding: 4px 12px;
+            padding: 6px 14px;
             border-radius: 20px;
             background: #e9e5dc;
             color: #777777;
+            white-space: nowrap;
             transition: all 0.3s ease;
         }
 
@@ -1092,7 +1098,6 @@
                 htmlList += `<div class="my-1">${name}</div>`;
                 let isChecked = savedRsvp[name] !== undefined ? (savedRsvp[name] === "Sí") : true;
 
-                // Actualizado con diseño interactivo tipo tarjeta (Tarjeta RSVP)
                 checklistHtml += `
                     <div>
                         <input class="rsvp-checkbox-hidden" type="checkbox" value="${name}" id="guest_${index}" ${isChecked ? 'checked' : ''} onchange="actualizarEtiquetaRsvp(this)">
@@ -1108,7 +1113,6 @@
             document.getElementById('checklistContainer').innerHTML = checklistHtml;
         }
 
-        // Función auxiliar para actualizar dinámicamente el texto del estado al marcar/desmarcar
         function actualizarEtiquetaRsvp(checkbox) {
             const badge = document.getElementById('badge_' + checkbox.id);
             if (checkbox.checked) {
