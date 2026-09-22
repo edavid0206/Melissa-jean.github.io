@@ -171,7 +171,7 @@
             text-align: center;
         }
 
-        /* --- PORTADA HERO REDISEÑADA (ESTILO BODA DE JARDÍN / AIRE LIBRE) --- */
+        /* --- PORTADA HERO --- */
         .hero-section {
             background: linear-gradient(rgba(44,56,33,0.7), rgba(27,36,22,0.85)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80') center/cover;
             color: white;
@@ -414,7 +414,7 @@
     <!-- Contenedor General -->
     <div class="container invitation-container px-0" id="mainApp">
 
-        <!-- 1. Portada Hero Rediseñada (Romántica y Estilo Boda al Aire Libre) -->
+        <!-- 1. Portada Hero -->
         <section class="hero-section">
             <div class="hero-badge" data-aos="fade-down">Nuestra Boda</div>
             <h1 class="font-script display-2 mb-1" data-aos="zoom-in" data-aos-delay="200">Melissa</h1>
@@ -431,10 +431,9 @@
             </div>
         </section>
 
-        <!-- 2. Cuenta Regresiva & Pases -->
+        <!-- 2. Conteo & Invitados -->
         <section data-aos="fade-up">
-            <p class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Faltan</p>
-            <h2 class="font-serif h4 mb-4" style="color: var(--primary-olive) !important;">Cuenta Regresiva</h2>
+            <p class="font-serif text-muted small text-uppercase mb-3" style="letter-spacing: 3px;">Faltan</p>
             
             <div class="row g-2 justify-content-center mx-auto" style="max-width: 360px;">
                 <div class="col-3">
@@ -465,7 +464,7 @@
 
             <div class="guest-card-box mx-auto mt-4" style="max-width: 380px;" data-aos="zoom-in-up">
                 <span id="badgePases" class="badge rounded-circle p-2 fs-6 mb-2" style="background: var(--primary-olive);">1</span>
-                <h3 class="font-serif text-secondary text-uppercase small" style="letter-spacing: 2px;">Pases Asignados</h3>
+                <h3 class="font-serif text-secondary text-uppercase small" style="letter-spacing: 2px;">Invitados</h3>
                 <div id="nombresInvitadosContainer" class="font-serif fs-5 fw-bold mt-1" style="color: var(--primary-olive);">
                     Estimado Invitado
                 </div>
@@ -500,9 +499,8 @@
             </div>
         </section>
 
-        <!-- 4. Ubicaciones y Mapas -->
+        <!-- 4. Ubicaciones -->
         <section data-aos="fade-up">
-            <p class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Cuándo y Dónde</p>
             <h2 class="font-serif h4 mb-4" style="color: var(--primary-olive);">Ubicaciones</h2>
 
             <!-- Ceremonia -->
@@ -746,7 +744,7 @@
             const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
             document.getElementById('dias').innerText = String(days).padStart(2, '0');
-            document.getElementById('horas').innerText = String(horas).padStart(2, '0');
+            document.getElementById('horas').innerText = String(hours).padStart(2, '0');
             document.getElementById('minutos').innerText = String(minutes).padStart(2, '0');
             document.getElementById('segundos').innerText = String(seconds).padStart(2, '0');
 
