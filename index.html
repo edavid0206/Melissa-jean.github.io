@@ -69,7 +69,7 @@
             margin: 15px auto;
         }
 
-        /* Cuadro grande verde con efecto tornasol/brillo fluido y transición suave */
+        /* Cuadro verde con efecto tornasol/brillo fluido unificado */
         .shimmer-olive-box {
             background: linear-gradient(270deg, #2c3821, #4e5e41, #35472b, #658c6b, #2c3821);
             background-size: 400% 400%;
@@ -89,6 +89,23 @@
         .shimmer-olive-box:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Hero badge con el mismo estilo tornasol fluido */
+        .hero-badge {
+            background: linear-gradient(270deg, #2c3821, #4e5e41, #35472b, #658c6b, #2c3821);
+            background-size: 400% 400%;
+            animation: oliveShimmerAnimation 8s ease infinite;
+            border: 1px solid var(--accent-gold);
+            padding: 8px 22px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            backdrop-filter: blur(5px);
         }
 
         @keyframes oliveShimmerAnimation {
@@ -288,19 +305,6 @@
             padding: 20px;
             text-align: center;
             position: relative;
-        }
-
-        .hero-badge {
-            border: 1px solid var(--accent-gold);
-            padding: 6px 18px;
-            border-radius: 30px;
-            font-size: 0.75rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--gold-light);
-            margin-bottom: 15px;
-            background: rgba(0,0,0,0.2);
-            backdrop-filter: blur(5px);
         }
 
         .countdown-wrapper {
@@ -574,7 +578,7 @@
         <div class="welcome-box" onclick="unlockInvitation()" data-aos="zoom-in" data-aos-duration="1200">
             <div class="gold-seal">M&J</div>
             <div>
-                <p id="txtWelcomeTitle" class="font-serif text-gold-gradient small mb-2" style="letter-spacing: 3px;">NUESTRA BODA</p>
+                <p id="txtWelcomeTitle" class="font-serif text-gold-gradient small mb-2" style="letter-spacing: 3px;">Nuestra Boda</p>
                 <div class="gold-divider"></div>
                 
                 <div class="font-script text-white display-5 lh-1 mb-1" style="font-size: 3rem;">Melissa</div>
@@ -792,7 +796,7 @@
         const isEnglish = urlGuests && urlGuests.toLowerCase().includes('annie cortes');
 
         if (isEnglish) {
-            document.getElementById('txtWelcomeTitle').innerText = "OUR WEDDING";
+            document.getElementById('txtWelcomeTitle').innerText = "Our Wedding";
             document.getElementById('txtOpenBtn').innerText = "Open Invitation";
             document.getElementById('txtHeroBadge').innerText = "Our Wedding";
             document.getElementById('txtHeroQuote').innerText = "“The most important 'yes'. And you, right in the front row.”";
