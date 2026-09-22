@@ -105,7 +105,7 @@
             z-index: 999;
         }
 
-        /* --- PANTALLA DE BIENVENIDA CON DISEÑO ELEGANTE Y DORADOS --- */
+        /* --- PANTALLA DE BIENVENIDA CON MARCO DOBLE DORADO (SIN FLORES) --- */
         #welcome-screen {
             position: fixed;
             top: 0;
@@ -152,26 +152,6 @@
         .welcome-box:hover {
             box-shadow: 0 30px 70px rgba(0,0,0,0.9), inset 0 0 35px rgba(212,175,55,0.35);
             transform: translateY(-4px);
-        }
-
-        /* Posicionamiento de las esquinas florales vectoriales en dorado fino */
-        .floral-corner {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            pointer-events: none;
-            opacity: 0.9;
-        }
-
-        .floral-corner.top-left {
-            top: 12px;
-            left: 12px;
-        }
-
-        .floral-corner.bottom-right {
-            bottom: 12px;
-            right: 12px;
-            transform: rotate(180deg);
         }
 
         /* Sello Dorado Metálico Luminoso */
@@ -569,43 +549,9 @@
     <!-- Canvas para física avanzada de hojas de bosque hiperrealistas -->
     <canvas id="forest-canvas"></canvas>
 
-    <!-- Pantalla de Bienvenida con Elegantes Dorados y Marco Fino -->
+    <!-- Pantalla de Bienvenida con Marco Doble Dorado (Sin Flores) -->
     <div id="welcome-screen">
         <div class="welcome-box" onclick="unlockInvitation()">
-            <!-- Esquina Floral Superior Izquierda (Dorado Metálico) -->
-            <svg class="floral-corner top-left" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10 90C10 50 50 10 90 10" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round"/>
-                <path d="M10 70C10 40 40 10 70 10" stroke="#f9e7b9" stroke-width="1.2" stroke-linecap="round"/>
-                <!-- Flor principal dorada -->
-                <circle cx="35" cy="35" r="8" fill="#f9e7b9" stroke="#d4af37" stroke-width="1.5"/>
-                <circle cx="35" cy="35" r="3" fill="#aa7c11"/>
-                <!-- Pétalos -->
-                <ellipse cx="35" cy="22" rx="4" ry="7" fill="#f9e7b9" stroke="#d4af37" stroke-width="1"/>
-                <ellipse cx="35" cy="48" rx="4" ry="7" fill="#f9e7b9" stroke="#d4af37" stroke-width="1"/>
-                <ellipse cx="22" cy="35" rx="7" ry="4" fill="#f9e7b9" stroke="#d4af37" stroke-width="1"/>
-                <ellipse cx="48" cy="35" rx="7" ry="4" fill="#f9e7b9" stroke="#d4af37" stroke-width="1"/>
-                <!-- Hojas con acento dorado -->
-                <path d="M60 25C65 20 75 25 70 35C65 40 55 35 60 25Z" fill="#d4af37" opacity="0.85"/>
-                <path d="M25 60C20 65 25 75 35 70C40 65 35 55 25 60Z" fill="#d4af37" opacity="0.85"/>
-            </svg>
-
-            <!-- Esquina Floral Inferior Derecha (Dorado Metálico) -->
-            <svg class="floral-corner bottom-right" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10 90C10 50 50 10 90 10" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round"/>
-                <path d="M10 70C10 40 40 10 70 10" stroke="#f9e7b9" stroke-width="1.2" stroke-linecap="round"/>
-                <!-- Flor principal dorada -->
-                <circle cx="35" cy="35" r="8" fill="#f9e7b9" stroke="#d4af37" stroke-width="1.5"/>
-                <circle cx="35" cy="35" r="3" fill="#aa7c11"/>
-                <!-- Pétalos -->
-                <ellipse cx="35" cy="22" rx="4" ry="7" fill="#f9e7b9" stroke="#d4af37" stroke-width="1"/>
-                <ellipse cx="35" cy="48" rx="4" ry="7" fill="#f9e7b9" stroke="#d4af37" stroke-width="1"/>
-                <ellipse cx="22" cy="35" rx="7" ry="4" fill="#f9e7b9" stroke="#d4af37" stroke-width="1"/>
-                <ellipse cx="48" cy="35" rx="7" ry="4" fill="#f9e7b9" stroke="#d4af37" stroke-width="1"/>
-                <!-- Hojas con acento dorado -->
-                <path d="M60 25C65 20 75 25 70 35C65 40 55 35 60 25Z" fill="#d4af37" opacity="0.85"/>
-                <path d="M25 60C20 65 25 75 35 70C40 65 35 55 25 60Z" fill="#d4af37" opacity="0.85"/>
-            </svg>
-
             <div class="gold-seal">M&J</div>
             <div>
                 <p class="font-serif text-gold-gradient small mb-2" style="letter-spacing: 3px;">NUESTRA BODA</p>
