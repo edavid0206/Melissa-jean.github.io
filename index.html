@@ -26,13 +26,12 @@
             --accent-gold: #d4af37;
             --gold-light: #f9e7b9;
             --gold-dark: #aa7c11;
-            --bg-canvas: #f7f5ef; /* Beige claro unificado para toda la página */
-            --card-bg: #ffffff;   /* Tarjetas interiores en blanco nítido para contraste */
+            --bg-canvas: #f7f5ef;
+            --card-bg: #ffffff;
             --text-main: #2b2b2b;
             --text-muted: #555555;
         }
 
-        /* --- CONFIGURACIÓN RESPONSIVE GLOBAL --- */
         *, *::before, *::after {
             box-sizing: border-box;
         }
@@ -56,7 +55,6 @@
             font-family: 'Cinzel', serif;
         }
 
-        /* --- CLASES DE DORADO METÁLICO GENERALES --- */
         .text-gold-gradient {
             background: linear-gradient(135deg, var(--gold-light) 0%, var(--accent-gold) 50%, var(--gold-dark) 100%);
             -webkit-background-clip: text;
@@ -64,7 +62,6 @@
             font-weight: 600;
         }
 
-        /* Líneas divisorias doradas finas */
         .gold-divider {
             width: 60px;
             height: 1.5px;
@@ -72,7 +69,6 @@
             margin: 15px auto;
         }
 
-        /* --- FONDO TORNASOL VERDE Y OLIVO EN MOVIMIENTO --- */
         .shimmer-olive-box {
             background: linear-gradient(270deg, #2c3821, #4e5e41, #35472b, #658c6b, #2c3821);
             background-size: 400% 400%;
@@ -94,7 +90,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* --- CANVAS DE FÍSICA PARA HOJAS REALES --- */
         #forest-canvas {
             position: fixed;
             top: 0;
@@ -105,7 +100,6 @@
             z-index: 999;
         }
 
-        /* --- PANTALLA DE BIENVENIDA CON MARCO DOBLE DORADO (SIN FLORES) --- */
         #welcome-screen {
             position: fixed;
             top: 0;
@@ -154,7 +148,6 @@
             transform: translateY(-4px);
         }
 
-        /* Sello Dorado Metálico Luminoso */
         .gold-seal {
             width: 75px;
             height: 75px;
@@ -187,7 +180,6 @@
             box-shadow: 0 0 25px rgba(212,175,55,0.7);
         }
 
-        /* --- ANIMACIÓN DE GUÍA PARA BAJAR --- */
         .scroll-down-indicator {
             position: absolute;
             bottom: 25px;
@@ -231,7 +223,6 @@
             }
         }
 
-        /* --- CONTENEDOR GENERAL ADAPTABLE A TABLETS Y COMPUTADORAS --- */
         .invitation-container {
             width: 100%;
             max-width: 100%;
@@ -249,7 +240,6 @@
             opacity: 1;
         }
 
-        /* Tablets (pantallas medianas) */
         @media (min-width: 768px) {
             .invitation-container {
                 max-width: 720px;
@@ -260,7 +250,6 @@
             }
         }
 
-        /* Computadoras (pantallas grandes) */
         @media (min-width: 1024px) {
             body {
                 background: #111510;
@@ -281,7 +270,6 @@
             background-color: var(--bg-canvas);
         }
 
-        /* --- PORTADA HERO --- */
         .hero-section {
             background: linear-gradient(rgba(44,56,33,0.7), rgba(27,36,22,0.85)), url('fotos/baec27ec-a089-418b-b8de-71dfd366730a.JPG') center/cover;
             color: white;
@@ -308,7 +296,6 @@
             backdrop-filter: blur(5px);
         }
 
-        /* --- CONTADOR RESPONSIVE --- */
         .countdown-wrapper {
             max-width: 440px;
             margin: 0 auto;
@@ -349,7 +336,6 @@
             text-align: center;
         }
 
-        /* --- GALERÍA HORIZONTAL TIPO CILINDRO INFINITO RESPONSIVE --- */
         .horizontal-gallery-container {
             display: flex;
             overflow-x: auto;
@@ -404,7 +390,6 @@
             padding: 20px;
         }
 
-        /* Lightbox Visor Responsive */
         #lightbox {
             position: fixed;
             inset: 0;
@@ -436,7 +421,6 @@
             z-index: 20001;
         }
 
-        /* --- TARJETAS DE EVENTOS --- */
         .event-box {
             background: var(--card-bg);
             border-radius: 16px;
@@ -469,7 +453,6 @@
             color: white;
         }
 
-        /* --- CHECKLIST PERSONALIZADO CON HOJITAS (🌿) --- */
         .custom-leaf-checkbox {
             display: none;
         }
@@ -507,7 +490,6 @@
             color: var(--light-olive);
         }
 
-        /* --- PALETA DE COLORES --- */
         .dot-color {
             width: 35px;
             height: 35px;
@@ -516,7 +498,6 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        /* Botón de Música Flotante */
         .music-toggle {
             position: fixed;
             bottom: 25px;
@@ -546,10 +527,8 @@
 </head>
 <body>
 
-    <!-- Canvas para física avanzada de hojas de bosque hiperrealistas -->
     <canvas id="forest-canvas"></canvas>
 
-    <!-- Pantalla de Bienvenida con Marco Doble Dorado (Sin Flores) -->
     <div id="welcome-screen">
         <div class="welcome-box" onclick="unlockInvitation()">
             <div class="gold-seal">M&J</div>
@@ -568,44 +547,37 @@
         </div>
     </div>
 
-    <!-- Visor Lightbox -->
     <div id="lightbox" onclick="closeLightbox()">
         <button id="lightbox-close">&times;</button>
         <img id="lightbox-img" src="" alt="Galería Boda">
     </div>
 
-    <!-- Audio Player -->
     <audio id="wedding-audio" loop preload="auto">
         <source src="cancion/cancion.mp3" type="audio/mp3">
     </audio>
 
     <button class="music-toggle" id="musicBtn" onclick="toggleAudio()" style="display: none;" title="Música">♫</button>
 
-    <!-- Contenedor General 100% Responsive para Celular, Tablet y PC -->
     <div class="container invitation-container px-0" id="mainApp">
 
-        <!-- 1. Portada Hero -->
         <section class="hero-section">
             <div id="txtHeroBadge" class="hero-badge font-serif" data-aos="fade-down">Nuestra Boda</div>
             <h1 class="font-script display-3 mb-1" data-aos="zoom-in" data-aos-delay="200" style="font-size: clamp(3.5rem, 7vw, 5rem);">Melissa</h1>
             <span class="font-serif text-gold-gradient fs-3 my-2" data-aos="fade" data-aos-delay="300">&</span>
             <h1 class="font-script display-3 mt-1 mb-4" data-aos="zoom-in" data-aos-delay="400" style="font-size: clamp(3.5rem, 7vw, 5rem);">Jean Emanuel</h1>
             
-            <!-- Frase con Fondo Tornasol Verde y Olivo en Movimiento -->
             <div class="shimmer-olive-box" data-aos="fade-up" data-aos-delay="500">
                 <p id="txtHeroQuote" class="font-serif fst-italic text-white mb-0" style="font-size: 1rem; line-height: 1.6; text-shadow: 0 1px 3px rgba(0,0,0,0.3);">
-                    “El sí más importante. Y tú, en primera fila”
+                    “The most important 'yes'. And you, right in the front row.”
                 </p>
             </div>
 
-            <!-- Animación Guía para Bajar -->
             <div class="scroll-down-indicator">
                 <span id="txtScroll">Desliza</span>
                 <div class="arrow-icon"></div>
             </div>
         </section>
 
-        <!-- 2. Conteo & Invitados -->
         <section data-aos="fade-up">
             <p id="txtCountdownTitle" class="font-serif text-muted small text-uppercase mb-3" style="letter-spacing: 3px;">Faltan</p>
             
@@ -645,7 +617,6 @@
             </div>
         </section>
 
-        <!-- 3. Galería Horizontal Tipo Cilindro Infinito -->
         <section data-aos="fade-up">
             <div class="px-3 text-center mb-2">
                 <p id="txtGallerySub" class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Nuestros Recuerdos</p>
@@ -653,42 +624,34 @@
             </div>
 
             <div class="horizontal-gallery-container" id="galleryContainer">
-                <!-- Foto 1 -->
                 <div class="horizontal-photo-item" onclick="openLightbox(this)">
                     <img src="fotos/foto1.JPG" alt="Atardecer Playa" loading="lazy">
                     <div class="photo-overlay"><span class="gal-label-1 font-serif text-white small" style="letter-spacing: 1.5px;">Nuestro Amor</span></div>
                 </div>
-                <!-- Foto 2 -->
                 <div class="horizontal-photo-item" onclick="openLightbox(this)">
                     <img src="fotos/foto2.JPG" alt="Montaña" loading="lazy">
                     <div class="photo-overlay"><span class="gal-label-2 font-serif text-white small" style="letter-spacing: 1.5px;">Aventuras</span></div>
                 </div>
-                <!-- Foto 3 -->
                 <div class="horizontal-photo-item" onclick="openLightbox(this)">
                     <img src="fotos/foto3.JPG" alt="Beso Atardecer" loading="lazy">
                     <div class="photo-overlay"><span class="gal-label-3 font-serif text-white small" style="letter-spacing: 1.5px;">Instantes</span></div>
                 </div>
-                <!-- Foto 4 -->
                 <div class="horizontal-photo-item" onclick="openLightbox(this)">
                     <img src="fotos/foto4.JPG" alt="Cena" loading="lazy">
                     <div class="photo-overlay"><span class="gal-label-4 font-serif text-white small" style="letter-spacing: 1.5px;">Miradas</span></div>
                 </div>
-                <!-- Foto 5 -->
                 <div class="horizontal-photo-item" onclick="openLightbox(this)">
                     <img src="fotos/foto5.JPG" alt="Iglesia" loading="lazy">
                     <div class="photo-overlay"><span class="gal-label-5 font-serif text-white small" style="letter-spacing: 1.5px;">Camino Juntos</span></div>
                 </div>
-                <!-- Foto 7 -->
                 <div class="horizontal-photo-item" onclick="openLightbox(this)">
                     <img src="fotos/foto7.JPG" alt="Yosemite" loading="lazy">
                     <div class="photo-overlay"><span class="gal-label-6 font-serif text-white small" style="letter-spacing: 1.5px;">Recuerdos</span></div>
                 </div>
-                <!-- Foto 8 -->
                 <div class="horizontal-photo-item" onclick="openLightbox(this)">
                     <img src="fotos/foto8.JPG" alt="Promesa" loading="lazy">
                     <div class="photo-overlay"><span class="gal-label-7 font-serif text-white small" style="letter-spacing: 1.5px;">Promesa</span></div>
                 </div>
-                <!-- Foto 9 -->
                 <div class="horizontal-photo-item" onclick="openLightbox(this)">
                     <img src="fotos/foto9.JPG" alt="Selfie Montaña" loading="lazy">
                     <div class="photo-overlay"><span class="gal-label-8 font-serif text-white small" style="letter-spacing: 1.5px;">Nuestra Historia</span></div>
@@ -698,11 +661,9 @@
             <p id="txtSwipeHint" class="text-muted small mt-2 mb-0" style="font-size: 0.8rem; letter-spacing: 1px;">← Desliza para ver más →</p>
         </section>
 
-        <!-- 4. Ubicaciones -->
         <section data-aos="fade-up">
             <h2 id="txtLocationsTitle" class="font-serif h4 mb-4" style="color: var(--primary-olive);">Ubicaciones</h2>
 
-            <!-- Ceremonia -->
             <div class="event-box" data-aos="fade-up">
                 <h3 id="txtCeremonyHead" class="font-serif h5 mb-2" style="color: var(--primary-olive);">Ceremonia</h3>
                 <p id="txtCeremonyDate" class="text-muted small mb-1">Sábado 23 de Enero, 2027 — 3:00 p.m.</p>
@@ -710,7 +671,6 @@
                 <a id="txtMapBtn1" href="https://www.google.com/maps/place/Parroquia+Nuestra+Se%C3%B1ora+del+Perpetuo+Socorro+de+Corralillo/@10.2191875,-85.3755747,91m/data=!3m1!1e3!4m11!1m3!2m2!1scorralillo+parroquia!6e1!3m6!1s0x8f9fb8a27f09fe6b:0xb4590fe21821e1ed!8m2!3d10.2191062!4d-85.375523!15sChRjb3JyYWxpbGxvIHBhcnJvcXVpYZIBD2NhdGhvbGljX2NodXJjaOABAA!16s%2Fg%2F11x9xvmsl!5m1!1e2?entry=ttu" target="_blank" class="btn-map font-serif">Ver Ubicación en Mapa</a>
             </div>
 
-            <!-- Celebración -->
             <div class="event-box" data-aos="fade-up">
                 <h3 id="txtReceptionHead" class="font-serif h5 mb-2" style="color: var(--primary-olive);">Celebración</h3>
                 <p id="txtReceptionDate" class="text-muted small mb-1">Sábado 23 de Enero, 2027 — 5:00 p.m.</p>
@@ -719,7 +679,6 @@
             </div>
         </section>
 
-        <!-- 5. Código de Vestimenta y Recomendaciones -->
         <section data-aos="fade-up">
             <p id="txtDressSub" class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Código de Vestimenta</p>
             <h2 id="txtDressTitle" class="font-serif h4 mb-3" style="color: var(--primary-olive);">Color Reservado & Estilo</h2>
@@ -742,7 +701,6 @@
             </div>
         </section>
 
-        <!-- 6. Confirmación de Asistencia (RSVP Interactivo con Hojitas 🌿) -->
         <section data-aos="fade-up">
             <p id="txtRsvpSub" class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Asistencia</p>
             <h2 class="font-serif h4 mb-3" style="color: var(--primary-olive);">RSVP</h2>
@@ -750,9 +708,7 @@
             <div id="rsvpBlock" class="p-4 rounded-4 shadow-sm mx-auto" style="max-width: 440px; text-align: left; background: var(--card-bg);">
                 <p id="txtRsvpPrompt" class="text-muted small text-center mb-3">Selecciona quiénes asistirán de tu pase y haz clic en confirmar:</p>
                 
-                <div id="checklistContainer" class="mb-3">
-                    <!-- Aquí se cargan dinámicamente las casillas con hojitas -->
-                </div>
+                <div id="checklistContainer" class="mb-3"></div>
 
                 <button type="button" onclick="enviarRSVP()" id="btnRsvp" class="btn btn-warning w-100 rounded-pill py-2 text-dark fw-bold text-uppercase small font-serif" style="background: linear-gradient(135deg, var(--gold-light) 0%, var(--accent-gold) 100%); border: none; letter-spacing: 1px;">
                     Confirmar Asistencia
@@ -761,7 +717,6 @@
             </div>
         </section>
 
-        <!-- 7. Muestras de Cariño (Regalos / Lluvia de Sobres) -->
         <section data-aos="fade-up">
             <p id="txtGiftsSub" class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Detalles</p>
             <h2 id="txtGiftsTitle" class="font-serif h4 mb-3" style="color: var(--primary-olive);">Muestras de Cariño</h2>
@@ -780,7 +735,6 @@
             </div>
         </section>
 
-        <!-- Footer -->
         <footer style="padding: 50px 20px; text-align: center; overflow: hidden;">
             <h3 class="font-script text-gold-gradient mb-1" style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.4; padding: 0 10px; display: inline-block;">Melissa & Jean Emanuel</h3>
             <p class="small text-white-50 mb-0 font-serif" style="letter-spacing: 3px;">23 . 01 . 2027</p>
@@ -788,13 +742,10 @@
 
     </div>
 
-    <!-- Bootstrap 5 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- AOS Animation JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
-        /* Detección de idioma inglés para Mesa 6 (Annie Cortes) */
         const params = new URLSearchParams(window.location.search);
         const urlGuests = params.get('invitados');
         const isEnglish = urlGuests && urlGuests.toLowerCase().includes('annie cortes');
@@ -815,7 +766,6 @@
             document.getElementById('txtGalleryTitle').innerText = "Moments";
             document.getElementById('txtSwipeHint').innerText = "← Swipe to see more →";
             
-            // Traducción de las etiquetas de las fotos de la galería
             const galTexts = ["Our Love", "Adventures", "Moments", "Glances", "Walking Together", "Memories", "Promise", "Our History"];
             const galElements = document.querySelectorAll('.horizontal-gallery-container .photo-overlay span');
             galElements.forEach((el, index) => {
@@ -844,18 +794,13 @@
             document.getElementById('txtGiftsThanksDesc').innerText = "We sincerely appreciate all your love and support in this important step.";
         }
 
-        /* Inicializar animaciones AOS */
         document.addEventListener('DOMContentLoaded', function() {
-            AOS.init({
-                duration: 1000,
-                once: true
-            });
+            AOS.init({ duration: 1000, once: true });
             initHyperRealisticForestCanvas();
             cargarChecklistInvitados();
             initCylinderInfiniteScroll();
         });
 
-        /* Motor de Física 2D Avanzado para Hojas Hiperrealistas con Venas Laterales */
         function initHyperRealisticForestCanvas() {
             const canvas = document.getElementById('forest-canvas');
             const ctx = canvas.getContext('2d');
@@ -878,10 +823,7 @@
             ];
 
             class RealisticLeaf {
-                constructor() {
-                    this.reset();
-                }
-
+                constructor() { this.reset(); }
                 reset() {
                     this.x = Math.random() * canvas.width;
                     this.y = Math.random() * -canvas.height;
@@ -894,84 +836,40 @@
                     this.colorPair = forestColors[Math.floor(Math.random() * forestColors.length)];
                     this.opacity = Math.random() * 0.35 + 0.55;
                 }
-
                 update() {
                     this.y += this.vy;
                     this.x += Math.sin(this.y * this.swing) * 0.9 + this.vx;
                     this.angle += this.spin;
-
-                    if (this.y > canvas.height + 60) {
-                        this.reset();
-                        this.y = -60;
-                    }
+                    if (this.y > canvas.height + 60) { this.reset(); this.y = -60; }
                 }
-
                 draw() {
                     ctx.save();
                     ctx.translate(this.x, this.y);
                     ctx.rotate(this.angle);
                     ctx.scale(this.scale, this.scale);
                     ctx.globalAlpha = this.opacity;
-
-                    const length = 32;
-                    const width = 13;
-
+                    const length = 32, width = 13;
                     ctx.beginPath();
                     ctx.moveTo(0, -length);
                     ctx.bezierCurveTo(width * 1.8, -length * 0.4, width * 1.1, length * 0.6, 0, length);
                     ctx.bezierCurveTo(-width * 1.1, length * 0.6, -width * 1.8, -length * 0.4, 0, -length);
                     ctx.fillStyle = this.colorPair.main;
                     ctx.fill();
-
-                    ctx.beginPath();
-                    ctx.moveTo(0, -length + 4);
-                    ctx.lineTo(0, length - 4);
-                    ctx.strokeStyle = this.colorPair.vein;
-                    ctx.lineWidth = 1.4;
-                    ctx.stroke();
-
-                    ctx.strokeStyle = this.colorPair.vein;
-                    ctx.lineWidth = 0.8;
-                    const veinPairs = 5;
-                    for (let i = 1; i <= veinPairs; i++) {
-                        const t = i / (veinPairs + 1);
-                        const currentY = -length + 4 + (length * 2 - 8) * t;
-                        const currentWidthSpan = width * Math.sin(t * Math.PI) * 0.85;
-
-                        ctx.beginPath();
-                        ctx.moveTo(0, currentY);
-                        ctx.lineTo(currentWidthSpan, currentY - 5);
-                        ctx.stroke();
-
-                        ctx.beginPath();
-                        ctx.moveTo(0, currentY);
-                        ctx.lineTo(-currentWidthSpan, currentY - 5);
-                        ctx.stroke();
-                    }
-
                     ctx.restore();
                 }
             }
 
-            for (let i = 0; i < leafCount; i++) {
-                leaves.push(new RealisticLeaf());
-            }
+            for (let i = 0; i < leafCount; i++) leaves.push(new RealisticLeaf());
 
             function animate() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                leaves.forEach(leaf => {
-                    leaf.update();
-                    leaf.draw();
-                });
+                leaves.forEach(leaf => { leaf.update(); leaf.draw(); });
                 requestAnimationFrame(animate);
             }
-
             animate();
         }
 
-        /* Desbloquear la invitación con transición fluida y música suave */
         let isPlaying = false;
-        
         function unlockInvitation() {
             const screen = document.getElementById('welcome-screen');
             const app = document.getElementById('mainApp');
@@ -992,9 +890,7 @@
             audio.play().then(() => {
                 isPlaying = true;
                 btnMusic.style.opacity = '1';
-            }).catch(e => {
-                console.log("Reproducción pausada por políticas del navegador:", e);
-            });
+            }).catch(e => console.log(e));
         }
 
         function toggleAudio() {
@@ -1010,12 +906,10 @@
             }
         }
 
-        /* Visor de Fotos Lightbox */
         function openLightbox(element) {
             const img = element.querySelector('img');
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
-            
             lightboxImg.src = img.src;
             lightbox.style.display = 'flex';
         }
@@ -1024,63 +918,36 @@
             document.getElementById('lightbox').style.display = 'none';
         }
 
-        /* --- EFECTO CILINDRO INFINITO CORREGIDO (SIN PARPADEOS) --- */
         function initCylinderInfiniteScroll() {
             const gallery = document.getElementById('galleryContainer');
             if (!gallery) return;
-
-            const items = Array.from(gallery.children);
-            items.forEach(item => {
+            Array.from(gallery.children).forEach(item => {
                 const clone = item.cloneNode(true);
                 clone.addEventListener('click', () => openLightbox(clone));
                 gallery.appendChild(clone);
             });
-
             let isScrolling;
             gallery.addEventListener('scroll', () => {
                 window.clearTimeout(isScrolling);
-
                 isScrolling = setTimeout(() => {
                     const singleSetWidth = gallery.scrollWidth / 2;
-                    
-                    if (gallery.scrollLeft >= singleSetWidth) {
-                        gallery.scrollLeft = gallery.scrollLeft - singleSetWidth;
-                    } else if (gallery.scrollLeft <= 0) {
-                        gallery.scrollLeft = gallery.scrollLeft + singleSetWidth;
-                    }
+                    if (gallery.scrollLeft >= singleSetWidth) gallery.scrollLeft -= singleSetWidth;
+                    else if (gallery.scrollLeft <= 0) gallery.scrollLeft += singleSetWidth;
                 }, 50);
             }, { passive: true });
         }
 
-        /* Cuenta Regresiva al 23 de Enero de 2027 */
         const targetDate = new Date("January 23, 2027 15:00:00").getTime();
-
-        const countdownInterval = setInterval(() => {
+        setInterval(() => {
             const now = new Date().getTime();
             const difference = targetDate - now;
-
-            if (difference < 0) {
-                clearInterval(countdownInterval);
-                return;
-            }
-
-            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-            const elemDias = document.getElementById('dias');
-            const elemHoras = document.getElementById('horas');
-            const elemMinutos = document.getElementById('minutos');
-            const elemSegundos = document.getElementById('segundos');
-
-            if (elemDias) elemDias.innerText = String(days).padStart(2, '0');
-            if (elemHoras) elemHoras.innerText = String(hours).padStart(2, '0');
-            if (elemMinutos) elemMinutos.innerText = String(minutes).padStart(2, '0');
-            if (elemSegundos) elemSegundos.innerText = String(seconds).padStart(2, '0');
+            if (difference < 0) return;
+            document.getElementById('dias').innerText = String(Math.floor(difference / (1000 * 60 * 60 * 24))).padStart(2, '0');
+            document.getElementById('horas').innerText = String(Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+            document.getElementById('minutos').innerText = String(Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+            document.getElementById('segundos').innerText = String(Math.floor((difference % (1000 * 60)) / 1000)).padStart(2, '0');
         }, 1000);
 
-        /* --- SISTEMA DE INVITADOS Y RSVP INTERACTIVO CON HOJITAS --- */
         let guestArray = [];
         const urlGuestsParam = params.get('invitados');
 
@@ -1092,16 +959,13 @@
 
         function cargarChecklistInvitados() {
             document.getElementById('badgePases').innerText = guestArray.length;
-            
-            let htmlList = '';
-            let checklistHtml = '';
-            
+            let htmlList = '', checklistHtml = '';
             let savedRsvp = JSON.parse(localStorage.getItem('boda_rsvp_' + (urlGuestsParam || 'default'))) || {};
 
             guestArray.forEach((name, index) => {
                 htmlList += `<div class="my-1">${name}</div>`;
-                
-                let isChecked = savedRsvp[name] !== undefined ? savedRsvp[name] : true;
+                // Verificamos si guardó "Sí" previamente o si es nuevo
+                let isChecked = savedRsvp[name] !== undefined ? (savedRsvp[name] === "Sí") : true;
 
                 checklistHtml += `
                     <div class="my-2">
@@ -1120,13 +984,11 @@
         function enviarRSVP() {
             const checkboxes = document.querySelectorAll('.custom-leaf-checkbox');
             let asistenciaData = {};
-            
-            // Limpiamos y estandarizamos el nombre del grupo para que coincida exactamente en el script
-            let rawGrupo = urlGuestsParam || (isEnglish ? 'General Guest' : 'Invitado General');
-            let grupoNombre = decodeURIComponent(rawGrupo).trim();
+            let grupoNombre = decodeURIComponent(urlGuestsParam || (isEnglish ? 'General Guest' : 'Invitado General')).trim();
 
             checkboxes.forEach(cb => {
-                asistenciaData[cb.value] = cb.checked;
+                // MODIFICACIÓN: Guardar "Sí" o "No" en lugar de true/false
+                asistenciaData[cb.value] = cb.checked ? "Sí" : "No";
             });
 
             localStorage.setItem('boda_rsvp_' + (urlGuestsParam || 'default'), JSON.stringify(asistenciaData));
