@@ -69,13 +69,11 @@
             margin: 15px auto;
         }
 
-        /* Cuadro con efecto dorado divino, brillante y animado fluidamente */
+        /* Cuadro con efecto dorado brillante estático, elegante y con destellos de lujo */
         .shimmer-olive-box {
-            background: linear-gradient(270deg, #aa7c11, #d4af37, #f9e7b9, #f3e5ab, #d4af37, #aa7c11);
-            background-size: 400% 400%;
-            animation: goldShimmerAnimation 8s ease infinite;
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 10px 30px rgba(170, 124, 17, 0.35);
+            background: linear-gradient(135deg, #f9e7b9 0%, #e6ca65 30%, #d4af37 50%, #b89728 75%, #aa7c11 100%);
+            border: 1.5px solid rgba(255, 255, 255, 0.85);
+            box-shadow: 0 10px 30px rgba(170, 124, 17, 0.4), inset 0 1px 4px rgba(255, 255, 255, 0.7), inset 0 -2px 5px rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             border-radius: 16px;
@@ -84,19 +82,32 @@
             max-width: 420px;
             width: 90%;
             transition: transform 0.5s ease, box-shadow 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Destello estático superior simulando brillo natural */
+        .shimmer-olive-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 40%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.35), transparent);
+            pointer-events: none;
+            border-radius: 16px 16px 0 0;
         }
 
         .shimmer-olive-box:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.5);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.55), inset 0 1px 6px rgba(255, 255, 255, 0.9);
         }
 
-        /* Hero badge con el mismo estilo dorado brillante */
+        /* Hero badge con el mismo estilo dorado brillante estático */
         .hero-badge {
-            background: linear-gradient(270deg, #aa7c11, #d4af37, #f9e7b9, #f3e5ab, #d4af37, #aa7c11);
-            background-size: 400% 400%;
-            animation: goldShimmerAnimation 8s ease infinite;
-            border: 1px solid rgba(255, 255, 255, 0.7);
+            background: linear-gradient(135deg, #f9e7b9 0%, #e6ca65 30%, #d4af37 50%, #b89728 75%, #aa7c11 100%);
+            border: 1.5px solid rgba(255, 255, 255, 0.9);
             padding: 8px 22px;
             border-radius: 30px;
             font-size: 0.8rem;
@@ -105,14 +116,8 @@
             color: #1b2416;
             font-weight: 700;
             margin-bottom: 20px;
-            box-shadow: 0 8px 25px rgba(170, 124, 17, 0.3);
+            box-shadow: 0 6px 20px rgba(170, 124, 17, 0.35), inset 0 1px 3px rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(5px);
-        }
-
-        @keyframes goldShimmerAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
         }
 
         #forest-canvas {
