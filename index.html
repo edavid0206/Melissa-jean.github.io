@@ -1014,6 +1014,26 @@
         }
 
         function enviarRSVP() {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+            const diasFaltantes = Math.floor(difference / (1000 * 60 * 60 * 24));
+            
+            const btn = document.getElementById('btnRsvp');
+            const mensaje = document.getElementById('rsvpMensaje');
+
+            // RESTRICCIÓN DE LOS 29 DÍAS
+            if (diasFaltantes <= 29) {
+                btn.disabled = true;
+                mensaje.className = "mt-3 text-center small fw-bold text-danger";
+                mensaje.innerHTML = `
+                    ¡El plazo regular de confirmación ha finalizado!<br>
+                    Estás a 29 días o menos del evento. Si deseas confirmar o consultar disponibilidad, por favor comunícate directamente:<br><br>
+                    📞 <strong>Melissa:</strong> <a href="https://wa.me/50689892294" target="_blank" style="color: #2c3821;">8989-2294</a><br>
+                    📞 <strong>Jean Emanuel:</strong> <a href="https://wa.me/50686160583" target="_blank" style="color: #2c3821;">8616-0583</a>
+                `;
+                return;
+            }
+
             const checkboxes = document.querySelectorAll('.custom-leaf-checkbox');
             let asistenciaData = {};
             let grupoNombre = decodeURIComponent(urlGuestsParam || (isEnglish ? 'General Guest' : 'Invitado General')).trim();
@@ -1024,9 +1044,6 @@
 
             localStorage.setItem('boda_rsvp_' + (urlGuestsParam || 'default'), JSON.stringify(asistenciaData));
 
-            const btn = document.getElementById('btnRsvp');
-            const mensaje = document.getElementById('rsvpMensaje');
-            
             btn.disabled = true;
             btn.innerText = isEnglish ? "Saving..." : "Guardando...";
 
