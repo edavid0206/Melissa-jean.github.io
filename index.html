@@ -848,13 +848,46 @@
                     ctx.rotate(this.angle);
                     ctx.scale(this.scale, this.scale);
                     ctx.globalAlpha = this.opacity;
-                    const length = 32, width = 13;
+                    
+                    const length = 32;
+                    const width = 13;
+
+                    // Cuerpo principal de la hoja
                     ctx.beginPath();
                     ctx.moveTo(0, -length);
                     ctx.bezierCurveTo(width * 1.8, -length * 0.4, width * 1.1, length * 0.6, 0, length);
                     ctx.bezierCurveTo(-width * 1.1, length * 0.6, -width * 1.8, -length * 0.4, 0, -length);
                     ctx.fillStyle = this.colorPair.main;
                     ctx.fill();
+
+                    // Vena central de la hoja
+                    ctx.beginPath();
+                    ctx.moveTo(0, -length + 4);
+                    ctx.lineTo(0, length - 4);
+                    ctx.strokeStyle = this.colorPair.vein;
+                    ctx.lineWidth = 1.4;
+                    ctx.stroke();
+
+                    // Estrías y venas laterales
+                    ctx.strokeStyle = this.colorPair.vein;
+                    ctx.lineWidth = 0.8;
+                    const veinPairs = 5;
+                    for (let i = 1; i <= veinPairs; i++) {
+                        const t = i / (veinPairs + 1);
+                        const currentY = -length + 4 + (length * 2 - 8) * t;
+                        const currentWidthSpan = width * Math.sin(t * Math.PI) * 0.85;
+
+                        ctx.beginPath();
+                        ctx.moveTo(0, currentY);
+                        ctx.lineTo(currentWidthSpan, currentY - 5);
+                        ctx.stroke();
+
+                        ctx.beginPath();
+                        ctx.moveTo(0, currentY);
+                        ctx.lineTo(-currentWidthSpan, currentY - 5);
+                        ctx.stroke();
+                    }
+
                     ctx.restore();
                 }
             }
