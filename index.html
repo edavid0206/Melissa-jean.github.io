@@ -42,209 +42,140 @@
             font-family: 'Cormorant Garamond', serif;
         }
 
-        /* --- PANTALLA DE BIENVENIDA Y SOBRE TORNASOL --- */
+        /* --- CONCEPTO NUEVO: SELLO DE CRISTAL Y LACRE BOTÁNICO --- */
         #welcome-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, #2c3821 0%, #151c10 100%);
+            background: radial-gradient(circle, #3d4c31 0%, #151c10 100%);
             z-index: 9999;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            perspective: 1500px;
-            overflow: hidden;
-            transition: opacity 1s ease, visibility 1s ease;
+            transition: opacity 1.2s cubic-bezier(0.77, 0, 0.175, 1), visibility 1.2s ease;
         }
 
-        .envelope-container {
-            position: relative;
-            width: 90%;
-            max-width: 440px;
-            height: 310px;
-            cursor: pointer;
-            transform-style: preserve-3d;
-        }
-
-        /* Cuerpo principal del sobre con efecto tornasol / tonos verde olivo */
-        .envelope-body {
+        #welcome-overlay::before {
+            content: "";
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 220px;
-            background: linear-gradient(135deg, #5f7350 0%, #46563a 50%, #2f3a26 100%);
-            border-radius: 0 0 10px 10px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.6), inset 0 2px 5px rgba(255,255,255,0.2);
-            border: 1px solid rgba(197, 160, 89, 0.4);
-            z-index: 3;
-        }
-
-        /* Solapas laterales e inferiores impresas en relieve para simular sobre real */
-        .envelope-pocket-left {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 0;
-            border-left: 220px solid #4a5c3d;
-            border-top: 140px solid transparent;
-            border-bottom: 80px solid #3c4b31;
-            border-radius: 0 0 0 10px;
-            z-index: 4;
-            opacity: 0.85;
-        }
-
-        .envelope-pocket-right {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 0;
-            height: 0;
-            border-right: 220px solid #4a5c3d;
-            border-top: 140px solid transparent;
-            border-bottom: 80px solid #3c4b31;
-            border-radius: 0 0 10px 0;
-            z-index: 4;
-            opacity: 0.85;
-        }
-
-        /* Solapa superior cerrada con gradiente tornasol */
-        .envelope-flap {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 0;
-            border-left: 220px solid transparent;
-            border-right: 220px solid transparent;
-            border-top: 150px solid #6b825c;
-            transform-origin: top;
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 6;
-            filter: drop-shadow(0 6px 8px rgba(0,0,0,0.3));
-        }
-
-        /* Marco dorado elegante en relieve */
-        .gold-emboss-frame {
-            position: absolute;
-            inset: 15px;
-            border: 1.5px dashed rgba(197, 160, 89, 0.6);
-            border-radius: 6px;
+            inset: 0;
+            background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 0);
+            background-size: 28px 28px;
             pointer-events: none;
-            z-index: 5;
         }
 
-        /* Sello de lacre dorado interactivo */
-        .wax-seal {
+        .seal-card-wrapper {
+            position: relative;
+            background: linear-gradient(135deg, rgba(88, 105, 75, 0.95) 0%, rgba(44, 56, 33, 0.95) 100%);
+            border: 1.5px solid rgba(197, 160, 89, 0.5);
+            border-radius: 16px;
+            padding: 50px 30px;
+            width: 100%;
+            max-width: 380px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6), inset 0 1px 3px rgba(255,255,255,0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .seal-card-wrapper:hover {
+            transform: scale(1.02);
+            box-shadow: 0 35px 70px rgba(0,0,0,0.7), 0 0 25px rgba(197, 160, 89, 0.3);
+        }
+
+        .golden-frame-seal {
             position: absolute;
-            top: 120px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 70px;
-            height: 70px;
+            inset: 12px;
+            border: 1px dashed rgba(197, 160, 89, 0.4);
+            border-radius: 10px;
+            pointer-events: none;
+        }
+
+        /* Sello de Lacre 3D en el centro */
+        .wax-seal-center {
+            width: 85px;
+            height: 85px;
             background: radial-gradient(circle, var(--gold-light) 0%, var(--gold) 70%, #8e6c2b 100%);
             border-radius: 50%;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.7), inset 0 -2px 4px rgba(0,0,0,0.4);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5), inset 0 3px 6px rgba(255,255,255,0.7), inset 0 -3px 6px rgba(0,0,0,0.4);
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 7;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 25px;
+            position: relative;
+            animation: floatSeal 3s ease-in-out infinite;
         }
 
-        .envelope-container:hover .wax-seal {
-            transform: translateX(-50%) scale(1.08);
-            box-shadow: 0 8px 25px rgba(197,160,89,0.7);
+        @keyframes floatSeal {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
         }
 
-        .wax-seal span {
+        .wax-seal-center span {
             font-family: 'Cormorant Garamond', serif;
             font-style: italic;
             font-weight: bold;
-            font-size: 1.7rem;
+            font-size: 2.1rem;
             color: #2c3821;
             text-shadow: 0 1px 1px rgba(255,255,255,0.4);
         }
 
-        .envelope-instruction {
-            position: absolute;
-            bottom: -35px;
-            width: 100%;
-            text-align: center;
-            z-index: 8;
-            color: #f4f6f2;
-            font-size: 0.8rem;
-            letter-spacing: 3px;
+        .seal-text-names {
+            font-family: 'Alex Brush', cursive;
+            font-size: 2.8rem;
+            color: #ffffff;
+            line-height: 1;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .seal-text-amp {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .seal-text-date {
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            color: #d4e0ce;
             text-transform: uppercase;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-            animation: pulseText 2s infinite ease-in-out;
+            margin-bottom: 25px;
         }
 
-        @keyframes pulseText {
-            0%, 100% { opacity: 0.7; }
-            50% { opacity: 1; }
+        .touch-action-btn {
+            background: rgba(197, 160, 89, 0.2);
+            border: 1px solid var(--gold);
+            color: #f4f6f2;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
         }
 
-        /* --- TARJETA QUE SALE Y GIRA (FLIP & EXPAND) --- */
-        .envelope-card {
-            position: absolute;
-            bottom: 10px;
-            left: 20px;
-            right: 20px;
-            height: 230px;
-            background: #ffffff;
-            border-radius: 8px;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            border: 1px solid rgba(197, 160, 89, 0.5);
-            transform-style: preserve-3d;
-            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), width 0.8s ease, height 0.8s ease, top 0.8s ease, left 0.8s ease, border-radius 0.8s ease;
+        .seal-card-wrapper:hover .touch-action-btn {
+            background: var(--gold);
+            color: var(--olive-dark);
         }
 
-        /* Animación cuando el usuario hace clic en el sobre */
-        .envelope-container.open .envelope-flap {
-            transform: rotateX(180deg);
-            z-index: 1;
-        }
-
-        .envelope-container.open .wax-seal,
-        .envelope-container.open .envelope-instruction {
+        /* Animación de apertura y desvanecimiento del velo inicial */
+        #welcome-overlay.fade-out {
             opacity: 0;
-            transition: opacity 0.3s ease;
+            visibility: hidden;
         }
 
-        /* Fase 1: La tarjeta se asoma y da la vuelta (flip) */
-        .envelope-container.open .envelope-card {
-            transform: translateY(-160px) rotateY(360deg) scale(1);
-        }
-
-        /* Fase 2: Expansión de la tarjeta a pantalla completa revelando la invitación */
-        .envelope-container.expanded .envelope-card {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            bottom: auto;
-            right: auto;
-            transform: none;
-            border-radius: 0;
-            z-index: 99999;
-            box-shadow: none;
-            overflow-y: auto;
-            transition: all 0.8s cubic-bezier(0.77, 0, 0.175, 1);
-        }
-
-        /* --- CONTENEDOR PRINCIPAL DE LA INVITACIÓN --- */
+        /* --- CONTENEDOR PRINCIPAL --- */
         .container {
             width: 100%;
             max-width: 480px;
@@ -252,7 +183,6 @@
             background: var(--bg-color);
             position: relative;
             box-shadow: 0 0 40px rgba(0,0,0,0.08);
-            display: none; /* Se muestra al abrirse el sobre */
         }
 
         @media (min-width: 768px) {
@@ -325,7 +255,7 @@
             transform: scale(1.1) rotate(10deg);
         }
 
-        /* Sección 1: Portada */
+        /* Portada Hero */
         .hero {
             position: relative;
             background: linear-gradient(rgba(20,28,15,0.55), rgba(20,28,15,0.65)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
@@ -767,26 +697,18 @@
 </head>
 <body>
 
-    <!-- Pantalla de Bienvenida: Sobre Grande Tornasol y Lacre Dorado -->
+    <!-- Pantalla de Bienvenida: Sello Botánico de Cera y Cristal -->
     <div id="welcome-overlay">
-        <div class="envelope-container" id="envelopeContainer" onclick="openAndExpandEnvelope()">
-            <!-- Tarjeta que se asoma y luego gira / se expande -->
-            <div class="envelope-card">
-                <span class="script-font" style="font-size: 2.3rem; color: var(--olive-main); line-height: 1;">Melissa</span>
-                <span style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; color: var(--gold);">&</span>
-                <span class="script-font" style="font-size: 2.3rem; color: var(--olive-main); line-height: 1;">Jean Emanuel</span>
-                <span style="font-size: 0.7rem; letter-spacing: 3px; color: #777; text-transform: uppercase; margin-top: 10px;">23 / 01 / 2027</span>
-            </div>
-            
-            <div class="envelope-pocket-left"></div>
-            <div class="envelope-pocket-right"></div>
-            <div class="envelope-body"></div>
-            <div class="envelope-flap"></div>
-            <div class="gold-emboss-frame"></div>
-            <div class="wax-seal">
+        <div class="seal-card-wrapper" onclick="openInvitationConcept()">
+            <div class="golden-frame-seal"></div>
+            <div class="wax-seal-center">
                 <span>M&J</span>
             </div>
-            <div class="envelope-instruction">Toca el sobre para abrir</div>
+            <div class="seal-text-names">Melissa</div>
+            <div class="seal-text-amp">&</div>
+            <div class="seal-text-names">Jean Emanuel</div>
+            <div class="seal-text-date">23 . 01 . 2027</div>
+            <div class="touch-action-btn">Romper sello y abrir</div>
         </div>
     </div>
 
@@ -795,7 +717,7 @@
         <source src="https://cdn.pixabay.com/download/audio/2022/10/14/audio_9939f792cb.mp3?filename=romantic-acoustic-guitar-120606.mp3" type="audio/mp3">
     </audio>
 
-    <div class="container" id="mainContainer">
+    <div class="container">
         <!-- SECCIÓN 1: Portada -->
         <div class="hero">
             <button class="music-btn-translucent" id="music-btn" onclick="toggleMusic()" title="Reproducir / Pausar Música">
@@ -1035,38 +957,27 @@
             document.getElementById('listaNombresInvitados').innerHTML = `<div class="guest-item">Nuestros Queridos Invitados</div>`;
         }
 
-        /* Control de Música y Animación del Sobre */
+        /* Control de Música y Apertura del Nuevo Concepto */
         const music = document.getElementById('bg-music');
         const musicBtn = document.getElementById('music-btn');
         music.volume = 0.3;
         let isPlaying = false;
 
-        function openAndExpandEnvelope() {
-            const container = document.getElementById('envelopeContainer');
+        function openInvitationConcept() {
             const overlay = document.getElementById('welcome-overlay');
-            const mainContainer = document.getElementById('mainContainer');
+            
+            // Rompe el sello / desvanece el overlay inicial
+            overlay.classList.add('fade-out');
 
-            // 1. Abre la solapa y saca la tarjeta con giro 3D
-            container.classList.add('open');
-
-            // 2. Inicia la música romántica
+            // Inicia la música de fondo
             music.play().then(() => {
                 isPlaying = true;
             }).catch(e => console.log("Error al reproducir música:", e));
 
-            // 3. Expande la tarjeta a pantalla completa después del giro
+            // Elimina el overlay del DOM después de la transición
             setTimeout(() => {
-                container.classList.add('expanded');
-            }, 900);
-
-            // 4. Muestra la invitación completa y oculta el fondo del sobre
-            setTimeout(() => {
-                mainContainer.style.display = 'block';
-                overlay.style.opacity = '0';
-                setTimeout(() => {
-                    overlay.style.display = 'none';
-                }, 1000);
-            }, 1800);
+                overlay.style.display = 'none';
+            }, 1200);
         }
 
         function toggleMusic() {
