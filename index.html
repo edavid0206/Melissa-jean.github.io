@@ -426,7 +426,7 @@
 </head>
 <body>
 
-    <!-- Canvas para física avanzada de hojas de bosque reales -->
+    <!-- Canvas para física avanzada de hojas de bosque hiperrealistas -->
     <canvas id="forest-canvas"></canvas>
 
     <!-- Pantalla de Bienvenida -->
@@ -517,7 +517,7 @@
             </div>
         </section>
 
-        <!-- 3. Galería de Fotos Completa (Todas las imágenes incluidas) -->
+        <!-- 3. Galería de Fotos Completa -->
         <section style="background: #eceee9;" data-aos="fade-up">
             <p class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Nuestros Recuerdos</p>
             <h2 class="font-serif h4 mb-4" style="color: var(--primary-olive);">Instantes</h2>
@@ -669,7 +669,7 @@
             cargarChecklistInvitados();
         });
 
-        /* Motor de Física 2D Avanzado para Hojas Hiperrealistas con Vena Central */
+        /* Motor de Física 2D Avanzado para Hojas Hiperrealistas con Venas Laterales */
         function initHyperRealisticForestCanvas() {
             const canvas = document.getElementById('forest-canvas');
             const ctx = canvas.getContext('2d');
@@ -727,22 +727,46 @@
                     ctx.scale(this.scale, this.scale);
                     ctx.globalAlpha = this.opacity;
 
-                    const length = 28;
-                    const width = 11;
+                    const length = 32;
+                    const width = 13;
 
+                    // 1. Cuerpo principal de la hoja (Silueta estilizada)
                     ctx.beginPath();
                     ctx.moveTo(0, -length);
-                    ctx.bezierCurveTo(width * 1.5, -length / 2, width, length / 2, 0, length);
-                    ctx.bezierCurveTo(-width, length / 2, -width * 1.5, -length / 2, 0, -length);
+                    ctx.bezierCurveTo(width * 1.8, -length * 0.4, width * 1.1, length * 0.6, 0, length);
+                    ctx.bezierCurveTo(-width * 1.1, length * 0.6, -width * 1.8, -length * 0.4, 0, -length);
                     ctx.fillStyle = this.colorPair.main;
                     ctx.fill();
 
+                    // 2. Vena central principal
                     ctx.beginPath();
                     ctx.moveTo(0, -length + 4);
                     ctx.lineTo(0, length - 4);
                     ctx.strokeStyle = this.colorPair.vein;
-                    ctx.lineWidth = 1.2;
+                    ctx.lineWidth = 1.4;
                     ctx.stroke();
+
+                    // 3. Venas laterales simétricas (Esqueleto de la hoja)
+                    ctx.strokeStyle = this.colorPair.vein;
+                    ctx.lineWidth = 0.8;
+                    const veinPairs = 5;
+                    for (let i = 1; i <= veinPairs; i++) {
+                        const t = i / (veinPairs + 1);
+                        const currentY = -length + 4 + (length * 2 - 8) * t;
+                        const currentWidthSpan = width * Math.sin(t * Math.PI) * 0.85;
+
+                        // Vena derecha
+                        ctx.beginPath();
+                        ctx.moveTo(0, currentY);
+                        ctx.lineTo(currentWidthSpan, currentY - 5);
+                        ctx.stroke();
+
+                        // Vena izquierda
+                        ctx.beginPath();
+                        ctx.moveTo(0, currentY);
+                        ctx.lineTo(-currentWidthSpan, currentY - 5);
+                        ctx.stroke();
+                    }
 
                     ctx.restore();
                 }
