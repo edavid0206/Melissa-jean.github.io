@@ -38,7 +38,7 @@
             font-family: 'Cinzel', serif;
         }
 
-        /* --- CANVAS DE FÍSICA PARA HOJAS DE BOSQUE REALES --- */
+        /* --- CANVAS DE FÍSICA PARA HOJAS REALES --- */
         #forest-canvas {
             position: fixed;
             top: 0;
@@ -322,16 +322,15 @@
 </head>
 <body>
 
-    <!-- Canvas para física avanzada de hojas de bosque -->
+    <!-- Canvas para física avanzada de hojas de bosque reales -->
     <canvas id="forest-canvas"></canvas>
 
-    <!-- Pantalla de Bienvenida (Sobre Inicial Modificado) -->
+    <!-- Pantalla de Bienvenida -->
     <div id="welcome-screen">
         <div class="welcome-box" onclick="unlockInvitation()" data-aos="zoom-in" data-aos-duration="1200">
             <div class="gold-seal">M&J</div>
             <p class="font-serif text-warning small mb-2" style="letter-spacing: 3px;">ESTÁS INVITADO</p>
             
-            <!-- Estructura exacta de nombres solicitada -->
             <div class="font-script text-white display-6 lh-1 mb-1">Melissa</div>
             <div class="font-serif text-warning fs-5 my-1">&</div>
             <div class="font-script text-white display-6 lh-1 mt-1 mb-3">Jean Emanuel</div>
@@ -445,16 +444,16 @@
             <!-- Ceremonia -->
             <div class="event-box" data-aos="fade-up">
                 <h3 class="font-serif h5 mb-2" style="color: var(--primary-olive);">Ceremonia Religiosa</h3>
-                <p class="text-muted small mb-1">Sábado 23 de Enero, 2027 — 3:00 p.m.</p>
-                <p class="fw-medium small mb-3">Parroquia Nuestra Señora del Perpetuo Socorro, Corralillo</p>
+                <p class="text-muted small mb-1">Sábado 23 de Enero, 2027 — 3:00 p.m.[cite: 2]</p>
+                <p class="fw-medium small mb-3">Parroquia Nuestra Señora del Perpetuo Socorro, Corralillo[cite: 2]</p>
                 <a href="https://www.google.com/maps/place/Parroquia+Nuestra+Se%C3%B1ora+del+Perpetuo+Socorro+de+Corralillo/@10.2191875,-85.3755747,91m/data=!3m1!1e3!4m11!1m3!2m2!1scorralillo+parroquia!6e1!3m6!1s0x8f9fb8a27f09fe6b:0xb4590fe21821e1ed!8m2!3d10.2191062!4d-85.375523!15sChRjb3JyYWxpbGxvIHBhcnJvcXVpYZIBD2NhdGhvbGljX2NodXJjaOABAA!16s%2Fg%2F11x9xvmsl!5m1!1e2?entry=ttu" target="_blank" class="btn-map">Ver Ubicación en Mapa</a>
             </div>
 
             <!-- Celebración -->
             <div class="event-box" data-aos="fade-up">
                 <h3 class="font-serif h5 mb-2" style="color: var(--primary-olive);">Recepción & Fiesta</h3>
-                <p class="text-muted small mb-1">Sábado 23 de Enero, 2027 — 5:00 p.m.</p>
-                <p class="fw-medium small mb-3">Rancho La Amistad de Mario Mafio, Corralillo</p>
+                <p class="text-muted small mb-1">Sábado 23 de Enero, 2027 — 5:00 p.m.[cite: 2]</p>
+                <p class="fw-medium small mb-3">Rancho La Amistad de Mario Mafio, Corralillo[cite: 2]</p>
                 <a href="https://www.google.com/maps/place/Rancho+La+Amisdad+de+Mario+Mafio/@10.1785555,-85.4299022,291m/data=!3m1!1e3!4m10!1m3!2m2!1scorralillo+parroquia!6e1!3m5!1s0x8f9fb99cc562a5e5:0x4f699aa2375e2239!8m2!3d10.178772!4d-85.4292963!16s%2Fg%2F11vlmb23h3!5m1!1e2?entry=ttu" target="_blank" class="btn-map">Ver Ubicación en Mapa</a>
             </div>
         </section>
@@ -486,7 +485,7 @@
         <!-- Footer -->
         <footer>
             <h3 class="font-script display-6 text-warning mb-1">Melissa & Jean Emanuel</h3>
-            <p class="small text-white-50 mb-0" style="letter-spacing: 3px;">23 . 01 . 2027</p>
+            <p class="small text-white-50 mb-0" style="letter-spacing: 3px;">23 . 01 . 2027[cite: 2]</p>
         </footer>
 
     </div>
@@ -503,11 +502,11 @@
                 duration: 1000,
                 once: true
             });
-            initForestCanvas();
+            initHyperRealisticForestCanvas();
         });
 
-        /* Motor de Física 2D en Canvas para Hojas de Bosque Hiperrealistas */
-        function initForestCanvas() {
+        /* Motor de Física 2D Avanzado para Hojas Hiperrealistas con Vena Central */
+        function initHyperRealisticForestCanvas() {
             const canvas = document.getElementById('forest-canvas');
             const ctx = canvas.getContext('2d');
 
@@ -519,10 +518,16 @@
             resizeCanvas();
 
             const leaves = [];
-            const leafCount = 22;
-            const colors = ['#2c3821', '#36452f', '#4e5e41', '#637a53', '#7a8b6e'];
+            const leafCount = 25; // Cantidad ideal para inmersión sin saturar
+            const forestColors = [
+                { main: '#2c3821', vein: '#1c2416' },
+                { main: '#3a4a2e', vein: '#26311e' },
+                { main: '#4e5e41', vein: '#34402a' },
+                { main: '#637a53', vein: '#455539' },
+                { main: '#7a8b6e', vein: '#54634b' }
+            ];
 
-            class Leaf {
+            class RealisticLeaf {
                 constructor() {
                     this.reset();
                 }
@@ -530,25 +535,24 @@
                 reset() {
                     this.x = Math.random() * canvas.width;
                     this.y = Math.random() * -canvas.height;
-                    this.vx = Math.random() * 1.5 - 0.75;
-                    this.vy = Math.random() * 1.2 + 0.8;
-                    this.width = Math.random() * 12 + 10;
-                    this.height = this.width * 2.2;
+                    this.vx = Math.random() * 1.2 - 0.6;
+                    this.vy = Math.random() * 1.0 + 0.6; // Caída suave y elegante
+                    this.scale = Math.random() * 0.6 + 0.7; // Tamaños variados (profundidad)
                     this.angle = Math.random() * Math.PI * 2;
-                    this.spin = Math.random() * 0.03 - 0.015;
-                    this.swing = Math.random() * 0.02;
-                    this.color = colors[Math.floor(Math.random() * colors.length)];
-                    this.opacity = Math.random() * 0.4 + 0.5;
+                    this.spin = Math.random() * 0.02 - 0.01;
+                    this.swing = Math.random() * 0.015 + 0.005;
+                    this.colorPair = forestColors[Math.floor(Math.random() * forestColors.length)];
+                    this.opacity = Math.random() * 0.35 + 0.55;
                 }
 
                 update() {
                     this.y += this.vy;
-                    this.x += Math.sin(this.y * this.swing) * 0.8 + this.vx;
+                    this.x += Math.sin(this.y * this.swing) * 0.9 + this.vx;
                     this.angle += this.spin;
 
-                    if (this.y > canvas.height + 50) {
+                    if (this.y > canvas.height + 60) {
                         this.reset();
-                        this.y = -50;
+                        this.y = -60;
                     }
                 }
 
@@ -556,21 +560,34 @@
                     ctx.save();
                     ctx.translate(this.x, this.y);
                     ctx.rotate(this.angle);
+                    ctx.scale(this.scale, this.scale);
                     ctx.globalAlpha = this.opacity;
-                    ctx.fillStyle = this.color;
 
+                    const length = 28;
+                    const width = 11;
+
+                    // Cuerpo de la hoja (Diseño botánico con puntas afiladas)
                     ctx.beginPath();
-                    ctx.moveTo(0, -this.height / 2);
-                    ctx.bezierCurveTo(this.width, -this.height / 4, this.width, this.height / 4, 0, this.height / 2);
-                    ctx.bezierCurveTo(-this.width, this.height / 4, -this.width, -this.height / 4, 0, -this.height / 2);
+                    ctx.moveTo(0, -length);
+                    ctx.bezierCurveTo(width * 1.5, -length / 2, width, length / 2, 0, length);
+                    ctx.bezierCurveTo(-width, length / 2, -width * 1.5, -length / 2, 0, -length);
+                    ctx.fillStyle = this.colorPair.main;
                     ctx.fill();
+
+                    // Vena central de la hoja para darle realismo fotográfico
+                    ctx.beginPath();
+                    ctx.moveTo(0, -length + 4);
+                    ctx.lineTo(0, length - 4);
+                    ctx.strokeStyle = this.colorPair.vein;
+                    ctx.lineWidth = 1.2;
+                    ctx.stroke();
 
                     ctx.restore();
                 }
             }
 
             for (let i = 0; i < leafCount; i++) {
-                leaves.push(new Leaf());
+                leaves.push(new RealisticLeaf());
             }
 
             function animate() {
