@@ -130,7 +130,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(rgba(14, 18, 12, 0.88), rgba(5, 7, 4, 0.94)), url('fotos/baec27ec-a089-418b-b8de-71dfd366730a.JPG') center/cover no-repeat;
+            background: linear-gradient(rgba(44, 56, 33, 0.95), rgba(27, 36, 22, 0.97)), url('fotos/baec27ec-a089-418b-b8de-71dfd366730a.JPG') center/cover no-repeat;
             z-index: 10000;
             display: flex;
             align-items: center;
@@ -149,7 +149,7 @@
         }
 
         .welcome-box {
-            background: rgba(18, 24, 15, 0.92);
+            background: rgba(44, 56, 33, 0.92);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 2px solid var(--accent-gold);
@@ -492,7 +492,7 @@
             transform: translateY(-2px);
         }
 
-        /* --- TARJETAS RSVP TOTALMENTE RESPONSIVE Y ADAPTABLES --- */
+        /* --- TARJETAS RSVP RESPONSIVE --- */
         .rsvp-card-option {
             display: flex;
             flex-wrap: wrap;
@@ -699,9 +699,8 @@
         </section>
 
         <section data-aos="fade-up">
-            <div class="px-3 text-center mb-2" data-aos="fade-down">
+            <div class="px-3 text-center mb-4" data-aos="fade-down">
                 <p id="txtGallerySub" class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Nuestros Recuerdos</p>
-                <h2 id="txtGalleryTitle" class="font-serif h4 mb-4" style="color: var(--primary-olive);">Instantes</h2>
             </div>
 
             <div class="horizontal-gallery-container" id="galleryContainer" data-aos="fade-right" data-aos-duration="1200">
@@ -844,8 +843,6 @@
             document.getElementById('lblSecs').innerText = "Secs";
             document.getElementById('txtGuestHeading').innerText = "Guests";
             document.getElementById('txtGallerySub').innerText = "Our Memories";
-            document.getElementById('txtGalleryTitle').innerText = "Moments";
-            document.getElementById('txtSwipeHint').innerText = "← Swipe to see more →";
             
             const galTexts = ["Our Love", "Adventures", "Moments", "Glances", "Walking Together", "Memories", "Promise", "Our History"];
             const galElements = document.querySelectorAll('.horizontal-gallery-container .photo-overlay span');
@@ -879,7 +876,7 @@
             AOS.init({ duration: 1000, once: true });
             initHyperRealisticForestCanvas();
             cargarChecklistInvitados();
-            initCylinderInfiniteScroll();
+            initInteractiveAutoScroll();
         });
 
         function initHyperRealisticForestCanvas() {
@@ -1031,34 +1028,44 @@
             document.getElementById('lightbox').style.display = 'none';
         }
 
-        function initCylinderInfiniteScroll() {
+        function initInteractiveAutoScroll() {
             const gallery = document.getElementById('galleryContainer');
             if (!gallery) return;
 
-            // Duplicar elementos para permitir desplazamiento infinito fluido
+            // Duplicar elementos para desplazamiento infinito fluido
             Array.from(gallery.children).forEach(item => {
                 const clone = item.cloneNode(true);
                 clone.addEventListener('click', () => openLightbox(clone));
                 gallery.appendChild(clone);
             });
 
-            // Movimiento automático lento y continuo
-            let autoScrollInterval = setInterval(() => {
-                if (gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth - 2) {
-                    gallery.scrollLeft = 0;
-                } else {
-                    gallery.scrollLeft += 1.2;
+            let isUserInteracting = false;
+            let interactionTimeout;
+
+            // Movimiento automático suave
+            setInterval(() => {
+                if (!isUserInteracting) {
+                    if (gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth - 2) {
+                        gallery.scrollLeft = 0;
+                    } else {
+                        gallery.scrollLeft += 1.2;
+                    }
                 }
             }, 30);
 
-            // Pausar el movimiento automático al interactuar con el dedo o el mouse
+            // Pausa temporal al interactuar manualmente para que el usuario controle libremente
             ['mousedown', 'touchstart', 'wheel'].forEach(eventType => {
                 gallery.addEventListener(eventType, () => {
-                    clearInterval(autoScrollInterval);
+                    isUserInteracting = true;
+                    clearTimeout(interactionTimeout);
+                    // Reanuda el movimiento automático 3 segundos después de soltar o dejar de tocar
+                    interactionTimeout = setTimeout(() => {
+                        isUserInteracting = false;
+                    }, 3000);
                 }, { passive: true });
             });
 
-            // Control de bucle infinito manual
+            // Control de bucle infinito manual o automático
             gallery.addEventListener('scroll', () => {
                 const singleSetWidth = gallery.scrollWidth / 2;
                 if (gallery.scrollLeft >= singleSetWidth) {
