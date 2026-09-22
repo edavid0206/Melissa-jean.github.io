@@ -11,6 +11,7 @@
             --olive-main: #58694b;
             --olive-light: #f4f6f2;
             --gold: #c5a059;
+            --gold-light: #e6ca8a;
             --bg-color: #faf8f5;
             --text-color: #4a4a4a;
         }
@@ -41,95 +42,184 @@
             font-family: 'Cormorant Garamond', serif;
         }
 
-        /* Pantalla de Bienvenida Inicial */
+        /* --- SOBRE VERDE OLIVO DE LUJO CON RELIEVE Y LACRE --- */
         #welcome-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(rgba(44, 56, 33, 0.85), rgba(44, 56, 33, 0.95)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            background: radial-gradient(circle, #3d4c31 0%, #1a2313 100%);
             z-index: 9999;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            transition: opacity 0.8s ease;
+            perspective: 1200px;
+            overflow: hidden;
+            transition: opacity 1s ease, visibility 1s ease;
         }
 
-        .welcome-card {
-            background: rgba(255, 255, 255, 0.96);
-            backdrop-filter: blur(10px);
-            padding: 45px 30px;
-            border-radius: 20px;
-            max-width: 380px;
+        /* Textura de papel fino estilo lino/acuarela */
+        #welcome-overlay::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 0);
+            background-size: 24px 24px;
+            pointer-events: none;
+        }
+
+        .envelope-wrapper {
+            position: relative;
+            width: 360px;
+            height: 250px;
+            background: #4e5e41;
+            border-radius: 6px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6), inset 0 0 40px rgba(0,0,0,0.2);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            cursor: pointer;
+            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .envelope-wrapper:hover {
+            transform: scale(1.02);
+        }
+
+        /* Solapa superior del sobre */
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 180px solid transparent;
+            border-right: 180px solid transparent;
+            border-top: 130px solid #455339;
+            transform-origin: top;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 4;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+        }
+
+        /* Bolsillo frontal del sobre */
+        .envelope-pocket {
+            position: absolute;
+            bottom: 0;
+            left: 0;
             width: 100%;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            border: 1px solid rgba(197, 160, 89, 0.5);
-            animation: scaleUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            height: 100%;
+            background: linear-gradient(135deg, #526344 0%, #455339 100%);
+            border-radius: 0 0 6px 6px;
+            clip-path: polygon(0 30%, 50% 65%, 100% 30%, 100% 100%, 0 100%);
+            z-index: 3;
+            border-top: 1px solid rgba(197, 160, 89, 0.4);
         }
 
-        @keyframes scaleUp {
-            from { transform: scale(0.9); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+        /* Marco en relieve dorado (Gold Foil Frame) impreso en el sobre */
+        .gold-emboss-frame {
+            position: absolute;
+            inset: 12px;
+            border: 1px dashed rgba(197, 160, 89, 0.5);
+            border-radius: 4px;
+            pointer-events: none;
+            z-index: 2;
         }
 
-        .welcome-card h2 {
-            font-family: 'Alex Brush', cursive;
-            font-size: 4rem;
-            color: var(--olive-main);
-            margin-bottom: 5px;
-            line-height: 1;
+        /* Sello de lacre dorado interactivo */
+        .wax-seal {
+            position: absolute;
+            top: 105px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 65px;
+            height: 65px;
+            background: radial-gradient(circle, var(--gold-light) 0%, var(--gold) 70%, #9e7933 100%);
+            border-radius: 50%;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4), inset 0 2px 4px rgba(255,255,255,0.6), inset 0 -2px 4px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .welcome-card p {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 25px;
-            letter-spacing: 1px;
+        .wax-seal:hover {
+            transform: translateX(-50%) scale(1.1);
+            box-shadow: 0 8px 20px rgba(197,160,89,0.6);
+        }
+
+        .wax-seal span {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: bold;
+            font-size: 1.6rem;
+            color: #2c3821;
+            text-shadow: 0 1px 1px rgba(255,255,255,0.4);
+        }
+
+        /* Texto guía en el sobre */
+        .envelope-instruction {
+            position: absolute;
+            bottom: 25px;
+            width: 100%;
+            text-align: center;
+            z-index: 6;
+            color: #f4f6f2;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
             text-transform: uppercase;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            animation: pulseText 2s infinite ease-in-out;
+            pointer-events: none;
         }
 
-        .welcome-btn-group {
+        @keyframes pulseText {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        /* Estado Abierto del Sobre */
+        .envelope-wrapper.open .envelope-flap {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        .envelope-wrapper.open .wax-seal {
+            opacity: 0;
+            transform: translateX(-50%) scale(0.5);
+            transition: all 0.4s ease;
+        }
+
+        .envelope-wrapper.open .envelope-instruction {
+            opacity: 0;
+        }
+
+        /* Tarjeta interior deslizable que emerge del sobre */
+        .envelope-card-preview {
+            position: absolute;
+            bottom: 10px;
+            left: 15px;
+            right: 15px;
+            height: 200px;
+            background: #ffffff;
+            border-radius: 4px;
+            z-index: 2;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+            border: 1px solid rgba(197, 160, 89, 0.4);
         }
 
-        .welcome-btn {
-            background: var(--olive-main);
-            color: white;
-            border: none;
-            padding: 13px 20px;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(88, 105, 75, 0.4);
+        .envelope-wrapper.open .envelope-card-preview {
+            transform: translateY(-160px);
         }
 
-        .welcome-btn:hover {
-            background: var(--olive-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(88, 105, 75, 0.6);
-        }
-
-        .welcome-btn-secondary {
-            background: transparent;
-            color: var(--olive-main);
-            border: 1.5px solid var(--olive-main);
-            box-shadow: none;
-        }
-
-        .welcome-btn-secondary:hover {
-            background: var(--olive-light);
-            color: var(--olive-dark);
-        }
-
-        /* Contenedor Principal Adaptable (Responsive perfecto para PC y Móvil) */
+        /* Contenedor Principal Adaptable */
         .container {
             width: 100%;
             max-width: 480px;
@@ -169,7 +259,6 @@
             transform: translateY(0);
         }
 
-        /* Ramos y Hojas Botánicas Estilo Acuarela Verde Olivo */
         .botanical-branch {
             width: 140px;
             height: 40px;
@@ -311,7 +400,7 @@
             60% { transform: translateX(-50%) translateY(-3px); }
         }
 
-        /* Sección 2: Cuenta Regresiva con Guirnalda Botánica Verde Olivo */
+        /* Sección 2: Cuenta Regresiva */
         .window-content-flex {
             display: flex;
             flex-direction: column;
@@ -476,7 +565,7 @@
             76%, 100% { transform: translateY(-450px); }
         }
 
-        /* Sección 4: Ceremonia y Celebración (Iglesia con Cruz) */
+        /* Sección 4: Ceremonia y Celebración */
         .events-grid {
             display: flex;
             flex-direction: column;
@@ -580,7 +669,7 @@
             transform: scale(1.15);
         }
 
-        /* Sección 6: Confirmación RSVP con Lógica de 29 Días */
+        /* Sección 6: Confirmación RSVP */
         .rsvp-box {
             background: white;
             padding: 35px 25px;
@@ -659,15 +748,22 @@
 </head>
 <body>
 
-    <!-- Pantalla de Bienvenida Inicial -->
+    <!-- Pantalla de Bienvenida: Sobre Verde Olivo con Relieve y Lacre -->
     <div id="welcome-overlay">
-        <div class="welcome-card">
-            <h2 class="script-font">Nuestra Boda</h2>
-            <p class="serif-font" style="font-size: 1.2rem; color: var(--olive-main); font-weight: 600;">Melissa & Jean Emanuel</p>
-            <div class="welcome-btn-group" style="margin-top: 20px;">
-                <button class="welcome-btn" onclick="openInvitation(true)">Abrir con Música</button>
-                <button class="welcome-btn welcome-btn-secondary" onclick="openInvitation(false)">Abrir sin Música</button>
+        <div class="envelope-wrapper" id="envelope" onclick="openInvitation()">
+            <div class="envelope-card-preview">
+                <span class="script-font" style="font-size: 2.2rem; color: var(--olive-main); line-height: 1;">Melissa</span>
+                <span style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; color: var(--gold);">&</span>
+                <span class="script-font" style="font-size: 2.2rem; color: var(--olive-main); line-height: 1;">Jean Emanuel</span>
+                <span style="font-size: 0.65rem; letter-spacing: 2px; color: #888; text-transform: uppercase; margin-top: 8px;">23 . 01 . 2027</span>
             </div>
+            <div class="envelope-flap"></div>
+            <div class="gold-emboss-frame"></div>
+            <div class="envelope-pocket"></div>
+            <div class="wax-seal">
+                <span>M&J</span>
+            </div>
+            <div class="envelope-instruction">Toca para abrir</div>
         </div>
     </div>
 
@@ -700,7 +796,6 @@
 
         <!-- SECCIÓN 2: Cuenta Regresiva + Invitados -->
         <div class="content-section">
-            <!-- Rama botánica en acuarela verde olivo -->
             <svg class="botanical-branch" viewBox="0 0 120 35">
                 <path d="M10,20 Q30,5 60,18 Q90,5 110,20 Q90,30 60,20 Q30,30 10,20 Z" fill="#58694b"/>
                 <path d="M40,12 Q45,2 50,15 Z" fill="#798e6b"/><path d="M70,12 Q75,2 80,15 Z" fill="#798e6b"/>
@@ -708,7 +803,6 @@
             </svg>
             <div class="window-content-flex">
                 <div class="countdown-circle-container">
-                    <!-- Guirnalda botánica circular verde olivo -->
                     <svg class="botanical-wreath-svg" viewBox="0 0 200 200">
                         <circle cx="100" cy="100" r="90" fill="none" stroke="#c5a059" stroke-width="1.2" stroke-dasharray="5 5"/>
                         <path d="M100,2 Q105,15 100,20 Q95,15 100,2 Z" fill="#58694b"/>
@@ -780,7 +874,6 @@
             </svg>
             <div class="events-grid">
                 <div class="event-card">
-                    <!-- Icono vectorial de la Parroquia con Cruz en la cúspide -->
                     <svg class="event-icon-vector" viewBox="0 0 24 24"><path d="M12,2L2,12H5V20H10V14H14V20H19V12H22L12,2Z"/></svg>
                     <h4 class="script-font">Ceremonia</h4>
                     <p><b>Sábado 23 de Enero - 3:00 p.m.</b><br>Parroquia Nuestra Señora del Perpetuo Socorro, Corralillo</p>
@@ -919,26 +1012,31 @@
             document.getElementById('listaNombresInvitados').innerHTML = `<div class="guest-item">Nuestros Queridos Invitados</div>`;
         }
 
-        /* Control de Música y Pantalla de Bienvenida */
+        /* Control de Música y Apertura del Sobre */
         const music = document.getElementById('bg-music');
         const musicBtn = document.getElementById('music-btn');
         music.volume = 0.3;
         let isPlaying = false;
 
-        function openInvitation(playMusic) {
+        function openInvitation() {
+            const envelope = document.getElementById('envelope');
             const overlay = document.getElementById('welcome-overlay');
-            overlay.style.opacity = '0';
-            setTimeout(() => {
-                overlay.style.display = 'none';
-            }, 800);
 
-            if (playMusic) {
-                music.play().then(() => {
-                    isPlaying = true;
-                }).catch(e => console.log("Error al reproducir música:", e));
-            } else {
-                isPlaying = false;
-            }
+            // Activar animación de apertura del sobre
+            envelope.classList.add('open');
+
+            // Reproducir música romántica
+            music.play().then(() => {
+                isPlaying = true;
+            }).catch(e => console.log("Error al reproducir música:", e));
+
+            // Desvanecer la pantalla de bienvenida después de que se abra el sobre
+            setTimeout(() => {
+                overlay.style.opacity = '0';
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 1000);
+            }, 900);
         }
 
         function toggleMusic() {
