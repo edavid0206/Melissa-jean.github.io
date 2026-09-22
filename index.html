@@ -40,6 +40,8 @@
 
         .font-script {
             font-family: 'Great Vibes', cursive;
+            padding: 0 15px; /* Evita que las letras con curvas pronunciadas se corten */
+            display: inline-block;
         }
 
         .font-serif {
@@ -78,8 +80,8 @@
             backdrop-filter: blur(14px);
             border: 1.5px solid rgba(197, 160, 89, 0.4);
             border-radius: 24px;
-            padding: 45px 30px;
-            max-width: 390px;
+            padding: 45px 25px;
+            max-width: 420px;
             width: 100%;
             box-shadow: 0 25px 50px rgba(0,0,0,0.7);
             cursor: pointer;
@@ -179,7 +181,7 @@
             text-align: center;
         }
 
-        /* --- PORTADA HERO (Restaurada con la foto de la ventana/espejo) --- */
+        /* --- PORTADA HERO --- */
         .hero-section {
             background: linear-gradient(rgba(44,56,33,0.7), rgba(27,36,22,0.85)), url('fotos/baec27ec-a089-418b-b8de-71dfd366730a.JPG') center/cover;
             color: white;
@@ -350,6 +352,44 @@
             color: white;
         }
 
+        /* --- CHECKLIST PERSONALIZADO CON HOJITAS (🌿) --- */
+        .custom-leaf-checkbox {
+            display: none; /* Oculta el checkbox estándar */
+        }
+
+        .custom-leaf-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: var(--primary-olive);
+            font-weight: 500;
+            padding: 6px 0;
+            transition: color 0.2s;
+        }
+
+        /* Simulación de la cajita en forma de hojita o selector natural */
+        .custom-leaf-label::before {
+            content: "🌿";
+            display: inline-block;
+            font-size: 1.1rem;
+            margin-right: 10px;
+            opacity: 0.3;
+            transform: scale(0.9);
+            transition: all 0.2s ease;
+        }
+
+        /* Cuando está marcado, resalta la hojita con color verde intenso */
+        .custom-leaf-checkbox:checked + .custom-leaf-label::before {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        .custom-leaf-checkbox:checked + .custom-leaf-label {
+            font-weight: 700;
+            color: var(--light-olive);
+        }
+
         /* --- PALETA DE COLORES --- */
         .dot-color {
             width: 32px;
@@ -412,7 +452,7 @@
         <img id="lightbox-img" src="" alt="Galería Boda">
     </div>
 
-    <!-- Audio Player apuntando correctamente a la carpeta local -->
+    <!-- Audio Player apuntando a la carpeta de canciones -->
     <audio id="wedding-audio" loop preload="auto">
         <source src="cancion/cancion.mp3" type="audio/mp3">
     </audio>
@@ -479,7 +519,7 @@
             </div>
         </section>
 
-        <!-- 3. Galería de Fotos Locales -->
+        <!-- 3. Galería de Fotos (Rutas corregidas con extensiones exactas) -->
         <section style="background: #eceee9;" data-aos="fade-up">
             <p class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Nuestros Recuerdos</p>
             <h2 class="font-serif h4 mb-4" style="color: var(--primary-olive);">Instantes</h2>
@@ -487,56 +527,44 @@
             <div class="row g-2 px-2">
                 <div class="col-12" data-aos="zoom-in">
                     <div class="photo-item wide" onclick="openLightbox(this)">
-                        <img src="fotos/03ac8282-50cd-4a3b-8f4d-ed7c93bbce30.jpg" alt="Atardecer Playa">
+                        <img src="fotos/foto1.jpg" alt="Atardecer Playa">
                         <div class="photo-overlay"><span class="font-serif">Nuestro Amor</span></div>
                     </div>
                 </div>
                 <div class="col-6" data-aos="fade-right">
                     <div class="photo-item" onclick="openLightbox(this)">
-                        <img src="fotos/072c15f8-7c05-4ee1-a2b1-065eb71c63b9.JPG" alt="Montaña">
+                        <img src="fotos/foto2.JPG" alt="Montaña">
                         <div class="photo-overlay"><span class="font-serif">Aventuras</span></div>
                     </div>
                 </div>
                 <div class="col-6" data-aos="fade-left">
                     <div class="photo-item" onclick="openLightbox(this)">
-                        <img src="fotos/633b0e0f-5240-478f-9424-323af407a731.JPG" alt="Beso Atardecer">
+                        <img src="fotos/foto3.JPG" alt="Beso Atardecer">
                         <div class="photo-overlay"><span class="font-serif">Instantes</span></div>
                     </div>
                 </div>
                 <div class="col-6" data-aos="fade-right">
                     <div class="photo-item" onclick="openLightbox(this)">
-                        <img src="fotos/25178100-15d5-40c0-8015-15200628d3f9.jpg" alt="Cena">
+                        <img src="fotos/foto4.JPG" alt="Cena">
                         <div class="photo-overlay"><span class="font-serif">Miradas</span></div>
                     </div>
                 </div>
                 <div class="col-6" data-aos="fade-left">
                     <div class="photo-item" onclick="openLightbox(this)">
-                        <img src="fotos/baec27ec-a089-418b-b8de-71dfd366730a.JPG" alt="Ventana/Espejo">
-                        <div class="photo-overlay"><span class="font-serif">Reserva la fecha</span></div>
+                        <img src="fotos/foto5.jpg" alt="Iglesia">
+                        <div class="photo-overlay"><span class="font-serif">Camino Juntos</span></div>
                     </div>
                 </div>
                 <div class="col-6" data-aos="fade-right">
                     <div class="photo-item" onclick="openLightbox(this)">
-                        <img src="fotos/669c969a-fb4c-4976-81ae-cf1f8db3f387.JPG" alt="Cena restaurante">
-                        <div class="photo-overlay"><span class="font-serif">Cena Juntos</span></div>
-                    </div>
-                </div>
-                <div class="col-6" data-aos="fade-left">
-                    <div class="photo-item" onclick="openLightbox(this)">
-                        <img src="fotos/c7a2247a-be4c-432c-9ed1-3002a3bf9710.jpg" alt="Yosemite">
+                        <img src="fotos/foto7.jpg" alt="Yosemite">
                         <div class="photo-overlay"><span class="font-serif">Recuerdos</span></div>
                     </div>
                 </div>
-                <div class="col-6" data-aos="fade-right">
-                    <div class="photo-item" onclick="openLightbox(this)">
-                        <img src="fotos/IMG_0964.jpg" alt="Anillo">
-                        <div class="photo-overlay"><span class="font-serif">Promesa</span></div>
-                    </div>
-                </div>
                 <div class="col-6" data-aos="fade-left">
                     <div class="photo-item" onclick="openLightbox(this)">
-                        <img src="fotos/IMG_3657.jpg" alt="Montaña selfie">
-                        <div class="photo-overlay"><span class="font-serif">Nuestra Historia</span></div>
+                        <img src="fotos/foto8.jpg" alt="Promesa">
+                        <div class="photo-overlay"><span class="font-serif">Promesa</span></div>
                     </div>
                 </div>
             </div>
@@ -586,7 +614,7 @@
             </div>
         </section>
 
-        <!-- 6. Confirmación de Asistencia (RSVP Interactivo) -->
+        <!-- 6. Confirmación de Asistencia (RSVP Interactivo con Hojitas 🌿) -->
         <section data-aos="fade-up">
             <p class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Asistencia</p>
             <h2 class="font-serif h4 mb-3" style="color: var(--primary-olive);">RSVP</h2>
@@ -595,7 +623,7 @@
                 <p class="text-muted small text-center mb-3">Selecciona quiénes asistirán de tu pase y haz clic en confirmar:</p>
                 
                 <div id="checklistContainer" class="mb-3">
-                    <!-- Aquí se cargan dinámicamente las casillas -->
+                    <!-- Aquí se cargan dinámicamente las casillas con hojitas -->
                 </div>
 
                 <button type="button" onclick="enviarRSVP()" id="btnRsvp" class="btn btn-warning w-100 rounded-pill py-2 text-dark fw-bold text-uppercase small font-serif" style="letter-spacing: 1px;">
@@ -801,7 +829,7 @@
             document.getElementById('segundos').innerText = String(seconds).padStart(2, '0');
         }, 1000);
 
-        /* --- SISTEMA DE INVITADOS Y RSVP INTERACTIVO --- */
+        /* --- SISTEMA DE INVITADOS Y RSVP INTERACTIVO CON HOJITAS --- */
         let guestArray = [];
         const params = new URLSearchParams(window.location.search);
         const urlGuests = params.get('invitados');
@@ -826,9 +854,9 @@
                 let isChecked = savedRsvp[name] !== undefined ? savedRsvp[name] : true;
 
                 checklistHtml += `
-                    <div class="form-check my-2">
-                        <input class="form-check-input guest-checkbox" type="checkbox" value="${name}" id="guest_${index}" ${isChecked ? 'checked' : ''}>
-                        <label class="form-check-label fw-medium small" for="guest_${index}" style="color: var(--primary-olive);">
+                    <div class="my-2">
+                        <input class="custom-leaf-checkbox" type="checkbox" value="${name}" id="guest_${index}" ${isChecked ? 'checked' : ''}>
+                        <label class="custom-leaf-label" for="guest_${index}">
                             ${name}
                         </label>
                     </div>
@@ -840,7 +868,7 @@
         }
 
         function enviarRSVP() {
-            const checkboxes = document.querySelectorAll('.guest-checkbox');
+            const checkboxes = document.querySelectorAll('.custom-leaf-checkbox');
             let asistenciaData = {};
             let grupoNombre = urlGuests || 'Invitado General';
 
