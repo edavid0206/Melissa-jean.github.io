@@ -803,7 +803,7 @@
             document.getElementById('txtWelcomeTitle').innerText = "OUR WEDDING";
             document.getElementById('txtOpenBtn').innerText = "Open Invitation";
             document.getElementById('txtHeroBadge').innerText = "Our Wedding";
-            document.getElementById('txtHeroQuote').innerText = "“The most important 'I do'. And you, right by our side.”";
+            document.getElementById('txtHeroQuote').innerText = "“The most important 'yes'. And you, right in the front row.”";
             document.getElementById('txtScroll').innerText = "Scroll";
             document.getElementById('txtCountdownTitle').innerText = "Countdown";
             document.getElementById('lblDays').innerText = "Days";
@@ -1134,34 +1134,25 @@
             btn.disabled = true;
             btn.innerText = isEnglish ? "Saving..." : "Guardando...";
 
-            const scriptURL = 'AQUÍ_PEGARÁS_TU_URL_DE_GOOGLE_SCRIPT';
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbz7V7m9HRREfGCzj9-u5u5dr5Sx2h43obaf1oqBxJ2zWsUCXYlhlX-Ul9Y2QKGvHBJ4Mg/exec';
 
             const formData = new FormData();
             formData.append('grupo', grupoNombre);
             formData.append('detalles', JSON.stringify(asistenciaData));
 
-            if (scriptURL === 'AQUÍ_PEGARÁS_TU_URL_DE_GOOGLE_SCRIPT') {
-                setTimeout(() => {
-                    mensaje.className = "mt-2 text-center small fw-bold text-success";
-                    mensaje.innerText = isEnglish ? "Attendance updated successfully! You can update it anytime." : "¡Asistencia actualizada con éxito! Puedes volver a editarla cuando gustes.";
-                    btn.disabled = false;
-                    btn.innerText = isEnglish ? "Update Attendance" : "Actualizar Asistencia";
-                }, 800);
-            } else {
-                fetch(scriptURL, { method: 'POST', body: formData })
-                .then(response => {
-                    mensaje.className = "mt-2 text-center small fw-bold text-success";
-                    mensaje.innerText = isEnglish ? "Attendance updated successfully!" : "¡Asistencia actualizada con éxito!";
-                    btn.disabled = false;
-                    btn.innerText = isEnglish ? "Update Attendance" : "Actualizar Asistencia";
-                })
-                .catch(error => {
-                    mensaje.className = "mt-2 text-center small fw-bold text-danger";
-                    mensaje.innerText = isEnglish ? "Error saving. Please try again." : "Hubo un error al guardar. Inténtalo de nuevo.";
-                    btn.disabled = false;
-                    btn.innerText = isEnglish ? "Confirm Attendance" : "Confirmar Asistencia";
-                });
-            }
+            fetch(scriptURL, { method: 'POST', body: formData })
+            .then(response => {
+                mensaje.className = "mt-2 text-center small fw-bold text-success";
+                mensaje.innerText = isEnglish ? "Attendance updated successfully!" : "¡Asistencia actualizada con éxito!";
+                btn.disabled = false;
+                btn.innerText = isEnglish ? "Update Attendance" : "Actualizar Asistencia";
+            })
+            .catch(error => {
+                mensaje.className = "mt-2 text-center small fw-bold text-danger";
+                mensaje.innerText = isEnglish ? "Error saving. Please try again." : "Hubo un error al guardar. Inténtalo de nuevo.";
+                btn.disabled = false;
+                btn.innerText = isEnglish ? "Confirm Attendance" : "Confirmar Asistencia";
+            });
         }
     </script>
 </body>
