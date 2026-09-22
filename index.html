@@ -656,42 +656,42 @@
                 <!-- Foto 1 -->
                 <div class="horizontal-photo-item" onclick="openLightbox(this)">
                     <img src="fotos/foto1.JPG" alt="Atardecer Playa" loading="lazy">
-                    <div class="photo-overlay"><span class="font-serif text-white small" style="letter-spacing: 1.5px;">Nuestro Amor</span></div>
+                    <div class="photo-overlay"><span class="gal-label-1 font-serif text-white small" style="letter-spacing: 1.5px;">Nuestro Amor</span></div>
                 </div>
                 <!-- Foto 2 -->
                 <div class="horizontal-photo-item" onclick="openLightbox(this)">
                     <img src="fotos/foto2.JPG" alt="Montaña" loading="lazy">
-                    <div class="photo-overlay"><span class="font-serif text-white small" style="letter-spacing: 1.5px;">Aventuras</span></div>
+                    <div class="photo-overlay"><span class="gal-label-2 font-serif text-white small" style="letter-spacing: 1.5px;">Aventuras</span></div>
                 </div>
                 <!-- Foto 3 -->
                 <div class="horizontal-photo-item" onclick="openLightbox(this)">
                     <img src="fotos/foto3.JPG" alt="Beso Atardecer" loading="lazy">
-                    <div class="photo-overlay"><span class="font-serif text-white small" style="letter-spacing: 1.5px;">Instantes</span></div>
+                    <div class="photo-overlay"><span class="gal-label-3 font-serif text-white small" style="letter-spacing: 1.5px;">Instantes</span></div>
                 </div>
                 <!-- Foto 4 -->
                 <div class="horizontal-photo-item" onclick="openLightbox(this)">
                     <img src="fotos/foto4.JPG" alt="Cena" loading="lazy">
-                    <div class="photo-overlay"><span class="font-serif text-white small" style="letter-spacing: 1.5px;">Miradas</span></div>
+                    <div class="photo-overlay"><span class="gal-label-4 font-serif text-white small" style="letter-spacing: 1.5px;">Miradas</span></div>
                 </div>
                 <!-- Foto 5 -->
                 <div class="horizontal-photo-item" onclick="openLightbox(this)">
                     <img src="fotos/foto5.JPG" alt="Iglesia" loading="lazy">
-                    <div class="photo-overlay"><span class="font-serif text-white small" style="letter-spacing: 1.5px;">Camino Juntos</span></div>
+                    <div class="photo-overlay"><span class="gal-label-5 font-serif text-white small" style="letter-spacing: 1.5px;">Camino Juntos</span></div>
                 </div>
                 <!-- Foto 7 -->
                 <div class="horizontal-photo-item" onclick="openLightbox(this)">
                     <img src="fotos/foto7.JPG" alt="Yosemite" loading="lazy">
-                    <div class="photo-overlay"><span class="font-serif text-white small" style="letter-spacing: 1.5px;">Recuerdos</span></div>
+                    <div class="photo-overlay"><span class="gal-label-6 font-serif text-white small" style="letter-spacing: 1.5px;">Recuerdos</span></div>
                 </div>
                 <!-- Foto 8 -->
                 <div class="horizontal-photo-item" onclick="openLightbox(this)">
                     <img src="fotos/foto8.JPG" alt="Promesa" loading="lazy">
-                    <div class="photo-overlay"><span class="font-serif text-white small" style="letter-spacing: 1.5px;">Promesa</span></div>
+                    <div class="photo-overlay"><span class="gal-label-7 font-serif text-white small" style="letter-spacing: 1.5px;">Promesa</span></div>
                 </div>
                 <!-- Foto 9 -->
                 <div class="horizontal-photo-item" onclick="openLightbox(this)">
                     <img src="fotos/foto9.JPG" alt="Selfie Montaña" loading="lazy">
-                    <div class="photo-overlay"><span class="font-serif text-white small" style="letter-spacing: 1.5px;">Nuestra Historia</span></div>
+                    <div class="photo-overlay"><span class="gal-label-8 font-serif text-white small" style="letter-spacing: 1.5px;">Nuestra Historia</span></div>
                 </div>
             </div>
             
@@ -803,7 +803,7 @@
             document.getElementById('txtWelcomeTitle').innerText = "OUR WEDDING";
             document.getElementById('txtOpenBtn').innerText = "Open Invitation";
             document.getElementById('txtHeroBadge').innerText = "Our Wedding";
-            document.getElementById('txtHeroQuote').innerText = "“The most important 'I do'. And you, in the front row.”";
+            document.getElementById('txtHeroQuote').innerText = "“The most important 'I do'. And you, right by our side.”";
             document.getElementById('txtScroll').innerText = "Scroll";
             document.getElementById('txtCountdownTitle').innerText = "Countdown";
             document.getElementById('lblDays').innerText = "Days";
@@ -814,6 +814,14 @@
             document.getElementById('txtGallerySub').innerText = "Our Memories";
             document.getElementById('txtGalleryTitle').innerText = "Moments";
             document.getElementById('txtSwipeHint').innerText = "← Swipe to see more →";
+            
+            // Traducción de las etiquetas de las fotos de la galería
+            const galTexts = ["Our Love", "Adventures", "Moments", "Glances", "Walking Together", "Memories", "Promise", "Our History"];
+            const galElements = document.querySelectorAll('.horizontal-gallery-container .photo-overlay span');
+            galElements.forEach((el, index) => {
+                if(galTexts[index]) el.innerText = galTexts[index];
+            });
+
             document.getElementById('txtLocationsTitle').innerText = "Locations";
             document.getElementById('txtCeremonyHead').innerText = "Ceremony";
             document.getElementById('txtCeremonyDate').innerText = "Saturday, January 23, 2027 — 3:00 p.m.";
@@ -1079,7 +1087,7 @@
         if (urlGuestsParam) {
             guestArray = urlGuestsParam.split(',').map(name => decodeURIComponent(name.trim()));
         } else {
-            guestArray = ['Family & Guests'];
+            guestArray = [isEnglish ? 'Family & Guests' : 'Familia & Acompañantes'];
         }
 
         function cargarChecklistInvitados() {
@@ -1112,7 +1120,7 @@
         function enviarRSVP() {
             const checkboxes = document.querySelectorAll('.custom-leaf-checkbox');
             let asistenciaData = {};
-            let grupoNombre = urlGuestsParam || 'General Guest';
+            let grupoNombre = urlGuestsParam || (isEnglish ? 'General Guest' : 'Invitado General');
 
             checkboxes.forEach(cb => {
                 asistenciaData[cb.value] = cb.checked;
