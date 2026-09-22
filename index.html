@@ -69,13 +69,13 @@
             margin: 15px auto;
         }
 
-        /* Cuadro verde con efecto tornasol/brillo fluido unificado */
+        /* Cuadro con efecto dorado divino, brillante y animado fluidamente */
         .shimmer-olive-box {
-            background: linear-gradient(270deg, #2c3821, #4e5e41, #35472b, #658c6b, #2c3821);
+            background: linear-gradient(270deg, #aa7c11, #d4af37, #f9e7b9, #f3e5ab, #d4af37, #aa7c11);
             background-size: 400% 400%;
-            animation: oliveShimmerAnimation 8s ease infinite;
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            animation: goldShimmerAnimation 8s ease infinite;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 10px 30px rgba(170, 124, 17, 0.35);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             border-radius: 16px;
@@ -88,27 +88,28 @@
 
         .shimmer-olive-box:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.5);
         }
 
-        /* Hero badge con el mismo estilo tornasol fluido */
+        /* Hero badge con el mismo estilo dorado brillante */
         .hero-badge {
-            background: linear-gradient(270deg, #2c3821, #4e5e41, #35472b, #658c6b, #2c3821);
+            background: linear-gradient(270deg, #aa7c11, #d4af37, #f9e7b9, #f3e5ab, #d4af37, #aa7c11);
             background-size: 400% 400%;
-            animation: oliveShimmerAnimation 8s ease infinite;
-            border: 1px solid var(--accent-gold);
+            animation: goldShimmerAnimation 8s ease infinite;
+            border: 1px solid rgba(255, 255, 255, 0.7);
             padding: 8px 22px;
             border-radius: 30px;
             font-size: 0.8rem;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: var(--gold-light);
+            color: #1b2416;
+            font-weight: 700;
             margin-bottom: 20px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            box-shadow: 0 8px 25px rgba(170, 124, 17, 0.3);
             backdrop-filter: blur(5px);
         }
 
-        @keyframes oliveShimmerAnimation {
+        @keyframes goldShimmerAnimation {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
@@ -648,7 +649,7 @@
             <h1 class="font-script display-3 mt-1 mb-4 px-3" data-aos="fade-down" data-aos-delay="600" style="font-size: clamp(2.8rem, 6.5vw, 5rem); overflow: visible;">Jean Emanuel</h1>
             
             <div class="shimmer-olive-box" data-aos="fade-up" data-aos-delay="800">
-                <p id="txtHeroQuote" class="font-serif fst-italic text-white mb-0" style="font-size: 1rem; line-height: 1.6; text-shadow: 0 1px 3px rgba(0,0,0,0.3);">
+                <p id="txtHeroQuote" class="font-serif fst-italic text-dark mb-0 fw-semibold" style="font-size: 1rem; line-height: 1.6; text-shadow: 0 1px 2px rgba(255,255,255,0.4);">
                     “El sí más importante. Y tú, en primera fila.”
                 </p>
             </div>
