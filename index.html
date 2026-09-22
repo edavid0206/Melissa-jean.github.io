@@ -64,6 +64,14 @@
             font-weight: 600;
         }
 
+        /* Líneas divisorias doradas finas */
+        .gold-divider {
+            width: 60px;
+            height: 1.5px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+            margin: 15px auto;
+        }
+
         /* --- FONDO TORNASOL VERDE Y OLIVO EN MOVIMIENTO --- */
         .shimmer-olive-box {
             background: linear-gradient(270deg, #2c3821, #4e5e41, #35472b, #658c6b, #2c3821);
@@ -97,14 +105,14 @@
             z-index: 999;
         }
 
-        /* --- PANTALLA DE BIENVENIDA CON FLORES VECTORIALES REALISTAS --- */
+        /* --- PANTALLA DE BIENVENIDA CON DISEÑO ELEGANTE Y DORADOS --- */
         #welcome-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #111510 0%, #070906 100%);
+            background: linear-gradient(rgba(17, 21, 16, 0.8), rgba(7, 9, 6, 0.9)), url('fotos/baec27ec-a089-418b-b8de-71dfd366730a.JPG') center/cover no-repeat;
             z-index: 10000;
             display: flex;
             align-items: center;
@@ -123,48 +131,51 @@
         }
 
         .welcome-box {
-            background: rgba(25, 33, 22, 0.9);
+            background: rgba(18, 24, 15, 0.92);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1.5px solid rgba(212, 175, 55, 0.5);
-            border-radius: 24px;
+            /* Marco doble dorado elegante */
+            border: 2px solid var(--accent-gold);
+            outline: 1px solid rgba(212, 175, 55, 0.4);
+            outline-offset: 5px;
+            border-radius: 20px;
             padding: 45px 30px;
             max-width: 420px;
             width: 100%;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 0 20px rgba(212,175,55,0.15);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.85), inset 0 0 25px rgba(212,175,55,0.2);
             cursor: pointer;
             text-align: center;
             position: relative;
             overflow: hidden;
-            transition: border-color 0.4s ease, transform 0.3s ease;
+            transition: all 0.4s ease;
         }
 
         .welcome-box:hover {
-            border-color: var(--accent-gold);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.9), inset 0 0 35px rgba(212,175,55,0.35);
             transform: translateY(-4px);
         }
 
-        /* Posicionamiento de las esquinas florales vectoriales */
+        /* Posicionamiento de las esquinas florales vectoriales en dorado fino */
         .floral-corner {
             position: absolute;
-            width: 65px;
-            height: 65px;
+            width: 60px;
+            height: 60px;
             pointer-events: none;
-            opacity: 0.85;
+            opacity: 0.9;
         }
 
         .floral-corner.top-left {
-            top: 10px;
-            left: 10px;
+            top: 12px;
+            left: 12px;
         }
 
         .floral-corner.bottom-right {
-            bottom: 10px;
-            right: 10px;
+            bottom: 12px;
+            right: 12px;
             transform: rotate(180deg);
         }
 
-        /* Sello Dorado Metálico */
+        /* Sello Dorado Metálico Luminoso */
         .gold-seal {
             width: 75px;
             height: 75px;
@@ -174,26 +185,27 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 10px 25px rgba(212,175,55,0.4);
+            box-shadow: 0 10px 25px rgba(212,175,55,0.5);
             font-family: 'Cinzel', serif;
             font-weight: 600;
             font-size: 1.5rem;
             color: #1b2416;
-            border: 1px solid rgba(255,255,255,0.6);
+            border: 1.5px solid rgba(255,255,255,0.8);
         }
 
         .btn-gold-outline {
             color: var(--gold-light);
             border: 1.5px solid var(--accent-gold);
-            background: rgba(212, 175, 55, 0.1);
+            background: rgba(212, 175, 55, 0.12);
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212,175,55,0.15);
         }
 
         .btn-gold-outline:hover {
             background: linear-gradient(135deg, var(--gold-light) 0%, var(--accent-gold) 100%);
             color: #1b2416;
             border-color: var(--gold-light);
-            box-shadow: 0 0 20px rgba(212,175,55,0.6);
+            box-shadow: 0 0 25px rgba(212,175,55,0.7);
         }
 
         /* --- ANIMACIÓN DE GUÍA PARA BAJAR --- */
@@ -563,51 +575,53 @@
     <!-- Canvas para física avanzada de hojas de bosque hiperrealistas -->
     <canvas id="forest-canvas"></canvas>
 
-    <!-- Pantalla de Bienvenida con Arreglo Floral Vectorial Realista -->
+    <!-- Pantalla de Bienvenida con Elegantes Dorados y Marco Fino -->
     <div id="welcome-screen">
         <div class="welcome-box" onclick="unlockInvitation()">
-            <!-- Esquina Floral Superior Izquierda -->
+            <!-- Esquina Floral Superior Izquierda (Dorado Metálico) -->
             <svg class="floral-corner top-left" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10 90C10 50 50 10 90 10" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round"/>
-                <path d="M10 70C10 40 40 10 70 10" stroke="#7a8b6e" stroke-width="1.5" stroke-linecap="round"/>
-                <!-- Flor principal -->
+                <path d="M10 70C10 40 40 10 70 10" stroke="#f9e7b9" stroke-width="1.2" stroke-linecap="round"/>
+                <!-- Flor principal dorada -->
                 <circle cx="35" cy="35" r="8" fill="#f9e7b9" stroke="#d4af37" stroke-width="1.5"/>
                 <circle cx="35" cy="35" r="3" fill="#aa7c11"/>
-                <!-- Pétalos detallados -->
+                <!-- Pétalos -->
                 <ellipse cx="35" cy="22" rx="4" ry="7" fill="#f9e7b9" stroke="#d4af37" stroke-width="1"/>
                 <ellipse cx="35" cy="48" rx="4" ry="7" fill="#f9e7b9" stroke="#d4af37" stroke-width="1"/>
                 <ellipse cx="22" cy="35" rx="7" ry="4" fill="#f9e7b9" stroke="#d4af37" stroke-width="1"/>
                 <ellipse cx="48" cy="35" rx="7" ry="4" fill="#f9e7b9" stroke="#d4af37" stroke-width="1"/>
-                <!-- Hojas botánicas -->
-                <path d="M60 25C65 20 75 25 70 35C65 40 55 35 60 25Z" fill="#4e5e41" opacity="0.85"/>
-                <path d="M25 60C20 65 25 75 35 70C40 65 35 55 25 60Z" fill="#4e5e41" opacity="0.85"/>
+                <!-- Hojas con acento dorado -->
+                <path d="M60 25C65 20 75 25 70 35C65 40 55 35 60 25Z" fill="#d4af37" opacity="0.85"/>
+                <path d="M25 60C20 65 25 75 35 70C40 65 35 55 25 60Z" fill="#d4af37" opacity="0.85"/>
             </svg>
 
-            <!-- Esquina Floral Inferior Derecha -->
+            <!-- Esquina Floral Inferior Derecha (Dorado Metálico) -->
             <svg class="floral-corner bottom-right" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10 90C10 50 50 10 90 10" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round"/>
-                <path d="M10 70C10 40 40 10 70 10" stroke="#7a8b6e" stroke-width="1.5" stroke-linecap="round"/>
-                <!-- Flor principal -->
+                <path d="M10 70C10 40 40 10 70 10" stroke="#f9e7b9" stroke-width="1.2" stroke-linecap="round"/>
+                <!-- Flor principal dorada -->
                 <circle cx="35" cy="35" r="8" fill="#f9e7b9" stroke="#d4af37" stroke-width="1.5"/>
                 <circle cx="35" cy="35" r="3" fill="#aa7c11"/>
-                <!-- Pétalos detallados -->
+                <!-- Pétalos -->
                 <ellipse cx="35" cy="22" rx="4" ry="7" fill="#f9e7b9" stroke="#d4af37" stroke-width="1"/>
                 <ellipse cx="35" cy="48" rx="4" ry="7" fill="#f9e7b9" stroke="#d4af37" stroke-width="1"/>
                 <ellipse cx="22" cy="35" rx="7" ry="4" fill="#f9e7b9" stroke="#d4af37" stroke-width="1"/>
                 <ellipse cx="48" cy="35" rx="7" ry="4" fill="#f9e7b9" stroke="#d4af37" stroke-width="1"/>
-                <!-- Hojas botánicas -->
-                <path d="M60 25C65 20 75 25 70 35C65 40 55 35 60 25Z" fill="#4e5e41" opacity="0.85"/>
-                <path d="M25 60C20 65 25 75 35 70C40 65 35 55 25 60Z" fill="#4e5e41" opacity="0.85"/>
+                <!-- Hojas con acento dorado -->
+                <path d="M60 25C65 20 75 25 70 35C65 40 55 35 60 25Z" fill="#d4af37" opacity="0.85"/>
+                <path d="M25 60C20 65 25 75 35 70C40 65 35 55 25 60Z" fill="#d4af37" opacity="0.85"/>
             </svg>
 
             <div class="gold-seal">M&J</div>
             <div>
                 <p class="font-serif text-gold-gradient small mb-2" style="letter-spacing: 3px;">NUESTRA BODA</p>
+                <div class="gold-divider"></div>
                 
                 <div class="font-script text-white display-5 lh-1 mb-1" style="font-size: 3rem;">Melissa</div>
                 <div class="font-serif text-gold-gradient fs-4 my-2">&</div>
                 <div class="font-script text-white display-5 lh-1 mt-1 mb-3" style="font-size: 3rem;">Jean Emanuel</div>
 
+                <div class="gold-divider"></div>
                 <p class="text-white-50 small mb-4" style="letter-spacing: 2px;">23 . 01 . 2027</p>
                 <span class="btn btn-gold-outline rounded-pill px-4 py-2 text-uppercase small" style="letter-spacing: 2px;">Abrir Invitación</span>
             </div>
