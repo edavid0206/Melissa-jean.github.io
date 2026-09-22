@@ -97,7 +97,7 @@
             z-index: 999;
         }
 
-        /* --- PANTALLA DE BIENVENIDA CON FLORES EN LAS ESQUINAS --- */
+        /* --- PANTALLA DE BIENVENIDA CON FLORES VECTORIALES REALISTAS --- */
         #welcome-screen {
             position: fixed;
             top: 0;
@@ -123,7 +123,7 @@
         }
 
         .welcome-box {
-            background: rgba(25, 33, 22, 0.85);
+            background: rgba(25, 33, 22, 0.9);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1.5px solid rgba(212, 175, 55, 0.5);
@@ -144,27 +144,24 @@
             transform: translateY(-4px);
         }
 
-        /* Adornos florales en esquinas de la tarjeta de bienvenida */
-        .welcome-box::before,
-        .welcome-box::after {
-            content: "🌿";
+        /* Posicionamiento de las esquinas florales vectoriales */
+        .floral-corner {
             position: absolute;
-            font-size: 1.8rem;
-            opacity: 0.85;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+            width: 65px;
+            height: 65px;
             pointer-events: none;
+            opacity: 0.85;
         }
 
-        .welcome-box::before {
-            top: 15px;
-            left: 18px;
-            transform: rotate(-35deg);
+        .floral-corner.top-left {
+            top: 10px;
+            left: 10px;
         }
 
-        .welcome-box::after {
-            bottom: 15px;
-            right: 18px;
-            transform: rotate(145deg);
+        .floral-corner.bottom-right {
+            bottom: 10px;
+            right: 10px;
+            transform: rotate(180deg);
         }
 
         /* Sello Dorado Metálico */
@@ -566,9 +563,43 @@
     <!-- Canvas para física avanzada de hojas de bosque hiperrealistas -->
     <canvas id="forest-canvas"></canvas>
 
-    <!-- Pantalla de Bienvenida con Marco Floral en las Esquinas -->
+    <!-- Pantalla de Bienvenida con Arreglo Floral Vectorial Realista -->
     <div id="welcome-screen">
         <div class="welcome-box" onclick="unlockInvitation()">
+            <!-- Esquina Floral Superior Izquierda -->
+            <svg class="floral-corner top-left" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 90C10 50 50 10 90 10" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M10 70C10 40 40 10 70 10" stroke="#7a8b6e" stroke-width="1.5" stroke-linecap="round"/>
+                <!-- Flor principal -->
+                <circle cx="35" cy="35" r="8" fill="#f9e7b9" stroke="#d4af37" stroke-width="1.5"/>
+                <circle cx="35" cy="35" r="3" fill="#aa7c11"/>
+                <!-- Pétalos detallados -->
+                <ellipse cx="35" cy="22" rx="4" ry="7" fill="#f9e7b9" stroke="#d4af37" stroke-width="1"/>
+                <ellipse cx="35" cy="48" rx="4" ry="7" fill="#f9e7b9" stroke="#d4af37" stroke-width="1"/>
+                <ellipse cx="22" cy="35" rx="7" ry="4" fill="#f9e7b9" stroke="#d4af37" stroke-width="1"/>
+                <ellipse cx="48" cy="35" rx="7" ry="4" fill="#f9e7b9" stroke="#d4af37" stroke-width="1"/>
+                <!-- Hojas botánicas -->
+                <path d="M60 25C65 20 75 25 70 35C65 40 55 35 60 25Z" fill="#4e5e41" opacity="0.85"/>
+                <path d="M25 60C20 65 25 75 35 70C40 65 35 55 25 60Z" fill="#4e5e41" opacity="0.85"/>
+            </svg>
+
+            <!-- Esquina Floral Inferior Derecha -->
+            <svg class="floral-corner bottom-right" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 90C10 50 50 10 90 10" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M10 70C10 40 40 10 70 10" stroke="#7a8b6e" stroke-width="1.5" stroke-linecap="round"/>
+                <!-- Flor principal -->
+                <circle cx="35" cy="35" r="8" fill="#f9e7b9" stroke="#d4af37" stroke-width="1.5"/>
+                <circle cx="35" cy="35" r="3" fill="#aa7c11"/>
+                <!-- Pétalos detallados -->
+                <ellipse cx="35" cy="22" rx="4" ry="7" fill="#f9e7b9" stroke="#d4af37" stroke-width="1"/>
+                <ellipse cx="35" cy="48" rx="4" ry="7" fill="#f9e7b9" stroke="#d4af37" stroke-width="1"/>
+                <ellipse cx="22" cy="35" rx="7" ry="4" fill="#f9e7b9" stroke="#d4af37" stroke-width="1"/>
+                <ellipse cx="48" cy="35" rx="7" ry="4" fill="#f9e7b9" stroke="#d4af37" stroke-width="1"/>
+                <!-- Hojas botánicas -->
+                <path d="M60 25C65 20 75 25 70 35C65 40 55 35 60 25Z" fill="#4e5e41" opacity="0.85"/>
+                <path d="M25 60C20 65 25 75 35 70C40 65 35 55 25 60Z" fill="#4e5e41" opacity="0.85"/>
+            </svg>
+
             <div class="gold-seal">M&J</div>
             <div>
                 <p class="font-serif text-gold-gradient small mb-2" style="letter-spacing: 3px;">NUESTRA BODA</p>
