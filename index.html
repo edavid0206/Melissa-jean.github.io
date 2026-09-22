@@ -404,9 +404,9 @@
         <img id="lightbox-img" src="" alt="Galería Boda">
     </div>
 
-    <!-- Audio Player (Photograph - Ed Sheeran Instrumental) -->
-    <audio id="wedding-audio" loop>
-        <source src="https://audio.com/hugomoralescolonia/audio/photograph-instrumental-ed-sheeran" type="audio/mp3">
+    <!-- Audio Player (Photograph - Instrumental) -->
+    <audio id="wedding-audio" loop preload="auto">
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=romantic-钢琴-112151.mp3" type="audio/mp3">
     </audio>
 
     <button class="music-toggle" id="musicBtn" onclick="toggleAudio()" style="display: none;" title="Música">♫</button>
@@ -672,7 +672,9 @@
             animate();
         }
 
-        /* Desbloquear la invitación al hacer clic en el sello */
+        /* Desbloquear la invitación y reproducir música al hacer clic */
+        let isPlaying = false;
+        
         function unlockInvitation() {
             const screen = document.getElementById('welcome-screen');
             const app = document.getElementById('mainApp');
@@ -691,19 +693,21 @@
                 AOS.refresh();
             }, 600);
 
-            audio.volume = 0.3;
+            audio.volume = 0.4;
             audio.play().then(() => {
                 isPlaying = true;
-            }).catch(e => console.log(e));
+                btnMusic.style.opacity = '1';
+            }).catch(e => {
+                console.log("El navegador requiere interacción adicional o bloqueo de reproducción automática:", e);
+            });
         }
 
-        let isPlaying = false;
         function toggleAudio() {
             const audio = document.getElementById('wedding-audio');
             if (isPlaying) {
                 audio.pause();
                 isPlaying = false;
-                document.getElementById('musicBtn').style.opacity = '0.5';
+                document.getElementById('musicBtn').style.opacity = '0.4';
             } else {
                 audio.play();
                 isPlaying = true;
