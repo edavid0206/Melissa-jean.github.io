@@ -69,7 +69,7 @@
             margin: 15px auto;
         }
 
-        /* Cuadro con efecto dorado brillante estático, elegante y con destellos de lujo */
+        /* Cuadro con efecto dorado brillante estático y elegante */
         .shimmer-olive-box {
             background: linear-gradient(135deg, #f9e7b9 0%, #e6ca65 30%, #d4af37 50%, #b89728 75%, #aa7c11 100%);
             border: 1.5px solid rgba(255, 255, 255, 0.85);
@@ -86,7 +86,6 @@
             overflow: hidden;
         }
 
-        /* Destello estático superior simulando brillo natural */
         .shimmer-olive-box::before {
             content: '';
             position: absolute;
@@ -880,12 +879,12 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             AOS.init({ duration: 1000, once: true });
-            initHyperRealisticForestCanvas();
+            initBotanicalLeafCanvas();
             cargarChecklistInvitados();
             initInteractiveAutoScroll();
         });
 
-        function initHyperRealisticForestCanvas() {
+        function initBotanicalLeafCanvas() {
             const canvas = document.getElementById('forest-canvas');
             const ctx = canvas.getContext('2d');
 
@@ -897,77 +896,85 @@
             resizeCanvas();
 
             const leaves = [];
-            const leafCount = window.innerWidth < 768 ? 12 : 20;
-            const forestColors = [
-                { main: '#566e44', vein: '#2b3820' },
-                { main: '#6d8756', vein: '#364728' },
-                { main: '#87a26f', vein: '#415231' },
-                { main: '#a3be8c', vein: '#4e633b' }
+            const leafCount = window.innerWidth < 768 ? 14 : 22;
+            const leafPalettes = [
+                { main: '#566e44', vein: '#222d18' },
+                { main: '#6b8254', vein: '#2d3b20' },
+                { main: '#7f9868', vein: '#384729' },
+                { main: '#94af7c', vein: '#435433' }
             ];
 
-            class RealisticLeaf {
-                constructor() { this.reset(); }
+            class BotanicalLeaf {
+                constructor() {
+                    this.reset();
+                }
+
                 reset() {
                     this.x = Math.random() * canvas.width;
-                    this.y = Math.random() * -canvas.height;
-                    this.vx = Math.random() * 0.8 - 0.4;
-                    this.vy = Math.random() * 0.8 + 0.4;
-                    this.scale = Math.random() * 0.5 + 0.6;
+                    this.y = Math.random() * -canvas.height - 50;
+                    this.vx = Math.random() * 0.6 - 0.3;
+                    this.vy = Math.random() * 0.7 + 0.4;
+                    this.scale = Math.random() * 0.4 + 0.55;
                     this.angle = Math.random() * Math.PI * 2;
-                    this.spin = Math.random() * 0.015 - 0.007;
-                    this.swing = Math.random() * 0.012 + 0.004;
-                    this.colorPair = forestColors[Math.floor(Math.random() * forestColors.length)];
-                    this.opacity = Math.random() * 0.3 + 0.5;
+                    this.spin = Math.random() * 0.012 - 0.006;
+                    this.swingSpeed = Math.random() * 0.01 + 0.004;
+                    this.palette = leafPalettes[Math.floor(Math.random() * leafPalettes.length)];
+                    this.opacity = Math.random() * 0.25 + 0.65;
                 }
+
                 update() {
                     this.y += this.vy;
-                    this.x += Math.sin(this.y * this.swing) * 0.7 + this.vx;
+                    this.x += Math.sin(this.y * this.swingSpeed) * 0.6 + this.vx;
                     this.angle += this.spin;
-                    if (this.y > canvas.height + 60) { this.reset(); this.y = -60; }
+
+                    if (this.y > canvas.height + 60) {
+                        this.reset();
+                    }
                 }
+
                 draw() {
                     ctx.save();
                     ctx.translate(this.x, this.y);
                     ctx.rotate(this.angle);
                     ctx.scale(this.scale, this.scale);
                     ctx.globalAlpha = this.opacity;
-                    
-                    const length = 28;
-                    const width = 11;
 
-                    // Cuerpo principal de la hoja
+                    const len = 30;
+                    const wid = 10;
+
+                    // Forma botánica de la hoja (puntiaguda y elegante)
                     ctx.beginPath();
-                    ctx.moveTo(0, -length);
-                    ctx.bezierCurveTo(width * 1.8, -length * 0.4, width * 1.1, length * 0.6, 0, length);
-                    ctx.bezierCurveTo(-width * 1.1, length * 0.6, -width * 1.8, -length * 0.4, 0, -length);
-                    ctx.fillStyle = this.colorPair.main;
+                    ctx.moveTo(0, -len);
+                    ctx.bezierCurveTo(wid * 1.6, -len * 0.4, wid * 0.9, len * 0.7, 0, len);
+                    ctx.bezierCurveTo(-wid * 0.9, len * 0.7, -wid * 1.6, -len * 0.4, 0, -len);
+                    ctx.fillStyle = this.palette.main;
                     ctx.fill();
 
-                    // Vena central de la hoja
+                    // Vena central principal
                     ctx.beginPath();
-                    ctx.moveTo(0, -length + 4);
-                    ctx.lineTo(0, length - 4);
-                    ctx.strokeStyle = this.colorPair.vein;
-                    ctx.lineWidth = 1.2;
+                    ctx.moveTo(0, -len + 3);
+                    ctx.lineTo(0, len - 3);
+                    ctx.strokeStyle = this.palette.vein;
+                    ctx.lineWidth = 1.1;
                     ctx.stroke();
 
-                    // Estrías y venas laterales detalladas
-                    ctx.strokeStyle = this.colorPair.vein;
-                    ctx.lineWidth = 0.7;
-                    const veinPairs = 4;
-                    for (let i = 1; i <= veinPairs; i++) {
-                        const t = i / (veinPairs + 1);
-                        const currentY = -length + 4 + (length * 2 - 8) * t;
-                        const currentWidthSpan = width * Math.sin(t * Math.PI) * 0.8;
+                    // Estrías y venas laterales finas (como "pelitos" o nervaduras reales)
+                    ctx.strokeStyle = this.palette.vein;
+                    ctx.lineWidth = 0.6;
+                    const pairs = 5;
+                    for (let i = 1; i <= pairs; i++) {
+                        const t = i / (pairs + 1);
+                        const curY = -len + 3 + (len * 2 - 6) * t;
+                        const span = wid * Math.sin(t * Math.PI) * 0.75;
 
                         ctx.beginPath();
-                        ctx.moveTo(0, currentY);
-                        ctx.lineTo(currentWidthSpan, currentY - 4);
+                        ctx.moveTo(0, curY);
+                        ctx.lineTo(span, curY - 3);
                         ctx.stroke();
 
                         ctx.beginPath();
-                        ctx.moveTo(0, currentY);
-                        ctx.lineTo(-currentWidthSpan, currentY - 4);
+                        ctx.moveTo(0, curY);
+                        ctx.lineTo(-span, curY - 3);
                         ctx.stroke();
                     }
 
@@ -975,11 +982,16 @@
                 }
             }
 
-            for (let i = 0; i < leafCount; i++) leaves.push(new RealisticLeaf());
+            for (let i = 0; i < leafCount; i++) {
+                leaves.push(new BotanicalLeaf());
+            }
 
             function animate() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                leaves.forEach(leaf => { leaf.update(); leaf.draw(); });
+                leaves.forEach(leaf => {
+                    leaf.update();
+                    leaf.draw();
+                });
                 requestAnimationFrame(animate);
             }
             animate();
@@ -1038,7 +1050,6 @@
             const gallery = document.getElementById('galleryContainer');
             if (!gallery) return;
 
-            // Duplicar elementos para desplazamiento infinito fluido
             Array.from(gallery.children).forEach(item => {
                 const clone = item.cloneNode(true);
                 clone.addEventListener('click', () => openLightbox(clone));
@@ -1048,7 +1059,6 @@
             let isUserInteracting = false;
             let interactionTimeout;
 
-            // Movimiento automático suave
             setInterval(() => {
                 if (!isUserInteracting) {
                     if (gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth - 2) {
@@ -1059,7 +1069,6 @@
                 }
             }, 30);
 
-            // Pausa temporal al interactuar manualmente para que el usuario controle libremente
             ['mousedown', 'touchstart', 'wheel'].forEach(eventType => {
                 gallery.addEventListener(eventType, () => {
                     isUserInteracting = true;
@@ -1070,7 +1079,6 @@
                 }, { passive: true });
             });
 
-            // Control de bucle infinito manual o automático
             gallery.addEventListener('scroll', () => {
                 const singleSetWidth = gallery.scrollWidth / 2;
                 if (gallery.scrollLeft >= singleSetWidth) {
@@ -1142,7 +1150,6 @@
             const btn = document.getElementById('btnRsvp');
             const mensaje = document.getElementById('rsvpMensaje');
 
-            // RESTRICCIÓN DE PRUEBA: 29 DÍAS
             if (diasFaltantes <= 29) {
                 btn.disabled = true;
                 mensaje.className = "mt-3 text-center small fw-bold text-danger";
