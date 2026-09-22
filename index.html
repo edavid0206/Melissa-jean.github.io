@@ -59,7 +59,7 @@
             z-index: 999;
         }
 
-        /* --- PANTALLA DE BIENVENIDA (Transición mejorada) --- */
+        /* --- PANTALLA DE BIENVENIDA (Contenedor 3D) --- */
         #welcome-screen {
             position: fixed;
             top: 0;
@@ -72,39 +72,55 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
+            perspective: 1000px; /* Vital para el efecto 3D */
             opacity: 1;
             visibility: visible;
-            /* Transición suave y profesional */
             transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s ease;
         }
 
         #welcome-screen.fade-out {
             opacity: 0;
-            transform: scale(1.05);
+            transform: scale(1.08);
             visibility: hidden;
             pointer-events: none;
         }
 
         .welcome-box {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.04);
             backdrop-filter: blur(16px);
             border: 1.5px solid rgba(197, 160, 89, 0.45);
             border-radius: 24px;
             padding: 45px 25px;
             max-width: 420px;
             width: 100%;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 0 20px rgba(197,160,89,0.15);
             cursor: pointer;
-            transition: transform 0.4s ease, border-color 0.4s ease;
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out, border-color 0.4s ease;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        .welcome-box:hover {
-            transform: scale(1.02);
-            border-color: #f3e0aa;
+        /* Destello holográfico 3D en la tarjeta */
+        .welcome-box::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.12) 0%, transparent 60%);
+            pointer-events: none;
+            transition: opacity 0.3s;
+            opacity: 0;
         }
 
-        /* Sello Dorado Metálico */
+        .welcome-box:hover::after {
+            opacity: 1;
+        }
+
+        /* Sello Dorado Metálico con profundidad 3D */
         .gold-seal {
             width: 82px;
             height: 82px;
@@ -114,12 +130,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 6px 20px rgba(197,160,89,0.3);
+            box-shadow: 0 10px 25px rgba(197,160,89,0.4);
             font-family: 'Cinzel', serif;
             font-weight: 600;
             font-size: 1.6rem;
             color: #1b2416;
-            border: 1px solid rgba(255,255,255,0.4);
+            border: 1px solid rgba(255,255,255,0.5);
+            transform: translateZ(30px); /* Eleva el sello en el espacio 3D */
+        }
+
+        /* Elementos flotantes dentro de la tarjeta 3D */
+        .welcome-content-3d {
+            transform: translateZ(20px);
         }
 
         /* Texto con efecto dorado elegante */
@@ -136,13 +158,14 @@
             border: 1.5px solid #c5a059;
             background: rgba(197, 160, 89, 0.08);
             transition: all 0.3s ease;
+            transform: translateZ(25px);
         }
 
         .btn-gold-outline:hover {
             background: linear-gradient(135deg, #f3e0aa 0%, #c5a059 100%);
             color: #1b2416;
             border-color: #f3e0aa;
-            box-shadow: 0 0 15px rgba(197,160,89,0.4);
+            box-shadow: 0 0 20px rgba(197,160,89,0.5);
         }
 
         /* --- ANIMACIÓN DE GUÍA PARA BAJAR --- */
@@ -465,18 +488,20 @@
     <!-- Canvas para física avanzada de hojas de bosque hiperrealistas -->
     <canvas id="forest-canvas"></canvas>
 
-    <!-- Pantalla de Bienvenida con Transición Suave -->
+    <!-- Pantalla de Bienvenida con Efecto 3D Interactivo -->
     <div id="welcome-screen">
-        <div class="welcome-box" onclick="unlockInvitation()" data-aos="zoom-in" data-aos-duration="1200">
+        <div class="welcome-box" id="welcomeBox" onclick="unlockInvitation()">
             <div class="gold-seal">M&J</div>
-            <p class="font-serif text-gold-gradient small mb-2" style="letter-spacing: 3px;">NUESTRA BODA</p>
-            
-            <div class="font-script text-white display-6 lh-1 mb-1">Melissa</div>
-            <div class="font-serif text-gold-gradient fs-5 my-1">&</div>
-            <div class="font-script text-white display-6 lh-1 mt-1 mb-3">Jean Emanuel</div>
+            <div class="welcome-content-3d">
+                <p class="font-serif text-gold-gradient small mb-2" style="letter-spacing: 3px;">NUESTRA BODA</p>
+                
+                <div class="font-script text-white display-6 lh-1 mb-1">Melissa</div>
+                <div class="font-serif text-gold-gradient fs-5 my-1">&</div>
+                <div class="font-script text-white display-6 lh-1 mt-1 mb-3">Jean Emanuel</div>
 
-            <p class="text-white-50 small mb-4" style="letter-spacing: 2px;">23 . 01 . 2027</p>
-            <span class="btn btn-gold-outline rounded-pill px-4 py-2 text-uppercase small" style="letter-spacing: 2px;">Abrir Invitación</span>
+                <p class="text-white-50 small mb-4" style="letter-spacing: 2px;">23 . 01 . 2027</p>
+                <span class="btn btn-gold-outline rounded-pill px-4 py-2 text-uppercase small" style="letter-spacing: 2px;">Abrir Invitación</span>
+            </div>
         </div>
     </div>
 
@@ -711,7 +736,41 @@
             initHyperRealisticForestCanvas();
             cargarChecklistInvitados();
             initCylinderInfiniteScroll();
+            init3DCardEffect();
         });
+
+        /* Efecto 3D Interactivo para la Tarjeta de Bienvenida */
+        function init3DCardEffect() {
+            const card = document.getElementById('welcomeBox');
+            const screen = document.getElementById('welcome-screen');
+
+            if (!card || !screen) return;
+
+            screen.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left; // Posición X dentro de la tarjeta
+                const y = e.clientY - rect.top;  // Posición Y dentro de la tarjeta
+
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                // Calcular ángulo de rotación 3D (máximo 12 grados)
+                const rotateX = -((y - centerY) / centerY) * 12;
+                const rotateY = ((x - centerX) / centerX) * 12;
+
+                card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+
+                // Actualizar brillo holográfico
+                const percentX = (x / rect.width) * 100;
+                const percentY = (y / rect.height) * 100;
+                card.style.setProperty('--mouse-x', `${percentX}%`);
+                card.style.setProperty('--mouse-y', `${percentY}%`);
+            });
+
+            screen.addEventListener('mouseleave', () => {
+                card.style.transform = 'rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+            });
+        }
 
         /* Motor de Física 2D Avanzado para Hojas Hiperrealistas con Venas Laterales */
         function initHyperRealisticForestCanvas() {
@@ -841,7 +900,6 @@
             const btnMusic = document.getElementById('musicBtn');
             const audio = document.getElementById('wedding-audio');
 
-            // Agregamos la clase que ejecuta el desvanecimiento y zoom suave
             screen.classList.add('fade-out');
             app.classList.add('show');
 
