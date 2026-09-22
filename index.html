@@ -964,7 +964,6 @@
 
             guestArray.forEach((name, index) => {
                 htmlList += `<div class="my-1">${name}</div>`;
-                // Verificamos si guardó "Sí" previamente o si es nuevo
                 let isChecked = savedRsvp[name] !== undefined ? (savedRsvp[name] === "Sí") : true;
 
                 checklistHtml += `
@@ -987,7 +986,6 @@
             let grupoNombre = decodeURIComponent(urlGuestsParam || (isEnglish ? 'General Guest' : 'Invitado General')).trim();
 
             checkboxes.forEach(cb => {
-                // MODIFICACIÓN: Guardar "Sí" o "No" en lugar de true/false
                 asistenciaData[cb.value] = cb.checked ? "Sí" : "No";
             });
 
