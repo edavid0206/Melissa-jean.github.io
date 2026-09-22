@@ -104,7 +104,6 @@
             box-shadow: 0 15px 35px rgba(212, 175, 55, 0.55), inset 0 1px 6px rgba(255, 255, 255, 0.9);
         }
 
-        /* Hero badge con el mismo estilo dorado brillante estático */
         .hero-badge {
             background: linear-gradient(135deg, #f9e7b9 0%, #e6ca65 30%, #d4af37 50%, #b89728 75%, #aa7c11 100%);
             border: 1.5px solid rgba(255, 255, 255, 0.9);
@@ -136,7 +135,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(rgba(44, 56, 33, 0.82), rgba(27, 36, 22, 0.9)), url('fotos/baec27ec-a089-418b-b8de-71dfd366730a.JPG') center/cover no-repeat;
+            background: linear-gradient(rgba(44, 56, 33, 0.82), rgba(27, 36, 22, 0.9)), url('fotos/foto10.jpg') center/cover no-repeat;
             z-index: 10000;
             display: flex;
             align-items: center;
@@ -300,9 +299,9 @@
             background: transparent;
         }
 
-        /* Sección Hero con fondo foto10.jpg */
+        /* Hero Section usando foto10.jpg con ruta estricta en minúsculas */
         .hero-section {
-            background: linear-gradient(rgba(20, 28, 16, 0.65), rgba(12, 17, 9, 0.82)), url('fotos/foto10.JPG') center/cover no-repeat;
+            background: linear-gradient(rgba(20, 28, 16, 0.62), rgba(12, 17, 9, 0.8)), url('fotos/foto10.jpg') center/cover no-repeat;
             color: white;
             height: 100vh;
             display: flex;
@@ -367,6 +366,7 @@
             transform: translateY(-3px);
         }
 
+        /* Galería horizontal optimizada y fluida */
         .horizontal-gallery-container {
             display: flex;
             overflow-x: auto;
@@ -503,7 +503,6 @@
             transform: translateY(-2px);
         }
 
-        /* --- TARJETAS RSVP RESPONSIVE --- */
         .rsvp-card-option {
             display: flex;
             flex-wrap: wrap;
@@ -552,7 +551,6 @@
             transition: all 0.3s ease;
         }
 
-        /* Estado cuando está SELECCIONADO (MARCADO) */
         .rsvp-checkbox-hidden:checked + .rsvp-card-option {
             background: rgba(44, 56, 33, 0.08);
             border-color: var(--accent-gold);
@@ -815,7 +813,7 @@
             <div class="p-4 rounded-4 shadow-sm mx-auto border border-success-subtle" style="max-width: 440px; text-align: center; background: var(--card-bg); backdrop-filter: blur(5px);" data-aos="fade-up" data-aos-delay="200">
                 <div style="font-size: 2rem; margin-bottom: 10px;">✉️</div>
                 <p id="txtGiftsDesc" class="text-muted small mb-3" style="line-height: 1.6;">
-                    Su presencia es nuestro mejor regalo. Si desean tener un detalle adicional con nosotros para nuestra nueva vida juntos, contaremos con lluvia de sobres el día del evento.
+                    Su presencia es nosso mejor regalo. Si desean tener un detalle adicional con nosotros para nuestra nueva vida juntos, contaremos con lluvia de sobres el día del evento.
                 </p>
                 <div class="p-3 rounded-3" style="background: rgba(44,56,33,0.04);">
                     <p id="txtGiftsThanksHead" class="font-serif small fw-bold text-uppercase mb-1" style="color: var(--primary-olive);">¡Muchas Gracias!</p>
@@ -1059,6 +1057,7 @@
             document.getElementById('lightbox').style.display = 'none';
         }
 
+        // Galería optimizada con requestAnimationFrame para 60fps sin tirones
         function initInteractiveAutoScroll() {
             const gallery = document.getElementById('galleryContainer');
             if (!gallery) return;
@@ -1072,15 +1071,17 @@
             let isUserInteracting = false;
             let interactionTimeout;
 
-            setInterval(() => {
+            function step() {
                 if (!isUserInteracting) {
-                    if (gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth - 2) {
-                        gallery.scrollLeft = 0;
-                    } else {
-                        gallery.scrollLeft += 1.2;
+                    gallery.scrollLeft += 0.7; // Movimiento suave y lento
+                    const singleSetWidth = gallery.scrollWidth / 2;
+                    if (gallery.scrollLeft >= singleSetWidth) {
+                        gallery.scrollLeft -= singleSetWidth;
                     }
                 }
-            }, 30);
+                requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
 
             ['mousedown', 'touchstart', 'wheel'].forEach(eventType => {
                 gallery.addEventListener(eventType, () => {
@@ -1088,18 +1089,9 @@
                     clearTimeout(interactionTimeout);
                     interactionTimeout = setTimeout(() => {
                         isUserInteracting = false;
-                    }, 3000);
+                    }, 3500); // Se reanuda suavemente 3.5s después de soltar
                 }, { passive: true });
             });
-
-            gallery.addEventListener('scroll', () => {
-                const singleSetWidth = gallery.scrollWidth / 2;
-                if (gallery.scrollLeft >= singleSetWidth) {
-                    gallery.scrollLeft -= singleSetWidth;
-                } else if (gallery.scrollLeft <= 0) {
-                    gallery.scrollLeft += singleSetWidth;
-                }
-            }, { passive: true });
         }
 
         const targetDate = new Date("January 23, 2027 15:00:00").getTime();
