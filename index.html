@@ -156,8 +156,8 @@
             outline: 1px solid rgba(212, 175, 55, 0.4);
             outline-offset: 5px;
             border-radius: 20px;
-            padding: 45px 30px;
-            max-width: 420px;
+            padding: 45px 20px; /* Margen horizontal optimizado para evitar cortes en nombres largos */
+            max-width: 440px;
             width: 100%;
             box-shadow: 0 30px 60px rgba(0,0,0,0.85), inset 0 0 25px rgba(212,175,55,0.2);
             cursor: pointer;
@@ -580,15 +580,15 @@
     <canvas id="forest-canvas"></canvas>
 
     <div id="welcome-screen">
-        <div class="welcome-box" onclick="unlockInvitation()" data-aos="zoom-in" data-aos-duration="1200">
+        <div class="welcome-box px-4" onclick="unlockInvitation()" data-aos="zoom-in" data-aos-duration="1200">
             <div class="gold-seal">M&J</div>
             <div>
                 <p id="txtWelcomeTitle" class="font-serif text-gold-gradient small mb-2" style="letter-spacing: 3px;">Nuestra Boda</p>
                 <div class="gold-divider"></div>
                 
-                <div class="font-script text-white display-5 lh-1 mb-1" style="font-size: 3rem;">Melissa</div>
+                <div class="font-script text-white lh-1 mb-1 px-3" style="font-size: clamp(2.5rem, 7vw, 3.2rem); overflow: visible;">Melissa</div>
                 <div class="font-serif text-gold-gradient fs-4 my-2">&</div>
-                <div class="font-script text-white display-5 lh-1 mt-1 mb-3" style="font-size: 3rem;">Jean Emanuel</div>
+                <div class="font-script text-white lh-1 mt-1 mb-3 px-3" style="font-size: clamp(2.3rem, 6.5vw, 3.2rem); overflow: visible;">Jean Emanuel</div>
 
                 <div class="gold-divider"></div>
                 <p class="text-white-50 small mb-4" style="letter-spacing: 2px;">23 . 01 . 2027</p>
@@ -612,9 +612,9 @@
 
         <section class="hero-section">
             <div id="txtHeroBadge" class="hero-badge font-serif" data-aos="fade-down" data-aos-delay="200">Nuestra Boda</div>
-            <h1 class="font-script display-3 mb-1" data-aos="fade-up" data-aos-delay="400" style="font-size: clamp(3.5rem, 7vw, 5rem);">Melissa</h1>
+            <h1 class="font-script display-3 mb-1 px-3" data-aos="fade-up" data-aos-delay="400" style="font-size: clamp(3rem, 7vw, 5rem); overflow: visible;">Melissa</h1>
             <span class="font-serif text-gold-gradient fs-3 my-2" data-aos="zoom-in" data-aos-delay="500">&</span>
-            <h1 class="font-script display-3 mt-1 mb-4" data-aos="fade-down" data-aos-delay="600" style="font-size: clamp(3.5rem, 7vw, 5rem);">Jean Emanuel</h1>
+            <h1 class="font-script display-3 mt-1 mb-4 px-3" data-aos="fade-down" data-aos-delay="600" style="font-size: clamp(2.8rem, 6.5vw, 5rem); overflow: visible;">Jean Emanuel</h1>
             
             <div class="shimmer-olive-box" data-aos="fade-up" data-aos-delay="800">
                 <p id="txtHeroQuote" class="font-serif fst-italic text-white mb-0" style="font-size: 1rem; line-height: 1.6; text-shadow: 0 1px 3px rgba(0,0,0,0.3);">
