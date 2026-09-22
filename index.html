@@ -59,7 +59,7 @@
             z-index: 999;
         }
 
-        /* --- PANTALLA DE BIENVENIDA (Fondo oscuro neutral elegante) --- */
+        /* --- PANTALLA DE BIENVENIDA (Transición mejorada) --- */
         #welcome-screen {
             position: fixed;
             top: 0;
@@ -72,7 +72,17 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
-            transition: opacity 1s ease, visibility 1s ease;
+            opacity: 1;
+            visibility: visible;
+            /* Transición suave y profesional */
+            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s ease;
+        }
+
+        #welcome-screen.fade-out {
+            opacity: 0;
+            transform: scale(1.05);
+            visibility: hidden;
+            pointer-events: none;
         }
 
         .welcome-box {
@@ -187,6 +197,13 @@
             box-shadow: 0 0 60px rgba(0,0,0,0.1);
             position: relative;
             display: none;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .invitation-container.show {
+            display: block;
+            opacity: 1;
         }
 
         @media (min-width: 768px) {
@@ -448,7 +465,7 @@
     <!-- Canvas para física avanzada de hojas de bosque hiperrealistas -->
     <canvas id="forest-canvas"></canvas>
 
-    <!-- Pantalla de Bienvenida con Estilo Dorado Elegante -->
+    <!-- Pantalla de Bienvenida con Transición Suave -->
     <div id="welcome-screen">
         <div class="welcome-box" onclick="unlockInvitation()" data-aos="zoom-in" data-aos-duration="1200">
             <div class="gold-seal">M&J</div>
@@ -815,7 +832,7 @@
             animate();
         }
 
-        /* Desbloquear la invitación y reproducir música al hacer clic */
+        /* Desbloquear la invitación con transición fluida y música suave */
         let isPlaying = false;
         
         function unlockInvitation() {
@@ -824,16 +841,18 @@
             const btnMusic = document.getElementById('musicBtn');
             const audio = document.getElementById('wedding-audio');
 
-            screen.style.opacity = '0';
+            // Agregamos la clase que ejecuta el desvanecimiento y zoom suave
+            screen.classList.add('fade-out');
+            app.classList.add('show');
+
             setTimeout(() => {
                 screen.style.display = 'none';
-                app.style.display = 'block';
                 btnMusic.style.display = 'flex';
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 AOS.refresh();
-            }, 600);
+            }, 1000);
 
-            // Volumen reducido al 30% suave
+            // Volumen suave al 30%
             audio.volume = 0.3;
             audio.play().then(() => {
                 isPlaying = true;
