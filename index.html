@@ -69,27 +69,32 @@
             margin: 15px auto;
         }
 
-        /* Estilo de la hoja orgánica para la frase */
-        .leaf-quote-box {
-            background: rgba(44, 56, 33, 0.75);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+        /* Cuadro grande verde con efecto tornasol/brillo fluido y transición suave */
+        .shimmer-olive-box {
+            background: linear-gradient(270deg, #2c3821, #4e5e41, #35472b, #658c6b, #2c3821);
+            background-size: 400% 400%;
+            animation: oliveShimmerAnimation 8s ease infinite;
             border: 1px solid rgba(212, 175, 55, 0.4);
-            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px; /* Forma orgánica tipo hoja */
-            padding: 25px 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 16px;
+            padding: 20px 25px;
             margin: 0 auto;
-            max-width: 440px;
+            max-width: 420px;
             width: 90%;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
-            position: relative;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
         }
 
-        .leaf-quote-box::before {
-            content: "🌿";
-            display: block;
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-            opacity: 0.8;
+        .shimmer-olive-box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes oliveShimmerAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         #forest-canvas {
@@ -310,6 +315,11 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.04);
             border: 1px solid rgba(212, 175, 55, 0.4);
             text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .countdown-card:hover {
+            transform: translateY(-3px);
         }
 
         .countdown-card span {
@@ -336,6 +346,11 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.04);
             border-left: 4px solid var(--accent-gold);
             text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .guest-card-box:hover {
+            transform: translateY(-3px);
         }
 
         .horizontal-gallery-container {
@@ -376,7 +391,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s;
+            transition: transform 0.5s ease;
         }
 
         .horizontal-photo-item:hover img {
@@ -401,6 +416,7 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
+            transition: opacity 0.3s ease;
         }
 
         #lightbox img {
@@ -421,6 +437,11 @@
             border: none;
             cursor: pointer;
             z-index: 20001;
+            transition: transform 0.2s ease;
+        }
+
+        #lightbox-close:hover {
+            transform: scale(1.1);
         }
 
         .event-box {
@@ -434,6 +455,12 @@
             max-width: 500px;
             margin-left: auto;
             margin-right: auto;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .event-box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.06);
         }
 
         .btn-map {
@@ -447,12 +474,13 @@
             text-transform: uppercase;
             letter-spacing: 1.5px;
             margin-top: 15px;
-            transition: background 0.3s;
+            transition: background 0.3s ease, transform 0.2s ease;
         }
 
         .btn-map:hover {
             background-color: var(--light-olive);
             color: white;
+            transform: translateY(-2px);
         }
 
         .custom-leaf-checkbox {
@@ -498,6 +526,11 @@
             border-radius: 50%;
             border: 2px solid white;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .dot-color:hover {
+            transform: scale(1.1);
         }
 
         .music-toggle {
@@ -517,6 +550,12 @@
             align-items: center;
             justify-content: center;
             font-size: 1.2rem;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .music-toggle:hover {
+            transform: scale(1.1);
+            background: var(--light-olive);
         }
 
         footer {
@@ -532,7 +571,7 @@
     <canvas id="forest-canvas"></canvas>
 
     <div id="welcome-screen">
-        <div class="welcome-box" onclick="unlockInvitation()">
+        <div class="welcome-box" onclick="unlockInvitation()" data-aos="zoom-in" data-aos-duration="1200">
             <div class="gold-seal">M&J</div>
             <div>
                 <p id="txtWelcomeTitle" class="font-serif text-gold-gradient small mb-2" style="letter-spacing: 3px;">NUESTRA BODA</p>
@@ -563,27 +602,27 @@
     <div class="container invitation-container px-0" id="mainApp">
 
         <section class="hero-section">
-            <div id="txtHeroBadge" class="hero-badge font-serif" data-aos="fade-down">Nuestra Boda</div>
-            <h1 class="font-script display-3 mb-1" data-aos="zoom-in" data-aos-delay="200" style="font-size: clamp(3.5rem, 7vw, 5rem);">Melissa</h1>
-            <span class="font-serif text-gold-gradient fs-3 my-2" data-aos="fade" data-aos-delay="300">&</span>
-            <h1 class="font-script display-3 mt-1 mb-4" data-aos="zoom-in" data-aos-delay="400" style="font-size: clamp(3.5rem, 7vw, 5rem);">Jean Emanuel</h1>
+            <div id="txtHeroBadge" class="hero-badge font-serif" data-aos="fade-down" data-aos-delay="200">Nuestra Boda</div>
+            <h1 class="font-script display-3 mb-1" data-aos="fade-up" data-aos-delay="400" style="font-size: clamp(3.5rem, 7vw, 5rem);">Melissa</h1>
+            <span class="font-serif text-gold-gradient fs-3 my-2" data-aos="zoom-in" data-aos-delay="500">&</span>
+            <h1 class="font-script display-3 mt-1 mb-4" data-aos="fade-down" data-aos-delay="600" style="font-size: clamp(3.5rem, 7vw, 5rem);">Jean Emanuel</h1>
             
-            <div class="leaf-quote-box" data-aos="fade-up" data-aos-delay="500">
+            <div class="shimmer-olive-box" data-aos="fade-up" data-aos-delay="800">
                 <p id="txtHeroQuote" class="font-serif fst-italic text-white mb-0" style="font-size: 1rem; line-height: 1.6; text-shadow: 0 1px 3px rgba(0,0,0,0.3);">
                     “El sí más importante. Y tú, en primera fila.”
                 </p>
             </div>
 
-            <div class="scroll-down-indicator">
+            <div class="scroll-down-indicator" data-aos="fade" data-aos-delay="1000">
                 <span id="txtScroll">Desliza</span>
                 <div class="arrow-icon"></div>
             </div>
         </section>
 
         <section data-aos="fade-up">
-            <p id="txtCountdownTitle" class="font-serif text-muted small text-uppercase mb-3" style="letter-spacing: 3px;">Faltan</p>
+            <p id="txtCountdownTitle" class="font-serif text-muted small text-uppercase mb-3" style="letter-spacing: 3px;" data-aos="fade-up">Faltan</p>
             
-            <div class="row g-3 justify-content-center mx-auto countdown-wrapper">
+            <div class="row g-3 justify-content-center mx-auto countdown-wrapper" data-aos="zoom-in" data-aos-delay="200">
                 <div class="col-3">
                     <div class="countdown-card">
                         <span id="dias">00</span>
@@ -610,7 +649,7 @@
                 </div>
             </div>
 
-            <div class="guest-card-box mx-auto" data-aos="zoom-in-up">
+            <div class="guest-card-box mx-auto" data-aos="fade-up" data-aos-delay="400">
                 <span id="badgePases" class="badge rounded-circle p-2 fs-6 mb-2 font-serif" style="background: var(--primary-olive); color: var(--gold-light);">1</span>
                 <h3 id="txtGuestHeading" class="font-serif text-secondary text-uppercase small" style="letter-spacing: 2px;">Invitados</h3>
                 <div id="nombresInvitadosContainer" class="font-serif fs-5 fw-bold mt-1" style="color: var(--primary-olive); word-break: break-word;">
@@ -620,12 +659,12 @@
         </section>
 
         <section data-aos="fade-up">
-            <div class="px-3 text-center mb-2">
+            <div class="px-3 text-center mb-2" data-aos="fade-down">
                 <p id="txtGallerySub" class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Nuestros Recuerdos</p>
                 <h2 id="txtGalleryTitle" class="font-serif h4 mb-4" style="color: var(--primary-olive);">Instantes</h2>
             </div>
 
-            <div class="horizontal-gallery-container" id="galleryContainer">
+            <div class="horizontal-gallery-container" id="galleryContainer" data-aos="fade-right" data-aos-duration="1200">
                 <div class="horizontal-photo-item" onclick="openLightbox(this)">
                     <img src="fotos/foto1.JPG" alt="Atardecer Playa" loading="lazy">
                     <div class="photo-overlay"><span class="gal-label-1 font-serif text-white small" style="letter-spacing: 1.5px;">Nuestro Amor</span></div>
@@ -660,20 +699,20 @@
                 </div>
             </div>
             
-            <p id="txtSwipeHint" class="text-muted small mt-2 mb-0" style="font-size: 0.8rem; letter-spacing: 1px;">← Desliza para ver más →</p>
+            <p id="txtSwipeHint" class="text-muted small mt-2 mb-0" style="font-size: 0.8rem; letter-spacing: 1px;" data-aos="fade">← Desliza para ver más →</p>
         </section>
 
         <section data-aos="fade-up">
-            <h2 id="txtLocationsTitle" class="font-serif h4 mb-4" style="color: var(--primary-olive);">Ubicaciones</h2>
+            <h2 id="txtLocationsTitle" class="font-serif h4 mb-4" style="color: var(--primary-olive);" data-aos="fade-down">Ubicaciones</h2>
 
-            <div class="event-box" data-aos="fade-up">
+            <div class="event-box" data-aos="fade-up" data-aos-delay="200">
                 <h3 id="txtCeremonyHead" class="font-serif h5 mb-2" style="color: var(--primary-olive);">Ceremonia</h3>
                 <p id="txtCeremonyDate" class="text-muted small mb-1">Sábado 23 de Enero, 2027 — 3:00 p.m.</p>
                 <p class="fw-medium small mb-3">Parroquia Nuestra Señora del Perpetuo Socorro, Corralillo</p>
                 <a id="txtMapBtn1" href="https://www.google.com/maps/place/Parroquia+Nuestra+Se%C3%B1ora+del+Perpetuo+Socorro+de+Corralillo/@10.2191875,-85.3755747,91m/data=!3m1!1e3!4m11!1m3!2m2!1scorralillo+parroquia!6e1!3m6!1s0x8f9fb8a27f09fe6b:0xb4590fe21821e1ed!8m2!3d10.2191062!4d-85.375523!15sChRjb3JyYWxpbGxvIHBhcnJvcXVpYZIBD2NhdGhvbGljX2NodXJjaOABAA!16s%2Fg%2F11x9xvmsl!5m1!1e2?entry=ttu" target="_blank" class="btn-map font-serif">Ver Ubicación en Mapa</a>
             </div>
 
-            <div class="event-box" data-aos="fade-up">
+            <div class="event-box" data-aos="fade-up" data-aos-delay="400">
                 <h3 id="txtReceptionHead" class="font-serif h5 mb-2" style="color: var(--primary-olive);">Celebración</h3>
                 <p id="txtReceptionDate" class="text-muted small mb-1">Sábado 23 de Enero, 2027 — 5:00 p.m.</p>
                 <p class="fw-medium small mb-3">Rancho La Amistad de Mario Mafio, Corralillo</p>
@@ -682,21 +721,21 @@
         </section>
 
         <section data-aos="fade-up">
-            <p id="txtDressSub" class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Código de Vestimenta</p>
-            <h2 id="txtDressTitle" class="font-serif h4 mb-3" style="color: var(--primary-olive);">Color Reservado & Estilo</h2>
+            <p id="txtDressSub" class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;" data-aos="fade-down">Código de Vestimenta</p>
+            <h2 id="txtDressTitle" class="font-serif h4 mb-3" style="color: var(--primary-olive);" data-aos="fade-up">Color Reservado & Estilo</h2>
             
-            <p id="txtDressDesc" class="text-muted small mx-auto mb-3" style="max-width: 400px; line-height: 1.6;">
+            <p id="txtDressDesc" class="text-muted small mx-auto mb-3" style="max-width: 400px; line-height: 1.6;" data-aos="fade-up" data-aos-delay="200">
                 Agradecemos con mucho cariño evitar vestir tonos verdes o similares durante la celebración.
             </p>
 
-            <div class="p-3 rounded-3 shadow-sm mx-auto mb-4 border border-success-subtle" style="max-width: 420px; background: var(--card-bg);">
+            <div class="p-3 rounded-3 shadow-sm mx-auto mb-4 border border-success-subtle" style="max-width: 420px; background: var(--card-bg);" data-aos="zoom-in" data-aos-delay="300">
                 <p id="txtOutdoorTitle" class="font-serif small fw-bold text-success mb-1">🌿 Ambiente al aire libre</p>
                 <p id="txtOutdoorDesc" class="text-muted" style="font-size: 0.85rem; margin-bottom: 0;">
                     La celebración se realizará en un área con zonas verdes, por lo que sugerimos calzado cómodo.
                 </p>
             </div>
             
-            <div class="d-flex justify-content-center gap-3">
+            <div class="d-flex justify-content-center gap-3" data-aos="fade-up" data-aos-delay="400">
                 <div class="dot-color" style="background: #2c3821;" title="Verde Oliva Oscuro"></div>
                 <div class="dot-color" style="background: #4e5e41;" title="Verde Bosque"></div>
                 <div class="dot-color" style="background: #7a8b6e;" title="Verde Salvia"></div>
@@ -704,10 +743,10 @@
         </section>
 
         <section data-aos="fade-up">
-            <p id="txtRsvpSub" class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Asistencia</p>
-            <h2 class="font-serif h4 mb-3" style="color: var(--primary-olive);">RSVP</h2>
+            <p id="txtRsvpSub" class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;" data-aos="fade-down">Asistencia</p>
+            <h2 class="font-serif h4 mb-3" style="color: var(--primary-olive);" data-aos="fade-up">RSVP</h2>
             
-            <div id="rsvpBlock" class="p-4 rounded-4 shadow-sm mx-auto" style="max-width: 440px; text-align: left; background: var(--card-bg);">
+            <div id="rsvpBlock" class="p-4 rounded-4 shadow-sm mx-auto" style="max-width: 440px; text-align: left; background: var(--card-bg);" data-aos="zoom-in-up" data-aos-delay="200">
                 <p id="txtRsvpPrompt" class="text-muted small text-center mb-3">Selecciona quiénes asistirán de tu pase y haz clic en confirmar:</p>
                 
                 <div id="checklistContainer" class="mb-3"></div>
@@ -720,10 +759,10 @@
         </section>
 
         <section data-aos="fade-up">
-            <p id="txtGiftsSub" class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Detalles</p>
-            <h2 id="txtGiftsTitle" class="font-serif h4 mb-3" style="color: var(--primary-olive);">Muestras de Cariño</h2>
+            <p id="txtGiftsSub" class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;" data-aos="fade-down">Detalles</p>
+            <h2 id="txtGiftsTitle" class="font-serif h4 mb-3" style="color: var(--primary-olive);" data-aos="fade-up">Muestras de Cariño</h2>
             
-            <div class="p-4 rounded-4 shadow-sm mx-auto border border-success-subtle" style="max-width: 440px; text-align: center; background: var(--card-bg);">
+            <div class="p-4 rounded-4 shadow-sm mx-auto border border-success-subtle" style="max-width: 440px; text-align: center; background: var(--card-bg);" data-aos="fade-up" data-aos-delay="200">
                 <div style="font-size: 2rem; margin-bottom: 10px;">✉️</div>
                 <p id="txtGiftsDesc" class="text-muted small mb-3" style="line-height: 1.6;">
                     Su presencia es nuestro mejor regalo. Si desean tener un detalle adicional con nosotros para nuestra nueva vida juntos, contaremos con lluvia de sobres el día del evento.
@@ -737,7 +776,7 @@
             </div>
         </section>
 
-        <footer style="padding: 50px 20px; text-align: center; overflow: hidden;">
+        <footer style="padding: 50px 20px; text-align: center; overflow: hidden;" data-aos="fade">
             <h3 class="font-script text-gold-gradient mb-1" style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.4; padding: 0 10px; display: inline-block;">Melissa & Jean Emanuel</h3>
             <p class="small text-white-50 mb-0 font-serif" style="letter-spacing: 3px;">23 . 01 . 2027</p>
         </footer>
@@ -1023,13 +1062,13 @@
             const btn = document.getElementById('btnRsvp');
             const mensaje = document.getElementById('rsvpMensaje');
 
-            // RESTRICCIÓN DE PRUEBA: 130 DÍAS
-            if (diasFaltantes <= 130) {
+            // RESTRICCIÓN DE PRUEBA: 29 DÍAS
+            if (diasFaltantes <= 29) {
                 btn.disabled = true;
                 mensaje.className = "mt-3 text-center small fw-bold text-danger";
                 mensaje.innerHTML = `
                     ¡El plazo regular de confirmación ha finalizado!<br>
-                    Estás a 130 días o menos del evento. Si deseas confirmar o consultar disponibilidad, por favor comunícate directamente:<br><br>
+                    Estás a 29 días o menos del evento. Si deseas confirmar o consultar disponibilidad, por favor comunícate directamente:<br><br>
                     📞 <strong>Melissa:</strong> <a href="https://wa.me/50689892294" target="_blank" style="color: #2c3821;">8989-2294</a><br>
                     📞 <strong>Jean Emanuel:</strong> <a href="https://wa.me/50686160583" target="_blank" style="color: #2c3821;">8616-0583</a>
                 `;
