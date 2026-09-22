@@ -554,7 +554,7 @@
         <div class="welcome-box" onclick="unlockInvitation()">
             <div class="gold-seal">M&J</div>
             <div>
-                <p class="font-serif text-gold-gradient small mb-2" style="letter-spacing: 3px;">NUESTRA BODA</p>
+                <p id="txtWelcomeTitle" class="font-serif text-gold-gradient small mb-2" style="letter-spacing: 3px;">NUESTRA BODA</p>
                 <div class="gold-divider"></div>
                 
                 <div class="font-script text-white display-5 lh-1 mb-1" style="font-size: 3rem;">Melissa</div>
@@ -563,7 +563,7 @@
 
                 <div class="gold-divider"></div>
                 <p class="text-white-50 small mb-4" style="letter-spacing: 2px;">23 . 01 . 2027</p>
-                <span class="btn btn-gold-outline rounded-pill px-4 py-2 text-uppercase small" style="letter-spacing: 2px;">Abrir Invitación</span>
+                <span id="txtOpenBtn" class="btn btn-gold-outline rounded-pill px-4 py-2 text-uppercase small" style="letter-spacing: 2px;">Abrir Invitación</span>
             </div>
         </div>
     </div>
@@ -586,59 +586,59 @@
 
         <!-- 1. Portada Hero -->
         <section class="hero-section">
-            <div class="hero-badge font-serif" data-aos="fade-down">Nuestra Boda</div>
+            <div id="txtHeroBadge" class="hero-badge font-serif" data-aos="fade-down">Nuestra Boda</div>
             <h1 class="font-script display-3 mb-1" data-aos="zoom-in" data-aos-delay="200" style="font-size: clamp(3.5rem, 7vw, 5rem);">Melissa</h1>
             <span class="font-serif text-gold-gradient fs-3 my-2" data-aos="fade" data-aos-delay="300">&</span>
             <h1 class="font-script display-3 mt-1 mb-4" data-aos="zoom-in" data-aos-delay="400" style="font-size: clamp(3.5rem, 7vw, 5rem);">Jean Emanuel</h1>
             
             <!-- Frase con Fondo Tornasol Verde y Olivo en Movimiento -->
             <div class="shimmer-olive-box" data-aos="fade-up" data-aos-delay="500">
-                <p class="font-serif fst-italic text-white mb-0" style="font-size: 1rem; line-height: 1.6; text-shadow: 0 1px 3px rgba(0,0,0,0.3);">
+                <p id="txtHeroQuote" class="font-serif fst-italic text-white mb-0" style="font-size: 1rem; line-height: 1.6; text-shadow: 0 1px 3px rgba(0,0,0,0.3);">
                     “El sí más importante. Y tú, en primera fila”
                 </p>
             </div>
 
             <!-- Animación Guía para Bajar -->
             <div class="scroll-down-indicator">
-                <span>Desliza</span>
+                <span id="txtScroll">Desliza</span>
                 <div class="arrow-icon"></div>
             </div>
         </section>
 
         <!-- 2. Conteo & Invitados -->
         <section data-aos="fade-up">
-            <p class="font-serif text-muted small text-uppercase mb-3" style="letter-spacing: 3px;">Faltan</p>
+            <p id="txtCountdownTitle" class="font-serif text-muted small text-uppercase mb-3" style="letter-spacing: 3px;">Faltan</p>
             
             <div class="row g-3 justify-content-center mx-auto countdown-wrapper">
                 <div class="col-3">
                     <div class="countdown-card">
                         <span id="dias">00</span>
-                        <small class="font-serif">Días</small>
+                        <small id="lblDays" class="font-serif">Días</small>
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="countdown-card">
                         <span id="horas">00</span>
-                        <small class="font-serif">Horas</small>
+                        <small id="lblHours" class="font-serif">Horas</small>
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="countdown-card">
                         <span id="minutos">00</span>
-                        <small class="font-serif">Min</small>
+                        <small id="lblMins" class="font-serif">Min</small>
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="countdown-card">
                         <span id="segundos">00</span>
-                        <small class="font-serif">Seg</small>
+                        <small id="lblSecs" class="font-serif">Seg</small>
                     </div>
                 </div>
             </div>
 
             <div class="guest-card-box mx-auto" data-aos="zoom-in-up">
                 <span id="badgePases" class="badge rounded-circle p-2 fs-6 mb-2 font-serif" style="background: var(--primary-olive); color: var(--gold-light);">1</span>
-                <h3 class="font-serif text-secondary text-uppercase small" style="letter-spacing: 2px;">Invitados</h3>
+                <h3 id="txtGuestHeading" class="font-serif text-secondary text-uppercase small" style="letter-spacing: 2px;">Invitados</h3>
                 <div id="nombresInvitadosContainer" class="font-serif fs-5 fw-bold mt-1" style="color: var(--primary-olive); word-break: break-word;">
                     Estimado Invitado
                 </div>
@@ -648,8 +648,8 @@
         <!-- 3. Galería Horizontal Tipo Cilindro Infinito -->
         <section data-aos="fade-up">
             <div class="px-3 text-center mb-2">
-                <p class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Nuestros Recuerdos</p>
-                <h2 class="font-serif h4 mb-4" style="color: var(--primary-olive);">Instantes</h2>
+                <p id="txtGallerySub" class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Nuestros Recuerdos</p>
+                <h2 id="txtGalleryTitle" class="font-serif h4 mb-4" style="color: var(--primary-olive);">Instantes</h2>
             </div>
 
             <div class="horizontal-gallery-container" id="galleryContainer">
@@ -695,42 +695,42 @@
                 </div>
             </div>
             
-            <p class="text-muted small mt-2 mb-0" style="font-size: 0.8rem; letter-spacing: 1px;">← Desliza para ver más →</p>
+            <p id="txtSwipeHint" class="text-muted small mt-2 mb-0" style="font-size: 0.8rem; letter-spacing: 1px;">← Desliza para ver más →</p>
         </section>
 
         <!-- 4. Ubicaciones -->
         <section data-aos="fade-up">
-            <h2 class="font-serif h4 mb-4" style="color: var(--primary-olive);">Ubicaciones</h2>
+            <h2 id="txtLocationsTitle" class="font-serif h4 mb-4" style="color: var(--primary-olive);">Ubicaciones</h2>
 
             <!-- Ceremonia -->
             <div class="event-box" data-aos="fade-up">
-                <h3 class="font-serif h5 mb-2" style="color: var(--primary-olive);">Ceremonia</h3>
-                <p class="text-muted small mb-1">Sábado 23 de Enero, 2027 — 3:00 p.m.</p>
+                <h3 id="txtCeremonyHead" class="font-serif h5 mb-2" style="color: var(--primary-olive);">Ceremonia</h3>
+                <p id="txtCeremonyDate" class="text-muted small mb-1">Sábado 23 de Enero, 2027 — 3:00 p.m.</p>
                 <p class="fw-medium small mb-3">Parroquia Nuestra Señora del Perpetuo Socorro, Corralillo</p>
-                <a href="https://www.google.com/maps/place/Parroquia+Nuestra+Se%C3%B1ora+del+Perpetuo+Socorro+de+Corralillo/@10.2191875,-85.3755747,91m/data=!3m1!1e3!4m11!1m3!2m2!1scorralillo+parroquia!6e1!3m6!1s0x8f9fb8a27f09fe6b:0xb4590fe21821e1ed!8m2!3d10.2191062!4d-85.375523!15sChRjb3JyYWxpbGxvIHBhcnJvcXVpYZIBD2NhdGhvbGljX2NodXJjaOABAA!16s%2Fg%2F11x9xvmsl!5m1!1e2?entry=ttu" target="_blank" class="btn-map font-serif">Ver Ubicación en Mapa</a>
+                <a id="txtMapBtn1" href="https://www.google.com/maps/place/Parroquia+Nuestra+Se%C3%B1ora+del+Perpetuo+Socorro+de+Corralillo/@10.2191875,-85.3755747,91m/data=!3m1!1e3!4m11!1m3!2m2!1scorralillo+parroquia!6e1!3m6!1s0x8f9fb8a27f09fe6b:0xb4590fe21821e1ed!8m2!3d10.2191062!4d-85.375523!15sChRjb3JyYWxpbGxvIHBhcnJvcXVpYZIBD2NhdGhvbGljX2NodXJjaOABAA!16s%2Fg%2F11x9xvmsl!5m1!1e2?entry=ttu" target="_blank" class="btn-map font-serif">Ver Ubicación en Mapa</a>
             </div>
 
             <!-- Celebración -->
             <div class="event-box" data-aos="fade-up">
-                <h3 class="font-serif h5 mb-2" style="color: var(--primary-olive);">Celebración</h3>
-                <p class="text-muted small mb-1">Sábado 23 de Enero, 2027 — 5:00 p.m.</p>
+                <h3 id="txtReceptionHead" class="font-serif h5 mb-2" style="color: var(--primary-olive);">Celebración</h3>
+                <p id="txtReceptionDate" class="text-muted small mb-1">Sábado 23 de Enero, 2027 — 5:00 p.m.</p>
                 <p class="fw-medium small mb-3">Rancho La Amistad de Mario Mafio, Corralillo</p>
-                <a href="https://www.google.com/maps/place/Rancho+La+Amisdad+de+Mario+Mafio/@10.1785555,-85.4299022,291m/data=!3m1!1e3!4m10!1m3!2m2!1scorralillo+parroquia!6e1!3m5!1s0x8f9fb99cc562a5e5:0x4f699aa2375e2239!8m2!3d10.178772!4d-85.4292963!16s%2Fg%2F11vlmb23h3!5m1!1e2?entry=ttu" target="_blank" class="btn-map font-serif">Ver Ubicación en Mapa</a>
+                <a id="txtMapBtn2" href="https://www.google.com/maps/place/Rancho+La+Amisdad+de+Mario+Mafio/@10.1785555,-85.4299022,291m/data=!3m1!1e3!4m10!1m3!2m2!1scorralillo+parroquia!6e1!3m5!1s0x8f9fb99cc562a5e5:0x4f699aa2375e2239!8m2!3d10.178772!4d-85.4292963!16s%2Fg%2F11vlmb23h3!5m1!1e2?entry=ttu" target="_blank" class="btn-map font-serif">Ver Ubicación en Mapa</a>
             </div>
         </section>
 
         <!-- 5. Código de Vestimenta y Recomendaciones -->
         <section data-aos="fade-up">
-            <p class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Código de Vestimenta</p>
-            <h2 class="font-serif h4 mb-3" style="color: var(--primary-olive);">Color Reservado & Estilo</h2>
+            <p id="txtDressSub" class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Código de Vestimenta</p>
+            <h2 id="txtDressTitle" class="font-serif h4 mb-3" style="color: var(--primary-olive);">Color Reservado & Estilo</h2>
             
-            <p class="text-muted small mx-auto mb-3" style="max-width: 400px; line-height: 1.6;">
+            <p id="txtDressDesc" class="text-muted small mx-auto mb-3" style="max-width: 400px; line-height: 1.6;">
                 Agradecemos con mucho cariño evitar vestir tonos verdes o similares durante la celebración.
             </p>
 
             <div class="p-3 rounded-3 shadow-sm mx-auto mb-4 border border-success-subtle" style="max-width: 420px; background: var(--card-bg);">
-                <p class="font-serif small fw-bold text-success mb-1">🌿 Ambiente al aire libre</p>
-                <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 0;">
+                <p id="txtOutdoorTitle" class="font-serif small fw-bold text-success mb-1">🌿 Ambiente al aire libre</p>
+                <p id="txtOutdoorDesc" class="text-muted" style="font-size: 0.85rem; margin-bottom: 0;">
                     La celebración se realizará en un área con zonas verdes, por lo que sugerimos calzado cómodo.
                 </p>
             </div>
@@ -744,11 +744,11 @@
 
         <!-- 6. Confirmación de Asistencia (RSVP Interactivo con Hojitas 🌿) -->
         <section data-aos="fade-up">
-            <p class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Asistencia</p>
+            <p id="txtRsvpSub" class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Asistencia</p>
             <h2 class="font-serif h4 mb-3" style="color: var(--primary-olive);">RSVP</h2>
             
             <div id="rsvpBlock" class="p-4 rounded-4 shadow-sm mx-auto" style="max-width: 440px; text-align: left; background: var(--card-bg);">
-                <p class="text-muted small text-center mb-3">Selecciona quiénes asistirán de tu pase y haz clic en confirmar:</p>
+                <p id="txtRsvpPrompt" class="text-muted small text-center mb-3">Selecciona quiénes asistirán de tu pase y haz clic en confirmar:</p>
                 
                 <div id="checklistContainer" class="mb-3">
                     <!-- Aquí se cargan dinámicamente las casillas con hojitas -->
@@ -763,17 +763,17 @@
 
         <!-- 7. Muestras de Cariño (Regalos / Lluvia de Sobres) -->
         <section data-aos="fade-up">
-            <p class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Detalles</p>
-            <h2 class="font-serif h4 mb-3" style="color: var(--primary-olive);">Muestras de Cariño</h2>
+            <p id="txtGiftsSub" class="font-serif text-muted small text-uppercase mb-1" style="letter-spacing: 3px;">Detalles</p>
+            <h2 id="txtGiftsTitle" class="font-serif h4 mb-3" style="color: var(--primary-olive);">Muestras de Cariño</h2>
             
             <div class="p-4 rounded-4 shadow-sm mx-auto border border-success-subtle" style="max-width: 440px; text-align: center; background: var(--card-bg);">
                 <div style="font-size: 2rem; margin-bottom: 10px;">✉️</div>
-                <p class="text-muted small mb-3" style="line-height: 1.6;">
+                <p id="txtGiftsDesc" class="text-muted small mb-3" style="line-height: 1.6;">
                     Su presencia es nuestro mejor regalo. Si desean tener un detalle adicional con nosotros para nuestra nueva vida juntos, contaremos con lluvia de sobres el día del evento.
                 </p>
                 <div class="p-3 rounded-3" style="background: rgba(44,56,33,0.04);">
-                    <p class="font-serif small fw-bold text-uppercase mb-1" style="color: var(--primary-olive);">¡Muchas Gracias!</p>
-                    <p class="text-muted small mb-0" style="font-size: 0.85rem;">
+                    <p id="txtGiftsThanksHead" class="font-serif small fw-bold text-uppercase mb-1" style="color: var(--primary-olive);">¡Muchas Gracias!</p>
+                    <p id="txtGiftsThanksDesc" class="text-muted small mb-0" style="font-size: 0.85rem;">
                         Agradecemos de corazón todo su cariño y apoyo en este paso tan importante.
                     </p>
                 </div>
@@ -794,6 +794,48 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
+        /* Detección de idioma inglés para Mesa 6 (Annie Cortes) */
+        const params = new URLSearchParams(window.location.search);
+        const urlGuests = params.get('invitados');
+        const isEnglish = urlGuests && urlGuests.toLowerCase().includes('annie cortes');
+
+        if (isEnglish) {
+            document.getElementById('txtWelcomeTitle').innerText = "OUR WEDDING";
+            document.getElementById('txtOpenBtn').innerText = "Open Invitation";
+            document.getElementById('txtHeroBadge').innerText = "Our Wedding";
+            document.getElementById('txtHeroQuote').innerText = "“The most important 'I do'. And you, in the front row.”";
+            document.getElementById('txtScroll').innerText = "Scroll";
+            document.getElementById('txtCountdownTitle').innerText = "Countdown";
+            document.getElementById('lblDays').innerText = "Days";
+            document.getElementById('lblHours').innerText = "Hours";
+            document.getElementById('lblMins').innerText = "Mins";
+            document.getElementById('lblSecs').innerText = "Secs";
+            document.getElementById('txtGuestHeading').innerText = "Guests";
+            document.getElementById('txtGallerySub').innerText = "Our Memories";
+            document.getElementById('txtGalleryTitle').innerText = "Moments";
+            document.getElementById('txtSwipeHint').innerText = "← Swipe to see more →";
+            document.getElementById('txtLocationsTitle').innerText = "Locations";
+            document.getElementById('txtCeremonyHead').innerText = "Ceremony";
+            document.getElementById('txtCeremonyDate').innerText = "Saturday, January 23, 2027 — 3:00 p.m.";
+            document.getElementById('txtMapBtn1').innerText = "View Map Location";
+            document.getElementById('txtReceptionHead').innerText = "Reception";
+            document.getElementById('txtReceptionDate').innerText = "Saturday, January 23, 2027 — 5:00 p.m.";
+            document.getElementById('txtMapBtn2').innerText = "View Map Location";
+            document.getElementById('txtDressSub').innerText = "Dress Code";
+            document.getElementById('txtDressTitle').innerText = "Reserved Color & Style";
+            document.getElementById('txtDressDesc').innerText = "We kindly ask guests to avoid wearing green tones or similar during the celebration.";
+            document.getElementById('txtOutdoorTitle').innerText = "🌿 Outdoor Venue";
+            document.getElementById('txtOutdoorDesc').innerText = "The celebration will take place in an area with green spaces, so comfortable footwear is suggested.";
+            document.getElementById('txtRsvpSub').innerText = "Attendance";
+            document.getElementById('txtRsvpPrompt').innerText = "Select who will attend from your pass and click confirm:";
+            document.getElementById('btnRsvp').innerText = "Confirm Attendance";
+            document.getElementById('txtGiftsSub').innerText = "Details";
+            document.getElementById('txtGiftsTitle').innerText = "Tokens of Love";
+            document.getElementById('txtGiftsDesc').innerText = "Your presence is our best gift. If you wish to have an additional detail with us for our new life together, we will have a wishing well (envelope drop) on the day of the event.";
+            document.getElementById('txtGiftsThanksHead').innerText = "Thank You So Much!";
+            document.getElementById('txtGiftsThanksDesc').innerText = "We sincerely appreciate all your love and support in this important step.";
+        }
+
         /* Inicializar animaciones AOS */
         document.addEventListener('DOMContentLoaded', function() {
             AOS.init({
@@ -1032,13 +1074,12 @@
 
         /* --- SISTEMA DE INVITADOS Y RSVP INTERACTIVO CON HOJITAS --- */
         let guestArray = [];
-        const params = new URLSearchParams(window.location.search);
-        const urlGuests = params.get('invitados');
+        const urlGuestsParam = params.get('invitados');
 
-        if (urlGuests) {
-            guestArray = urlGuests.split(',').map(name => decodeURIComponent(name.trim()));
+        if (urlGuestsParam) {
+            guestArray = urlGuestsParam.split(',').map(name => decodeURIComponent(name.trim()));
         } else {
-            guestArray = ['Familia & Acompañantes'];
+            guestArray = ['Family & Guests'];
         }
 
         function cargarChecklistInvitados() {
@@ -1047,7 +1088,7 @@
             let htmlList = '';
             let checklistHtml = '';
             
-            let savedRsvp = JSON.parse(localStorage.getItem('boda_rsvp_' + (urlGuests || 'default'))) || {};
+            let savedRsvp = JSON.parse(localStorage.getItem('boda_rsvp_' + (urlGuestsParam || 'default'))) || {};
 
             guestArray.forEach((name, index) => {
                 htmlList += `<div class="my-1">${name}</div>`;
@@ -1071,19 +1112,19 @@
         function enviarRSVP() {
             const checkboxes = document.querySelectorAll('.custom-leaf-checkbox');
             let asistenciaData = {};
-            let grupoNombre = urlGuests || 'Invitado General';
+            let grupoNombre = urlGuestsParam || 'General Guest';
 
             checkboxes.forEach(cb => {
                 asistenciaData[cb.value] = cb.checked;
             });
 
-            localStorage.setItem('boda_rsvp_' + (urlGuests || 'default'), JSON.stringify(asistenciaData));
+            localStorage.setItem('boda_rsvp_' + (urlGuestsParam || 'default'), JSON.stringify(asistenciaData));
 
             const btn = document.getElementById('btnRsvp');
             const mensaje = document.getElementById('rsvpMensaje');
             
             btn.disabled = true;
-            btn.innerText = "Guardando...";
+            btn.innerText = isEnglish ? "Saving..." : "Guardando...";
 
             const scriptURL = 'AQUÍ_PEGARÁS_TU_URL_DE_GOOGLE_SCRIPT';
 
@@ -1094,23 +1135,23 @@
             if (scriptURL === 'AQUÍ_PEGARÁS_TU_URL_DE_GOOGLE_SCRIPT') {
                 setTimeout(() => {
                     mensaje.className = "mt-2 text-center small fw-bold text-success";
-                    mensaje.innerText = "¡Asistencia actualizada con éxito! Puedes volver a editarla cuando gustes.";
+                    mensaje.innerText = isEnglish ? "Attendance updated successfully! You can update it anytime." : "¡Asistencia actualizada con éxito! Puedes volver a editarla cuando gustes.";
                     btn.disabled = false;
-                    btn.innerText = "Actualizar Asistencia";
+                    btn.innerText = isEnglish ? "Update Attendance" : "Actualizar Asistencia";
                 }, 800);
             } else {
                 fetch(scriptURL, { method: 'POST', body: formData })
                 .then(response => {
                     mensaje.className = "mt-2 text-center small fw-bold text-success";
-                    mensaje.innerText = "¡Asistencia actualizada con éxito!";
+                    mensaje.innerText = isEnglish ? "Attendance updated successfully!" : "¡Asistencia actualizada con éxito!";
                     btn.disabled = false;
-                    btn.innerText = "Actualizar Asistencia";
+                    btn.innerText = isEnglish ? "Update Attendance" : "Actualizar Asistencia";
                 })
                 .catch(error => {
                     mensaje.className = "mt-2 text-center small fw-bold text-danger";
-                    mensaje.innerText = "Hubo un error al guardar. Inténtalo de nuevo.";
+                    mensaje.innerText = isEnglish ? "Error saving. Please try again." : "Hubo un error al guardar. Inténtalo de nuevo.";
                     btn.disabled = false;
-                    btn.innerText = "Confirmar Asistencia";
+                    btn.innerText = isEnglish ? "Confirm Attendance" : "Confirmar Asistencia";
                 });
             }
         }
