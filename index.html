@@ -880,13 +880,13 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             AOS.init({ duration: 1000, once: true });
-            initInteractiveWindLeafCanvas();
+            initGentleBreezeLeafCanvas();
             cargarChecklistInvitados();
             initInteractiveAutoScroll();
         });
 
-        // --- SISTEMA DE HOJAS CON EFECTO DE VIENTO AL MOVER EL MOUSE ---
-        function initInteractiveWindLeafCanvas() {
+        // --- SISTEMA DE HOJAS CON EFECTO DE BRISA SUAVE (GENTLE BREEZE) ---
+        function initGentleBreezeLeafCanvas() {
             const canvas = document.getElementById('forest-canvas');
             const ctx = canvas.getContext('2d');
 
@@ -897,22 +897,30 @@
             window.addEventListener('resize', resizeCanvas);
             resizeCanvas();
 
-            // Seguimiento de la posición del mouse
-            const mouse = { x: -1000, y: -1000, vx: 0, vy: 0, active: false };
-            let lastMouseX = -1000;
-            let lastMouseY = -1000;
+            const mouse = { x: -1000, y: -1000, active: false };
 
             window.addEventListener('mousemove', (e) => {
                 mouse.x = e.clientX;
                 mouse.y = e.clientY;
-                mouse.vx = mouse.x - lastMouseX;
-                mouse.vy = mouse.y - lastMouseY;
-                lastMouseX = mouse.x;
-                lastMouseY = mouse.y;
                 mouse.active = true;
             });
 
             window.addEventListener('mouseleave', () => {
+                mouse.active = false;
+                mouse.x = -1000;
+                mouse.y = -1000;
+            });
+
+            // Soporte táctil sutil para celulares/tablets
+            window.addEventListener('touchmove', (e) => {
+                if (e.touches.length > 0) {
+                    mouse.x = e.touches[0].clientX;
+                    mouse.y = e.touches[0].clientY;
+                    mouse.active = true;
+                }
+            }, { passive: true });
+
+            window.addEventListener('touchend', () => {
                 mouse.active = false;
                 mouse.x = -1000;
                 mouse.y = -1000;
@@ -928,7 +936,7 @@
                 { main: '#566848', dark: '#303b26', vein: '#1f2718', translucent: 'rgba(116, 139, 97, 0.8)' }
             ];
 
-            class WindPhotoLeaf {
+            class BreezeLeaf {
                 constructor() {
                     this.reset();
                 }
@@ -936,48 +944,48 @@
                 reset() {
                     this.x = Math.random() * canvas.width;
                     this.y = Math.random() * -canvas.height - 120;
-                    this.vy = Math.random() * 0.5 + 0.45;
-                    this.vx = Math.random() * 0.9 - 0.45;
+                    this.baseVy = Math.random() * 0.4 + 0.35; // Caída suave y constante
+                    this.baseVx = Math.random() * 0.6 - 0.3;
                     this.scale = Math.random() * 0.35 + 0.6;
 
                     this.angleZ = Math.random() * Math.PI * 2;
-                    this.spinZ = Math.random() * 0.01 - 0.005;
+                    this.spinZ = Math.random() * 0.008 - 0.004;
                     this.angleY = Math.random() * Math.PI * 2;
-                    this.spinY = Math.random() * 0.02 + 0.008;
+                    this.spinY = Math.random() * 0.015 + 0.005;
 
                     this.wobbleSpeed = Math.random() * 0.01 + 0.003;
                     this.seed = Math.random() * 100;
                     this.palette = photorealisticPalettes[Math.floor(Math.random() * photorealisticPalettes.length)];
                     this.opacity = Math.random() * 0.15 + 0.8;
+
+                    // Variables para el vaivén de la brisa
+                    this.breezeOffset = 0;
                 }
 
                 update() {
                     this.seed += this.wobbleSpeed;
-                    
-                    // Movimiento natural base
-                    this.y += this.vy;
-                    this.x += this.vx + Math.sin(this.seed) * 0.9;
 
-                    // --- FÍSICA DE VIENTO AL ACERCAR EL MOUSE ---
+                    // --- EFECTO DE BRISA SUTIL AL PASAR EL MOUSE / DEDO ---
+                    let targetBreeze = 0;
                     const dx = this.x - mouse.x;
                     const dy = this.y - mouse.y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
-                    const windRadius = 140; // Radio de acción del viento del mouse
+                    const breezeRadius = 120; // Radio suave de influencia
 
-                    if (dist < windRadius && mouse.active) {
-                        const force = (1 - dist / windRadius);
-                        // Empuja las hojas en la dirección del movimiento del mouse o alejándolas
-                        this.vx += (mouse.vx * 0.08 + (dx / dist) * 3.5) * force;
-                        this.vy += (mouse.vy * 0.08 + (dy / dist) * 2.0) * force;
-                        this.spinZ += 0.02 * force; // Las hace girar más al ser golpeadas por el viento
+                    if (dist < breezeRadius && mouse.active) {
+                        // Calcula una oscilación suave en lugar de un empuje brusco
+                        const influence = (1 - dist / breezeRadius);
+                        targetBreeze = Math.sin(this.seed * 3) * 1.5 * influence + (dx > 0 ? 0.8 : -0.8) * influence;
                     }
 
-                    // Fricción para estabilizar la hoja tras el soplido
-                    this.vx *= 0.96;
-                    this.vy += ( (Math.random() * 0.5 + 0.45) - this.vy ) * 0.05; // Regresar gradualmente a su velocidad de caída
+                    // Transición suave (suavizado o lerp) hacia la brisa
+                    this.breezeOffset += (targetBreeze - this.breezeOffset) * 0.1;
 
-                    this.angleZ += this.spinZ;
-                    this.spinZ *= 0.98; // Fricción de giro
+                    // Movimiento final de la hoja (caída natural + vaivén de brisa)
+                    this.y += this.baseVy;
+                    this.x += this.baseVx + Math.sin(this.seed) * 0.7 + this.breezeOffset;
+
+                    this.angleZ += this.spinZ + (this.breezeOffset * 0.005); // Giro delicado al mecerse
                     this.angleY += this.spinY;
 
                     if (this.y > canvas.height + 90 || this.x < -100 || this.x > canvas.width + 100) {
@@ -1057,7 +1065,7 @@
             }
 
             for (let i = 0; i < leafCount; i++) {
-                leaves.push(new WindPhotoLeaf());
+                leaves.push(new BreezeLeaf());
             }
 
             function animate() {
