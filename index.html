@@ -810,7 +810,7 @@
             <div class="p-4 rounded-4 shadow-sm mx-auto border border-success-subtle" style="max-width: 440px; text-align: center; background: var(--card-bg); backdrop-filter: blur(5px);" data-aos="fade-up" data-aos-delay="200">
                 <div style="font-size: 2rem; margin-bottom: 10px;">✉️</div>
                 <p id="txtGiftsDesc" class="text-muted small mb-3" style="line-height: 1.6;">
-                    Su presencia es nosso mejor regalo. Si desean tener un detalle adicional con nosotros para nuestra nueva vida juntos, contaremos con lluvia de sobres el día del evento.
+                    Su presencia es nuestro mejor regalo. Si desean tener un detalle adicional con nosotros para nuestra nueva vida juntos, contaremos con lluvia de sobres el día del evento.
                 </p>
                 <div class="p-3 rounded-3" style="background: rgba(44,56,33,0.04);">
                     <p id="txtGiftsThanksHead" class="font-serif small fw-bold text-uppercase mb-1" style="color: var(--primary-olive);">¡Muchas Gracias!</p>
@@ -880,13 +880,13 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             AOS.init({ duration: 1000, once: true });
-            initPhotorealisticLeafCanvas();
+            initTrue3DLeafCanvas();
             cargarChecklistInvitados();
             initInteractiveAutoScroll();
         });
 
-        // --- SISTEMA DE HOJAS FOTORREALISTAS CON MÁSCARA DE RECORTE ---
-        function initPhotorealisticLeafCanvas() {
+        // --- SISTEMA DE HOJAS EN 3D REAL (VOLUMETRÍA Y DOBLECES MULTI-SEGMENTO) ---
+        function initTrue3DLeafCanvas() {
             const canvas = document.getElementById('forest-canvas');
             const ctx = canvas.getContext('2d');
 
@@ -898,129 +898,131 @@
             resizeCanvas();
 
             const leaves = [];
-            const leafCount = window.innerWidth < 768 ? 14 : 22;
+            const leafCount = window.innerWidth < 768 ? 12 : 20;
 
-            const photorealisticPalettes = [
-                { main: '#526343', dark: '#2b3521', vein: '#182012', translucent: 'rgba(110, 134, 91, 0.85)' },
-                { main: '#617450', dark: '#34412a', vein: '#1f2718', translucent: 'rgba(125, 150, 104, 0.82)' },
-                { main: '#475638', dark: '#242e1b', vein: '#12180d', translucent: 'rgba(96, 118, 78, 0.85)' },
-                { main: '#70825c', dark: '#3d4930', vein: '#22291a', translucent: 'rgba(140, 168, 119, 0.8)' }
+            const palettes3D = [
+                { main: '#526343', dark: '#2b3521', light: '#788d66', vein: '#182012' },
+                { main: '#617450', dark: '#34412a', light: '#899e74', vein: '#1f2718' },
+                { main: '#475638', dark: '#242e1b', light: '#6b7f58', vein: '#12180d' },
+                { main: '#70825c', dark: '#3d4930', light: '#99ae81', vein: '#22291a' }
             ];
 
-            class PhotoLeaf {
+            class Leaf3D {
                 constructor() {
                     this.reset();
                 }
 
                 reset() {
                     this.x = Math.random() * canvas.width;
-                    this.y = Math.random() * -canvas.height - 120;
-                    this.vy = Math.random() * 0.5 + 0.45;
-                    this.vx = Math.random() * 0.9 - 0.45;
-                    this.scale = Math.random() * 0.35 + 0.6;
+                    this.y = Math.random() * -canvas.height - 150;
+                    this.z = Math.random() * 400 - 200; // Profundidad 3D en el espacio virtual
+                    
+                    this.vy = Math.random() * 0.5 + 0.4;
+                    this.vx = Math.random() * 0.8 - 0.4;
+                    this.vz = Math.random() * 1.5 - 0.75; // Velocidad de acercamiento/alejamiento 3D
 
-                    this.angleZ = Math.random() * Math.PI * 2;
-                    this.spinZ = Math.random() * 0.01 - 0.005;
-                    this.angleY = Math.random() * Math.PI * 2;
-                    this.spinY = Math.random() * 0.02 + 0.008;
+                    this.scale = Math.random() * 0.3 + 0.7;
 
-                    this.wobbleSpeed = Math.random() * 0.01 + 0.003;
+                    // Rotación en los 3 ejes cartesianos (X, Y, Z reales)
+                    this.rx = Math.random() * Math.PI * 2;
+                    this.ry = Math.random() * Math.PI * 2;
+                    this.rz = Math.random() * Math.PI * 2;
+
+                    this.vrx = Math.random() * 0.02 - 0.01;
+                    this.vry = Math.random() * 0.025 - 0.012;
+                    this.vrz = Math.random() * 0.015 - 0.007;
+
+                    this.palette = palettes3D[Math.floor(Math.random() * palettes3D.length)];
                     this.seed = Math.random() * 100;
-                    this.palette = photorealisticPalettes[Math.floor(Math.random() * photorealisticPalettes.length)];
-                    this.opacity = Math.random() * 0.15 + 0.8;
                 }
 
                 update() {
-                    this.seed += this.wobbleSpeed;
+                    this.seed += 0.01;
                     this.y += this.vy;
-                    this.x += this.vx + Math.sin(this.seed) * 0.9;
-                    this.angleZ += this.spinZ;
-                    this.angleY += this.spinY;
+                    this.x += this.vx + Math.sin(this.seed) * 0.8;
+                    this.z += this.vz;
 
-                    if (this.y > canvas.height + 90) {
+                    this.rx += this.vrx;
+                    this.ry += this.vry;
+                    this.rz += this.vrz;
+
+                    if (this.y > canvas.height + 100 || this.z < -400 || this.z > 400) {
                         this.reset();
                     }
                 }
 
-                draw() {
+            draw() {
                     ctx.save();
+                    
+                    // Proyección de perspectiva 3D (Cámara virtual)
+                    const fov = 350;
+                    const scaleFactor = fov / (fov + this.z + 300) * this.scale;
+
                     ctx.translate(this.x, this.y);
-                    ctx.rotate(this.angleZ);
+                    ctx.scale(scaleFactor, scaleFactor);
+                    ctx.rotate(this.rz);
 
-                    const depthFactor = Math.cos(this.angleY);
-                    ctx.scale(this.scale * Math.abs(depthFactor), this.scale);
-                    ctx.globalAlpha = this.opacity;
+                    const len = 38;
+                    const segments = 6; // Segmentos en altura para lograr el doblez tridimensional orgánico
 
-                    const len = 40;
-                    const wid = 14;
+                    // Dibujar la hoja dividida en fajas horizontales (Efecto de malla 3D)
+                    for (let i = 0; i < segments; i++) {
+                        const t1 = i / segments;
+                        const t2 = (i + 1) / segments;
 
-                    // --- SILUETA ORGÁNICA DE LA HOJA ---
-                    ctx.beginPath();
-                    ctx.moveTo(0, len + 8);
-                    ctx.lineTo(0, len);
-                    ctx.bezierCurveTo(-wid * 0.4, len * 0.6, -wid * 1.5, -len * 0.1, -wid * 0.2, -len * 0.8);
-                    ctx.bezierCurveTo(-wid * 0.1, -len * 0.9, 0, -len - 4, 0, -len);
-                    ctx.bezierCurveTo(0, -len - 4, wid * 0.1, -len * 0.9, wid * 0.2, -len * 0.8);
-                    ctx.bezierCurveTo(wid * 1.5, -len * 0.1, wid * 0.4, len * 0.6, 0, len);
-                    ctx.closePath();
+                        const y1 = -len + (len * 2) * t1;
+                        const y2 = -len + (len * 2) * t2;
 
-                    // MÁSCARA DE CORTE (CLIP): Impide que cualquier estría o línea salga de la figura de la hoja
-                    ctx.save();
-                    ctx.clip();
+                        // Ancho de la hoja calculado con una curva parabólica natural
+                        const w1 = 14 * Math.sin(t1 * Math.PI);
+                        const w2 = 14 * Math.sin(t2 * Math.PI);
 
-                    // Relleno con degradado y efecto translúcido
-                    const gradient = ctx.createLinearGradient(-wid, -len, wid, len);
-                    if (depthFactor > 0) {
-                        gradient.addColorStop(0, this.palette.dark);
-                        gradient.addColorStop(0.5, this.palette.main);
-                        gradient.addColorStop(1, this.palette.translucent);
-                    } else {
-                        gradient.addColorStop(0, this.palette.translucent);
-                        gradient.addColorStop(0.5, this.palette.main);
-                        gradient.addColorStop(1, this.palette.dark);
+                        // Deformación de curvatura volumétrica basada en senos y cosenos del ángulo tridimensional
+                        const curveDepth1 = Math.cos(this.rx + t1 * 3) * 6;
+                        const curveDepth2 = Math.cos(this.rx + t2 * 3) * 6;
+
+                        const depthRotation = Math.cos(this.ry);
+
+                        ctx.beginPath();
+                        ctx.moveTo(-w1 + curveDepth1, y1);
+                        ctx.lineTo(w1 + curveDepth1, y1);
+                        ctx.lineTo(w2 + curveDepth2, y2);
+                        ctx.lineTo(-w2 + curveDepth2, y2);
+                        ctx.closePath();
+
+                        // Gradiente dinámico 3D por cada segmento (simula luz incidiendo en superficies curvas)
+                        let segmentColor = this.palette.main;
+                        if (depthRotation > 0) {
+                            segmentColor = (i % 2 === 0) ? this.palette.light : this.palette.main;
+                        } else {
+                            segmentColor = this.palette.dark;
+                        }
+
+                        ctx.fillStyle = segmentColor;
+                        ctx.globalAlpha = Math.max(0.3, (fov + this.z + 300) / 700);
+                        ctx.fill();
                     }
-                    ctx.fillStyle = gradient;
-                    ctx.fill();
 
-                    // Vena central
+                    // Vena central articulada en 3D
                     ctx.beginPath();
-                    ctx.moveTo(0, len);
-                    ctx.lineTo(0, -len + 3);
+                    ctx.moveTo(0, len + 4);
+                    ctx.lineTo(0, -len + 4);
                     ctx.strokeStyle = this.palette.vein;
-                    ctx.lineWidth = 1.3;
+                    ctx.lineWidth = 1.5;
                     ctx.stroke();
 
-                    // Venas secundarias (ahora recortadas perfectamente dentro del contorno)
-                    ctx.strokeStyle = this.palette.vein;
-                    ctx.lineWidth = 0.5;
-                    const veins = 7;
-                    for (let i = 1; i <= veins; i++) {
-                        const t = i / (veins + 1);
-                        const posV = len - (len * 1.7 * t);
-                        const widthSpan = wid * Math.sin(t * Math.PI) * 0.8;
-
-                        ctx.beginPath();
-                        ctx.moveTo(0, posV);
-                        ctx.quadraticCurveTo(-widthSpan * 0.4, posV - 2, -widthSpan, posV - 6);
-                        ctx.stroke();
-
-                        ctx.beginPath();
-                        ctx.moveTo(0, posV);
-                        ctx.quadraticCurveTo(widthSpan * 0.4, posV - 2, widthSpan, posV - 6);
-                        ctx.stroke();
-                    }
-
-                    ctx.restore(); // Cierra el clip de la hoja
-                    ctx.restore(); // Cierra la transformación general
+                    ctx.restore();
                 }
             }
 
             for (let i = 0; i < leafCount; i++) {
-                leaves.push(new PhotoLeaf());
+                leaves.push(new Leaf3D());
             }
 
             function animate() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
+                // Ordenar hojas por profundidad (eje Z) para que las más cercanas se dibujen sobre las lejanas
+                leaves.sort((a, b) => a.z - b.z);
                 leaves.forEach(leaf => {
                     leaf.update();
                     leaf.draw();
@@ -1216,7 +1218,7 @@
             })
             .catch(error => {
                 mensaje.className = "mt-2 text-center small fw-bold text-danger";
-                mensaje.innerText = isEnglish ? "Error saving. Please try again." : "Hubo un error al guardar. Inténtalo de nuevo.";
+                mensaje.innerText = isEnglish ? "Error saving. Please try again.".trim() : "Hubo un error al guardar. Inténtalo de nuevo.";
                 btn.disabled = false;
                 btn.innerText = isEnglish ? "Confirm Attendance" : "Confirmar Asistencia";
             });
