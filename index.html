@@ -70,7 +70,6 @@
             margin: 15px auto;
         }
 
-        /* Cuadro con efecto dorado brillante estático y elegante */
         .shimmer-olive-box {
             background: linear-gradient(135deg, #f9e7b9 0%, #e6ca65 30%, #d4af37 50%, #b89728 75%, #aa7c11 100%);
             border: 1.5px solid rgba(255, 255, 255, 0.85);
@@ -299,7 +298,6 @@
             background: transparent;
         }
 
-        /* Hero Section usando foto10.jpg con ruta estricta en minúsculas */
         .hero-section {
             background: linear-gradient(rgba(20, 28, 16, 0.62), rgba(12, 17, 9, 0.8)), url('fotos/foto10.jpg') center/cover no-repeat;
             color: white;
@@ -366,7 +364,6 @@
             transform: translateY(-3px);
         }
 
-        /* Galería horizontal optimizada y fluida */
         .horizontal-gallery-container {
             display: flex;
             overflow-x: auto;
@@ -883,12 +880,13 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             AOS.init({ duration: 1000, once: true });
-            init3DRealisticLeavesCanvas();
+            initBotanicLeafCanvas();
             cargarChecklistInvitados();
             initInteractiveAutoScroll();
         });
 
-        function init3DRealisticLeavesCanvas() {
+        // --- SISTEMA DE FISICO BOTÁNICO REAL (SILUETA ORGÁNICA DE HOJA) ---
+        function initBotanicLeafCanvas() {
             const canvas = document.getElementById('forest-canvas');
             const ctx = canvas.getContext('2d');
 
@@ -900,45 +898,48 @@
             resizeCanvas();
 
             const leaves = [];
-            const leafCount = window.innerWidth < 768 ? 14 : 22;
-            
+            const leafCount = window.innerWidth < 768 ? 14 : 24;
+
+            // Paletas de tonos naturales de follaje (oliva, salvia, bosque)
             const leafPalettes = [
-                { main: 'rgba(92, 115, 75, 0.85)', vein: 'rgba(38, 51, 29, 0.9)' },
-                { main: 'rgba(110, 133, 90, 0.82)', vein: 'rgba(46, 61, 35, 0.9)' },
-                { main: 'rgba(128, 148, 107, 0.8)', vein: 'rgba(54, 69, 41, 0.9)' },
-                { main: 'rgba(80, 102, 65, 0.85)', vein: 'rgba(30, 41, 22, 0.9)' }
+                { base: '#4e5e41', dark: '#2c3821', vein: '#1a2313', tip: '#6a7d5b' },
+                { base: '#5c6f4c', dark: '#35432b', vein: '#1f2718', tip: '#7a9167' },
+                { base: '#6d8059', dark: '#404c33', vein: '#242b1e', tip: '#8ca373' },
+                { base: '#425135', dark: '#242d1d', vein: '#13180f', tip: '#5b6e4b' }
             ];
 
-            class Leaf3D {
+            class BotanicLeaf {
                 constructor() {
                     this.reset();
                 }
 
                 reset() {
                     this.x = Math.random() * canvas.width;
-                    this.y = Math.random() * -canvas.height - 60;
-                    this.vx = Math.random() * 0.8 - 0.4;
-                    this.vy = Math.random() * 0.8 + 0.5;
-                    this.scale = Math.random() * 0.35 + 0.6;
-                    
+                    this.y = Math.random() * -canvas.height - 100;
+                    this.vy = Math.random() * 0.6 + 0.5; // Caída suave y pausada
+                    this.vx = Math.random() * 1.0 - 0.5;
+                    this.scale = Math.random() * 0.35 + 0.55;
+
+                    // Rotación física en 3D (Simula la aerodinámica real)
                     this.angleZ = Math.random() * Math.PI * 2;
-                    this.spinZ = Math.random() * 0.02 - 0.01;
-                    
-                    this.angle3D = Math.random() * Math.PI * 2;
-                    this.spin3D = Math.random() * 0.03 + 0.015;
-                    
-                    this.swingSpeed = Math.random() * 0.012 + 0.004;
+                    this.spinZ = Math.random() * 0.012 - 0.006;
+                    this.angleY = Math.random() * Math.PI * 2;
+                    this.spinY = Math.random() * 0.02 + 0.008;
+
+                    this.wobbleSpeed = Math.random() * 0.012 + 0.004;
+                    this.seed = Math.random() * 100;
                     this.palette = leafPalettes[Math.floor(Math.random() * leafPalettes.length)];
-                    this.opacity = Math.random() * 0.2 + 0.65;
+                    this.opacity = Math.random() * 0.2 + 0.7;
                 }
 
                 update() {
+                    this.seed += this.wobbleSpeed;
                     this.y += this.vy;
-                    this.x += Math.sin(this.y * this.swingSpeed) * 0.8 + this.vx;
+                    this.x += this.vx + Math.sin(this.seed) * 0.7;
                     this.angleZ += this.spinZ;
-                    this.angle3D += this.spin3D;
+                    this.angleY += this.spinY;
 
-                    if (this.y > canvas.height + 60) {
+                    if (this.y > canvas.height + 80) {
                         this.reset();
                     }
                 }
@@ -947,45 +948,70 @@
                     ctx.save();
                     ctx.translate(this.x, this.y);
                     ctx.rotate(this.angleZ);
-                    
-                    const depthFactor = Math.cos(this.angle3D);
-                    ctx.scale(this.scale * depthFactor, this.scale);
-                    
+
+                    // Perspectiva 3D del giro de la hoja (ancho variable según el ángulo)
+                    const depthFactor = Math.cos(this.angleY);
+                    ctx.scale(this.scale * Math.abs(depthFactor), this.scale);
                     ctx.globalAlpha = this.opacity;
 
-                    const len = 30;
-                    const wid = 10;
+                    const len = 36; // Longitud botánica
+                    const wid = 13; // Ancho máximo del cuerpo de la hoja
 
+                    // --- TRAZADO DE LA SILUETA FÍSICA REAL DE LA HOJA ---
                     ctx.beginPath();
-                    ctx.moveTo(0, -len);
-                    ctx.bezierCurveTo(wid * 1.6, -len * 0.4, wid * 0.9, len * 0.7, 0, len);
-                    ctx.bezierCurveTo(-wid * 0.9, len * 0.7, -wid * 1.6, -len * 0.4, 0, -len);
-                    ctx.fillStyle = this.palette.main;
+                    // 1. Tallo inferior
+                    ctx.moveTo(0, len + 6);
+                    ctx.lineTo(0, len);
+                    
+                    // 2. Lado izquierdo de la hoja (Curva orgánica abultada en el centro y fina en la punta)
+                    ctx.bezierCurveTo(-wid * 0.3, len * 0.5, -wid * 1.4, -len * 0.2, 0, -len);
+                    
+                    // 3. Lado derecho de la hoja (Simetría orgánica con ligeras variaciones naturales)
+                    ctx.bezierCurveTo(wid * 1.4, -len * 0.2, wid * 0.3, len * 0.5, 0, len);
+                    ctx.closePath();
+
+                    // Relleno con degradado de luz volumétrico
+                    const gradient = ctx.createLinearGradient(-wid, -len, wid, len);
+                    if (depthFactor > 0) {
+                        gradient.addColorStop(0, this.palette.dark);
+                        gradient.addColorStop(0.5, this.palette.base);
+                        gradient.addColorStop(1, this.palette.tip);
+                    } else {
+                        gradient.addColorStop(0, this.palette.tip);
+                        gradient.addColorStop(0.5, this.palette.base);
+                        gradient.addColorStop(1, this.palette.dark);
+                    }
+                    ctx.fillStyle = gradient;
                     ctx.fill();
 
+                    // --- DETALLES DE NERVADURA BOTÁNICOS REALISTAS ---
+                    // Vena central principal
                     ctx.beginPath();
-                    ctx.moveTo(0, -len + 3);
-                    ctx.lineTo(0, len - 3);
+                    ctx.moveTo(0, len);
+                    ctx.lineTo(0, -len + 4);
                     ctx.strokeStyle = this.palette.vein;
                     ctx.lineWidth = 1.1;
                     ctx.stroke();
 
+                    // Nervaduras secundarias (venas laterales arqueadas hacia la punta)
                     ctx.strokeStyle = this.palette.vein;
-                    ctx.lineWidth = 0.6;
-                    const pairs = 5;
-                    for (let i = 1; i <= pairs; i++) {
-                        const t = i / (pairs + 1);
-                        const curY = -len + 3 + (len * 2 - 6) * t;
-                        const span = wid * Math.sin(t * Math.PI) * 0.75;
+                    ctx.lineWidth = 0.5;
+                    const ribPairs = 5;
+                    for (let i = 1; i <= ribPairs; i++) {
+                        const t = i / (ribPairs + 1);
+                        const startY = len - (len * 1.6 * t);
+                        const spanX = wid * Math.sin(t * Math.PI) * 0.85;
 
+                        // Lado izquierdo
                         ctx.beginPath();
-                        ctx.moveTo(0, curY);
-                        ctx.lineTo(span, curY - 3);
+                        ctx.moveTo(0, startY);
+                        ctx.quadraticCurveTo(-spanX * 0.5, startY - 3, -spanX, startY - 8);
                         ctx.stroke();
 
+                        // Lado derecho
                         ctx.beginPath();
-                        ctx.moveTo(0, curY);
-                        ctx.lineTo(-span, curY - 3);
+                        ctx.moveTo(0, startY);
+                        ctx.quadraticCurveTo(spanX * 0.5, startY - 3, spanX, startY - 8);
                         ctx.stroke();
                     }
 
@@ -994,7 +1020,7 @@
             }
 
             for (let i = 0; i < leafCount; i++) {
-                leaves.push(new Leaf3D());
+                leaves.push(new BotanicLeaf());
             }
 
             function animate() {
@@ -1057,7 +1083,6 @@
             document.getElementById('lightbox').style.display = 'none';
         }
 
-        // Galería optimizada con requestAnimationFrame para 60fps sin tirones
         function initInteractiveAutoScroll() {
             const gallery = document.getElementById('galleryContainer');
             if (!gallery) return;
@@ -1073,7 +1098,7 @@
 
             function step() {
                 if (!isUserInteracting) {
-                    gallery.scrollLeft += 0.7; // Movimiento suave y lento
+                    gallery.scrollLeft += 0.7;
                     const singleSetWidth = gallery.scrollWidth / 2;
                     if (gallery.scrollLeft >= singleSetWidth) {
                         gallery.scrollLeft -= singleSetWidth;
@@ -1089,7 +1114,7 @@
                     clearTimeout(interactionTimeout);
                     interactionTimeout = setTimeout(() => {
                         isUserInteracting = false;
-                    }, 3500); // Se reanuda suavemente 3.5s después de soltar
+                    }, 3500);
                 }, { passive: true });
             });
         }
