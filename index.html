@@ -880,13 +880,13 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             AOS.init({ duration: 1000, once: true });
-            initPhotorealisticLeafCanvas();
+            initInteractiveWindLeafCanvas();
             cargarChecklistInvitados();
             initInteractiveAutoScroll();
         });
 
-        // --- SISTEMA DE HOJAS FOTORREALISTAS ORIGINALES (CON MÁSCARA DE RECORTE Y COLORES NATURALES) ---
-        function initPhotorealisticLeafCanvas() {
+        // --- SISTEMA DE HOJAS CON EFECTO DE VIENTO AL MOVER EL MOUSE ---
+        function initInteractiveWindLeafCanvas() {
             const canvas = document.getElementById('forest-canvas');
             const ctx = canvas.getContext('2d');
 
@@ -897,10 +897,30 @@
             window.addEventListener('resize', resizeCanvas);
             resizeCanvas();
 
+            // Seguimiento de la posición del mouse
+            const mouse = { x: -1000, y: -1000, vx: 0, vy: 0, active: false };
+            let lastMouseX = -1000;
+            let lastMouseY = -1000;
+
+            window.addEventListener('mousemove', (e) => {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
+                mouse.vx = mouse.x - lastMouseX;
+                mouse.vy = mouse.y - lastMouseY;
+                lastMouseX = mouse.x;
+                lastMouseY = mouse.y;
+                mouse.active = true;
+            });
+
+            window.addEventListener('mouseleave', () => {
+                mouse.active = false;
+                mouse.x = -1000;
+                mouse.y = -1000;
+            });
+
             const leaves = [];
             const leafCount = window.innerWidth < 768 ? 14 : 22;
 
-            // Paletas de tonos naturales y elegantes actualizadas
             const photorealisticPalettes = [
                 { main: '#435035', dark: '#242e1b', vein: '#171e11', translucent: 'rgba(94, 112, 74, 0.85)' },
                 { main: '#4d5c3f', dark: '#293320', vein: '#1a2214', translucent: 'rgba(104, 123, 86, 0.82)' },
@@ -908,7 +928,7 @@
                 { main: '#566848', dark: '#303b26', vein: '#1f2718', translucent: 'rgba(116, 139, 97, 0.8)' }
             ];
 
-            class PhotoLeaf {
+            class WindPhotoLeaf {
                 constructor() {
                     this.reset();
                 }
@@ -933,12 +953,34 @@
 
                 update() {
                     this.seed += this.wobbleSpeed;
+                    
+                    // Movimiento natural base
                     this.y += this.vy;
                     this.x += this.vx + Math.sin(this.seed) * 0.9;
+
+                    // --- FÍSICA DE VIENTO AL ACERCAR EL MOUSE ---
+                    const dx = this.x - mouse.x;
+                    const dy = this.y - mouse.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    const windRadius = 140; // Radio de acción del viento del mouse
+
+                    if (dist < windRadius && mouse.active) {
+                        const force = (1 - dist / windRadius);
+                        // Empuja las hojas en la dirección del movimiento del mouse o alejándolas
+                        this.vx += (mouse.vx * 0.08 + (dx / dist) * 3.5) * force;
+                        this.vy += (mouse.vy * 0.08 + (dy / dist) * 2.0) * force;
+                        this.spinZ += 0.02 * force; // Las hace girar más al ser golpeadas por el viento
+                    }
+
+                    // Fricción para estabilizar la hoja tras el soplido
+                    this.vx *= 0.96;
+                    this.vy += ( (Math.random() * 0.5 + 0.45) - this.vy ) * 0.05; // Regresar gradualmente a su velocidad de caída
+
                     this.angleZ += this.spinZ;
+                    this.spinZ *= 0.98; // Fricción de giro
                     this.angleY += this.spinY;
 
-                    if (this.y > canvas.height + 90) {
+                    if (this.y > canvas.height + 90 || this.x < -100 || this.x > canvas.width + 100) {
                         this.reset();
                     }
                 }
@@ -955,7 +997,7 @@
                     const len = 40;
                     const wid = 14;
 
-                    // --- SILUETA ORGÁNICA DE LA HOJA ---
+                    // Silueta orgánica original con máscara de recorte
                     ctx.beginPath();
                     ctx.moveTo(0, len + 8);
                     ctx.lineTo(0, len);
@@ -965,11 +1007,9 @@
                     ctx.bezierCurveTo(wid * 1.5, -len * 0.1, wid * 0.4, len * 0.6, 0, len);
                     ctx.closePath();
 
-                    // MÁSCARA DE CORTE (CLIP): Mantiene las estrías y líneas impecables dentro de la hoja
                     ctx.save();
                     ctx.clip();
 
-                    // Relleno con degradado natural
                     const gradient = ctx.createLinearGradient(-wid, -len, wid, len);
                     if (depthFactor > 0) {
                         gradient.addColorStop(0, this.palette.dark);
@@ -991,7 +1031,7 @@
                     ctx.lineWidth = 1.3;
                     ctx.stroke();
 
-                    // Venas secundarias recortadas perfectamente
+                    // Venas secundarias
                     ctx.strokeStyle = this.palette.vein;
                     ctx.lineWidth = 0.5;
                     const veins = 7;
@@ -1011,13 +1051,13 @@
                         ctx.stroke();
                     }
 
-                    ctx.restore(); // Cierra el clip
-                    ctx.restore(); // Cierra la transformación
+                    ctx.restore();
+                    ctx.restore();
                 }
             }
 
             for (let i = 0; i < leafCount; i++) {
-                leaves.push(new PhotoLeaf());
+                leaves.push(new WindPhotoLeaf());
             }
 
             function animate() {
