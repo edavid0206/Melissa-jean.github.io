@@ -369,7 +369,7 @@
             overflow-x: auto;
             gap: 20px;
             padding: 15px 30px 30px 30px;
-            scroll-snap-type: x mandatory;
+            scroll-snap-type: x proximity; /* Cambiado de mandatory a proximity para permitir scroll continuo */
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
             will-change: scroll-position;
@@ -1138,7 +1138,7 @@
                 gallery.appendChild(clone);
             });
 
-            // Posicionamos el scroll a la mitad para permitir el movimiento hacia la izquierda de forma fluida
+            // Posicionamos el scroll a la mitad para permitir el movimiento continuo hacia la izquierda
             gallery.scrollLeft = gallery.scrollWidth / 2;
 
             let isUserInteracting = false;
@@ -1146,10 +1146,9 @@
 
             function step() {
                 if (!isUserInteracting) {
-                    gallery.scrollLeft -= 0.7; // Movimiento automático de derecha a izquierda
+                    gallery.scrollLeft -= 0.7; // Movimiento continuo de derecha a izquierda
                     const singleSetWidth = gallery.scrollWidth / 2;
                     
-                    // Si llega al inicio del contenedor, lo devolvemos al punto medio para crear el bucle infinito
                     if (gallery.scrollLeft <= 0) {
                         gallery.scrollLeft += singleSetWidth;
                     }
