@@ -863,8 +863,19 @@
 
     <script>
         const params = new URLSearchParams(window.location.search);
-        const urlGuests = params.get('invitados');
-        const isEnglish = urlGuests && urlGuests.toLowerCase().includes('annie cortes');
+        const urlGuestsParam = params.get('invitados');
+        
+        // --- MANEJO ROBUSTO Y LIMPIO DE NOMBRES Y TILDES DESDE LA URL ---
+        let guestArray = [];
+        if (urlGuestsParam) {
+            // Decodifica la URL de forma segura y separa los nombres por comas
+            guestArray = decodeURIComponent(urlGuestsParam).split(',').map(name => name.trim());
+        } else {
+            guestArray = ['Familia & Acompañantes'];
+        }
+
+        // Detección de idioma en inglés (si incluye a Annie Cortes)
+        const isEnglish = urlGuestsParam && decodeURIComponent(urlGuestsParam).toLowerCase().includes('annie cortes');
 
         if (isEnglish) {
             document.getElementById('txtWelcomeTitle').innerText = "Our Wedding";
@@ -1195,15 +1206,6 @@
             document.getElementById('segundos').innerText = String(Math.floor((difference % (1000 * 60)) / 1000)).padStart(2, '0');
         }, 1000);
 
-        let guestArray = [];
-        const urlGuestsParam = params.get('invitados');
-
-        if (urlGuestsParam) {
-            guestArray = urlGuestsParam.split(',').map(name => decodeURIComponent(name.trim()));
-        } else {
-            guestArray = [isEnglish ? 'Family & Guests' : 'Familia & Acompañantes'];
-        }
-
         function cargarChecklistInvitados() {
             document.getElementById('badgePases').innerText = guestArray.length;
             let htmlList = '', checklistHtml = '';
@@ -1290,20 +1292,16 @@
 
             fetch(scriptURL, { method: 'POST', body: formData })
             .then(response => {
-                // Definir mensajes condicionales según asistencia
                 let htmlSuccess = "";
                 if (totalAsisten === totalInvitados) {
-                    // Todos asisten
                     htmlSuccess = isEnglish ? 
                         "✨ <strong>Wonderful! We'll see you there!</strong><br><span style='font-weight: 400; font-size: 0.8rem;'>All passes confirmed. We can't wait to celebrate together.</span>" : 
                         "✨ <strong>¡Qué alegría! Nos vemos en la boda.</strong><br><span style='font-weight: 400; font-size: 0.8rem;'>Todos los pases han sido confirmados con éxito. ¡Nos encantará compartir este gran día!</span>";
                 } else if (totalAsisten === 0) {
-                    // Ninguno asiste
                     htmlSuccess = isEnglish ? 
                         "🌿 <strong>Response saved. We will miss you!</strong><br><span style='font-weight: 400; font-size: 0.8rem;'>Thank you for letting us know. We carry you in our hearts.</span>" : 
                         "🌿 <strong>Respuesta guardada. ¡Los extrañaremos muchísimo!</strong><br><span style='font-weight: 400; font-size: 0.8rem;'>Agradecemos que nos avisen. Les llevamos siempre en el corazón en este nuevo camino.</span>";
                 } else {
-                    // Respuesta mixta (algunos sí, algunos no)
                     htmlSuccess = isEnglish ? 
                         "✨ <strong>Attendance updated successfully!</strong><br><span style='font-weight: 400; font-size: 0.8rem;'>Thank you for letting us know. We look forward to seeing those who can attend.</span>" : 
                         "✨ <strong>¡Asistencia actualizada con éxito!</strong><br><span style='font-weight: 400; font-size: 0.8rem;'>Gracias por avisarnos. Nos alegra compartir con quienes puedan acompañarnos.</span>";
