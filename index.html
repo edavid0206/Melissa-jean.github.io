@@ -1138,15 +1138,20 @@
                 gallery.appendChild(clone);
             });
 
+            // Posicionamos el scroll a la mitad para permitir el movimiento hacia la izquierda de forma fluida
+            gallery.scrollLeft = gallery.scrollWidth / 2;
+
             let isUserInteracting = false;
             let interactionTimeout;
 
             function step() {
                 if (!isUserInteracting) {
-                    gallery.scrollLeft += 0.7;
+                    gallery.scrollLeft -= 0.7; // Movimiento automático de derecha a izquierda
                     const singleSetWidth = gallery.scrollWidth / 2;
-                    if (gallery.scrollLeft >= singleSetWidth) {
-                        gallery.scrollLeft -= singleSetWidth;
+                    
+                    // Si llega al inicio del contenedor, lo devolvemos al punto medio para crear el bucle infinito
+                    if (gallery.scrollLeft <= 0) {
+                        gallery.scrollLeft += singleSetWidth;
                     }
                 }
                 requestAnimationFrame(step);
