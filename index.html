@@ -369,7 +369,7 @@
             overflow-x: auto;
             gap: 20px;
             padding: 15px 30px 30px 30px;
-            scroll-snap-type: x proximity; /* Cambiado de mandatory a proximity para permitir scroll continuo */
+            scroll-snap-type: none;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
             will-change: scroll-position;
@@ -386,7 +386,6 @@
 
         .horizontal-photo-item {
             flex: 0 0 280px;
-            scroll-snap-align: center;
             position: relative;
             border-radius: 14px;
             overflow: hidden;
@@ -882,7 +881,7 @@
             AOS.init({ duration: 1000, once: true });
             initGentleBreezeLeafCanvas();
             cargarChecklistInvitados();
-            initInteractiveAutoScroll();
+            initInfiniteGalleryScroll();
         });
 
         // --- SISTEMA DE HOJAS CON EFECTO DE BRISA SUAVE (GENTLE BREEZE) ---
@@ -911,7 +910,6 @@
                 mouse.y = -1000;
             });
 
-            // Soporte táctil sutil para celulares/tablets
             window.addEventListener('touchmove', (e) => {
                 if (e.touches.length > 0) {
                     mouse.x = e.touches[0].clientX;
@@ -944,7 +942,7 @@
                 reset() {
                     this.x = Math.random() * canvas.width;
                     this.y = Math.random() * -canvas.height - 120;
-                    this.baseVy = Math.random() * 0.4 + 0.35; // Caída suave y constante
+                    this.baseVy = Math.random() * 0.4 + 0.35;
                     this.baseVx = Math.random() * 0.6 - 0.3;
                     this.scale = Math.random() * 0.35 + 0.6;
 
@@ -957,35 +955,28 @@
                     this.seed = Math.random() * 100;
                     this.palette = photorealisticPalettes[Math.floor(Math.random() * photorealisticPalettes.length)];
                     this.opacity = Math.random() * 0.15 + 0.8;
-
-                    // Variables para el vaivén de la brisa
                     this.breezeOffset = 0;
                 }
 
                 update() {
                     this.seed += this.wobbleSpeed;
-
-                    // --- EFECTO DE BRISA SUTIL AL PASAR EL MOUSE / DEDO ---
                     let targetBreeze = 0;
                     const dx = this.x - mouse.x;
                     const dy = this.y - mouse.y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
-                    const breezeRadius = 120; // Radio suave de influencia
+                    const breezeRadius = 120;
 
                     if (dist < breezeRadius && mouse.active) {
-                        // Calcula una oscilación suave en lugar de un empuje brusco
                         const influence = (1 - dist / breezeRadius);
                         targetBreeze = Math.sin(this.seed * 3) * 1.5 * influence + (dx > 0 ? 0.8 : -0.8) * influence;
                     }
 
-                    // Transición suave (suavizado o lerp) hacia la brisa
                     this.breezeOffset += (targetBreeze - this.breezeOffset) * 0.1;
 
-                    // Movimiento final de la hoja (caída natural + vaivén de brisa)
                     this.y += this.baseVy;
                     this.x += this.baseVx + Math.sin(this.seed) * 0.7 + this.breezeOffset;
 
-                    this.angleZ += this.spinZ + (this.breezeOffset * 0.005); // Giro delicado al mecerse
+                    this.angleZ += this.spinZ + (this.breezeOffset * 0.005);
                     this.angleY += this.spinY;
 
                     if (this.y > canvas.height + 90 || this.x < -100 || this.x > canvas.width + 100) {
@@ -1005,7 +996,6 @@
                     const len = 40;
                     const wid = 14;
 
-                    // Silueta orgánica original con máscara de recorte
                     ctx.beginPath();
                     ctx.moveTo(0, len + 8);
                     ctx.lineTo(0, len);
@@ -1031,7 +1021,6 @@
                     ctx.fillStyle = gradient;
                     ctx.fill();
 
-                    // Vena central
                     ctx.beginPath();
                     ctx.moveTo(0, len);
                     ctx.lineTo(0, -len + 3);
@@ -1039,7 +1028,6 @@
                     ctx.lineWidth = 1.3;
                     ctx.stroke();
 
-                    // Venas secundarias
                     ctx.strokeStyle = this.palette.vein;
                     ctx.lineWidth = 0.5;
                     const veins = 7;
@@ -1128,29 +1116,30 @@
             document.getElementById('lightbox').style.display = 'none';
         }
 
-        function initInteractiveAutoScroll() {
+        // --- CARRUSEL CONTINUO INFINITO SIN BRINCOS ---
+        function initInfiniteGalleryScroll() {
             const gallery = document.getElementById('galleryContainer');
             if (!gallery) return;
 
-            Array.from(gallery.children).forEach(item => {
+            // Duplicamos los elementos para crear un bucle fluido ilimitado
+            const originalItems = Array.from(gallery.children);
+            originalItems.forEach(item => {
                 const clone = item.cloneNode(true);
                 clone.addEventListener('click', () => openLightbox(clone));
                 gallery.appendChild(clone);
             });
-
-            // Posicionamos el scroll a la mitad para permitir el movimiento continuo hacia la izquierda
-            gallery.scrollLeft = gallery.scrollWidth / 2;
 
             let isUserInteracting = false;
             let interactionTimeout;
 
             function step() {
                 if (!isUserInteracting) {
-                    gallery.scrollLeft -= 0.7; // Movimiento continuo de derecha a izquierda
-                    const singleSetWidth = gallery.scrollWidth / 2;
-                    
-                    if (gallery.scrollLeft <= 0) {
-                        gallery.scrollLeft += singleSetWidth;
+                    gallery.scrollLeft += 0.7; // Movimiento automático constante hacia la izquierda visualmente
+
+                    // Si pasamos la mitad del contenedor duplicado, rotamos los elementos dinámicamente sin que se note ningún salto
+                    const halfWidth = gallery.scrollWidth / 2;
+                    if (gallery.scrollLeft >= halfWidth) {
+                        gallery.scrollLeft -= halfWidth;
                     }
                 }
                 requestAnimationFrame(step);
