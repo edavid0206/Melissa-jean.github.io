@@ -865,16 +865,21 @@
         const params = new URLSearchParams(window.location.search);
         const urlGuestsParam = params.get('invitados');
         
-        // --- MANEJO ROBUSTO Y LIMPIO DE NOMBRES Y TILDES DESDE LA URL ---
+        // --- MANEJO SÚPER ROBUSTO DE NOMBRES Y TILDES DESDE LA URL ---
         let guestArray = [];
         if (urlGuestsParam) {
-            // Decodifica la URL de forma segura y separa los nombres por comas
-            guestArray = decodeURIComponent(urlGuestsParam).split(',').map(name => name.trim());
+            let limpia = urlGuestsParam;
+            try {
+                limpia = decodeURIComponent(decodeURIComponent(urlGuestsParam));
+            } catch (e) {
+                limpia = decodeURIComponent(urlGuestsParam);
+            }
+            guestArray = limpia.split(',').map(name => name.trim());
         } else {
             guestArray = ['Familia & Acompañantes'];
         }
 
-        // Detección de idioma en inglés (si incluye a Annie Cortes)
+        // Detección automática de idioma en inglés (ej. si incluye a Annie Cortes)
         const isEnglish = urlGuestsParam && decodeURIComponent(urlGuestsParam).toLowerCase().includes('annie cortes');
 
         if (isEnglish) {
@@ -926,7 +931,7 @@
             initInteractiveAutoScroll();
         });
 
-        // --- SISTEMA DE HOJAS CON EFECTO DE BRISA SUAVE (GENTLE BREEZE) ---
+        // --- SISTEMA DE HOJAS CON EFECTO DE BRISA SUAVE (MOUSE Y TÁCTIL) ---
         function initGentleBreezeLeafCanvas() {
             const canvas = document.getElementById('forest-canvas');
             const ctx = canvas.getContext('2d');
