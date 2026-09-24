@@ -369,7 +369,7 @@
             overflow-x: auto;
             gap: 20px;
             padding: 15px 30px 30px 30px;
-            scroll-snap-type: none;
+            scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
             will-change: scroll-position;
@@ -386,6 +386,7 @@
 
         .horizontal-photo-item {
             flex: 0 0 280px;
+            scroll-snap-align: center;
             position: relative;
             border-radius: 14px;
             overflow: hidden;
@@ -608,6 +609,35 @@
             color: #c4cdc0;
             padding: 50px 20px;
             text-align: center;
+        }
+
+        /* --- NUEVOS ESTILOS PARA LAS ALERTAS RSVP --- */
+        #rsvpMensaje {
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(5px);
+        }
+
+        #rsvpMensaje.show-msg {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .alert-wedding-success {
+            background: rgba(51, 61, 41, 0.08);
+            border: 1px solid var(--accent-gold);
+            color: var(--primary-olive);
+            border-radius: 10px;
+            padding: 12px 15px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .alert-wedding-danger {
+            background: rgba(180, 50, 50, 0.05);
+            border: 1px solid rgba(180, 50, 50, 0.2);
+            color: #a94442;
+            border-radius: 10px;
+            padding: 12px 15px;
         }
     </style>
 </head>
@@ -881,7 +911,7 @@
             AOS.init({ duration: 1000, once: true });
             initGentleBreezeLeafCanvas();
             cargarChecklistInvitados();
-            initInfiniteGalleryScroll();
+            initInteractiveAutoScroll();
         });
 
         // --- SISTEMA DE HOJAS CON EFECTO DE BRISA SUAVE (GENTLE BREEZE) ---
@@ -960,6 +990,7 @@
 
                 update() {
                     this.seed += this.wobbleSpeed;
+
                     let targetBreeze = 0;
                     const dx = this.x - mouse.x;
                     const dy = this.y - mouse.y;
@@ -1116,14 +1147,11 @@
             document.getElementById('lightbox').style.display = 'none';
         }
 
-        // --- CARRUSEL CONTINUO INFINITO SIN BRINCOS ---
-        function initInfiniteGalleryScroll() {
+        function initInteractiveAutoScroll() {
             const gallery = document.getElementById('galleryContainer');
             if (!gallery) return;
 
-            // Duplicamos los elementos para crear un bucle fluido ilimitado
-            const originalItems = Array.from(gallery.children);
-            originalItems.forEach(item => {
+            Array.from(gallery.children).forEach(item => {
                 const clone = item.cloneNode(true);
                 clone.addEventListener('click', () => openLightbox(clone));
                 gallery.appendChild(clone);
@@ -1134,12 +1162,10 @@
 
             function step() {
                 if (!isUserInteracting) {
-                    gallery.scrollLeft += 0.7; // Movimiento automático constante hacia la izquierda visualmente
-
-                    // Si pasamos la mitad del contenedor duplicado, rotamos los elementos dinámicamente sin que se note ningún salto
-                    const halfWidth = gallery.scrollWidth / 2;
-                    if (gallery.scrollLeft >= halfWidth) {
-                        gallery.scrollLeft -= halfWidth;
+                    gallery.scrollLeft += 0.7;
+                    const singleSetWidth = gallery.scrollWidth / 2;
+                    if (gallery.scrollLeft >= singleSetWidth) {
+                        gallery.scrollLeft -= singleSetWidth;
                     }
                 }
                 requestAnimationFrame(step);
@@ -1217,13 +1243,20 @@
             
             const btn = document.getElementById('btnRsvp');
             const mensaje = document.getElementById('rsvpMensaje');
+            
+            mensaje.classList.remove('show-msg');
 
             if (diasFaltantes <= 29) {
                 btn.disabled = true;
-                mensaje.className = "mt-3 text-center small fw-bold text-danger";
-                mensaje.innerHTML = `
-                    ¡El plazo regular de confirmación ha finalizado!<br>
-                    Estás a 29 días o menos del evento. Si deseas confirmar o consultar disponibilidad, por favor comunícate directamente:<br><br>
+                mensaje.className = "mt-3 text-center small fw-bold alert-wedding-danger show-msg";
+                mensaje.innerHTML = isEnglish ? `
+                    ⚠️ The regular confirmation deadline has passed!<br>
+                    You are 29 days or less away from the event. To check availability, please contact us directly:<br><br>
+                    📞 <strong>Melissa:</strong> <a href="https://wa.me/50689892294" target="_blank" style="color: #333d29;">8989-2294</a><br>
+                    📞 <strong>Jean Emanuel:</strong> <a href="https://wa.me/50686160583" target="_blank" style="color: #333d29;">8616-0583</a>
+                ` : `
+                    ⚠️ ¡El plazo regular de confirmación ha finalizado!<br>
+                    Estás a 29 días o menos del evento. Si deseas consultar disponibilidad, comunícate directamente:<br><br>
                     📞 <strong>Melissa:</strong> <a href="https://wa.me/50689892294" target="_blank" style="color: #333d29;">8989-2294</a><br>
                     📞 <strong>Jean Emanuel:</strong> <a href="https://wa.me/50686160583" target="_blank" style="color: #333d29;">8616-0583</a>
                 `;
@@ -1241,7 +1274,8 @@
             localStorage.setItem('boda_rsvp_' + (urlGuestsParam || 'default'), JSON.stringify(asistenciaData));
 
             btn.disabled = true;
-            btn.innerText = isEnglish ? "Saving..." : "Guardando...";
+            btn.style.opacity = '0.7';
+            btn.innerText = isEnglish ? "Saving your response..." : "Guardando tu respuesta...";
 
             const scriptURL = 'https://script.google.com/macros/s/AKfycbz7V7m9HRREfGCzj9-u5u5dr5Sx2h43obaf1oqBxJ2zWsUCXYlhlX-Ul9Y2QKGvHBJ4Mg/exec';
 
@@ -1251,15 +1285,23 @@
 
             fetch(scriptURL, { method: 'POST', body: formData })
             .then(response => {
-                mensaje.className = "mt-2 text-center small fw-bold text-success";
-                mensaje.innerText = isEnglish ? "Attendance updated successfully!" : "¡Asistencia actualizada con éxito!";
+                mensaje.className = "mt-3 text-center small fw-bold alert-wedding-success show-msg";
+                mensaje.innerHTML = isEnglish ? 
+                    "✨ <strong>Attendance updated successfully!</strong><br><span style='font-weight: 400; font-size: 0.8rem;'>Thank you for letting us know. We look forward to seeing you.</span>" : 
+                    "✨ <strong>¡Asistencia actualizada con éxito!</strong><br><span style='font-weight: 400; font-size: 0.8rem;'>Gracias por avisarnos. Nos encantará compartir este día contigo.</span>";
+                
                 btn.disabled = false;
+                btn.style.opacity = '1';
                 btn.innerText = isEnglish ? "Update Attendance" : "Actualizar Asistencia";
             })
             .catch(error => {
-                mensaje.className = "mt-2 text-center small fw-bold text-danger";
-                mensaje.innerText = isEnglish ? "Error saving. Please try again." : "Hubo un error al guardar. Inténtalo de nuevo.";
+                mensaje.className = "mt-3 text-center small fw-bold alert-wedding-danger show-msg";
+                mensaje.innerText = isEnglish ? 
+                    "❌ Error saving. Please try again or contact us directly." : 
+                    "❌ Hubo un error al guardar. Inténtalo de nuevo o contáctanos.";
+                
                 btn.disabled = false;
+                btn.style.opacity = '1';
                 btn.innerText = isEnglish ? "Confirm Attendance" : "Confirmar Asistencia";
             });
         }
