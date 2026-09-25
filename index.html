@@ -670,7 +670,7 @@
     </div>
 
     <audio id="wedding-audio" loop preload="auto">
-        <source src="cancion/cancion.mp3" type="audio/mp3">
+        <source id="audioSource" src="cancion/cancion.mp3" type="audio/mp3">
     </audio>
 
     <button class="music-toggle" id="musicBtn" onclick="toggleAudio()" style="display: none;" title="Música">♫</button>
@@ -883,6 +883,13 @@
         const isEnglish = urlGuestsParam && decodeURIComponent(urlGuestsParam).toLowerCase().includes('annie cortes');
 
         if (isEnglish) {
+            // Cambiar la canción automáticamente a la versión en inglés
+            const audioSource = document.getElementById('audioSource');
+            const audioElem = document.getElementById('wedding-audio');
+            audioSource.src = 'cancion/cancioningles.mp3';
+            audioElem.load();
+
+            // Traducción de textos
             document.getElementById('txtWelcomeTitle').innerText = "Our Wedding";
             document.getElementById('txtOpenBtn').innerText = "Open Invitation";
             document.getElementById('txtHeroBadge').innerText = "Our Wedding";
